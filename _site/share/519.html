@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Berkeley DB Access Method: Hash、Btree、Queue、Recno | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Berkeley DB Access Method: Hash、Btree、Queue、Recno" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="在数据库应用中,数据访问方式对应数据在硬盘上的存储格式和操作方法。在编写应用时，选择合适的算法可以极大的提高运算速度。大多数数据库都选用Btree算法，DB也不例外，同时还提供Hash算法、Recno算法和Queue算法。Berkeley DB的强大之一是它为这几种算法提供了差不多相同的接口，这表明当你要使用另一种算法时修改程序是简单的。程序在需要对特殊数据结构和存取模式操作时，通过不同的算法可以轻易的解决。" />
+<meta property="og:description" content="在数据库应用中,数据访问方式对应数据在硬盘上的存储格式和操作方法。在编写应用时，选择合适的算法可以极大的提高运算速度。大多数数据库都选用Btree算法，DB也不例外，同时还提供Hash算法、Recno算法和Queue算法。Berkeley DB的强大之一是它为这几种算法提供了差不多相同的接口，这表明当你要使用另一种算法时修改程序是简单的。程序在需要对特殊数据结构和存取模式操作时，通过不同的算法可以轻易的解决。" />
+<link rel="canonical" href="http://localhost:4001/share/519.html" />
+<meta property="og:url" content="http://localhost:4001/share/519.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-05-15T22:23:06-07:00" />
+<script type="application/ld+json">
+{"headline":"Berkeley DB Access Method: Hash、Btree、Queue、Recno","dateModified":"2012-05-15T22:23:06-07:00","datePublished":"2012-05-15T22:23:06-07:00","description":"在数据库应用中,数据访问方式对应数据在硬盘上的存储格式和操作方法。在编写应用时，选择合适的算法可以极大的提高运算速度。大多数数据库都选用Btree算法，DB也不例外，同时还提供Hash算法、Recno算法和Queue算法。Berkeley DB的强大之一是它为这几种算法提供了差不多相同的接口，这表明当你要使用另一种算法时修改程序是简单的。程序在需要对特殊数据结构和存取模式操作时，通过不同的算法可以轻易的解决。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/share/519.html"},"@type":"BlogPosting","url":"http://localhost:4001/share/519.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Berkeley DB Access Method: Hash、Btree、Queue、Recno</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-05-15T22:23:06-07:00" itemprop="datePublished">May 15, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>在数据库应用中,数据访问方式对应数据在硬盘上的存储格式和操作方法。在编写应用时，选择合适的算法可以极大的提高运算速度。大多数数据库都选用Btree算法，DB也不例外，同时还提供Hash算法、Recno算法和Queue算法。Berkeley DB的强大之一是它为这几种算法提供了差不多相同的接口，这表明当你要使用另一种算法时修改程序是简单的。程序在需要对特殊数据结构和存取模式操作时，通过不同的算法可以轻易的解决。</p>
+
+<p>大多数应用要么在Btree和Hash算法之间，要么在Queue和Recno算法之间选择。</p>
+
+<p>Hash 还是 Btree？<br />
+当记录号不是用于数据存取的主键时，应该使用 Hash和Btree算法。 (如果记录号是用于数据存取的一个二级关键字，那么还是可以选择Btree算法，因为它支持一个主键和一个记录号同时存取。)<!--more--></p>
+
+<p>Btree中的主键是有序存储，记录间的关联是依靠次序。并且其结构能随数据的插入和删除进行动态调整。为了代码的简单，DB没有实现对关键字的前缀码压缩。Btree支持对数据查询、插入、删除的常数级速度。关键字可以为任意的数据结构。 因此，当在主键有序时，Btree算法应该被使用。例如，如果主键是时间戳， 那么8点时间戳后面跟随的就是9点时间戳， 这种情况下，Btree算法一般是正确的选择。再来个例子：如果主键是名字，应用需要取出所有同姓的记录，那么Btree 存取方法同样是个好选择。</p>
+
+<p>Hash 和 Btree 两种方式在小的数据集合上几乎没有性能的差别。不过，由于Hash使用的是扩展线性HASH算法（extended linear hashing），可以根据HASH表的增长进行适当的调整。所以当一个数据集合足够大且关键字为随机分布时，采用Hash算法比较好。</p>
+
+<p>Queue 还是 Recno？<br />
+当用记录号作为数据存取的主键时，应该使用 Queue和Recno存取方法。记录号由算法本身生成。实际上，这和关系型数据库中逻辑主键通常定义为int AUTO型是同一个概念。两者基本上都是建立在Btree算法之上，提供存储有序数据的接口。Queue的优势在于：由于其记录为定长，在插入操作时把记录插入到队列的尾部，所以速度最快，而且它执行上锁和并发处理的水平也相当高。 Recno 的长处在于它支持一些Queue不能实现的特征，比如可变长记录和支持flat-text文件。</p>
+
+<p>记录号可以是可变的或者不变的： 可变指的是当记录被删除或者插入记录号发生变化；不变指的是记录号无论数据库如何操作，记录号都不会发生改变。 基于记录号存取在Btree方式下也是可行的。但是，记录号是可变，当记录删除或插入时，数据库内的其他记录的记录号都将发生改变。 Queue存取方法总是用固定的方式运行，不管数据库如何操作，记录号始终改变。 Recno 可以被设置为不变和可变两种形式。</p>
+
+<p>另外，Recno为数据库提供支持flat-text文件的永久存储和数据在读或修改时提供一个快速的临时存储空间。</p>
+
+<h2 id="choose-database-access-method">Choose Database Access Method</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Access Method</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Choosing Occasion</strong></td>
+    </tr>
+    <tr>
+      <td>B+树</td>
+      <td>关键字有序存储，并且其结构能随数据的插入和删除进行动态调整。为了代码的简单，Berkeley DB没有实现对关键字的前缀码压缩。B+树支持对数据查询、插入、删除的常数级速度。关键字可以为任意的数据结构。</td>
+      <td>1、 当Key为复杂类型时。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>2、 当Key有序时。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Hash</td>
+      <td>DB中实际使用的是扩展线性HASH算法（extended linear hashing），可以根据HASH表的增长进行适当的调整。关键字可以为任意的数据结构。</td>
+      <td>1、 当Key为复杂类型。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>2、 当数据较大且key随机分布时。</p>
+
+<p> </p>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Recno</td>
+      <td>要求每一个记录都有一个逻辑纪录号，逻辑纪录号由算法本身生成。相当于关系数据库中的自动增长字段。Recho建立在B+树算法之上，提供了一个存储有序数据的接口。记录的长度可以为定长或不定长。</td>
+      <td>1、 当key为逻辑记录号时。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>2、 当非高并发的情况下。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Queue</td>
+      <td>和Recno方式接近, 只不过记录的长度为定长。数据以定长记录方式存储在队列中，插入操作把记录插入到队列的尾部，相比之下插入速度是最快的。</td>
+      <td>1、当key为逻辑记录号时。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>2、 定长记录。</p>
+
+<p>3、 高并发的情况下。</p>
+
+<p> </p>
+
+<table>
+  <tbody>
+    <tr>
+    </tr>
+  </tbody>
+</table>
+
+<p>来源：http://hi.baidu.com/xinzsky/blog/item/0652048176a794ddbd3e1ec5.html</p>
+
+
+  </div><a class="u-url" href="/share/519.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

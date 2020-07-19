@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>xhprof安装、使用说明 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="xhprof安装、使用说明" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="xhprof是facebook做的一个开源检测PHP执行性能的程序，帮你分析程序中到底是哪里耗时，个人觉得挺有用的。" />
+<meta property="og:description" content="xhprof是facebook做的一个开源检测PHP执行性能的程序，帮你分析程序中到底是哪里耗时，个人觉得挺有用的。" />
+<link rel="canonical" href="http://localhost:4001/share/479.html" />
+<meta property="og:url" content="http://localhost:4001/share/479.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-04-08T18:40:31-07:00" />
+<script type="application/ld+json">
+{"headline":"xhprof安装、使用说明","dateModified":"2012-04-08T18:40:31-07:00","datePublished":"2012-04-08T18:40:31-07:00","description":"xhprof是facebook做的一个开源检测PHP执行性能的程序，帮你分析程序中到底是哪里耗时，个人觉得挺有用的。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/share/479.html"},"@type":"BlogPosting","url":"http://localhost:4001/share/479.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">xhprof安装、使用说明</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-04-08T18:40:31-07:00" itemprop="datePublished">Apr 8, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>xhprof是facebook做的一个开源检测PHP执行性能的程序，帮你分析程序中到底是哪里耗时，个人觉得挺有用的。</p>
+
+<p><strong>编译安装</strong></p>
+
+<p>依次执行如下指令：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://pecl.php.net/get/xhprof-0.9.2.tgz <span class="nb">tar </span>zxf xhprof-0.9.2.tgz <span class="nb">cd </span>xhprof-0.9.2/extension/ /usr/local/webserver/php/bin/phpize ./configure <span class="nt">--with-php-config</span><span class="o">=</span>/usr/local/webserver/php/bin/php-config make&amp;&amp;make <span class="nb">install</span>
+</code></pre></div></div>
+
+<p><strong>配置 php.ini</strong></p>
+
+<p>在php.ini里加入</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nx">xhprof</span><span class="p">]</span> <span class="nx">extension</span><span class="o">=</span><span class="nx">xhprof</span><span class="o">.</span><span class="nx">so</span><span class="p">;</span> <span class="p">;</span> <span class="nx">directory</span> <span class="nx">used</span> <span class="nx">by</span> <span class="k">default</span> <span class="nx">implementation</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">iXHProfRuns</span> <span class="p">;</span> <span class="k">interface</span> <span class="p">(</span><span class="nx">namely</span><span class="p">,</span> <span class="nx">the</span> <span class="nx">XHProfRuns\_Default</span> <span class="k">class</span><span class="p">)</span> <span class="k">for</span> <span class="nx">storing</span> <span class="p">;</span> <span class="nx">XHProf</span> <span class="nx">runs</span><span class="o">.</span> <span class="p">;</span> <span class="p">;</span><span class="nx">xhprof</span><span class="o">.</span><span class="nx">output\_dir</span><span class="o">=</span><span class="err">\</span><span class="o">&lt;</span><span class="nx">directory\_for\_storing\_xhprof\_runs</span><span class="err">\</span><span class="o">&gt;</span> <span class="nx">xhprof</span><span class="o">.</span><span class="nx">output\_dir</span><span class="o">=/</span><span class="nx">tmp</span><span class="o">/</span><span class="nx">xhprof</span>
+</code></pre></div></div>
+
+<p>注:如果是64位系统需要将xhprof.so文件拷贝到相关的lib64的目录下</p>
+
+<!--more-->
+
+<p><strong>将代码加入到要测试的php当中</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\<span class="cp">&lt;?php</span> <span class="c1">// cpu:XHPROF\_FLAGS\_CPU 内存:XHPROF\_FLAGS\_MEMORY // 如果两个一起：XHPROF\_FLAGS\_CPU + XHPROF\_FLAGS\_MEMORY xhprof\_enable(XHPROF\_FLAGS\_CPU + XHPROF\_FLAGS\_MEMORY); // 要测试的php代码 $data = xhprof\_disable(); //返回运行数据 // xhprof\_lib在下载的包里存在这个目录,记得将目录包含到运行的php代码中 include\_once "xhprof\_lib/utils/xhprof\_lib.php"; include\_once "xhprof\_lib/utils/xhprof\_runs.php"; $objXhprofRun = new XHProfRuns\_Default(); // 第一个参数j是xhprof\_disable()函数返回的运行信息 // 第二个参数是自定义的命名空间字符串(任意字符串), // 返回运行ID,用这个ID查看相关的运行结果 $run\_id = $objXhprofRun-\&gt;save\_run($data, "xhprof"); var\_dump($run\_id);</span>
+</code></pre></div></div>
+
+<p><strong>查看运行结果</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>将xhprof\_lib&amp;&amp;xhprof\_html相关目录copy到可以访问到的地址 访问 http://hostname/xhprof\_html/index.php?run=$run\_id&amp;source=xhprof 就可经看到你的php代码运行的相关情况 下面是一些参数说明 Inclusive Time 包括子函数所有执行时间。 Exclusive Time/Self Time 函数执行本身花费的时间，不包括子树执行时间。 Wall Time 花去了的时间或挂钟时间。 CPU Time 用户耗的时间+内核耗的时间 Inclusive CPU 包括子函数一起所占用的CPU Exclusive CPU 函数自身所占用的CPU 注: 需要使用ctype这个扩展
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/share/479.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

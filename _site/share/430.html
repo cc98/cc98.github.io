@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>经典SQL行列转换 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="经典SQL行列转换" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="-- 经典SQL行列转换 -- http://www.programbbs.com/doc/4885.htm /* 标题：普通行列转换(version 2.0) 说明：普通行列转换(version 1.0)仅针对sql server 2000提供静态和动态写法，version 2.0增加sql server 2005的有关写法。 问题：假设有张学生成绩表(tb)如下: 姓名 课程 分数 张三 语文 74 张三 数学 83 张三 物理 93 李四 语文 74 李四 数学 84 李四 物理 94 想变成(得到如下结果)： 姓名 语文 数学 物理 ---- ---- ---- ---- 李四 74 84 94 张三 74 83 93 ------------------- */   create table tb(姓名 varchar(10) , 课程 varchar(10) , 分数 int) insert into tb values(&#39;张三&#39; , &#39;语文&#39; , 74) insert into tb values(&#39;张三&#39; , &#39;数学&#39; , 83) insert into tb values(&#39;张三&#39; , &#39;物理&#39; , 93) insert into tb values(&#39;李四&#39; , &#39;语文&#39; , 74) insert into tb values(&#39;李四&#39; , &#39;数学&#39; , 84) insert into tb values(&#39;李四&#39; , &#39;物理&#39; , 94) go --SQL SERVER 2000 静态SQL,指课程只有语文、数学、物理这三门课程。(以下同) select 姓名 as 姓名 ,    max(case 课程 when &#39;语文&#39; then 分数 else 0 end) 语文,    max(case 课程 when &#39;数学&#39; then 分数 else 0 end) 数学,    max(case 课程 when &#39;物理&#39; then 分数 else 0 end) 物理 from tb group by 姓名 --SQL SERVER 2000 动态SQL,指课程不止语文、数学、物理这三门课程。(以下同) declare @sql varchar(8000) set @sql = &#39;select 姓名 &#39; select @sql = @sql + &#39; , max(case 课程 when &#39;&#39;&#39; + 课程 + &#39;&#39;&#39; then 分数 else 0 end) [&#39; + 课程 + &#39;]&#39; from (select distinct 课程 from tb) as a set @sql = @sql + &#39; from tb group by 姓名&#39; exec(@sql) --SQL SERVER 2005 静态SQL。 select * from (select * from tb) a pivot (max(分数) for 课程 in (语文,数学,物理)) b --SQL SERVER 2005 动态SQL。 declare @sql varchar(8000) select @sql = isnull(@sql + &#39;,&#39; , &#39;&#39;) + 课程 from tb group by 课程 exec (&#39;select * from (select * from tb) a pivot (max(分数) for 课程 in (&#39; + @sql + &#39;)) b&#39;) --------------------------------- /* 问题：在上述结果的基础上加平均分，总分，得到如下结果： 姓名 语文 数学 物理 平均分 总分 ---- ---- ---- ---- ------ ---- 李四 74 84 94 84.00 252 张三 74 83 93 83.33 250 */ --SQL SERVER 2000 静态SQL。 select 姓名 姓名,    max(case 课程 when &#39;语文&#39; then 分数 else 0 end) 语文,    max(case 课程 when &#39;数学&#39; then 分数 else 0 end) 数学,    max(case 课程 when &#39;物理&#39; then 分数 else 0 end) 物理,    cast(avg(分数*1.0) as decimal(18,2)) 平均分,    sum(分数) 总分 from tb group by 姓名 --SQL SERVER 2000 动态SQL。 declare @sql varchar(8000) set @sql = &#39;select 姓名 &#39; select @sql = @sql + &#39; , max(case 课程 when &#39;&#39;&#39; + 课程 + &#39;&#39;&#39; then 分数 else 0 end) [&#39; + 课程 + &#39;]&#39; from (select distinct 课程 from tb) as a set @sql = @sql + &#39; , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名&#39; exec(@sql) --SQL SERVER 2005 静态SQL。 select m.* , n.平均分 , n.总分 from (select * from (select * from tb) a pivot (max(分数) for 课程 in (语文,数学,物理)) b) m, (select 姓名 , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名) n where m.姓名 = n.姓名 --SQL SERVER 2005 动态SQL。 declare @sql varchar(8000) select @sql = isnull(@sql + &#39;,&#39; , &#39;&#39;) + 课程 from tb group by 课程 exec (&#39;select m.* , n.平均分 , n.总分 from (select * from (select * from tb) a pivot (max(分数) for 课程 in (&#39; + @sql + &#39;)) b) m , (select 姓名 , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名) n where m.姓名 = n.姓名&#39;) drop table tb ------------------ ------------------ /* 问题：如果上述两表互相换一下：即表结构和数据为： 姓名 语文 数学 物理 张三 74　　83　　93 李四 74　　84　　94 想变成(得到如下结果)： 姓名 课程 分数 ---- ---- ---- 李四 语文 74 李四 数学 84 李四 物理 94 张三 语文 74 张三 数学 83 张三 物理 93 -------------- */ create table tb(姓名 varchar(10) , 语文 int , 数学 int , 物理 int) insert into tb values(&#39;张三&#39;,74,83,93) insert into tb values(&#39;李四&#39;,74,84,94) go --SQL SERVER 2000 静态SQL。 select * from ( select 姓名 , 课程 = &#39;语文&#39; , 分数 = 语文 from tb union all select 姓名 , 课程 = &#39;数学&#39; , 分数 = 数学 from tb union all select 姓名 , 课程 = &#39;物理&#39; , 分数 = 物理 from tb ) t order by 姓名 , case 课程 when &#39;语文&#39; then 1 when &#39;数学&#39; then 2 when &#39;物理&#39; then 3 end --SQL SERVER 2000 动态SQL。 --调用系统表动态生态。 declare @sql varchar(8000) select @sql = isnull(@sql + &#39; union all &#39; , &#39;&#39; ) + &#39; select 姓名 , [课程] = &#39; + quotename(Name , &#39;&#39;&#39;&#39;) + &#39; , [分数] = &#39; + quotename(Name) + &#39; from tb&#39; from syscolumns where name! = N&#39;姓名&#39; and ID = object_id(&#39;tb&#39;) --表名tb，不包含列名为姓名的其它列 order by colid asc exec(@sql + &#39; order by 姓名 &#39;) --SQL SERVER 2005 动态SQL。 select 姓名 , 课程 , 分数 from tb unpivot (分数 for 课程 in([语文] , [数学] , [物理])) t --SQL SERVER 2005 动态SQL，同SQL SERVER 2000 动态SQL。 -------------------- /* 问题：在上述的结果上加个平均分，总分，得到如下结果： 姓名 课程 分数 ---- ------ ------ 李四 语文 74.00 李四 数学 84.00 李四 物理 94.00 李四 平均分 84.00 李四 总分 252.00 张三 语文 74.00 张三 数学 83.00 张三 物理 93.00 张三 平均分 83.33 张三 总分 250.00 ------------------ */ select * from ( select 姓名 as 姓名 , 课程 = &#39;语文&#39; , 分数 = 语文 from tb union all select 姓名 as 姓名 , 课程 = &#39;数学&#39; , 分数 = 数学 from tb union all select 姓名 as 姓名 , 课程 = &#39;物理&#39; , 分数 = 物理 from tb union all select 姓名 as 姓名 , 课程 = &#39;平均分&#39; , 分数 = cast((语文 + 数学 + 物理)*1.0/3 as decimal(18,2)) from tb union all select 姓名 as 姓名 , 课程 = &#39;总分&#39; , 分数 = 语文 + 数学 + 物理 from tb ) t order by 姓名 , case 课程 when &#39;语文&#39; then 1 when &#39;数学&#39; then 2 when &#39;物理&#39; then 3 when &#39;平均分&#39; then 4 when &#39;总分&#39; then 5 end drop table tb --&gt; 生成测试数据: #DB_info if object_id(&#39;tempdb.dbo.#DB_info&#39;) is not null drop table #DB_info create table #DB_info (sid int,name nvarchar(4),sex nvarchar(2)) insert into #DB_info select 1,&#39;李明&#39;,&#39;男&#39; union all select 2,&#39;王军&#39;,&#39;男&#39; union all select 3,&#39;李敏&#39;,&#39;女&#39; --&gt; 生成测试数据: #db_scores if object_id(&#39;tempdb.dbo.#db_scores&#39;) is not null drop table #db_scores create table #db_scores (sid int,type nvarchar(4),scores int) insert into #db_scores select 1,&#39;语文&#39;,80 union all select 1,&#39;数学&#39;,90 union all select 2,&#39;语文&#39;,85 union all select 2,&#39;数学&#39;,90 union all select 3,&#39;语文&#39;,75 union all select 3,&#39;数学&#39;,85 declare @sql nvarchar(4000) set @sql=&#39;select a.sid,a.name,a.sex&#39; select @sql=@sql+&#39;,max(case when b.type=&#39;&#39;&#39;+type+&#39;&#39;&#39; then b.scores else 0 end) [&#39;+type+&#39;]&#39; from (select distinct type from #db_scores) t exec (@sql+&#39; from #DB_info a left outer join #db_scores b on a.sid=b.sid group by a.sid,a.name,a.sex&#39;) /* sid name sex 数学 语文 ----------- ---- ---- ----------- ----------- 1 李明 男 90 80" />
+<meta property="og:description" content="-- 经典SQL行列转换 -- http://www.programbbs.com/doc/4885.htm /* 标题：普通行列转换(version 2.0) 说明：普通行列转换(version 1.0)仅针对sql server 2000提供静态和动态写法，version 2.0增加sql server 2005的有关写法。 问题：假设有张学生成绩表(tb)如下: 姓名 课程 分数 张三 语文 74 张三 数学 83 张三 物理 93 李四 语文 74 李四 数学 84 李四 物理 94 想变成(得到如下结果)： 姓名 语文 数学 物理 ---- ---- ---- ---- 李四 74 84 94 张三 74 83 93 ------------------- */   create table tb(姓名 varchar(10) , 课程 varchar(10) , 分数 int) insert into tb values(&#39;张三&#39; , &#39;语文&#39; , 74) insert into tb values(&#39;张三&#39; , &#39;数学&#39; , 83) insert into tb values(&#39;张三&#39; , &#39;物理&#39; , 93) insert into tb values(&#39;李四&#39; , &#39;语文&#39; , 74) insert into tb values(&#39;李四&#39; , &#39;数学&#39; , 84) insert into tb values(&#39;李四&#39; , &#39;物理&#39; , 94) go --SQL SERVER 2000 静态SQL,指课程只有语文、数学、物理这三门课程。(以下同) select 姓名 as 姓名 ,    max(case 课程 when &#39;语文&#39; then 分数 else 0 end) 语文,    max(case 课程 when &#39;数学&#39; then 分数 else 0 end) 数学,    max(case 课程 when &#39;物理&#39; then 分数 else 0 end) 物理 from tb group by 姓名 --SQL SERVER 2000 动态SQL,指课程不止语文、数学、物理这三门课程。(以下同) declare @sql varchar(8000) set @sql = &#39;select 姓名 &#39; select @sql = @sql + &#39; , max(case 课程 when &#39;&#39;&#39; + 课程 + &#39;&#39;&#39; then 分数 else 0 end) [&#39; + 课程 + &#39;]&#39; from (select distinct 课程 from tb) as a set @sql = @sql + &#39; from tb group by 姓名&#39; exec(@sql) --SQL SERVER 2005 静态SQL。 select * from (select * from tb) a pivot (max(分数) for 课程 in (语文,数学,物理)) b --SQL SERVER 2005 动态SQL。 declare @sql varchar(8000) select @sql = isnull(@sql + &#39;,&#39; , &#39;&#39;) + 课程 from tb group by 课程 exec (&#39;select * from (select * from tb) a pivot (max(分数) for 课程 in (&#39; + @sql + &#39;)) b&#39;) --------------------------------- /* 问题：在上述结果的基础上加平均分，总分，得到如下结果： 姓名 语文 数学 物理 平均分 总分 ---- ---- ---- ---- ------ ---- 李四 74 84 94 84.00 252 张三 74 83 93 83.33 250 */ --SQL SERVER 2000 静态SQL。 select 姓名 姓名,    max(case 课程 when &#39;语文&#39; then 分数 else 0 end) 语文,    max(case 课程 when &#39;数学&#39; then 分数 else 0 end) 数学,    max(case 课程 when &#39;物理&#39; then 分数 else 0 end) 物理,    cast(avg(分数*1.0) as decimal(18,2)) 平均分,    sum(分数) 总分 from tb group by 姓名 --SQL SERVER 2000 动态SQL。 declare @sql varchar(8000) set @sql = &#39;select 姓名 &#39; select @sql = @sql + &#39; , max(case 课程 when &#39;&#39;&#39; + 课程 + &#39;&#39;&#39; then 分数 else 0 end) [&#39; + 课程 + &#39;]&#39; from (select distinct 课程 from tb) as a set @sql = @sql + &#39; , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名&#39; exec(@sql) --SQL SERVER 2005 静态SQL。 select m.* , n.平均分 , n.总分 from (select * from (select * from tb) a pivot (max(分数) for 课程 in (语文,数学,物理)) b) m, (select 姓名 , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名) n where m.姓名 = n.姓名 --SQL SERVER 2005 动态SQL。 declare @sql varchar(8000) select @sql = isnull(@sql + &#39;,&#39; , &#39;&#39;) + 课程 from tb group by 课程 exec (&#39;select m.* , n.平均分 , n.总分 from (select * from (select * from tb) a pivot (max(分数) for 课程 in (&#39; + @sql + &#39;)) b) m , (select 姓名 , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名) n where m.姓名 = n.姓名&#39;) drop table tb ------------------ ------------------ /* 问题：如果上述两表互相换一下：即表结构和数据为： 姓名 语文 数学 物理 张三 74　　83　　93 李四 74　　84　　94 想变成(得到如下结果)： 姓名 课程 分数 ---- ---- ---- 李四 语文 74 李四 数学 84 李四 物理 94 张三 语文 74 张三 数学 83 张三 物理 93 -------------- */ create table tb(姓名 varchar(10) , 语文 int , 数学 int , 物理 int) insert into tb values(&#39;张三&#39;,74,83,93) insert into tb values(&#39;李四&#39;,74,84,94) go --SQL SERVER 2000 静态SQL。 select * from ( select 姓名 , 课程 = &#39;语文&#39; , 分数 = 语文 from tb union all select 姓名 , 课程 = &#39;数学&#39; , 分数 = 数学 from tb union all select 姓名 , 课程 = &#39;物理&#39; , 分数 = 物理 from tb ) t order by 姓名 , case 课程 when &#39;语文&#39; then 1 when &#39;数学&#39; then 2 when &#39;物理&#39; then 3 end --SQL SERVER 2000 动态SQL。 --调用系统表动态生态。 declare @sql varchar(8000) select @sql = isnull(@sql + &#39; union all &#39; , &#39;&#39; ) + &#39; select 姓名 , [课程] = &#39; + quotename(Name , &#39;&#39;&#39;&#39;) + &#39; , [分数] = &#39; + quotename(Name) + &#39; from tb&#39; from syscolumns where name! = N&#39;姓名&#39; and ID = object_id(&#39;tb&#39;) --表名tb，不包含列名为姓名的其它列 order by colid asc exec(@sql + &#39; order by 姓名 &#39;) --SQL SERVER 2005 动态SQL。 select 姓名 , 课程 , 分数 from tb unpivot (分数 for 课程 in([语文] , [数学] , [物理])) t --SQL SERVER 2005 动态SQL，同SQL SERVER 2000 动态SQL。 -------------------- /* 问题：在上述的结果上加个平均分，总分，得到如下结果： 姓名 课程 分数 ---- ------ ------ 李四 语文 74.00 李四 数学 84.00 李四 物理 94.00 李四 平均分 84.00 李四 总分 252.00 张三 语文 74.00 张三 数学 83.00 张三 物理 93.00 张三 平均分 83.33 张三 总分 250.00 ------------------ */ select * from ( select 姓名 as 姓名 , 课程 = &#39;语文&#39; , 分数 = 语文 from tb union all select 姓名 as 姓名 , 课程 = &#39;数学&#39; , 分数 = 数学 from tb union all select 姓名 as 姓名 , 课程 = &#39;物理&#39; , 分数 = 物理 from tb union all select 姓名 as 姓名 , 课程 = &#39;平均分&#39; , 分数 = cast((语文 + 数学 + 物理)*1.0/3 as decimal(18,2)) from tb union all select 姓名 as 姓名 , 课程 = &#39;总分&#39; , 分数 = 语文 + 数学 + 物理 from tb ) t order by 姓名 , case 课程 when &#39;语文&#39; then 1 when &#39;数学&#39; then 2 when &#39;物理&#39; then 3 when &#39;平均分&#39; then 4 when &#39;总分&#39; then 5 end drop table tb --&gt; 生成测试数据: #DB_info if object_id(&#39;tempdb.dbo.#DB_info&#39;) is not null drop table #DB_info create table #DB_info (sid int,name nvarchar(4),sex nvarchar(2)) insert into #DB_info select 1,&#39;李明&#39;,&#39;男&#39; union all select 2,&#39;王军&#39;,&#39;男&#39; union all select 3,&#39;李敏&#39;,&#39;女&#39; --&gt; 生成测试数据: #db_scores if object_id(&#39;tempdb.dbo.#db_scores&#39;) is not null drop table #db_scores create table #db_scores (sid int,type nvarchar(4),scores int) insert into #db_scores select 1,&#39;语文&#39;,80 union all select 1,&#39;数学&#39;,90 union all select 2,&#39;语文&#39;,85 union all select 2,&#39;数学&#39;,90 union all select 3,&#39;语文&#39;,75 union all select 3,&#39;数学&#39;,85 declare @sql nvarchar(4000) set @sql=&#39;select a.sid,a.name,a.sex&#39; select @sql=@sql+&#39;,max(case when b.type=&#39;&#39;&#39;+type+&#39;&#39;&#39; then b.scores else 0 end) [&#39;+type+&#39;]&#39; from (select distinct type from #db_scores) t exec (@sql+&#39; from #DB_info a left outer join #db_scores b on a.sid=b.sid group by a.sid,a.name,a.sex&#39;) /* sid name sex 数学 语文 ----------- ---- ---- ----------- ----------- 1 李明 男 90 80" />
+<link rel="canonical" href="http://localhost:4001/share/430.html" />
+<meta property="og:url" content="http://localhost:4001/share/430.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-02-25T18:22:00-08:00" />
+<script type="application/ld+json">
+{"headline":"经典SQL行列转换","dateModified":"2012-02-25T18:22:00-08:00","datePublished":"2012-02-25T18:22:00-08:00","description":"-- 经典SQL行列转换 -- http://www.programbbs.com/doc/4885.htm /* 标题：普通行列转换(version 2.0) 说明：普通行列转换(version 1.0)仅针对sql server 2000提供静态和动态写法，version 2.0增加sql server 2005的有关写法。 问题：假设有张学生成绩表(tb)如下: 姓名 课程 分数 张三 语文 74 张三 数学 83 张三 物理 93 李四 语文 74 李四 数学 84 李四 物理 94 想变成(得到如下结果)： 姓名 语文 数学 物理 ---- ---- ---- ---- 李四 74 84 94 张三 74 83 93 ------------------- */   create table tb(姓名 varchar(10) , 课程 varchar(10) , 分数 int) insert into tb values(&#39;张三&#39; , &#39;语文&#39; , 74) insert into tb values(&#39;张三&#39; , &#39;数学&#39; , 83) insert into tb values(&#39;张三&#39; , &#39;物理&#39; , 93) insert into tb values(&#39;李四&#39; , &#39;语文&#39; , 74) insert into tb values(&#39;李四&#39; , &#39;数学&#39; , 84) insert into tb values(&#39;李四&#39; , &#39;物理&#39; , 94) go --SQL SERVER 2000 静态SQL,指课程只有语文、数学、物理这三门课程。(以下同) select 姓名 as 姓名 ,    max(case 课程 when &#39;语文&#39; then 分数 else 0 end) 语文,    max(case 课程 when &#39;数学&#39; then 分数 else 0 end) 数学,    max(case 课程 when &#39;物理&#39; then 分数 else 0 end) 物理 from tb group by 姓名 --SQL SERVER 2000 动态SQL,指课程不止语文、数学、物理这三门课程。(以下同) declare @sql varchar(8000) set @sql = &#39;select 姓名 &#39; select @sql = @sql + &#39; , max(case 课程 when &#39;&#39;&#39; + 课程 + &#39;&#39;&#39; then 分数 else 0 end) [&#39; + 课程 + &#39;]&#39; from (select distinct 课程 from tb) as a set @sql = @sql + &#39; from tb group by 姓名&#39; exec(@sql) --SQL SERVER 2005 静态SQL。 select * from (select * from tb) a pivot (max(分数) for 课程 in (语文,数学,物理)) b --SQL SERVER 2005 动态SQL。 declare @sql varchar(8000) select @sql = isnull(@sql + &#39;,&#39; , &#39;&#39;) + 课程 from tb group by 课程 exec (&#39;select * from (select * from tb) a pivot (max(分数) for 课程 in (&#39; + @sql + &#39;)) b&#39;) --------------------------------- /* 问题：在上述结果的基础上加平均分，总分，得到如下结果： 姓名 语文 数学 物理 平均分 总分 ---- ---- ---- ---- ------ ---- 李四 74 84 94 84.00 252 张三 74 83 93 83.33 250 */ --SQL SERVER 2000 静态SQL。 select 姓名 姓名,    max(case 课程 when &#39;语文&#39; then 分数 else 0 end) 语文,    max(case 课程 when &#39;数学&#39; then 分数 else 0 end) 数学,    max(case 课程 when &#39;物理&#39; then 分数 else 0 end) 物理,    cast(avg(分数*1.0) as decimal(18,2)) 平均分,    sum(分数) 总分 from tb group by 姓名 --SQL SERVER 2000 动态SQL。 declare @sql varchar(8000) set @sql = &#39;select 姓名 &#39; select @sql = @sql + &#39; , max(case 课程 when &#39;&#39;&#39; + 课程 + &#39;&#39;&#39; then 分数 else 0 end) [&#39; + 课程 + &#39;]&#39; from (select distinct 课程 from tb) as a set @sql = @sql + &#39; , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名&#39; exec(@sql) --SQL SERVER 2005 静态SQL。 select m.* , n.平均分 , n.总分 from (select * from (select * from tb) a pivot (max(分数) for 课程 in (语文,数学,物理)) b) m, (select 姓名 , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名) n where m.姓名 = n.姓名 --SQL SERVER 2005 动态SQL。 declare @sql varchar(8000) select @sql = isnull(@sql + &#39;,&#39; , &#39;&#39;) + 课程 from tb group by 课程 exec (&#39;select m.* , n.平均分 , n.总分 from (select * from (select * from tb) a pivot (max(分数) for 课程 in (&#39; + @sql + &#39;)) b) m , (select 姓名 , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名) n where m.姓名 = n.姓名&#39;) drop table tb ------------------ ------------------ /* 问题：如果上述两表互相换一下：即表结构和数据为： 姓名 语文 数学 物理 张三 74　　83　　93 李四 74　　84　　94 想变成(得到如下结果)： 姓名 课程 分数 ---- ---- ---- 李四 语文 74 李四 数学 84 李四 物理 94 张三 语文 74 张三 数学 83 张三 物理 93 -------------- */ create table tb(姓名 varchar(10) , 语文 int , 数学 int , 物理 int) insert into tb values(&#39;张三&#39;,74,83,93) insert into tb values(&#39;李四&#39;,74,84,94) go --SQL SERVER 2000 静态SQL。 select * from ( select 姓名 , 课程 = &#39;语文&#39; , 分数 = 语文 from tb union all select 姓名 , 课程 = &#39;数学&#39; , 分数 = 数学 from tb union all select 姓名 , 课程 = &#39;物理&#39; , 分数 = 物理 from tb ) t order by 姓名 , case 课程 when &#39;语文&#39; then 1 when &#39;数学&#39; then 2 when &#39;物理&#39; then 3 end --SQL SERVER 2000 动态SQL。 --调用系统表动态生态。 declare @sql varchar(8000) select @sql = isnull(@sql + &#39; union all &#39; , &#39;&#39; ) + &#39; select 姓名 , [课程] = &#39; + quotename(Name , &#39;&#39;&#39;&#39;) + &#39; , [分数] = &#39; + quotename(Name) + &#39; from tb&#39; from syscolumns where name! = N&#39;姓名&#39; and ID = object_id(&#39;tb&#39;) --表名tb，不包含列名为姓名的其它列 order by colid asc exec(@sql + &#39; order by 姓名 &#39;) --SQL SERVER 2005 动态SQL。 select 姓名 , 课程 , 分数 from tb unpivot (分数 for 课程 in([语文] , [数学] , [物理])) t --SQL SERVER 2005 动态SQL，同SQL SERVER 2000 动态SQL。 -------------------- /* 问题：在上述的结果上加个平均分，总分，得到如下结果： 姓名 课程 分数 ---- ------ ------ 李四 语文 74.00 李四 数学 84.00 李四 物理 94.00 李四 平均分 84.00 李四 总分 252.00 张三 语文 74.00 张三 数学 83.00 张三 物理 93.00 张三 平均分 83.33 张三 总分 250.00 ------------------ */ select * from ( select 姓名 as 姓名 , 课程 = &#39;语文&#39; , 分数 = 语文 from tb union all select 姓名 as 姓名 , 课程 = &#39;数学&#39; , 分数 = 数学 from tb union all select 姓名 as 姓名 , 课程 = &#39;物理&#39; , 分数 = 物理 from tb union all select 姓名 as 姓名 , 课程 = &#39;平均分&#39; , 分数 = cast((语文 + 数学 + 物理)*1.0/3 as decimal(18,2)) from tb union all select 姓名 as 姓名 , 课程 = &#39;总分&#39; , 分数 = 语文 + 数学 + 物理 from tb ) t order by 姓名 , case 课程 when &#39;语文&#39; then 1 when &#39;数学&#39; then 2 when &#39;物理&#39; then 3 when &#39;平均分&#39; then 4 when &#39;总分&#39; then 5 end drop table tb --&gt; 生成测试数据: #DB_info if object_id(&#39;tempdb.dbo.#DB_info&#39;) is not null drop table #DB_info create table #DB_info (sid int,name nvarchar(4),sex nvarchar(2)) insert into #DB_info select 1,&#39;李明&#39;,&#39;男&#39; union all select 2,&#39;王军&#39;,&#39;男&#39; union all select 3,&#39;李敏&#39;,&#39;女&#39; --&gt; 生成测试数据: #db_scores if object_id(&#39;tempdb.dbo.#db_scores&#39;) is not null drop table #db_scores create table #db_scores (sid int,type nvarchar(4),scores int) insert into #db_scores select 1,&#39;语文&#39;,80 union all select 1,&#39;数学&#39;,90 union all select 2,&#39;语文&#39;,85 union all select 2,&#39;数学&#39;,90 union all select 3,&#39;语文&#39;,75 union all select 3,&#39;数学&#39;,85 declare @sql nvarchar(4000) set @sql=&#39;select a.sid,a.name,a.sex&#39; select @sql=@sql+&#39;,max(case when b.type=&#39;&#39;&#39;+type+&#39;&#39;&#39; then b.scores else 0 end) [&#39;+type+&#39;]&#39; from (select distinct type from #db_scores) t exec (@sql+&#39; from #DB_info a left outer join #db_scores b on a.sid=b.sid group by a.sid,a.name,a.sex&#39;) /* sid name sex 数学 语文 ----------- ---- ---- ----------- ----------- 1 李明 男 90 80","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/share/430.html"},"@type":"BlogPosting","url":"http://localhost:4001/share/430.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">经典SQL行列转换</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-02-25T18:22:00-08:00" itemprop="datePublished">Feb 25, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>-- 经典SQL行列转换</p>
+<div>-- http://www.programbbs.com/doc/4885.htm</div>
+<div></div>
+<div>/*</div>
+<div>标题：普通行列转换(version 2.0)</div>
+<div>说明：普通行列转换(version 1.0)仅针对sql server 2000提供静态和动态写法，version 2.0增加sql server 2005的有关写法。</div>
+<div></div>
+<div>问题：假设有张学生成绩表(tb)如下:</div>
+<div>姓名 课程 分数</div>
+<div>张三 语文 74</div>
+<div>张三 数学 83</div>
+<div>张三 物理 93</div>
+<div>李四 语文 74</div>
+<div>李四 数学 84</div>
+<div>李四 物理 94</div>
+<div>想变成(得到如下结果)：</div>
+<div>姓名 语文 数学 物理</div>
+<div>---- ---- ---- ----</div>
+<div>李四 74 84 94</div>
+<div>张三 74 83 93</div>
+<div>-------------------</div>
+<div>*/</div>
+<div> <!--more--></div>
+<div>create table tb(姓名 varchar(10) , 课程 varchar(10) , 分数 int)</div>
+<div>insert into tb values('张三' , '语文' , 74)</div>
+<div>insert into tb values('张三' , '数学' , 83)</div>
+<div>insert into tb values('张三' , '物理' , 93)</div>
+<div>insert into tb values('李四' , '语文' , 74)</div>
+<div>insert into tb values('李四' , '数学' , 84)</div>
+<div>insert into tb values('李四' , '物理' , 94)</div>
+<div>go</div>
+<div></div>
+<div>--SQL SERVER 2000 静态SQL,指课程只有语文、数学、物理这三门课程。(以下同)</div>
+<div>select 姓名 as 姓名 ,</div>
+<div>   max(case 课程 when '语文' then 分数 else 0 end) 语文,</div>
+<div>   max(case 课程 when '数学' then 分数 else 0 end) 数学,</div>
+<div>   max(case 课程 when '物理' then 分数 else 0 end) 物理</div>
+<div>from tb</div>
+<div>group by 姓名</div>
+<div></div>
+<div>--SQL SERVER 2000 动态SQL,指课程不止语文、数学、物理这三门课程。(以下同)</div>
+<div>declare @sql varchar(8000)</div>
+<div>set @sql = 'select 姓名 '</div>
+<div>select @sql = @sql + ' , max(case 课程 when ''' + 课程 + ''' then 分数 else 0 end) [' + 课程 + ']'</div>
+<div>from (select distinct 课程 from tb) as a</div>
+<div>set @sql = @sql + ' from tb group by 姓名'</div>
+<div>exec(@sql)</div>
+<div></div>
+<div>--SQL SERVER 2005 静态SQL。</div>
+<div>select * from (select * from tb) a pivot (max(分数) for 课程 in (语文,数学,物理)) b</div>
+<div></div>
+<div>--SQL SERVER 2005 动态SQL。</div>
+<div>declare @sql varchar(8000)</div>
+<div>select @sql = isnull(@sql + ',' , '') + 课程 from tb group by 课程</div>
+<div>exec ('select * from (select * from tb) a pivot (max(分数) for 课程 in (' + @sql + ')) b')</div>
+<div></div>
+<div>---------------------------------</div>
+<div></div>
+<div>/*</div>
+<div>问题：在上述结果的基础上加平均分，总分，得到如下结果：</div>
+<div>姓名 语文 数学 物理 平均分 总分</div>
+<div>---- ---- ---- ---- ------ ----</div>
+<div>李四 74 84 94 84.00 252</div>
+<div>张三 74 83 93 83.33 250</div>
+<div>*/</div>
+<div></div>
+<div>--SQL SERVER 2000 静态SQL。</div>
+<div>select 姓名 姓名,</div>
+<div>   max(case 课程 when '语文' then 分数 else 0 end) 语文,</div>
+<div>   max(case 课程 when '数学' then 分数 else 0 end) 数学,</div>
+<div>   max(case 课程 when '物理' then 分数 else 0 end) 物理,</div>
+<div>   cast(avg(分数*1.0) as decimal(18,2)) 平均分,</div>
+<div>   sum(分数) 总分</div>
+<div>from tb</div>
+<div>group by 姓名</div>
+<div></div>
+<div>--SQL SERVER 2000 动态SQL。</div>
+<div>declare @sql varchar(8000)</div>
+<div>set @sql = 'select 姓名 '</div>
+<div>select @sql = @sql + ' , max(case 课程 when ''' + 课程 + ''' then 分数 else 0 end) [' + 课程 + ']'</div>
+<div>from (select distinct 课程 from tb) as a</div>
+<div>set @sql = @sql + ' , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名'</div>
+<div>exec(@sql)</div>
+<div></div>
+<div>--SQL SERVER 2005 静态SQL。</div>
+<div>select m.* , n.平均分 , n.总分 from</div>
+<div>(select * from (select * from tb) a pivot (max(分数) for 课程 in (语文,数学,物理)) b) m,</div>
+<div>(select 姓名 , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名) n</div>
+<div>where m.姓名 = n.姓名</div>
+<div></div>
+<div>--SQL SERVER 2005 动态SQL。</div>
+<div>declare @sql varchar(8000)</div>
+<div>select @sql = isnull(@sql + ',' , '') + 课程 from tb group by 课程</div>
+<div>exec ('select m.* , n.平均分 , n.总分 from</div>
+<div>(select * from (select * from tb) a pivot (max(分数) for 课程 in (' + @sql + ')) b) m ,</div>
+<div>(select 姓名 , cast(avg(分数*1.0) as decimal(18,2)) 平均分 , sum(分数) 总分 from tb group by 姓名) n</div>
+<div>where m.姓名 = n.姓名')</div>
+<div></div>
+<div>drop table tb</div>
+<div></div>
+<div>------------------</div>
+<div>------------------</div>
+<div></div>
+<div>/*</div>
+<div>问题：如果上述两表互相换一下：即表结构和数据为：</div>
+<div>姓名 语文 数学 物理</div>
+<div>张三 74　　83　　93</div>
+<div>李四 74　　84　　94</div>
+<div>想变成(得到如下结果)：</div>
+<div>姓名 课程 分数</div>
+<div>---- ---- ----</div>
+<div>李四 语文 74</div>
+<div>李四 数学 84</div>
+<div>李四 物理 94</div>
+<div>张三 语文 74</div>
+<div>张三 数学 83</div>
+<div>张三 物理 93</div>
+<div>--------------</div>
+<div>*/</div>
+<div></div>
+<div>create table tb(姓名 varchar(10) , 语文 int , 数学 int , 物理 int)</div>
+<div>insert into tb values('张三',74,83,93)</div>
+<div>insert into tb values('李四',74,84,94)</div>
+<div>go</div>
+<div></div>
+<div>--SQL SERVER 2000 静态SQL。</div>
+<div>select * from</div>
+<div>(</div>
+<div>select 姓名 , 课程 = '语文' , 分数 = 语文 from tb</div>
+<div>union all</div>
+<div>select 姓名 , 课程 = '数学' , 分数 = 数学 from tb</div>
+<div>union all</div>
+<div>select 姓名 , 课程 = '物理' , 分数 = 物理 from tb</div>
+<div>) t</div>
+<div>order by 姓名 , case 课程 when '语文' then 1 when '数学' then 2 when '物理' then 3 end</div>
+<div></div>
+<div>--SQL SERVER 2000 动态SQL。</div>
+<div>--调用系统表动态生态。</div>
+<div>declare @sql varchar(8000)</div>
+<div>select @sql = isnull(@sql + ' union all ' , '' ) + ' select 姓名 , [课程] = ' + quotename(Name , '''') + ' , [分数] = ' + quotename(Name) + ' from tb'</div>
+<div>from syscolumns</div>
+<div>where name! = N'姓名' and ID = object_id('tb') --表名tb，不包含列名为姓名的其它列</div>
+<div>order by colid asc</div>
+<div>exec(@sql + ' order by 姓名 ')</div>
+<div></div>
+<div>--SQL SERVER 2005 动态SQL。</div>
+<div>select 姓名 , 课程 , 分数 from tb unpivot (分数 for 课程 in([语文] , [数学] , [物理])) t</div>
+<div></div>
+<div>--SQL SERVER 2005 动态SQL，同SQL SERVER 2000 动态SQL。</div>
+<div></div>
+<div>--------------------</div>
+<div>/*</div>
+<div>问题：在上述的结果上加个平均分，总分，得到如下结果：</div>
+<div>姓名 课程 分数</div>
+<div>---- ------ ------</div>
+<div>李四 语文 74.00</div>
+<div>李四 数学 84.00</div>
+<div>李四 物理 94.00</div>
+<div>李四 平均分 84.00</div>
+<div>李四 总分 252.00</div>
+<div>张三 语文 74.00</div>
+<div>张三 数学 83.00</div>
+<div>张三 物理 93.00</div>
+<div>张三 平均分 83.33</div>
+<div>张三 总分 250.00</div>
+<div>------------------</div>
+<div>*/</div>
+<div></div>
+<div>select * from</div>
+<div>(</div>
+<div>select 姓名 as 姓名 , 课程 = '语文' , 分数 = 语文 from tb</div>
+<div>union all</div>
+<div>select 姓名 as 姓名 , 课程 = '数学' , 分数 = 数学 from tb</div>
+<div>union all</div>
+<div>select 姓名 as 姓名 , 课程 = '物理' , 分数 = 物理 from tb</div>
+<div>union all</div>
+<div>select 姓名 as 姓名 , 课程 = '平均分' , 分数 = cast((语文 + 数学 + 物理)*1.0/3 as decimal(18,2)) from tb</div>
+<div>union all</div>
+<div>select 姓名 as 姓名 , 课程 = '总分' , 分数 = 语文 + 数学 + 物理 from tb</div>
+<div>) t</div>
+<div>order by 姓名 , case 课程 when '语文' then 1 when '数学' then 2 when '物理' then 3 when '平均分' then 4 when '总分' then 5 end</div>
+<div></div>
+<div>drop table tb</div>
+<div></div>
+<div>--&gt; 生成测试数据: #DB_info</div>
+<div>if object_id('tempdb.dbo.#DB_info') is not null drop table #DB_info</div>
+<div>create table #DB_info (sid int,name nvarchar(4),sex nvarchar(2))</div>
+<div>insert into #DB_info</div>
+<div>select 1,'李明','男' union all</div>
+<div>select 2,'王军','男' union all</div>
+<div>select 3,'李敏','女'</div>
+<div></div>
+<div>--&gt; 生成测试数据: #db_scores</div>
+<div>if object_id('tempdb.dbo.#db_scores') is not null drop table #db_scores</div>
+<div>create table #db_scores (sid int,type nvarchar(4),scores int)</div>
+<div>insert into #db_scores</div>
+<div>select 1,'语文',80 union all</div>
+<div>select 1,'数学',90 union all</div>
+<div>select 2,'语文',85 union all</div>
+<div>select 2,'数学',90 union all</div>
+<div>select 3,'语文',75 union all</div>
+<div>select 3,'数学',85</div>
+<div></div>
+<div>declare @sql nvarchar(4000)</div>
+<div>set @sql='select a.sid,a.name,a.sex'</div>
+<div>select @sql=@sql+',max(case when b.type='''+type+''' then b.scores else 0 end) ['+type+']'</div>
+<div>from (select distinct type from #db_scores) t</div>
+<div></div>
+<div>exec (@sql+' from #DB_info a left outer join #db_scores b on a.sid=b.sid group by a.sid,a.name,a.sex')</div>
+<div></div>
+<div>/*</div>
+<div>sid name sex 数学 语文</div>
+<div>----------- ---- ---- ----------- -----------
+1 李明 男 90 80
+
+2 王军 男 90 85
+
+3 李敏 女 85 75
+
+(3 行受影响)
+
+\*/
+</div>
+
+  </div><a class="u-url" href="/share/430.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

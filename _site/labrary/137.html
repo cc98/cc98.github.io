@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>discuz!x1.0二次开发 教你识别程序目录和文件列表 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="discuz!x1.0二次开发 教你识别程序目录和文件列表" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="作为一款以社区为基础的专业建站平台，Discuz! X1社区平台系统让论坛（BBS）、社交网络(SNS)、门户（Portal）、群组(Group)、开放平台(Open Platform)充分融合于一体，帮助网站实现一站式服务。 Discuz! X1比较之前的Discuz!和UCHome做出了大幅度的文件结构变更，现在根据Discuz! X1制作一篇详细的结构说明，也方便新、老站长在安装和使用升级时方便查阅。 本列表总览分两个部分， 第一个部分为：目录、文件篇。 第二个部分为：模板文件结构篇。" />
+<meta property="og:description" content="作为一款以社区为基础的专业建站平台，Discuz! X1社区平台系统让论坛（BBS）、社交网络(SNS)、门户（Portal）、群组(Group)、开放平台(Open Platform)充分融合于一体，帮助网站实现一站式服务。 Discuz! X1比较之前的Discuz!和UCHome做出了大幅度的文件结构变更，现在根据Discuz! X1制作一篇详细的结构说明，也方便新、老站长在安装和使用升级时方便查阅。 本列表总览分两个部分， 第一个部分为：目录、文件篇。 第二个部分为：模板文件结构篇。" />
+<link rel="canonical" href="http://localhost:4001/labrary/137.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/137.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-08-22T19:20:35-07:00" />
+<script type="application/ld+json">
+{"headline":"discuz!x1.0二次开发 教你识别程序目录和文件列表","dateModified":"2010-08-22T19:20:35-07:00","datePublished":"2010-08-22T19:20:35-07:00","description":"作为一款以社区为基础的专业建站平台，Discuz! X1社区平台系统让论坛（BBS）、社交网络(SNS)、门户（Portal）、群组(Group)、开放平台(Open Platform)充分融合于一体，帮助网站实现一站式服务。 Discuz! X1比较之前的Discuz!和UCHome做出了大幅度的文件结构变更，现在根据Discuz! X1制作一篇详细的结构说明，也方便新、老站长在安装和使用升级时方便查阅。 本列表总览分两个部分， 第一个部分为：目录、文件篇。 第二个部分为：模板文件结构篇。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/137.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/137.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">discuz!x1.0二次开发 教你识别程序目录和文件列表</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2010-08-22T19:20:35-07:00" itemprop="datePublished">Aug 22, 2010
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>作为一款以社区为基础的专业建站平台，Discuz! X1社区平台系统让论坛（BBS）、社交网络(SNS)、门户（Portal）、群组(Group)、开放平台(Open Platform)充分融合于一体，帮助网站实现一站式服务。<br />
+Discuz! X1比较之前的Discuz!和UCHome做出了大幅度的文件结构变更，现在根据Discuz! X1制作一篇详细的结构说明，也方便新、老站长在安装和使用升级时方便查阅。<br />
+本列表总览分两个部分，<br />
+第一个部分为：目录、文件篇。<br />
+第二个部分为：模板文件结构篇。</p>
+
+<p>如果大家有不明白的地方可以在后面跟帖。我会酌情解答关于您疑问。<br />
+由于列表文件太多，我推荐您在查找的时候，根据目录结构来查看，如果找不到，请使用浏览器自带的搜索查找。<br />
+有很多不常用到的文件夹，在这里以描述形式带过。<br />
+目录+文件篇：<br />
+|  –  admin.php  管理员入口<br />
+|  –  api.php  接口文件<br />
+|  –  category.php  分类入口<br />
+|  –  cp.php  个人资料设置入口<br />
+|  –  crossdomain.xml  FLASH跨域传输文件<br />
+|  –  favicon.ico  系统icon图标<br />
+|  –  forum.php  广场入口<br />
+|  –  group.php  群组入口<br />
+|  –  home.php  空间入口<br />
+|  –  index.php  首页入口<br />
+|  –  ivite.php 邀请处理文件<br />
+|  –  member.php  用户处理文件<br />
+|  –  misc.php  杂项处理文件<br />
+|  –  plugin.php  插件处理文件<br />
+|  –  portal.php  站点首页入口 同 index.php<br />
+|  –  robots.txt 搜索引擎蜘蛛限制配置文件<br />
+|  –  search.php 搜索入口文件<br />
+|  –  userapp.php 用户应用、游戏、漫游入口文件<br />
+| — static  系统用到的图片包<br />
+| — template  系统总模板目录<!--more--><br />
+| — uc_client  ucenter客户端程序<br />
+|  –  uc_server  FULL版本中ucenter服务端<br />
+| — api  接口文件夹<br />
+| — api — db<br />
+| — api — db — dbbak.php   接口调用中用到的数据库备份文件，内涵数据库类<br />
+| — api — javascript — advertisemen.php   广告调用接口<br />
+| — api — javascript — javascript.php   js调用接口<br />
+| — api — manyou 漫游平台调用接口文件夹<br />
+| — api — manyou — class 漫游接口中需要用到的类的文件夹<br />
+| — api — manyou — Manyou.php 漫游接口文件<br />
+| — api — manyou — my.php 继承与manyou.php，用来执行更新用户资料的借口文件<br />
+| — api — mobile  移动手机设备接口文件夹，这个文件夹中包含了大量的用户手机浏览器客户端显示的模板和执行文件。<br />
+| — api — trade 在线支付平台接口文件夹，内涵支付宝，财付通等接口文件，本目录的文件需要FTP二进制上传。<br />
+| — config   Discuz!x1的配置文件目录<br />
+| — config  – config_global.php   配置文件<br />
+| — config  – config_global_default.php   默认的配置文件<br />
+| — config  – config_ucenter.php  同步UCenter的配置文件<br />
+| — config  – config_ucenter_default.php  默认的UCenter配置文件<br />
+| — data  程序总缓存目录<br />
+| — data — attachment  程序附件存放目录<br />
+| — data — attachment  –  swfupload  FLASH上传临时存放目录<br />
+| — data — attachment  –  album  相册图片附件存放目录<br />
+| — data — attachment  –  block  模块样式上传图片存放目录<br />
+| — data — attachment  –  category 分区版块图片上传存放目录<br />
+| — data — attachment  – common  共有附件存放目录<br />
+| — data — attachment  –  forum  广场社区的附件存放目录<br />
+| — data — attachment  – group  群组附件存放目录<br />
+| — data — attachment  – image  图片附件存放目录<br />
+| — data — attachment  – portal  首页使用到的附件存放目录<br />
+| — data — attachment  – temp  各个类型的附件缓存目录<br />
+| — data — backup   系统备份存放目录<br />
+| — data — cache  重要目录，系统主要缓存目录，其内部存放的文件有：css样式文件、js缓存文件<br />
+| — data — diy  重要目录，按首页(portal)、广场(forum)区分，存放所有diy过后的模板文件<br />
+| — data — diy — forum  广场diy布局的缓存文件夹<br />
+| — data — diy — portal  首页diy布局的缓存文件夹<br />
+| — data — ipdata  ip地址库<br />
+| — data — log  系统运行的log记录文件夹<br />
+| — data — plugindata  插件数据及语言包存放目录<br />
+| — data — request  用于包含的文件存放目录<br />
+| — data — sysdata<br />
+| — data — template 重要目录，存放所有模板编译后生成的文件<br />
+| — data — threadcache  主题缓存<br />
+| — data — install.lock  安装后的文件锁，当有这个锁，将无法再次安装。<br />
+| — data — sendmail.lock  发送email的队列的锁文件<br />
+| — data — stat_setting.xml 统计设置<br />
+| — data — updatetime.lock  升级文件锁<br />
+| — install  系统安装文件夹<br />
+| — install — images 安装时所有的图片文件均在此<br />
+| — install — include  在安装程序时所有用到的函数、变量、数据库类、语言包等存放目录<br />
+| — install — include  – install_extvar.php  扩展变量默认设置文件<br />
+| — install — include  – install_function.php  安装运行时的函数库<br />
+| — install — include  – install_lang.php   安装运行时必须的语言包<br />
+| — install — include  – install_mysql.php  安装运行时必须的mysql数据库类<br />
+| — install — include  – install_var.php  安装运行时必须的默认变量<br />
+| — install — category.sql  分类版块使用到的数据库文件<br />
+| — install — category_data.sql  分类版块在安装时用到的演示数据<br />
+| — install — common_district.sql  中国省份及市区关系数据<br />
+| — install –  forum_data.sql  广场的默认初始化数据<br />
+| — install –  group_data.sql  群组的默认初始化数据<br />
+| — install –  home_data.sql  个人空间的默认初始化数据<br />
+| — install –  install.sql  系统必须的建表数据库总文件<br />
+| — install –  install_data.sql  系统自带的默认初始化数据<br />
+| — install –  makeinstall.php<br />
+| — install –  portal_data.sql 首页的默认初始化数据<br />
+| — install –  portal_portal_topic_content_1.xml  首页话题内容默认初始化数据xml格式文件<br />
+| — install –  style.css  安装运行时必须的css样式表<br />
+| — install –  update.php 系统数据库升级时用到的文件，二次开发时重要。<br />
+| — source  系统运行的内核，最重要的部分<br />
+其下有7大文件夹，分别是admincp(管理员后台内核文件)，class(类库)，function(函数库)，include(被包含内核文件)，language(语言包)，module(程序块)，plugin(插件目录)<br />
+| — source  – admincp  管理员后台控制面板内核文件存放目录<br />
+| — source  – admincp — admincp_addons.php  扩展中心内核文件<br />
+| — source  – admincp –  admincp_admingroup.php  管理员组内核文件<br />
+| — source  – admincp –  admincp_adv.php  后台广告管理内核文件<br />
+| — source  – admincp –  admincp_album.php  后台相册管理内核文件<br />
+| — source  – admincp –  admincp_albumcategory.php  相册分类管理内核文件<br />
+| — source  – admincp –  admincp_announce.php   公告管理内核文件<br />
+| — source  – admincp –  admincp_article.php  文章管理内核文件<br />
+| — source  – admincp –  admincp_attach.php  附件管理内核文件<br />
+| — source  – admincp –  admincp_block.php  模块管理内核文件<br />
+| — source  – admincp –  admincp_blockstyle.php  模块样式管理内核文件<br />
+| — source  – admincp –  admincp_blog.php   日志管理内核文件<br />
+| — source  – admincp –  admincp_blogcategory.php  日志分类管理内核文件<br />
+| — source  – admincp –  admincp_category.php  分类内核文件<br />
+| — source  – admincp –  admincp_checktools.php  文件验证工具<br />
+| — source  – admincp –  admincp_click.php  表态动作管理内核文件<br />
+| — source  – admincp –  admincp_comment.php  评论管理内核文件<br />
+| — source  – admincp –  admincp_counter.php  更新统计内核文件<br />
+| — source  – admincp –  admincp_cpanel.php  空间管理内核文件<br />
+| — source  – admincp –  admincp_credits.php  积分管理内核文件<br />
+| — source  – admincp –  admincp_db.php  数据库控制内核文件<br />
+| — source  – admincp –  admincp_district.php  地区层级内核文件<br />
+| — source  – admincp –  admincp_doing.php  记录管理内核文件<br />
+| — source  – admincp –  admincp_ec.php  电子商务、支付宝、财付通设置内核文件<br />
+| — source  – admincp –  admincp_faq.php  站点帮助文档管理内核文件<br />
+| — source  – admincp –  admincp_feed.php  feed事件管理内核文件<br />
+| — source  – admincp –  admincp_forums.php  广场版块管理内核文件<br />
+| — source  – admincp –  admincp_founder.php  后台管理团队设置内核文件<br />
+| — source  – admincp –  admincp_group.php  群组编辑设置内核文件<br />
+| — source  – admincp –  admincp_index.php  后台默认首页<br />
+| — source  – admincp –  admincp_login.php  管理后台登录入口内核文件<br />
+| — source  – admincp –  admincp_logs.php  管理系统日志记录内核文件<br />
+| — source  – admincp –  admincp_magics.php 魔法道具管理内核文件<br />
+| — source  – admincp –  admincp_main.php  后台管理外壳文件<br />
+| — source  – admincp –  admincp_manyou.php  漫游平台管理内核文件<br />
+| — source  – admincp –  admincp_medals.php  勋章管理内核文件<br />
+| — source  – admincp –  admincp_members.php  用户管理内核文件<br />
+| — source  – admincp –  admincp_menu.php  后台按钮内容对应表<br />
+| — source  – admincp –  admincp_misc.php  主题图章、在线图标等杂项管理内核文件<br />
+| — source  – admincp –  admincp_moderate.php  审核管理内核文件<br />
+| — source  – admincp –  admincp_perm.php<br />
+| — source  – admincp –  admincp_pic.php  图片管理内核文件<br />
+| — source  – admincp –  admincp_plugins.php  插件管理内核文件<br />
+| — source  – admincp –  admincp_portalcategory.php  首页分类管理内核文件<br />
+| — source  – admincp –  admincp_postsplit.php  分表管理内核文件<br />
+| — source  – admincp –  admincp_profilefield.php 用户扩展栏目管理内核文件<br />
+| — source  – admincp –  admincp_project.php  站点方案管理编辑内核文件<br />
+| — source  – admincp –  admincp_prune.php  批量删帖内核文件<br />
+| — source  – admincp — admincp_quickquery.php  快捷的数据库语句存放文件<br />
+| — source  – admincp –  admincp_recyclebin.php  主题回收站管理内核文件<br />
+| — source  – admincp –  admincp_report.php  举报信息管理内核文件<br />
+| — source  – admincp –  admincp_runwizard.php  数据库导入导出执行文件<br />
+| — source  – admincp –  admincp_search.php  搜索控制内核文件<br />
+| — source  – admincp –  admincp_setting.php  系统设置编辑内核文件<br />
+| — source  – admincp –  admincp_share.php  分享管理内核文件<br />
+| — source  – admincp –  admincp_smilies.php  贴内表情管理内核文件<br />
+| — source  – admincp –  admincp_specialuser.php  明星会员管理内核文件<br />
+| — source  – admincp –  admincp_styles.php  风格模板管理内核文件<br />
+| — source  – admincp –  admincp_tasks.php  站点任务管理内核文件<br />
+| — source  – admincp –  admincp_templates.php  模板套系管理内核文件<br />
+| — source  – admincp –  admincp_threads.php  主题管理内核文件<br />
+| — source  – admincp –  admincp_threadsplit.php  主题管理内核文件<br />
+| — source  – admincp –  admincp_threadtypes.php  主题分类管理内核文件<br />
+| — source  – admincp –  admincp_tools.php  工具(缓存)等更新内核文件<br />
+| — source  – admincp –  admincp_topic.php  话题管理内核文件<br />
+| — source  – admincp –  admincp_tradelog.php  支付交易记录内核文件<br />
+| — source  – admincp –  admincp_upgrade.php 判断升级文件<br />
+| — source  – admincp –  admincp_usergroups.php  用户组管理内核文件<br />
+| — source  – class  系统类库<br />
+| — source  – class  –  adv   广告控制类库<br />
+| — source  – class  –  adv  –  adv_blog.php  日志页广告<br />
+| — source  – class  –  adv  –  adv_couplebanner.php  广告拼接<br />
+| — source  – class  –  adv  –  adv_custom.php  自定义广告<br />
+| — source  – class  –  adv  –  adv_feed.php  feed页广告<br />
+| — source  – class  –  adv  –  adv_float.php<br />
+| — source  – class  –  adv  –  adv_footerbanner.php  站点底部广告<br />
+| — source  – class  –  adv  –  adv_headerbanner.php  站点头部广告<br />
+| — source  – class  –  adv  –  adv_intercat.php 分类处广告<br />
+| — source  – class  –  adv  –  adv_interthread.php 主题内广告<br />
+| — source  – class  –  adv  –  adv_subnavbanner.php  二级导航栏广告<br />
+| — source  – class  –  adv  –  adv_text.php  文本广告<br />
+| — source  – class  –  adv  –  adv_thread.php  主题页广告<br />
+| — source  – class  –  block  Diy模块组件类库<br />
+| — source  – class  –  block  –  block_activity.php  活动组件 – 高级自定义组件<br />
+| — source  – class  –  block  –  block_activity.php  活动组件 – 同城活动组件<br />
+| — source  – class  –  block  –  block_activitynew.php  活动组件 – 最新活动组件<br />
+| — source  – class  –  block  –  block_adv.php  广告组件<br />
+| — source  – class  –  block  –  block_album.php  高级自定义空间相册组件<br />
+| — source  – class  –  block  –  block_albumnew.php  空间相册(最新)组件<br />
+| — source  – class  –  block  –  block_albumspecified.php  指定相册组件<br />
+| — source  – class  –  block  –  block_announcement.php  公告组件<br />
+| — source  – class  –  block  –  block_article.php  高级自定义文章组件<br />
+| — source  – class  –  block  –  block_articlehot.php  热门文章组件<br />
+| — source  – class  –  block  –  block_articlenew.php  最新文章组件<br />
+| — source  – class  –  block  –  block_articlespecified.php  指定文章组件<br />
+| — source  – class  –  block  –  block_attachment.php  高级自定义附件组件<br />
+| — source  – class  –  block  –  block_attachmentdigest.php  精华附件组件<br />
+| — source  – class  –  block  –  block_attachmentnew.php  最新附件组件<br />
+| — source  – class  –  block  –  block_attachmentpic.php  图片附件组件<br />
+| — source  – class  –  block  –  block_banner.php  图片横幅组件<br />
+| — source  – class  –  block  –  block_blank.php  自定义html组件<br />
+| — source  – class  –  block  –  block_blog.php  高级自定义日志组件<br />
+| — source  – class  –  block  –  block_bloghot.php  热门日志组件<br />
+| — source  – class  –  block  –  block_blognew.php 最新日志组件<br />
+| — source  – class  –  block  –  block_blogspecified.php 指定日志组件<br />
+| — source  – class  –  block  –  block_category.php  分类组件<br />
+| — source  – class  –  block  –  block_doing.php  最新记录组件<br />
+| — source  – class  –  block  –  block_doinghot.php 热门记录组件<br />
+| — source  – class  –  block  –  block_doingnew.php 最新记录组件<br />
+| — source  – class  –  block  –  block_forum.php  广场版块组件<br />
+| — source  – class  –  block  –  block_forumtree.php  广场版块分类树组件<br />
+| — source  – class  –  block  –  block_friendlink.php  友情链接组件<br />
+| — source  – class  –  block  –  block_google.php  google组件<br />
+| — source  – class  –  block  –  block_group.php  高级自定义群组组件<br />
+| — source  – class  –  block  –  block_groupactivity.php 群组活动组件<br />
+| — source  – class  –  block  –  block_groupactivitycity.php  同城群组活动组件<br />
+| — source  – class  –  block  –  block_groupactivitynew.php  最新群组活动组件<br />
+| — source  – class  –  block  –  block_groupattachment.php  群组附件组件<br />
+| — source  – class  –  block  –  block_groupattachmentdigest.php  群组附件精华组件<br />
+| — source  – class  –  block  –  block_groupattachmentnew.php  最新群组附件组件<br />
+| — source  – class  –  block  –  block_groupattachmentpic.php  群组图片附件组件<br />
+| — source  – class  –  block  –  block_grouphot.php  热门群组组件<br />
+| — source  – class  –  block  –  block_groupnew.php  最新群组组件<br />
+| — source  – class  –  block  –  block_groupspecified.php 指定群组组件<br />
+| — source  – class  –  block  –  block_groupthread.php  群组主题组件<br />
+| — source  – class  –  block  –  block_groupthreadhot.php  热门群组主题组件<br />
+| — source  – class  –  block  –  block_groupthreadnew.php  最新群组主题组件<br />
+| — source  – class  –  block  –  block_groupthreadspecial.php  群组精华主题组件<br />
+| — source  – class  –  block  –  block_groupthreadspecified.php 指定群组话题组件<br />
+| — source  – class  –  block  –  block_grouptrade.php 高级自定义商品交易组件<br />
+| — source  – class  –  block  –  block_grouptradehot.php  热门商品组件<br />
+| — source  – class  –  block  –  block_grouptradenew.php  最新商品组件<br />
+| — source  – class  –  block  –  block_grouptradespecified.php  指定商品组件<br />
+| — source  – class  –  block  –  block_house.php  房产信息组件<br />
+| — source  – class  –  block  –  block_line.php  html分割线组件<br />
+| — source  – class  –  block  –  block_member.php  高级自定义用户组件<br />
+| — source  – class  –  block  –  block_membercredit.php  用户积分组件<br />
+| — source  – class  –  block  –  block_membernew.php  最新用户组件<br />
+| — source  – class  –  block  –  block_memberposts.php  发帖排行组件<br />
+| — source  – class  –  block  –  block_membershow.php 竞价排行组件<br />
+| — source  – class  –  block  –  block_memberspecified.php  指定用户组件<br />
+| — source  – class  –  block  –  block_pic.php  高级自定义图片附件调用组件<br />
+| — source  – class  –  block  –  block_pichot.php  热门图片附件组件<br />
+| — source  – class  –  block  –  block_picnew.php  最新图片附件组件<br />
+| — source  – class  –  block  –  block_picspecified.php  指定图片附件组件<br />
+| — source  – class  –  block  –  block_portalcategory.php 首页分类组件<br />
+| — source  – class  –  block  –  block_sort.php  分类信息组件<br />
+| — source  – class  –  block  –  block_stat.php  统计组件<br />
+| — source  – class  –  block  –  block_thread.php  高级自定义主题组件<br />
+| — source  – class  –  block  –  block_threaddigest.php  精华主题组件<br />
+| — source  – class  –  block  –  block_threadhot.php  热门主题组件<br />
+| — source  – class  –  block  –  block_threadnew.php  最新主题组件<br />
+| — source  – class  –  block  –  block_threadspecial.php  特殊主题帖组件<br />
+| — source  – class  –  block  –  block_threadspecified.php  指定主题帖组件<br />
+| — source  – class  –  block  –  block_threadstick.php  置顶帖组件<br />
+| — source  – class  –  block  –  block_topic.php  高级自定义话题组件<br />
+| — source  – class  –  block  –  block_topichot.php  热门话题组件<br />
+| — source  – class  –  block  –  block_topicnew.php  最新话题组件<br />
+| — source  – class  –  block  –  block_topicspecified.php  指定话题组件<br />
+| — source  – class  –  block  –  block_trade.php  高级自定义交易组件<br />
+| — source  – class  –  block  –  block_tradehot.php  热门交易组件<br />
+| — source  – class  –  block  –  block_tradenew.php  最新交易组件<br />
+| — source  – class  –  block  –  block_tradespecified.php  指定交易组件<br />
+| — source  – class  –  block  –  block_vedio.php  高级网络视频调用组件<br />
+| — source  – class  – cache  缓存控制类库<br />
+| — source  – class  – cache  –  cache_file.php  文件缓存控制类<br />
+| — source  – class  – cache  –  cache_sql.php  数据库缓存读取与更新类<br />
+| — source  – class  – magic  道具类库<br />
+| — source  – class  – magic  –  magic_anonymouspost.php    帖子匿名卡<br />
+| — source  – class  – magic  –  magic_attachsize.php 附件增容卡<br />
+| — source  – class  – magic  –  magic_bump.php 提升卡<br />
+| — source  – class  – magic  –  magic_call.php 点名卡<br />
+| — source  – class  – magic  –  magic_checkonline.php 雷达卡<br />
+| — source  – class  – magic  –  magic_close.php  沉默卡<br />
+| — source  – class  – magic  –  magic_doodle.php 涂鸦板<br />
+| — source  – class  – magic  –  magic_downdateline.php 时光机<br />
+| — source  – class  – magic  –  magic_flicker.php 彩虹炫<br />
+| — source  – class  – magic  –  magic_friendnum.php 好友增容卡<br />
+| — source  – class  – magic  –  magic_highlight.php 主题变色卡<br />
+| — source  – class  – magic  –  magic_hot.php 热点灯<br />
+| — source  – class  – magic  –  magic_money.php 金钱卡<br />
+| — source  – class  – magic  –  magic_namepost.php 帖子显身卡<br />
+| — source  – class  – magic  –  magic_open.php 喧嚣卡<br />
+| — source  – class  – magic  –  magic_repent.php 悔悟卡<br />
+| — source  – class  – magic  –   magic_showip.php 窥视卡<br />
+| — source  – class  – magic  –  magic_sofa.php 抢沙发<br />
+| — source  – class  – magic  –  magic_stick.php 置顶卡<br />
+| — source  – class  – magic  –  magic_thunder.php  雷鸣之声<br />
+| — source  – class  – magic  –  magic_updateline.php  救生圈<br />
+| — source  – class  – magic  –  magic_visit.php  互访卡<br />
+| — source  – class  –  task  站点任务类库<br />
+| — source  – class  –  task  –  task_avatar.php  头像任务<br />
+| — source  – class  –  task  –  task_blog.php  发表日志任务<br />
+| — source  – class  –  task  –  task_email.php  验证邮箱任务<br />
+| — source  – class  –  task  –  task_friend.php  添加好友任务<br />
+| — source  – class  –  task  –  task_gift.php  红包类任务<br />
+| — source  – class  –  task  –  task_member  会员类任务<br />
+| — source  – class  –  task  –  task_post  论坛帖子类任务<br />
+| — source  – class  –  task  –  task_profile  完善用户资料任务<br />
+| — source  – class  –  task  –  task_promotion.php  论坛推广任务<br />
+| — source  – class –  class_admincp.php  管理员后台面板类库<br />
+| — source  – class –  class_bbcode.php  论坛UBB解析类库<br />
+| — source  – class –  class_censor.php  词语过滤类库<br />
+| — source  – class –  class_chinese.php  中文编码类库<br />
+| — source  – class –  class_core.php  重要库文件，Discuz!X核心引擎，站点的入口和基础<br />
+| — source  – class –  class_credit.php  积分处理类库<br />
+| — source  – class –  class_eaccelerator.php  PHP加速模块<br />
+| — source  – class –  class_forumupload.php  广场附件上传类库<br />
+| — source  – class –  class_ftp.php   FTP操作类库<br />
+| — source  – class –  class_gifmerge.php   gif图片显示与处理类库<br />
+| — source  – class –  class_image.php  图片文件显示与处理类库<br />
+| — source  – class –  class_membersearch.php  用户资料及扩展信息搜索优化类库<br />
+| — source  – class –  class_memcache.php  memcache内存对象缓存系统操作类<br />
+| — source  – class –  class_seccode.php  验证码生成类库<br />
+| — source  – class –  class_sphinx.php  sphinx全文检索操作类<br />
+| — source  – class –  class_task.php  论坛任务类库<br />
+| — source  – class –  class_template.php  模板类库<br />
+| — source  – class –  class_tree.php  树级数据模型生成类库<br />
+| — source  – class –  class_upload.php  上传类<br />
+| — source  – class –  class_xcache.php  开源的 opcode 缓存器/优化器操作类<br />
+| — source  – class –  class_xml.php   xml文件操作类库<br />
+| — source  – class –  class_zip.php   压缩包操作类库<br />
+| — source  – function  系统函数库<br />
+| — source  – function  – function_attachment.php  附件操作函数<br />
+| — source  – function  – function_block.php  Diy模块操作函数<br />
+| — source  – function  – function_blog.php  日志操作函数<br />
+| — source  – function  –  function_cache.php  缓存操作函数<br />
+| — source  – function  –  function_category.php  分类操作函数<br />
+| — source  – function  –  function_core.php  核心引擎操作函数<br />
+| — source  – function  –  function_debug.php  调试模式函数<br />
+| — source  – function  –  function_delete.php  内容删除操作函数<br />
+| — source  – function  –  function_discuzcode.php  Discuz!UBB代码函数<br />
+| — source  – function  –  function_ec_credit.php  商业交易积分控制函数<br />
+| — source  – function  –  function_editor.php  编辑器控制函数<br />
+| — source  – function  –  function_exif.php  大型照片Exif信息操作函数<br />
+| — source  – function  –  function_feed.php  feed事件控制函数<br />
+| — source  – function  –  function_forum.php  广场使用的函数<br />
+| — source  – function  –  function_forumlist.php  广场列表操作函数<br />
+| — source  – function  –  function_friend.php  用户好友操作控制函数<br />
+| — source  – function  –  function_group.php  群组控制函数<br />
+| — source  – function  –  function_home.php  个人空间控制函数<br />
+| — source  – function  –  function_image.php  图片操作函数<br />
+| — source  – function  –  function_importdata.php  导入数据控制函数<br />
+| — source  – function  –  function_login.php   登录操作函数<br />
+| — source  – function  –  function_magic.php   魔法道具控制函数<br />
+| — source  – function  –  function_mail.php  邮件控制函数<br />
+| — source  – function  –  function_membermerge.php  用户合并操作函数<br />
+| — source  – function  –  function_misc.php  杂项操作管理函数<br />
+| — source  – function  –  function_notification.php  系统通知操作函数<br />
+| — source  – function  –  function_portal.php  首页控制函数<br />
+| — source  – function  –  function_portalcp.php  首页控制面板函数<br />
+| — source  – function  –  function_post.php  发帖控制函数<br />
+| — source  – function  –  function_profile.php 用户资料项控制函数<br />
+| — source  – function  –  function_seccode.php  验证码控制函数<br />
+| — source  – function  –  function_share.php  分享信息控制函数<br />
+| — source  – function  –  function_space.php  个人空间函数<br />
+| — source  – function  –  function_spacecp.php  个人空间面板管理函数<br />
+| — source  – function  –  function_stat.php  统计函数<br />
+| — source  – function  –  function_sysmessage.php  系统消息控制函数，直接输出用于报错等<br />
+| — source  – function  –  function_task.php  系统任务操作函数<br />
+| — source  – function  –  function_threadsort.php  主题搜索及类别模板操作函数<br />
+| — source  – function  –  function_trade.php  社区交易控制函数<br />
+| — source  – function  –  function_userapp.php  涉及到用户应用操作函数，如获取用户名，uid，好友等<br />
+| — source — include  用于引用包含的文件夹<br />
+| — source — include — cron 计划任务文件夹<br />
+| — source — include — cron — cron_announcement_daily.php  公告消息更新计划任务<br />
+| — source — include — cron — cron_birthday_daily.php  生日更新计划任务<br />
+| — source — include — cron — cron_cleanfeed.php  清理feed时间计划任务<br />
+| — source — include — cron — cron_cleannotification.php  清理通知计划任务<br />
+| — source — include — cron — cron_cleantrace.php  清理脚印和访问记录计划任务<br />
+| — source — include — cron — cron_cleanup_daily.php  清理并恢复到期禁言用户<br />
+| — source — include — cron — cron_cleanup_monthly.php  按月清理并恢复到期禁言用户<br />
+| — source — include — cron — cron_magic_daily.php  魔法道具计划任务<br />
+| — source — include — cron — cron_medal_daily.php  勋章操作计划任务<br />
+| — source — include — cron — cron_onlinetime_monthly.php  在线时间计划任务<br />
+| — source — include — cron — cron_promotion_hourly.php  删除论坛推广计划任务<br />
+| — source — include — cron — cron_secqaa_daily.php  验证问题计划任务<br />
+| — source — include — cron — cron_tag_daily.php  tag标签计划任务<br />
+| — source — include — cron — cron_threadexpiry_hourly.php   主题关闭计划任务<br />
+| — source — include — cron — cron_todaypost_daily.php 发帖量统计计划任务<br />
+| — source — include — cron — cron_viewlog.php  log日志记录计划任务<br />
+| — source — include — misc  系统一些杂项内核文件<br />
+| — source — include — misc — misc_ajax.php   ajax内核文件<br />
+| — source — include — misc — misc_category.php  广场版块内核文件<br />
+| — source — include — misc — misc_counter.php  计数内核文件<br />
+| — source — include — misc — misc_debug.php  调试模式内核文件<br />
+| — source — include — misc — misc_emailcheck.php  email验证内核文件<br />
+| — source — include — misc — misc_forumselect.php  广场版块选择内核文件<br />
+| — source — include — misc — misc_inputpwd.php  密码输入验证内核文件<br />
+| — source — include — misc — misc_lostpasswd.php  密码丢失与取回内核文件<br />
+| — source — include — misc — misc_magicaward.php  魔法道具内核文件<br />
+| — source — include — misc — misc_promotion.php 推广任务内核文件<br />
+| — source — include — misc — misc_seccode.php  验证码内核文件<br />
+| — source — include — misc — misc_security.php  系统安全执行内核文件<br />
+| — source — include — misc — misc_sendmail.php  发送email内核文件<br />
+| — source — include — misc — misc_stat.php  统计内核文件<br />
+| — source — include — misc — misc_swfupload.php  FLASH上传内核文件<br />
+| — source — include — modcp  前台管理面板使用到的文件<br />
+| — source — include — modcp — modcp_announcement.php  公告管理内核文件<br />
+| — source — include — modcp — modcp_forum.php  广场管理内核文件<br />
+| — source — include — modcp — modcp_forumaccess.php  广场是否有新主题内核文件<br />
+| — source — include — modcp — modcp_home.php  空间内核文件<br />
+| — source — include — modcp — modcp_log.php  日志内核文件<br />
+| — source — include — modcp — modcp_login.php  管理面板登录内核文件<br />
+| — source — include — modcp — modcp_member.php  用户管理内核文件<br />
+| — source — include — modcp — modcp_moderate.php  审核注册用户内核文件 <br />
+| — source — include — modcp — modcp_noperm.php<br />
+| — source — include — modcp — modcp_plugin.php  插件管理面板接口和操作内核文件<br />
+| — source — include — modcp — modcp_recyclebin.php  回收站内核文件<br />
+| — source — include — modcp — modcp_thread.php  主题管理内核文件<br />
+| — source — include — portal  首页被用于包含的文件<br />
+| — source — include — portal — portal_blockclass.php  DIY拖拽模块<br />
+| — source — include — portalcp — portalcp_article.php  首页文章管理内核文件<br />
+| — source — include — portalcp — portalcp_block.php  模板管理内核文件<br />
+| — source — include — portalcp — portalcp_category.php  版块管理内核文件<br />
+| — source — include — portalcp — portalcp_comment.php  评论管理内核文件<br />
+| — source — include — portalcp — portalcp_diy.php  DIY管理内核文件<br />
+| — source — include — portalcp — portalcp_index.php  首页的管理首页文件<br />
+| — source — include — portalcp — portalcp_portalblock.php  首页模块<br />
+| — source — include — portalcp — portalcp_topic.php  首页话题管理内核文件<br />
+| — source — include — portalcp — portalcp_upload.php  上传管理内核文件<br />
+| — source — include — post  发送主题使用到的文件<br />
+| — source — include — post — post_editpost.php   编辑主题内核文件<br />
+| — source — include — post — post_newreply.php  新回复内核文件<br />
+| — source — include — post — post_newthread.php 新主题内核文件<br />
+| — source — include — post — post_newtrade.php  新交易内核文件<br />
+| — source — include — search 搜索使用到的文件<br />
+| — source — include — search — search_qihoo.php  奇虎搜索内核文件<br />
+| — source — include — search — search_sort.php  类别搜索内核文件<br />
+| — source — include — search — search_trade.php  交易搜索内核文件<br />
+| — source — include — serverbusy.htm  系统繁忙报错静态页面<br />
+| — source — include — space  空间使用到的文件<br />
+| — source — include — space — space_activity.php   空间活动内核文件<br />
+| — source — include — space — space_album.php  空间相册内核文件<br />
+| — source — include — space — space_blog.php  空间日志内核文件<br />
+| — source — include — space — space_debate.php  空间评论内核文件<br />
+| — source — include — space — space_doing.php  空间记录内核文件<br />
+| — source — include — space — space_favorite.php  空间收藏内核文件<br />
+| — source — include — space — space_friend.php  空间好友内核文件<br />
+| — source — include — space — space_group.php  空间群组内核文件<br />
+| — source — include — space — space_home.php  我的空间页面内核文件<br />
+| — source — include — space — space_index.php  空间首页内核文件<br />
+| — source — include — space — space_notice.php  空间通知内核文件<br />
+| — source — include — space — space_pm.php  空间留言短消息内核文件<br />
+| — source — include — space — space_poll.php  空间投票内核文件<br />
+| — source — include — space — space_profile.php  空间个人资料内核文件<br />
+| — source — include — space — space_reward.php  空间奖励和报酬内核文件<br />
+| — source — include — space — space_share.php  空间分享内核文件<br />
+| — source — include — space — space_thread.php  空间主题内核文件<br />
+| — source — include — space — space_top.php  空间顶部处理文件<br />
+| — source — include — space — space_trade.php  空间交易信息内核文件<br />
+| — source — include — space — space_videophoto.php  视频相册内核文件<br />
+| — source — include — space — space_wall.php  空间Diy内核文件<br />
+| — source — include — spacecp  空间管理面板<br />
+| — source — include — spacecp — spacecp_album.php  相册管理面板<br />
+| — source — include — spacecp — spacecp_attentiongroup.php  关注组别管理面板<br />
+| — source — include — spacecp — spacecp_avatar.php  头像管理面板<br />
+| — source — include — spacecp — spacecp_blog.php  日志管理面板<br />
+| — source — include — spacecp — spacecp_class.php  空间分类管理面板<br />
+| — source — include — spacecp — spacecp_click.php  点击器管理面板<br />
+| — source — include — spacecp — spacecp_comment.php  评论管理面板<br />
+| — source — include — spacecp — spacecp_common.php  举报记录管理面板<br />
+| — source — include — spacecp — spacecp_credit.php  积分管理面板<br />
+| — source — include — spacecp — spacecp_credit_base.php  基础积分管理面板<br />
+| — source — include — spacecp — spacecp_credit_log.php  积分管理log记录管理面板<br />
+| — source — include — spacecp — spacecp_credit_usergroup.php  积分与用户组别管理面板<br />
+| — source — include — spacecp — spacecp_doing.php  空间记录管理面板<br />
+| — source — include — spacecp — spacecp_domain.php  空间子域名管理面板<br />
+| — source — include — spacecp — spacecp_eccredit.php  交易积分管理面板<br />
+| — source — include — spacecp — spacecp_favorite.php  收藏管理面板<br />
+| — source — include — spacecp — spacecp_feed.php  Feed事件管理面板<br />
+| — source — include — spacecp — spacecp_friend.php  好友管理面板<br />
+| — source — include — spacecp — spacecp_index.php  管理首页<br />
+| — source — include — spacecp — spacecp_invite.php  邀请管理面板<br />
+| — source — include — spacecp — spacecp_magic.php  魔法道具管理面板<br />
+| — source — include — spacecp — spacecp_plugin.php  插件管理面板<br />
+| — source — include — spacecp — spacecp_pm.php  留言及短消息管理面板<br />
+| — source — include — spacecp — spacecp_poke.php  实名认证与招呼的管理面板<br />
+| — source — include — spacecp — spacecp_privacy.php  通知管理面板<br />
+| — source — include — spacecp — spacecp_profile.php  用户资料管理面板<br />
+| — source — include — spacecp — spacecp_profilevalidate.php  用户资料验证的正则表达式<br />
+| — source — include — spacecp — spacecp_relatekw.php  官网关联文件<br />
+| — source — include — spacecp — spacecp_search.php  搜索管理面板<br />
+| — source — include — spacecp — spacecp_sendmail.php  发送email文件<br />
+| — source — include — spacecp — spacecp_share.php  分享管理面板<br />
+| — source — include — spacecp — spacecp_space.php  空间漫游管理面板<br />
+| — source — include — spacecp — spacecp_top.php 空间首先被执行的一些动作<br />
+| — source — include — spacecp — spacecp_upload.php  空间上传<br />
+| — source — include — spacecp — spacecp_userapp.php  认证动作<br />
+| — source — include — spacecp — spacecp_usergroup.php  用户组别处理文件<br />
+| — source — include — spacecp — spacecp_videophoto.php  视频相册处理文件<br />
+| — source — include — table  用户编码和处理的文件<br />
+| — source — include — table — big5-unicode.table <br />
+| — source — include — table — gb-big5.table<br />
+| — source — include — table — gb-unicode.table<br />
+ <br />
+| — source — include — task  任务文件夹<br />
+| — source — include — task — task_invite.php  邀请任务<br />
+| — source — include — task — task_mod.php 任务处理模块<br />
+| — source — include — task — task_sample.php  完成任务模块<br />
+| — source — include — thread  帖子主题相关文件<br />
+| — source — include — thread — thread_activity.php  主题邀请内核文件<br />
+| — source — include — thread — thread_debate.php  评论主题内核文件<br />
+| — source — include — thread — thread_pay.php  主题支付相关内核文件<br />
+| — source — include — thread — thread_poll.php  主题投票内核文件<br />
+| — source — include — thread — thread_printable.php  显示内核文件<br />
+| — source — include — thread — thread_reward.php  主题参与报酬内核文件<br />
+| — source — include — thread — thread_trade.php 主题交易内核文件<br />
+| — source — include — topicadmin — topicadmin_moderation.php  管理员话题鉴定<br />
+| — source — include — userapp — userapp_app.php  游戏应用添加<br />
+| — source — include — userapp — userapp_index.php  应用首页<br />
+| — source — include — userapp — userapp_manage.php  应用管理面板<br />
+| — source — language  语言包，以下语言包可以根据程序中使用到的具体情况在程序中搜索。<br />
+| — source — language — adv — lang_blog.php<br />
+| — source — language — adv — lang_couplebanner.php<br />
+| — source — language — adv — lang_custom.php<br />
+| — source — language — adv — lang_feed.php<br />
+| — source — language — adv — lang_float.php<br />
+| — source — language — adv — lang_footerbanner.php<br />
+| — source — language — adv — lang_headerbanner.php<br />
+| — source — language — adv — lang_intercat.php<br />
+| — source — language — adv — lang_interthread.php<br />
+| — source — language — adv — lang_subnavbanner.php<br />
+| — source — language — adv — lang_text.php<br />
+| — source — language — adv — lang_thread.php<br />
+| — source — language — block — lang_activitylist.php<br />
+| — source — language — block — lang_adv.php<br />
+| — source — language — block — lang_albumlist.php<br />
+| — source — language — block — lang_announcement.php<br />
+| — source — language — block — lang_articlelist.php<br />
+| — source — language — block — lang_attachmentlist.php<br />
+| — source — language — block — lang_banner.php<br />
+| — source — language — block — lang_blank.php<br />
+| — source — language — block — lang_bloglist.php<br />
+| — source — language — block — lang_categorylist.php<br />
+| — source — language — block — lang_doinglist.php<br />
+| — source — language — block — lang_forumlist.php<br />
+| — source — language — block — lang_forumstat.php<br />
+| — source — language — block — lang_forumtree.php<br />
+| — source — language — block — lang_friendlink.php<br />
+| — source — language — block — lang_google.php<br />
+| — source — language — block — lang_groupactivity.php<br />
+| — source — language — block — lang_groupattachment.php<br />
+| — source — language — block — lang_grouplist.php<br />
+| — source — language — block — lang_groupthread.php<br />
+| — source — language — block — lang_grouptrade.php<br />
+| — source — language — block — lang_houselist.php<br />
+| — source — language — block — lang_line.php<br />
+| — source — language — block — lang_memberlist.php<br />
+| — source — language — block — lang_piclist.php<br />
+| — source — language — block — lang_polllist.php<br />
+| — source — language — block — lang_portalcategory.php<br />
+| — source — language — block — lang_sortlist.php<br />
+| — source — language — block — lang_stat.php<br />
+| — source — language — block — lang_threadlist.php<br />
+| — source — language — block — lang_topiclist.php<br />
+| — source — language — block — lang_tradelist.php<br />
+| — source — language — block — lang_vedio.php<br />
+| — source — language — forum — index.htm<br />
+| — source — language — forum — lang_archiver.php<br />
+| — source — language — forum — lang_dz_feed.php<br />
+| — source — language — forum — lang_misc.php<br />
+| — source — language — forum — lang_modaction.php<br />
+| — source — language — forum — lang_seccode.php<br />
+| — source — language — forum — lang_swfupload.php<br />
+| — source — language — forum — lang_template.php<br />
+| — source — language — forum — lang_wap.php<br />
+| — source — language — group — lang_template.php<br />
+| — source — language — home — index.htm<br />
+| — source — language — home — lang_magic.php<br />
+| — source — language — home — lang_template.php<br />
+| — source — language — lang_action.php<br />
+| — source — language — lang_admincp.php<br />
+| — source — language — lang_admincp_login.php<br />
+| — source — language — lang_admincp_menu.php<br />
+| — source — language — lang_admincp_msg.php<br />
+| — source — language — lang_admincp_searchindex.php<br />
+| — source — language — lang_blockclass.php<br />
+| — source — language — lang_core.php<br />
+| — source — language — lang_email.php<br />
+| — source — language — lang_error.php<br />
+| — source — language — lang_exif.php<br />
+| — source — language — lang_feed.php<br />
+| — source — language — lang_friend.php<br />
+| — source — language — lang_message.php<br />
+| — source — language — lang_notification.php<br />
+| — source — language — lang_portalcp.php<br />
+| — source — language — lang_space.php<br />
+| — source — language — lang_spacecp.php<br />
+| — source — language — lang_template.php<br />
+| — source — language — magic — lang_anonymouspost.php<br />
+| — source — language — magic — lang_attachsize.php<br />
+| — source — language — magic — lang_bump.php<br />
+| — source — language — magic — lang_call.php<br />
+| — source — language — magic — lang_checkonline.php<br />
+| — source — language — magic — lang_close.php<br />
+| — source — language — magic — lang_doodle.php<br />
+| — source — language — magic — lang_downdateline.php<br />
+| — source — language — magic — lang_flicker.php<br />
+| — source — language — magic — lang_friendnum.php<br />
+| — source — language — magic — lang_highlight.php<br />
+| — source — language — magic — lang_hot.php<br />
+| — source — language — magic — lang_money.php<br />
+| — source — language — magic — lang_namepost.php<br />
+| — source — language — magic — lang_open.php<br />
+| — source — language — magic — lang_repent.php<br />
+| — source — language — magic — lang_showip.php<br />
+| — source — language — magic — lang_sofa.php<br />
+| — source — language — magic — lang_stick.php<br />
+| — source — language — magic — lang_thunder.php<br />
+| — source — language — magic — lang_updateline.php<br />
+| — source — language — magic — lang_visit.php<br />
+| — source — language — member — index.htm<br />
+| — source — language — member — lang_template.php<br />
+| — source — language — search — lang_template.php<br />
+| — source — language — task — lang_avatar.php<br />
+| — source — language — task — lang_blog.php<br />
+| — source — language — task — lang_email.php<br />
+| — source — language — task — lang_friend.php<br />
+| — source — language — task — lang_gift.php<br />
+| — source — language — task — lang_member.php<br />
+| — source — language — task — lang_post.php<br />
+| — source — language — task — lang_profile.php<br />
+| — source — language — task — lang_promotion.php<br />
+| — source — module  系统运行模组<br />
+| — source — module — category  分类模组<br />
+| — source — module — category — category_cache.php   分类缓存模组<br />
+| — source — module — category — category_index.php  分类首页模组<br />
+| — source — module — category — category_list.php  分类列表模组<br />
+| — source — module — category — category_misc.php  分类的杂项模组<br />
+| — source — module — category — category_my.php  我的分类模组<br />
+| — source — module — category — category_post.php  分类信息发布模组<br />
+| — source — module — category — category_threadmod.php  分类主题模块<br />
+| — source — module — category — category_view.php  分类查看模组<br />
+| — source — module — forum  广场模组<br />
+| — source — module — forum — forum_ajax.php  广场ajax模组<br />
+| — source — module — forum — forum_announcement.php  广场公告消息显示模组<br />
+| — source — module — forum — forum_attachment.php  广场内部附件显示模组<br />
+| — source — module — forum — forum_forumdisplay.php  广场论坛版块模组<br />
+| — source — module — forum — forum_group.php  广场群组模组<br />
+| — source — module — forum — forum_image.php  广场图片模组<br />
+| — source — module — forum — forum_index.php  广场首页模组<br />
+| — source — module — forum — forum_misc.php  广场杂项模组<br />
+| — source — module — forum — forum_modcp.php  广场管理面板模组<br />
+| — source — module — forum — forum_post.php  广场发帖模组<br />
+| — source — module — forum — forum_redirect.php  广场版块重定向模组<br />
+| — source — module — forum — forum_relatekw.php  广场XML传递接口模组<br />
+| — source — module — forum — forum_relatethread.php  主题传递模组<br />
+| — source — module — forum — forum_rss.php  广场rss订阅<br />
+| — source — module — forum — forum_search.php  广场搜索<br />
+| — source — module — forum — forum_topicadmin.php  广场话题管理模组<br />
+| — source — module — forum — forum_trade.php  广场交易模组<br />
+| — source — module — forum — forum_viewthread.php  广场查看主题模组<br />
+| — source — module — group  群组模组<br />
+| — source — module — group — group_index.php  群组首页<br />
+| — source — module — home 空间模组<br />
+| — source — module — home — home_editor.php    空间编辑器模组<br />
+| — source — module — home — home_invite.php  空间邀请模组<br />
+| — source — module — home — home_magic.php  空间魔法道具模组<br />
+| — source — module — home — home_medal.php  空间勋章模组<br />
+| — source — module — home — home_misc.php  空间杂项模组<br />
+| — source — module — home — home_rss.php  空间订阅模组<br />
+| — source — module — home — home_space.php  空间首页模组<br />
+| — source — module — home — home_spacecp.php  空间管理面板模组<br />
+| — source — module — home — home_task.php  空间任务模组<br />
+| — source — module — home — home_userapp.php  空间用户游戏应用模组<br />
+| — source — module — member 空间用户控制模组<br />
+| — source — module — member — member_activate.php  用户活动触发模组<br />
+| — source — module — member — member_clearcookies.php  用户cookie清理控制模组<br />
+| — source — module — member — member_emailverify.php 用户email验证核实模组<br />
+| — source — module — member — member_getpasswd.php  获取加密密码模组<br />
+| — source — module — member — member_groupexpiry.php  用户组到期控制模组<br />
+| — source — module — member — member_logging.php  用户登录模组<br />
+| — source — module — member — member_lostpasswd.php  丢失密码与找回控制模组<br />
+| — source — module — member — member_register.php  用户注册控制模组<br />
+| — source — module — member — member_regverify.php 用户认证核实模组<br />
+| — source — module — member — member_switchstatus.php  登录统计控制模组<br />
+| — source — module — misc  杂项模组<br />
+| — source — module — misc — misc_error.php  杂项报错模组<br />
+| — source — module — misc — misc_faq.php  faq控制模组<br />
+| — source — module — misc — misc_initsys.php  初始化系统模组<br />
+| — source — module — misc — misc_invite.php  邀请参与话题、群组等模组<br />
+| — source — module — misc — misc_report.php  举报模组<br />
+| — source — module — misc — misc_seccode.php  验证码控制模组<br />
+| — source — module — misc — misc_secqaa.php  验证问答控制模组<br />
+| — source — module — misc — misc_swfupload.php  FLASH上传控制模组<br />
+| — source — module — portal  首页模组<br />
+| — source — module — portal — portal_attachment.php  首页附件控制模组<br />
+| — source — module — portal — portal_block.php  首页模块模组<br />
+| — source — module — portal — portal_comment.php  首页评论模组<br />
+| — source — module — portal — portal_index.php  首页显示模组<br />
+| — source — module — portal — portal_list.php  首页列表模组<br />
+| — source — module — portal — portal_portalcp.php  首页控制面板模组<br />
+| — source — module — portal — portal_topic.php  首页话题模组<br />
+| — source — module — portal — portal_view.php  首页显示模组<br />
+| — source — module — search  搜索模组<br />
+| — source — module — search — search_album.php  相册搜索模组<br />
+| — source — module — search — search_blog.php  日志搜索模组<br />
+| — source — module — search — search_forum.php  版块搜索模组<br />
+| — source — module — search — search_group.php  群组搜索模组<br />
+| — source — module — search — search_portal.php  首页搜索模组<br />
+| — source — plugin 插件文件夹<br />
+| — source — plugin — myrepeats 自带插件(马甲插件范例)<br />
+| — source — plugin — myrepeats — admincp.inc.php    管理面板包含文件<br />
+| — source — plugin — myrepeats — discuz_plugin_myrepeats.xml    我的马甲插件安装配置XML文件<br />
+| — source — plugin — myrepeats — install.php  我的马甲插件安装执行文件<br />
+| — source — plugin — myrepeats — memcp.inc.php  前台管理面板包含文件<br />
+| — source — plugin — myrepeats — myrepeats.class.php  我的马甲内核类<br />
+| — source — plugin — myrepeats — switch.inc.php <br />
+| — source — plugin — myrepeats — template — index.htm<br />
+| — source — plugin — myrepeats — template — memcp.htm  观前台管理面板模版文件<br />
+| — source — plugin — myrepeats — uninstall.php  我的马甲插件卸载执行文件<br />
+| — source  –  discuz_version.php  系统版本号作为一款以社区为基础的专业建站平台，Discuz! X1社区平台系统让论坛（BBS）、社交网络(SNS)、门户（Portal）、群组(Group)、开放平台(Open Platform)充分融合于一体，帮助网站实现一站式服务。</p>
+
+<p>| — template — default   系统内置风格模板(默认风格)<br />
+| — template — default  – discuz_style_default.xml  风格安装文件，可用风格导出功能创建<br />
+| — template — default  – preview.jpg  预览图<br />
+| — template — default  – common 风格中的公共包含文件，内含css、htm模板文件<br />
+| — template — default  – common  –  block_forumtree.htm  树形论坛版块分支js文件<br />
+| — template — default  – common  –  block_thread.htm  特殊主题的风格模块文件<br />
+| — template — default  – common  –  block_userinfo.htm  用户资料的风格模块，用于显示<br />
+| — template — default  – common  –  common.css  公共CSS文件。<br />
+| — template — default  – common  –  css_diy.htm  DIY面板的样式文件<br />
+| — template — default  – common  –  editor.css  编辑器样式<br />
+| — template — default  – common  –  editor.htm  编辑器模板文件<br />
+| — template — default  – common  –  editor_menu.htm 编辑器菜单文件<br />
+| — template — default  – common  –  faq.htm  帮助模板文件<br />
+| — template — default  – common  –  footer.htm  系统总底部模板<br />
+| — template — default  – common  –  footer_ajax.htm  ajax模式是使用到的系统总底部模板，ajax模式大部分为浮动框登录、注册、发帖等。<br />
+| — template — default  – common  –  forum_calendar.css  广场社区使用到的日历日期样式<br />
+| — template — default  – common  –  forum_moderator.css  版主管理面板样式<br />
+| — template — default  – common  –  header.htm  系统总头部文件<br />
+| — template — default  – common  –  header_ajax.htm  ajax模式时使用到的系统总头部文件<br />
+| — template — default  – common  –  header_diy.htm  DIY面板模板文件<br />
+| — template — default  – common  –  invite.htm  邀请好友模板文件<br />
+| — template — default  – common  –  module.css  重要的样式文件，用于模块的拆分并生成相应的CSS样式。可以根据实际情况的需要，在module.css中写入只针对某个<br />
+| — template — default  – common  –  preview.htm  预览的模版文件<br />
+| — template — default  – common  –  report.htm  举报模板文件<br />
+| — template — default  – common  –  rss.css  用于rss的样式文件<br />
+| — template — default  – common  –  search.css  搜索样式文件<br />
+| — template — default  – common  –  seccheck.htm  验证码验证模板文件<br />
+| — template — default  – common  –  seditor.htm  空间的编辑器模板文件<br />
+| — template — default  – common  –  sendmail.htm  发送email内容模板文件<br />
+| — template — default  – common  –  showmessage.htm  系统提示信息模板文件<br />
+| — template — default  – common  –  userabout.htm  我的中心面板模板文件<br />
+| — template — default  – common  –  wysiwyg.css  所见即所得模式的css样式文件<br />
+| — template — default  – forum 广场(社区)使用到的模板<br />
+| — template — default  – forum  –  activity_applylist.htm  活动列表模板文件<br />
+| — template — default  – forum  –  activity_export.htm  活动资料内容模板文件<br />
+| — template — default  – forum  –  ajax_albumlist.htm  ajax获取相册列表模板文件<br />
+| — template — default  – forum  –  ajax_attachlist.htm  ajax获取附件列表模板文件<br />
+| — template — default  – forum  –  ajax_imagelist.htm  ajax获取图片列表模板文件<br />
+| — template — default  – forum  –  ajax_magiclist.htm  ajax获取魔法道具列表模板文件<br />
+| — template — default  – forum  –  ajax_secondgroup.htm <br />
+| — template — default  – forum  –  announcement.htm  广场公告模板文件<br />
+| — template — default  – forum  –  attachpay.htm  附件金币积分支付模板文件<br />
+| — template — default  – forum  –  attachpay_view.htm  附件金币积分支付查看模板文件<br />
+| — template — default  – forum  –  comment.htm  评论模板文件<br />
+| — template — default  – forum  –  comment_more.htm  更多评论模板文件<br />
+| — template — default  – forum  –  debate_umpire.htm  辩论模板文件<br />
+| — template — default  – forum  –  discuz.htm  广场社区首页模板文件<br />
+| — template — default  – forum  –  discuzcode.htm  discuz编辑器处理的模板文件<br />
+| — template — default  – forum  –  editor_menu_forum.htm 广场中编辑器菜单模板文件<br />
+| — template — default  – forum  –  forumdisplay.htm  广场版块模板文件<br />
+| — template — default  – forum  –  forumdisplay_list.htm  广场版块主题列表模板文件<br />
+| — template — default  – forum  –  forumdisplay_passwd.htm  需要密码访问的版块模板文件<br />
+| — template — default  – forum  –  forumdisplay_subforum.htm  子版块列表模板文件<br />
+| — template — default  – forum  –  index_navbar.htm  广场首页导航栏模板文件<br />
+| — template — default  – forum  –  invite_index.htm  邀请模板文件<br />
+| — template — default  – forum  –  invite_send.htm  邀请发送模板文件<br />
+| — template — default  – forum  –  modcp.htm  管理面板模板文件<br />
+| — template — default  – forum  –  modcp_announcement.htm  管理面板公告管理页面模板文件<br />
+| — template — default  – forum  –  modcp_forum.htm  管理面板广场管理页面模板文件<br />
+| — template — default  – forum  –  modcp_forumaccess.htm  管理面板用户权限管理页面模板文件<br />
+| — template — default  – forum  –  modcp_home.htm  管理面板内部留言管理页面模板文件<br />
+| — template — default  – forum  –  modcp_log.htm  管理面板管理日志页面模板文件<br />
+| — template — default  – forum  –  modcp_login.htm  管理面板登录页面<br />
+| — template — default  – forum  –  modcp_member.htm  管理面板用户管理页面模板文件<br />
+| — template — default  – forum  –  modcp_moderate.htm  管理面板审核页面模板文件<br />
+| — template — default  – forum  –  modcp_moderate_float.htm  管理面板审核页面模板文件<br />
+| — template — default  – forum  –  modcp_post.htm  管理面板发帖管理模板文件<br />
+| — template — default  – forum  –  modcp_recyclebin.htm  管理面板回收站模板文件<br />
+| — template — default  – forum  –  modcp_report.htm  管理面板举报页面模板文件<br />
+| — template — default  – forum  –  modcp_thread.htm  管理面板主题管理模板文件<br />
+| — template — default  – forum  –  pay.htm  支付页面模板文件<br />
+| — template — default  – forum  –  pay_view.htm  支付结果查看模板文件<br />
+| — template — default  – forum  –  post.htm  发帖模板总文件<br />
+| — template — default  – forum  –  post_activity.htm  活动发布页面模板文件<br />
+| — template — default  – forum  –  post_debate.htm  辩论发布模板文件<br />
+| — template — default  – forum  –  post_forumselect.htm  版块选择模板文件<br />
+| — template — default  – forum  –  post_infloat.htm  ajax发布主题模板文件<br />
+| — template — default  – forum  –  post_poll.htm  投票贴发布模板文件<br />
+| — template — default  – forum  –  post_reward.htm  悬赏帖发布模板文件<br />
+| — template — default  – forum  –  post_sortoption.htm  主题分类选择模板文件<br />
+| — template — default  – forum  –  post_trade.htm  交易帖发布模板文件<br />
+| — template — default  – forum  –  rate.htm  主题评分模板文件<br />
+| — template — default  – forum  –  rate_view.htm  主题评分查看模板文件<br />
+| — template — default  – forum  –  recommend.htm  主题推荐模板文件<br />
+| — template — default  – forum  –  search_sortoption.htm  主题分类选项搜索模板文件<br />
+| — template — default  – forum  –  showmessage.htm  广场提示信息模板文件<br />
+| — template — default  – forum  –  stats_team.htm  管理团队统计模板文件<br />
+| — template — default  – forum  –  stats_trade.htm  交易统计模板文件<br />
+| — template — default  – forum  –  tag.htm  tag标签模板文件<br />
+| — template — default  – forum  –  tag_thread.htm  主题tag模板文件<br />
+| — template — default  – forum  –  topicadmin.htm  话题管理页面模板文件<br />
+| — template — default  – forum  –  topicadmin_action.htm  话题管理动作页面模板文件<br />
+| — template — default  – forum  –  topicadmin_getip.htm  话题管理页面获取IP模板文件<br />
+| — template — default  – forum  –  topicadmin_modlayer.htm  管理管理推送群组操作模板文件<br />
+| — template — default  – forum  –  trade.htm  商品交易主题模板文件<br />
+| — template — default  – forum  –  trade_displayorder.htm  商品排序模板文件<br />
+| — template — default  – forum  –  trade_info.htm  商品交易详细资料模板文件<br />
+| — template — default  – forum  –  trade_view.htm  商品交易浏览页面模板文件<br />
+| — template — default  – forum  –  upload.htm  上传模板文件<br />
+| — template — default  – forum  –  viewpro_data.htm 查看社区主题内用户资料模板文件<br />
+| — template — default  – forum  –  viewthread.htm  看帖页面模板文件<br />
+| — template — default  – forum  –  viewthread_activity.htm   查看活动页面模板文件<br />
+| — template — default  – forum  –  viewthread_debate.htm  查看辩论页面模板文件<br />
+| — template — default  – forum  –  viewthread_fastpost.htm  快速回复模板文件<br />
+| — template — default  – forum  –  viewthread_from_node.htm  特殊主题回复模板文件<br />
+| — template — default  – forum  –  viewthread_home.htm  个人空间模式查看主题模板文件<br />
+| — template — default  – forum  – viewthread_mod.htm  主题操作记录模板文件<br />
+| — template — default  – forum  – viewthread_node.htm  新回复节点模板文件<br />
+| — template — default  – forum  – viewthread_node_body.htm  主题回复节点模板文件<br />
+| — template — default  – forum  – viewthread_pay.htm  主题支付模板文件<br />
+| — template — default  – forum  – viewthread_poll.htm  投票主题查看模板文件<br />
+| — template — default  – forum  – viewthread_poll_voter.htm  投票主题参与者查看模板文件<br />
+| — template — default  – forum  – viewthread_portal.htm 门户模式主题查看页模板文件<br />
+| — template — default  – forum  – viewthread_printable.htm  打印主题模式模板文件<br />
+| — template — default  – forum  – viewthread_relatedthread.htm  相关主题模板文件<br />
+| — template — default  – forum  – viewthread_reward.htm  悬赏主题查看模板文件<br />
+| — template — default  – forum  – viewthread_trade.htm  查看交易主题模板文件<br />
+| — template — default  – forum  – warn_view.htm  错误报告页面，无需其他报错模板即可执行<br />
+| — template — default  – group  群组模板<br />
+| — template — default  – group  – group.htm 浏览群组时的模板文件<br />
+| — template — default  – group  –  group_create.htm 群组创建时使用到的模板文件<br />
+| — template — default  – group  –  group_index.htm  群组首页模板文件<br />
+| — template — default  – group  –  group_invite.htm  邀请参与群组的模板文件<br />
+| — template — default  – group  –  group_list.htm  群组列表文件<br />
+| — template — default  – group  –  group_manage.htm  管理群组的模板文件<br />
+| — template — default  – group  –  group_memberlist.htm  群组中参与用户的列表文件<br />
+| — template — default  – group  –  group_right.htm  群组右侧边栏<br />
+| — template — default  – home 空间模板<br />
+| — template — default  – home  –  invite.htm  空间邀请页面<br />
+| — template — default  – home  –  magic_call.htm  通知好友魔法道具模板文件<br />
+| — template — default  – home  –  magic_doodle.htm  涂鸦魔法道具模板文件<br />
+| — template — default  – home  –  magic_downdateline.htm  修改时间的魔法道具模板文件<br />
+| — template — default  – home  –  magic_visit.htm  访问卡魔法道具模板文件<br />
+| — template — default  – home  –  misc_ajax.htm  杂项ajax操作模板文件<br />
+| — template — default  – home  –  misc_inputpwd.htm  密码输入模板文件<br />
+| — template — default  – home  –  misc_login.htm  杂项登录操作模板文件<br />
+| — template — default  – home  –  misc_lostpasswd.htm  忘记密码操作模板文件<br />
+| — template — default  – home  –  misc_register.htm  杂项注册操作模癰sp;misc_swfupload.htm  FLASH上传模板文件<br />
+| — template — default  – home  –  network.css  随便看看页CSS样式文件<br />
+| — template — default  – home  –  sendmail.htm  发系统email的模板文件<br />
+| — template — default  – home  –  space_activity.htm  空间活动页面模板文件<br />
+| — template — default  – home  –  space_album_list.htm  空间相册列表页面模板文件<br />
+| — template — default  – home  –  space_album_pic.htm  空间相册图片模板文件<br />
+| — template — default  – home  –  space_album_view.htm  空间相册浏览模板文件<br />
+| — template — default  – home  –  space_blog_list.htm 空间日志列表模板文件<br />
+| — template — default  – home  –  space_blog_view.htm 空间日志浏览模板文件<br />
+| — template — default  – home  –  space_click.htm  表态模板文件<br />
+| — template — default  – home  –  space_comment_en — template — default  – home  –  space_click.htm  表态模板文件<br />
+| — template — default  – home  –  space_comment_li.htm  评论模板文件<br />
+| — template — default  – home  –  space_debate.htm  辩论模板文件<br />
+| — template — default  – home  –  space_diy.htm  空间DIY模板文件<br />
+| — template — default  – home  –  space_doing.htm  心情记录模板文件<br />
+| — template — default  – home  –  space_doing_form.htm  心情记录发送的模板文件<br />
+| — template — default  – home  –  space_doing_li.htm  心情记录的列表模板文件<br />
+| — template — default  – home  –  space_favorite.htm  空间收藏模板文件<br />
+| — template — default  – home  –  space_feed_li.htm  feed事件列表模板文件<br />
+| — template — default  – home  –  space_footer.htm  空间底部模板文件<br />
+| — template — default  – home  –  space_friend.htm  空间好友模板文件<br />
+| — template — default  – home  –  space_group.htm  空间群组模板文件<br />
+| — template — default  – home  –  space_header.htm  空间头部模板文件<br />
+| — template — default  – home  –  space_home.htm  空间home页模板文件<br />
+| — template — default  – home  –  space_index.css  个人空间首页CSS样式文件<br />
+| — template — default  – home  –  space_index.htm  个人空间首页模板文件<br />
+| — template — default  – home  –  space_list.htm  空间列表页模板文件<br />
+| — template — default  – home  –  space_magic.htm  空间魔法道具模板文件<br />
+| — template — default  – home  –  space_magic_log.htm  魔法道具使用记录模板文件<br />
+| — template — default  – home  –  space_magic_mybox.htm  本人所拥有的魔法道具模板文件<br />
+| — template — default  – home  –  space_magic_mybox_opreation.htm  魔法道具操作动作的模板文件<br />
+| — template — default  – home  –  space_magic_shop.htm  魔法道具商城模板文件<br />
+| — template — default  – home  –  space_magic_shop_opreation.htm  魔法道具操作动作的模板文件<br />
+| — template — default  – home  –  space_medal.htm  空间勋章<br />
+| — template — default  – home  –  space_menu.htm  空间菜单项模板文件<br />
+| — template — default  – home  –  space_notice.htm  空间公告模板文件<br />
+| — template — default  – home  –  space_pm.htm  空间短消息模板文件<br />
+| — template — default  – home  –  space_poll.htm  空间投票模板文件<br />
+| — template — default  – home  –  space_privacy.htm  空间隐私模板文件<br />
+| — template — default  – home  –  space_profile.htm 空间用户资料页模板文件<br />
+| — template — default  – home  –  space_reward.htm  空间悬赏模板文件<br />
+| — template — default  – home  –  space_rss.htm  空间rss订阅模板文件<br />
+| — template — default  – home  –  space_share_form.htm  空间分享来源模板文件<br />
+| — template — default  – home  –  space_share_li.htm  空间分享模板文件<br />
+| — template — default  – home  –  space_share_list.htm  空间分享列表模板文件<br />
+| — template — default  – home  –  space_share_view.htm  空间查看模板文件<br />
+| — template — default  – home  –  space_status.htm  空间状态模板文件<br />
+| — template — default  – home  –  space_task.htm  任务模板文件<br />
+| — template — default  – home  –  space_task_detail.htm  小任务模板文件<br />
+| — template — default  – home  –  space_task_list.htm  任务列表模板文件<br />
+| — template — default  – home  –  space_task_parter.htm  参与任务模板文件<br />
+| — template — default  – home  –  space_thread.htm  空间的主题帖模板文件<br />
+| — template — default  – home  –  space_top.htm  空间头部模板文件<br />
+| — template — default  – home  –  space_trade.htm  空间商品交易主题模板文件<br />
+| — template — default  – home  –  space_userabout.htm  空间用户面板模板文件<br />
+| — template — default  – home  –  space_videophoto.htm  视频相册模板文件<br />
+| — template — default  – home  –  space_wall.htm  个人空间留言板<br />
+| — template — default  – home  –  spacecp_album.htm  空间管理面板相册页模板文件<br />
+| — template — default  – home  –  spacecp_avatar.htm  空间管理面板修改头像页模板文件<br />
+| — template — default  – home  –  spacecp_blog.htm  空间管理面板日志页模板文件<br />
+| — template — default  – home  –  spacecp_class.htm  空间管理面板分类页模板文件<br />
+| — template — default  – home  –  spacecp_click.htm   空间表态页模板文件<br />
+| — template — default  – home  –  spacecp_comment.htm  空间管理面板评论页模板文件<br />
+| — template — default  – home  –  spacecp_credit_action.htm  空间积分动作页模板文件<br />
+| — template — default  – home  –  spacecp_credit_base.htm  空间基本积分页、兑换等模板文件<br />
+| — template — default  – home  –  spacecp_credit_header.htm  空间管理面板积分头部模板文件<br />
+| — template — default  – home  –  spacecp_credit_log.htm  空间管理面板积分操作记录模板文件<br />
+| — template — default  – home  –  spacecp_credit_usergroup.htm  空间管理面板积分与组别关系模板页面<br />
+| — template — default  – home  –  spacecp_doing.htm  空间管理面板心情记录模板文件<br />
+| — template — default  – home  –  spacecp_domain.htm  空间域名设置模板文件<br />
+| — template — default  – home  –  spacecp_ec_explain.htm  我要解释页模板文件<br />
+| — template — default  – home  –  spacecp_ec_list.htm 我的解释列表页模板文件<br />
+| — template — default  – home  –  spacecp_favorite.htm  空间管理面板收藏页模板文件<br />
+| — template — default  – home  –  spacecp_feed.htm  空间管理面板feed事件页模板文件<br />
+| — template — default  – home  –  spacecp_friend.htm  空间管理面板好友页模板文件<br />
+| — template — default  – home  –  spacecp_header.htm  空间管理面板头部<br />
+| — template — default  – home  –  spacecp_index.htm  空间管理面板首页<br />
+| — template — default  – home  –  spacecp_invite.htm  空间管理面板邀请页模板文件<br />
+| — template — default  – home  –  spacecp_magic.htm  空间管理面板魔法道具页模板文件<br />
+| — template — default  – home  –  spacecp_password.htm  空间管理面板修改密码页模板文件<br />
+| — template — default  – home  –  spacecp_plugin.htm  空间管理面板插件页模板文件<br />
+| — template — default  – home  –  spacecp_pm.htm  空间管理面板短消息页模板文件<br />
+| — template — default  – home  –  spacecp_poke.htm  空间管理面板打招呼页模板文件！<br />
+| — template — default  – home  –  spacecp_privacy.htm  隐私筛选页模板文件<br />
+| — template — default  – home  –  spacecp_profile.htm  空间个人资料编辑页模板文件<br />
+| — template — default  – home  –  spacecp_profile_nav.htm  空间个人资料编辑页导航条<br />
+| — template — default  – home  –  spacecp_search.htm  空间搜索页模板文件<br />
+| — template — default  – home  –  spacecp_sendmail.htm  空间邮件发送页模板文件<br />
+| — template — default  – home  –  spacecp_share.htm   空间分享管理页模板文件<br />
+| — template — default  – home  –  spacecp_space.htm  空间管理页模板文件<br />
+| — template — default  – home  –  spacecp_upload.htm  空间上传页模板文件<br />
+| — template — default  – home  –  spacecp_userapp.htm  用户应用页模板文件<br />
+| — template — default  – home  –  spacecp_videophoto.htm  视频相册页模板文件<br />
+| — template — default  – member  用户相关模板<br />
+| — template — default  – member –  getpasswd.htm 找回密码模板文件<br />
+| — template — default  – member –  groupexpiry.htm 用户组期限模板文件<br />
+| — template — default  – member –  login.htm  用户登录模板文件<br />
+| — template — default  – member –  register.htm  用户注册模板文件<br />
+| — template — default  – portal  门户首页<br />
+| — template — default  – portal  –  comment.htm  评论页面模板文件<br />
+| — template — default  – portal  –  comment_li.htm 评论操作模板文件<br />
+| — template — default  – portal  –  index.htm  门户首页模板文件<br />
+| — template — default  – portal  –  list.htm  门户新闻列表页面！<br />
+| — template — default  – portal  –  portal_topic_content.htm  门户专题页面模板，如果添加新专题请创建portal_topic_xxxxx.htm的页面，即可在专题创建时自动的看到。<br />
+| — template — default  – portal  –  portalcp_article.htm  门户文章管理页面<br />
+| — template — default  – portal  –  portalcp_block.htm  门户模块页面<br />
+| — template — default  – portal  –  portalcp_category.htm  门户分类页面<br />
+| — template — default  – portal  –  portalcp_comment.htm 门户管理评论操作模板文件<br />
+| — template — default  – portal  –  portalcp_diy.htm  门户DIY模板文件<br />
+| — template — default  – portal  –  portalcp_index.htm  门户管理首页模板文件<br />
+| — template — default  – portal  –  portalcp_portalblock.htm  门户管理模块模板文件<br />
+| — template — default  – portal  –  portalcp_portalblock_data.htm  门户管理模块数据模板文件<br />
+| — template — default  – portal  –  portalcp_topic.htm  门户管理话题模板文件<br />
+| — template — default  – portal  –  portalcp_topic_content.htm 门户管理话题内容页模板文件<br />
+| — template — default  – portal  –  topic_footer.htm  话题底部模板<br />
+| — template — default  – portal  –  topic_head.htm 话题顶部模板<br />
+| — template — default  – portal  –  view.htm 查看页面<br />
+| — template — default  – search  搜索页面模板文件<br />
+| — template — default  – search  –  album.htm  搜索相册结果<br />
+| — template — default  – search  –  album_list.htm  搜索相册列表结果<br />
+| — template — default  – search  –  blog.htm  搜索日志结果<br />
+| — template — default  – search  –  blog_list.htm  搜索日志列表结果<br />
+| — template — default  – search  –  footer.htm 页面底部<br />
+| — template — default  – search  –  forum.htm  广场搜索页<br />
+| — template — default  – search  –  group.htm  群组搜索结果页面<br />
+| — template — default  – search  –  group_list.htm  群组搜索结果列表页面<br />
+| — template — default  – search  –  header.htm  页面头部<br />
+| — template — default  – search  –  portal.htm  门户搜索结果<br />
+| — template — default  – search  –  portal_list.htm 门户搜索结果列表页面<br />
+| — template — default  – search  –  pubsearch.htm  公共搜索页面<br />
+| — template — default  – search  –  sort_list.htm  分类信息列表页面<br />
+| — template — default  – search  –  sortoption.htm  分类信息页面<br />
+| — template — default  – search  –  thread_list.htm  主题列表页面<br />
+| — template — default  – search  –  trade.htm  商品页面<br />
+| — template — default  – userapp  应用频道模板<br />
+| — template — default  – userapp  –  userapp_app.htm  用户应用<br />
+| — template — default  – userapp  –  userapp_index.htm  应用频道首页<br />
+| — template — default  – userapp  –  userapp_manage.htm  应用管理<br />
+| — template — default  – userapp  –  userapp_menu_list.htm  应用菜单列表<br />
+好了，本篇介绍到此点到为止，希望大家能够以实际建站过程中活学活用。Discuz! X1版本产品研发以用户需求为核心，坚持“融合”，拒绝“整合”绝不“拼凑”；消除“边界感”，把社区的四个基本模块(门户、论坛、群组、家园)的优点显露出来；产品有“延展性”，拥有一个好的骨架；重视“细节”，让用户在整个网站的操作都尽可能流畅；设计设重视产品的风格和布局，让不同部分间的跳跃感消失；充分发挥社区的四大基础模块的优势，互相包容，取长补短。如需更多了解Discuz! X1版本的功能，更关注其它相关主题介绍</p>
+
+<p>相关推荐：</p>
+
+<p><a href="http://www.discuz.net/forum-3826-1.html">http://www.discuz.net/forum-3826-1.html</a> (插件汇总)</p>
+
+<p><a href="http://www.discuz.net/thread-1634646-1-1.html">http://www.discuz.net/thread-1634646-1-1.html</a> (discz.x1火车头接口-未开启验证码)</p>
+
+<p><a href="http://www.discuz.net/thread-1658948-1-1.html">http://www.discuz.net/thread-1658948-1-1.html</a> (功能增强插件)</p>
+
+<p>附：<a href="http://download.comsenz.com/teach/doc/Discuz%21_usersguide_X1.zip"><strong>《Discuz! X1 用户手册》</strong></a><a href="http://download.comsenz.com/teach/doc/Discuz%21_usersguide_X1.zip"><strong>下载</strong></a></p>
+
+
+  </div><a class="u-url" href="/labrary/137.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Java编程 Swing模板 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Java编程 Swing模板" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="1、创建框架： [cc lang=”java”] import java.awt.*;" />
+<meta property="og:description" content="1、创建框架： [cc lang=”java”] import java.awt.*;" />
+<link rel="canonical" href="http://localhost:4001/labrary/297.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/297.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2011-04-07T13:32:07-07:00" />
+<script type="application/ld+json">
+{"headline":"Java编程 Swing模板","dateModified":"2011-04-07T13:32:07-07:00","datePublished":"2011-04-07T13:32:07-07:00","description":"1、创建框架： [cc lang=”java”] import java.awt.*;","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/297.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/297.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Java编程 Swing模板</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2011-04-07T13:32:07-07:00" itemprop="datePublished">Apr 7, 2011
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>1、创建框架：<br />
+[cc lang=”java”]<br />
+import java.awt.*;</p>
+
+<p>import javax.swing.*;</p>
+
+<p>public class SimpleFrameTest {</p>
+
+<p>public static void main(String[] args) {<br />
+ // 事件调度线程<br />
+ EventQueue.invokeLater(new Runnable() {<br />
+ public void run() {<br />
+ // 创建一个SimpleFrame窗体<br />
+ SimpleFrame frame = new SimpleFrame();</p>
+
+<p>// 默认关闭窗口时退出<br />
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br />
+ // 设置窗体可见<br />
+ frame.setVisible(true);<br />
+ }<br />
+ });<br />
+ }<br />
+}<br />
+[/cc]<br />
+<!--more--></p>
+
+<p>[cc lang=”java”]<br />
+class SimpleFrame extends JFrame {</p>
+
+<p>// 构造函数</p>
+
+<p>public SimpleFrame() {</p>
+
+<p>setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);</p>
+
+<p>}</p>
+
+<p>// 声明默认窗体宽度</p>
+
+<p>public static final int DEFAULT_WIDTH = 300;</p>
+
+<p>// 声明默认窗体高度</p>
+
+<p>public static final int DEFAULT_HEIGHT = 200;</p>
+
+<p>}<br />
+[/cc]<br />
+2、框架定位：<br />
+[cc lang=”java”]</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import java.awt.\*; import javax.swing.\*; public class SimpleFrameTest { public static void main(String[] args) { // 事件调度线程 EventQueue.invokeLater(new Runnable() { public void run() { // 创建一个SimpleFrame窗体 SimpleFrame frame = new SimpleFrame(); // 默认关闭窗口时退出 frame.setDefaultCloseOperation(JFrame.EXIT\_ON\_CLOSE); // 设置窗体可见 frame.setVisible(true); //定位窗体的位置 frame.setLocation(200,300); // 创建一个SimpleFrame窗体 SimpleFrame frame1 = new SimpleFrame(); //将窗体定位于（100,100）处，宽度设置为200，高度设置为400 frame1.setBounds(100,100,200,400); //设置窗体为可见 frame1.setVisible(true); // 创建一个SimpleFrame窗体 SimpleFrame frame2 = new SimpleFrame(); //设置窗体为可见 frame2.setVisible(true); //根据平台设置窗体的位置 try{ frame2.setLocationByPlatform(true); }catch(IllegalComponentStateException e){ } } }); } } [/cc] [cc lang="java"] class SimpleFrame extends JFrame { // 构造函数 public SimpleFrame() { setSize(DEFAULT\_WIDTH, DEFAULT\_HEIGHT); } // 声明默认窗体宽度 public static final int DEFAULT\_WIDTH = 300; // 声明默认窗体高度 public static final int DEFAULT\_HEIGHT = 200; } [/cc] 3、框架属性： 4、决定框架大小： [cc lang="java"] import java.awt.Dimension; import java.awt.EventQueue; import java.awt.IllegalComponentStateException; import java.awt.Image; import java.awt.Toolkit; import javax.swing.JFrame; public class SimpleFrameTest { public static void main(String[] args) { // 事件调度线程 EventQueue.invokeLater(new Runnable() { public void run() { // 创建一个SimpleFrame窗体 SimpleFrame frame = new SimpleFrame(); // 默认关闭窗口时退出 frame.setDefaultCloseOperation(JFrame.EXIT\_ON\_CLOSE); // 设置窗体可见 frame.setVisible(true); //定位窗体的位置 frame.setLocation(200,300); //设置窗体的标题 frame.setTitle("This is a Jframe!"); //调用Toolkit类的静态方法得到一个Toolkit对象 Toolkit kit = Toolkit.getDefaultToolkit(); //通过kit对象的getImage方法获得image对象 Image img = kit.getImage("qq.jpg"); //设置窗体图标 frame.setIconImage(img); //调用Toolkit的对象的getScreenSize（）方法 Dimension screenSize = kit.getScreenSize(); int screenWidth = screenSize.width; int screenHeight = screenSize.height; //设置窗体的大小： frame.setSize(screenWidth/2,screenHeight/2); // 创建一个SimpleFrame窗体 SimpleFrame frame1 = new SimpleFrame(); //将窗体定位于（100,100）处，宽度设置为200，高度设置为400 frame1.setBounds(100,100,200,400); //设置窗体为可见 frame1.setVisible(true); // 创建一个SimpleFrame窗体 SimpleFrame frame2 = new SimpleFrame(); //设置窗体为可见 frame2.setVisible(true); //根据平台设置窗体的位置 try{ frame2.setLocationByPlatform(true); }catch(IllegalComponentStateException e){ System.out.println("IllegalComponentStateException"); System.out.println(frame2.isLocationByPlatform()); } } }); } } class SimpleFrame extends JFrame { // 构造函数 public SimpleFrame() { setSize(DEFAULT\_WIDTH, DEFAULT\_HEIGHT); } // 声明默认窗体宽度 public static final int DEFAULT\_WIDTH = 300; // 声明默认窗体高度 public static final int DEFAULT\_HEIGHT = 200; } [/cc]
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/labrary/297.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

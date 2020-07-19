@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>wait/waitpid函数说明 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="wait/waitpid函数说明" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="#include&lt;sys/types&gt;" />
+<meta property="og:description" content="#include&lt;sys/types&gt;" />
+<link rel="canonical" href="http://localhost:4001/labrary/231.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/231.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-11-25T15:56:07-08:00" />
+<script type="application/ld+json">
+{"headline":"wait/waitpid函数说明","dateModified":"2010-11-25T15:56:07-08:00","datePublished":"2010-11-25T15:56:07-08:00","description":"#include&lt;sys/types&gt;","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/231.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/231.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">wait/waitpid函数说明</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2010-11-25T15:56:07-08:00" itemprop="datePublished">Nov 25, 2010
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>#include&lt;sys/types&gt;</p>
+
+<p>pid_t  wait(int *status)</p>
+
+<p>pid_t  waitpid(pid_t  pid,int *status,int options)</p>
+
+<p>wait函数的功能是等待子进程执行完的时候执行父进程</p>
+
+<p>发出wait调用的进程会进入睡眠知道它的一个子进程退出或受到一个不能被忽略的信号时候唤醒，如果该调用进程没有子进程或它的子进程已经结束，该调用立即返回，调用返回是参数status中包含子进程退出时的状态信息</p>
+
+<!--more-->
+
+<p>调用waitpid 与wait的区别是waitpid等待由参数pid指定的子进程退出</p>
+
+<p>对于waitpid函数中pid参数的作用解释如下</p>
+
+<p>pid=-1：等待任意子进程</p>
+
+<p>pid&gt;0: 等待进程ID与pid相等的子进程</p>
+
+<p>pid=0：等待其组ID等于调用进程组ID的任一子进程</p>
+
+<p>pid&lt;-1：等待其组ID等于pid绝对值的任一子进程</p>
+
+<p>options参数使我们能进一步控制waitpid的操作，此参数可以是：</p>
+
+<p>WNOHANG：若由pid指定的子进程不立即可用</p>
+
+<p>则waitpid不阻塞，此时返回值0</p>
+
+<p>WUNTRACED：若实现某支持作业控制，而由pid指定的任一子进程已处于暂停状态，且其状态自暂停以来还未报告过，则返回其状态</p>
+
+<p>0：同wait 阻塞父进程，等待子进程退出。</p>
+
+<h1 id="如何等待所有的子进程结束">如何等待所有的子进程结束？</h1>
+
+<p>1、方法一</p>
+
+<p>pid_t   wait   (int   *   status);   <br />
+  函数说明   <br />
+  wait()会暂时停止目前进程的执行，直到有信号来到或子进程结束。如果在调用wait()时子进程已经结束，则wait()会立即返回子进程结束状态值。子进程的结束状态值会由参数status   返回，而子进程的进程识别码也会一快返回。如果不在意结束状态值，则   <br />
+  参数   <br />
+  status可以设成NULL。子进程的结束状态值请参考waitpid()。   <br />
+  返回值   <br />
+  如果执行成功则返回子进程识别码(PID)，如果有错误发生则返回-1。失败原因存于errno中。</p>
+
+<p>while( -1 !=  wait() )<br />
+        ; </p>
+
+<p>    return 0;</p>
+
+<p>2、方法二</p>
+
+<p>waitpid()函数允许父进程等待一个特定的子进程。这个函数还允许父进程非阻塞地检查子进程是否已经终止了。</p>
+
+<p>#include &lt;sys/wait.h&gt;</p>
+
+<p>/**<br />
+*<br />
+* @param pid_t pid      指向返回状态所在单元的指针和一个用来指定可选项的标志符，<br />
+*                                   如果pid为-1, waitpid就等待任意一个子进程<br />
+*                                   如果pid大于0，waitpid就等待进程ID为pid的那个特定的子进程。<br />
+*                                   参数pid还存在另外两种可能的值。<br />
+*                                   如果pid为0, waitpid就等待与调用者在同一个进程组中的任意子进程。<br />
+*                                   如果pid小于-1, waitpid就等待由pid的绝对值指定的进程组中任意一个子进程。<br />
+*<br />
+* @param int*  stat_loc 指向整数变量的指针。<br />
+*                       如果stat_loc不为NULL,这些函数就将子进程的返回状态存储在这个单元中。<br />
+*                       子进程通过调用exit, _exit, _Exit或从main函数中return来返回它的状态。<br />
+*                       返回值为零说明EXIT_SUCCESS;任何其它的值都说明EXIT_FAILURE。<br />
+*                       父进程只能对子进程返回状态的8个最低有效位进行访问<br />
+*                       <br />
+* @param int   options  是一个或多个标志符按位”或”的结果。<br />
+*                       即使子进程的状态不是立刻可用的，选项WNOHANG也会使waitpid返回。<br />
+*                       选项WUNTRACED会使waitpid报告那些已经被停止的未报告的子进程的状态<br />
+*<br />
+* @return 成功: 返回子进程ID <br />
+*               错误:返回-1并设置errno<br />
+*               如果用选项WNOHANG调用waitpid, 则waitpid就返回0来报告可能有无人等待的子进程，但这些子进程的状态不可用<br />
+* <br />
+*/<br />
+pid_t waitpid(pid_t pid, int *stat_loc, int options);</p>
+
+<p>void   waitchild(int   signo)   <br />
+  {   <br />
+        pid_t   pid;   <br />
+        while((pid   =   waitpid(-1,NULL,WNOHANG))&gt;0){   <br />
+        }   <br />
+  }</p>
+
+
+  </div><a class="u-url" href="/labrary/231.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

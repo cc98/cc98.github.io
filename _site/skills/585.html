@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Mac OS X下安装nginx+php及测试 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Mac OS X下安装nginx+php及测试" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="---先安装XCode，这样才有GCC等必要开发工具包 默认XCode安装完成不会添加命令行支持，需要在XCode的“偏好设置--&gt;下载--&gt;选择下载命令行支持” --命令行在 &quot;应用程序--&gt; 实用工具--&gt;终端&quot; ‍----安装依赖的库 建议通过Macports来进行安装，（附MacPorts安装使用说明）。只需要执行如下指令： sudo port install pcre 如果你已经通过自己下载pcre包来make &amp; make install，很有可能会由于安装的pcre路径问题，在安装其他软件时会出问题。想要删除安装好的pcre，则只需要在下载下来的pcre解压文件夹下，执行make uninstall。 ---- 安装Nginx" />
+<meta property="og:description" content="---先安装XCode，这样才有GCC等必要开发工具包 默认XCode安装完成不会添加命令行支持，需要在XCode的“偏好设置--&gt;下载--&gt;选择下载命令行支持” --命令行在 &quot;应用程序--&gt; 实用工具--&gt;终端&quot; ‍----安装依赖的库 建议通过Macports来进行安装，（附MacPorts安装使用说明）。只需要执行如下指令： sudo port install pcre 如果你已经通过自己下载pcre包来make &amp; make install，很有可能会由于安装的pcre路径问题，在安装其他软件时会出问题。想要删除安装好的pcre，则只需要在下载下来的pcre解压文件夹下，执行make uninstall。 ---- 安装Nginx" />
+<link rel="canonical" href="http://localhost:4001/skills/585.html" />
+<meta property="og:url" content="http://localhost:4001/skills/585.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-07-22T14:53:50-07:00" />
+<script type="application/ld+json">
+{"headline":"Mac OS X下安装nginx+php及测试","dateModified":"2012-07-22T14:53:50-07:00","datePublished":"2012-07-22T14:53:50-07:00","description":"---先安装XCode，这样才有GCC等必要开发工具包 默认XCode安装完成不会添加命令行支持，需要在XCode的“偏好设置--&gt;下载--&gt;选择下载命令行支持” --命令行在 &quot;应用程序--&gt; 实用工具--&gt;终端&quot; ‍----安装依赖的库 建议通过Macports来进行安装，（附MacPorts安装使用说明）。只需要执行如下指令： sudo port install pcre 如果你已经通过自己下载pcre包来make &amp; make install，很有可能会由于安装的pcre路径问题，在安装其他软件时会出问题。想要删除安装好的pcre，则只需要在下载下来的pcre解压文件夹下，执行make uninstall。 ---- 安装Nginx","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/skills/585.html"},"@type":"BlogPosting","url":"http://localhost:4001/skills/585.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Mac OS X下安装nginx+php及测试</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-07-22T14:53:50-07:00" itemprop="datePublished">Jul 22, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>---先安装XCode，这样才有GCC等必要开发工具包</p>
+<p>默认XCode安装完成不会添加命令行支持，需要在XCode的“偏好设置--&gt;下载--&gt;选择下载命令行支持”</p>
+<p>--命令行在 "应用程序--&gt; 实用工具--&gt;终端"</p>
+<p>‍----安装依赖的库</p>
+<p>建议通过Macports来进行安装，（附<a href="http://www.404story.com/skills/599.html">MacPorts安装使用说明</a>）。只需要执行如下指令：</p>
+<pre class="brush: bash; gutter: true">sudo port install pcre</pre>
+<p>如果你已经通过自己下载pcre包来make &amp; make install，很有可能会由于安装的pcre路径问题，在安装其他软件时会出问题。想要删除安装好的pcre，则只需要在下载下来的pcre解压文件夹下，执行make uninstall。</p>
+<p>----
+安装Nginx
+
+方法一：仍然通过Macports，执行下面语句就ok
+
+```bash
+sudo port install nginx spawn-fcgi
+```
+
+方法二：
+
+```bash
+$curl -O http://nginx.org/download/nginx-0.8.53.tar.gz $tar zxvf nginx-0.8.53.tar.gz $cd nginx-0.8.53 $./configure --prefix=/usr/local/nginx --conf-path=/usr/local/nginx/conf/nginx.conf $make $sudo make install
+```
+
+配置文件为：/usr/local/nginx/conf/nginx.conf
+
+<!--more-->
+
+默认安装在/usr/local/nginx
+
+&nbsp;
+
+启动：输入以下命令启动Nginx，然后浏览器输入地址http://localhost进行测试，看到很大的字体的Welcome to nginx!就代表安装成功了  
+/usr/local/nginx/sbin/nginx
+
+推荐关闭方式：
+
+/usr/local/nginx/sbin/nginx -s stop
+
+&nbsp;
+
+其他关闭方式：
+
+ps -ef | grep nginx &nbsp;找到pid
+
+sudo kill pid
+
+&nbsp;
+
+PHP安装：
+
+```bash
+sudo port install php5 +fastcgi fcgi php5-gd php5-mysql php5-sqlite php5-eaccelerator php5-curl php5-iconv ＃配置文件 cd /opt/local/etc/php5 sudo cp php.ini-development php.ini
+```
+
+将时区修改为：date.timezone = Asia/Chongqing
+
+错误级别修改为：error\_reporting = E\_ALL &amp; ~E\_NOTICE
+
+&nbsp;
+
+启动：
+
+```bash
+sudo /opt/local/bin/spawn-fcgi -C 2 -p 9000 -f /opt/local/bin/php-cgi
+```
+
+&nbsp;
+
+#### 遇到NGINX PHP “No input file specified”问题，解决方法：
+
+1、 php.ini（/opt/local/etc/php5/php.ini或者/etc/php5/cgi/php.ini）的配置中这两项  
+cgi.fix\_pathinfo=1&nbsp;&nbsp;（这个是自己添加的）  
+doc\_root= &nbsp; （这行本来就有）
+
+并修改下面：
+
+location ~ .php$ {  
+fastcgi\_pass&nbsp; &nbsp;127.0.0.1:9000;  
+fastcgi\_index&nbsp;&nbsp;index.php;  
+fastcgi\_param&nbsp;&nbsp;SCRIPT\_FILENAME&nbsp;&nbsp;/var/www/sitepath$fastcgi\_script\_name;  
+include&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;fastcgi\_params;  
+}  
+红色部分路径需要根据你主机主目录的实际情况填写，也可以用$document\_root代替，其值实为PHP配置文件中的basedir一值。
+
+&nbsp;
+
+### 测试方法：
+
+在nginx的html目录下（默认为/usr/local/nginx/html），新建一个文件test.php，输入以下测试代码：
+
+```php
+\&lt;?php //测试mysql $link = mysql\_connect('localhost','root','mysql密码'); if(!$link){ echo "mysql fail!"; }else{ echo "mysql succees"; } mysql\_close(); //输出php信息 phpinfo(); ?\&gt;
+```
+
+通过http://localhost/test.php访问，如果能正常显示，那恭喜你，ok了。
+
+&nbsp;
+
+#### 附nginx, php, mysql快捷启动代码，建议复制保存为startup.sh，每次通过执行./startup.sh，然后输入管理员密码，就一次性开启了三项服务：
+
+```bash
+#!/bin/sh sudo /usr/local/nginx/sbin/nginx sudo /opt/local/bin/spawn-fcgi -C 2 -p 9000 -f /opt/local/bin/php-cgi sudo /usr/local/mysql/bin/mysqld\_safe &amp;
+```
+
+&nbsp;
+
+再附上nginx, php, mysql快捷关闭代码，建议复制保存为shutdown.sh，每次通过执行./shutdown.sh就关闭了三项服务：
+
+```bash
+#!/bin/sh sudo /usr/local/nginx/sbin/nginx -s stop; `ps -ef | grep php | head -n1|awk '{print "sudo kill "$2}'`; sudo /usr/local/mysql/bin/mysqladmin -uroot -pms shutdown;
+```
+
+</p>
+
+  </div><a class="u-url" href="/skills/585.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

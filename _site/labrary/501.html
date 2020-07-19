@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>TF-IDF和中文分词开源项目 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="TF-IDF和中文分词开源项目" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="中文分词(Chinese Word Segmentation)指的是将一个汉字序列切分成一个一个单独的词。中文分词是文本挖掘的基础，对于输入的一段中文，成功的进行中文分词，可以达到电脑自动识别语句含义的效果。" />
+<meta property="og:description" content="中文分词(Chinese Word Segmentation)指的是将一个汉字序列切分成一个一个单独的词。中文分词是文本挖掘的基础，对于输入的一段中文，成功的进行中文分词，可以达到电脑自动识别语句含义的效果。" />
+<link rel="canonical" href="http://localhost:4001/labrary/501.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/501.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-04-28T17:18:21-07:00" />
+<script type="application/ld+json">
+{"headline":"TF-IDF和中文分词开源项目","dateModified":"2012-04-28T17:18:21-07:00","datePublished":"2012-04-28T17:18:21-07:00","description":"中文分词(Chinese Word Segmentation)指的是将一个汉字序列切分成一个一个单独的词。中文分词是文本挖掘的基础，对于输入的一段中文，成功的进行中文分词，可以达到电脑自动识别语句含义的效果。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/501.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/501.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">TF-IDF和中文分词开源项目</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-04-28T17:18:21-07:00" itemprop="datePublished">Apr 28, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>中文分词(Chinese Word Segmentation)指的是将一个汉字序列切分成一个一个单独的词。中文分词是文本挖掘的基础，对于输入的一段中文，成功的进行中文分词，可以达到电脑自动识别语句含义的效果。</p>
+
+<p>TF-IDF（term frequency–inverse document frequency）是一种用于信息搜索和信息挖掘的常用加权技术。在搜索、文献分类和其他相关领域有广泛的应用。</p>
+
+<p>TF-IDF的主要思想是，如果某个词或短语在一篇文章中出现的频率TF高，并且在其他文章中很少出现，则认为此词或者短语具有很好的类别区分能力，适合用来分类。TF词频(Term Frequency)指的是某一个给定的词语在该文件中出现的次数。IDF反文档频率(Inverse Document Frequency)的主要思想是：如果包含词条的文档越少，IDF越大，则说明词条具有很好的类别区分能力。</p>
+
+<p>使用TF*IDF可以计算某个关键字在某篇文章里面的重要性，因而识别这篇文章的主要含义，实现计算机读懂文章的功能。</p>
+
+<p><strong>常见中文分词开源项目：</strong></p>
+
+<p><a href="http://www.ftphp.com/scws/">SCWS</a>：</p>
+
+<p><a href="http://www.hightman.cn/">Hightman</a>开发的一套基于词频词典的机械中文分词引擎，它能将一整段的汉字基本正确的切分成词。采用的是采集的词频词典，并辅以一定的专有名称，人名，地名，数字年代等规则识别来达到基本分词，经小范围测试大概准确率在 90% ~ 95% 之间，已能基本满足一些小型搜索引擎、关键字提取等场合运用。45Kb左右的文本切词时间是0.026秒，大概是1.5MB文本/秒，支持PHP4和PHP 5。</p>
+
+<p><a href="http://ictclas.org/">ICTCLAS</a>：</p>
+
+<p>这可是最早的中文开源分词项目之一，ICTCLAS在国内973专家组组织的评测中活动获得了第一名，在第一届国际中文处理研究机构SigHan组织的评测中都获得了多项第一名。ICTCLAS3.0分词速度单机996KB/s，分词精度98.45%，API不超过200KB，各种词典数据压缩后不到3M.ICTCLAS全部采用C/C++编写，支持Linux、FreeBSD及Windows系列操作系统，支持C/C++、C#、Delphi、Java等主流的开发语言。</p>
+
+<p><a href="http://code.google.com/p/httpcws">HTTPCWS</a>：</p>
+
+<p>HTTPCWS 是一款基于HTTP协议的开源中文分词系统，目前仅支持Linux系统。HTTPCWS 使用“ICTCLAS 3.0 2009共享版中文分词算法”的API进行分词处理，得出分词结果。HTTPCWS 将取代之前的 <a href="http://code.google.com/p/phpcws/">PHPCWS 中文分词扩展</a>。</p>
+
+<p><a href="http://code.google.com/p/paoding/">庖丁解牛分词</a>：</p>
+
+<p>Java 提供lucence 接口，仅支持Java语言。</p>
+
+<p><a href="http://us.mdbg.net/chindict/chindict.php?page=cedict">CC-CEDICT</a>：</p>
+
+<p>一个中文词典开源项目，提供一份以汉语拼音为中文辅助的汉英辞典，截至2009年2月8日，已收录82712个单词。其词典可以用于中文分词使用，而且不存在版权问题。Chrome中文版就是使用的这个词典进行中文分词的。<!--more--></p>
+
+<p><strong>基于VB/ASP的中文分词</strong></p>
+
+<p>上面的开源项目没有给予VB和ASP的，这里提供一个简单的VB/ASP类，加上词典之后就可以进行分词了，注意这个类只供演示，其分词速度极慢不适合实际应用。</p>
+
+<p>类名为：WordSplit</p>
+
+<pre><code class="language-vbnet">Private rootTable As String Private Function GetCount(ByVal s As String) As Long GetCount = InStr(1, rootTable, s) End Function Public Function WordCount(ByVal strString As String, ByVal strGetWord As String) As Long Dim k k = Split(strString, strGetWord) WordCount = UBound(k) End Function ' 分析输入的字符串，将其切割成一个个的词语。 ' \&lt;param name="s"\&gt;待切割的字符串\&lt;/param\&gt; ' \&lt;returns\&gt;所切割得到的中文词语数组\&lt;/returns\&gt; Public Function ParseChinese(ByVal s As String, ByVal separator As String) As String Dim lngLength As Long Dim strTemp As String Dim ArrayList As String Dim i, j ArrayList = "" lngLength = Len(s) i = 1 While i \&lt; lngLength strTemp = Mid(s, i, 1) If GetCount(strTemp) \&gt; 1 Then j = 2 While i + j \&lt; lngLength + 1 And GetCount(Mid(s, i, j)) \&gt; 0 j = j + 1 Wend strTemp = Mid(s, i, j - 1) i = i + j - 2 End If i = i + 1 'WordAdd (temp) ArrayList = ArrayList + strTemp + separator Wend ParseChinese = ArrayList End Function Private Sub Class\_Initialize() Dim fso, templetfile, txtfile templetfile = App.Path + "ChineseDictionary.txt" Set fso = CreateObject("Scripting.FileSystemObject") Set txtfile = fso.OpenTextFile(templetfile, 1) rootTable = txtfile.ReadAll txtfile.Close End Sub
+</code></pre>
+
+<p>调用示例：</p>
+
+<p>strInput = “中文分词指的是将一个汉字序列切分成一个一个单独的词。中文分词是文本挖掘的基础，对于输入的一段中文，成功的进行中文分词，可以达到电脑自动识别语句含义的效果。”<br />
+Dim strWordSplit As New WordSplit<br />
+strSubject = strWordSplit.ParseChinese(strInput, “|”)<br />
+arrSubject = Split(strSubject, “|”)</p>
+
+
+  </div><a class="u-url" href="/labrary/501.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

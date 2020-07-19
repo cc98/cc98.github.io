@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>vc中socket编程步骤及实例 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="vc中socket编程步骤及实例" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="sockets（套接字）编程有三种，流式套接字（SOCK_STREAM），数据报套接字（SOCK_DGRAM），原始套接字（SOCK_RAW）；基于TCP的socket编程是采用的流式套接字。在这个程序中，将两个工程添加到一个工作区。要链接一个ws2_32.lib的库文件。" />
+<meta property="og:description" content="sockets（套接字）编程有三种，流式套接字（SOCK_STREAM），数据报套接字（SOCK_DGRAM），原始套接字（SOCK_RAW）；基于TCP的socket编程是采用的流式套接字。在这个程序中，将两个工程添加到一个工作区。要链接一个ws2_32.lib的库文件。" />
+<link rel="canonical" href="http://localhost:4001/skills/114.html" />
+<meta property="og:url" content="http://localhost:4001/skills/114.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-08-09T22:41:30-07:00" />
+<script type="application/ld+json">
+{"headline":"vc中socket编程步骤及实例","dateModified":"2010-08-09T22:41:30-07:00","datePublished":"2010-08-09T22:41:30-07:00","description":"sockets（套接字）编程有三种，流式套接字（SOCK_STREAM），数据报套接字（SOCK_DGRAM），原始套接字（SOCK_RAW）；基于TCP的socket编程是采用的流式套接字。在这个程序中，将两个工程添加到一个工作区。要链接一个ws2_32.lib的库文件。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/skills/114.html"},"@type":"BlogPosting","url":"http://localhost:4001/skills/114.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">vc中socket编程步骤及实例</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2010-08-09T22:41:30-07:00" itemprop="datePublished">Aug 9, 2010
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>sockets（套接字）编程有三种，流式套接字（SOCK_STREAM），数据报套接字（SOCK_DGRAM），原始套接字（SOCK_RAW）；基于TCP的socket编程是采用的流式套接字。在这个程序中，将两个工程添加到一个工作区。要链接一个ws2_32.lib的库文件。</p>
+
+<p>服务器端编程的步骤：</p>
+
+<p>1：加载套接字库，创建套接字(WSAStartup()/socket())；</p>
+
+<p>2：绑定套接字到一个IP地址和一个端口上(bind())；</p>
+
+<p>3：将套接字设置为监听模式等待连接请求(listen())；</p>
+
+<p>4：请求到来后，接受连接请求，返回一个新的对应于此次连接的套接字(accept())；</p>
+
+<p>5：用返回的套接字和客户端进行通信(send()/recv())；</p>
+
+<p>6：返回，等待另一连接请求；</p>
+
+<p>7：关闭套接字，关闭加载的套接字库(closesocket()/WSACleanup())。</p>
+
+<p>服务器端代码如下：</p>
+
+<!--more-->
+
+<p>#include &lt;stdio.h&gt;<br />
+#include &lt;Winsock2.h&gt;<br />
+void main()<br />
+{<br />
+ WORD wVersionRequested;<br />
+ WSADATA wsaData;<br />
+ int err;<br />
+ <br />
+ wVersionRequested = MAKEWORD( 1, 1 );<br />
+ <br />
+ err = WSAStartup( wVersionRequested, wsaData );<br />
+ if ( err != 0 ) {<br />
+  return;<br />
+ }<br />
+ <br />
+ if ( LOBYTE( wsaData.wVersion ) != 1 ||<br />
+         HIBYTE( wsaData.wVersion ) != 1 ) {<br />
+   WSACleanup( );<br />
+  return;<br />
+ }<br />
+ SOCKET sockSrv=socket(AF_INET,SOCK_STREAM,0);</p>
+
+<p> SOCKADDR_IN addrSrv;<br />
+ addrSrv.sin_addr.S_un.S_addr=htonl(INADDR_ANY);<br />
+ addrSrv.sin_family=AF_INET;<br />
+ addrSrv.sin_port=htons(6000);<br />
+ <br />
+ bind(sockSrv,(SOCKADDR*)addrSrv,sizeof(SOCKADDR));</p>
+
+<p> listen(sockSrv,5);</p>
+
+<p> SOCKADDR_IN addrClient;<br />
+ int len=sizeof(SOCKADDR);<br />
+ while(1)<br />
+ {<br />
+   SOCKET sockConn=accept(sockSrv,(SOCKADDR*)addrClient,len);<br />
+  char sendBuf[50];<br />
+   sprintf(sendBuf,”Welcome %s to here!”,inet_ntoa(addrClient.sin_addr));<br />
+   send(sockConn,sendBuf,strlen(sendBuf)+1,0);<br />
+  char recvBuf[50];<br />
+   recv(sockConn,recvBuf,50,0);<br />
+   printf(“%sn”,recvBuf);<br />
+   closesocket(sockConn);<br />
+ }</p>
+
+<p>}</p>
+
+<p>客户端编程的步骤：</p>
+
+<p>1：加载套接字库，创建套接字(WSAStartup()/socket())；</p>
+
+<p>2：向服务器发出连接请求(connect())；</p>
+
+<p>3：和服务器端进行通信(send()/recv())；</p>
+
+<p>4：关闭套接字，关闭加载的套接字库(closesocket()/WSACleanup())。</p>
+
+<p>客户端的代码如下：</p>
+
+<p>#include &lt;stdio.h&gt;<br />
+#include &lt;Winsock2.h&gt;<br />
+void main()<br />
+{<br />
+ WORD wVersionRequested;<br />
+ WSADATA wsaData;<br />
+ int err;<br />
+ <br />
+ wVersionRequested = MAKEWORD( 1, 1 );<br />
+ <br />
+ err = WSAStartup( wVersionRequested, wsaData );<br />
+ if ( err != 0 ) {<br />
+  return;<br />
+ }<br />
+ <br />
+ if ( LOBYTE( wsaData.wVersion ) != 1 ||<br />
+         HIBYTE( wsaData.wVersion ) != 1 ) {<br />
+   WSACleanup( );<br />
+  return;<br />
+ }<br />
+ SOCKET sockClient=socket(AF_INET,SOCK_STREAM,0);<br />
+ <br />
+ SOCKADDR_IN addrSrv;<br />
+ addrSrv.sin_addr.S_un.S_addr=inet_addr(“127.0.0.1”);<br />
+ addrSrv.sin_family=AF_INET;<br />
+ addrSrv.sin_port=htons(6000);<br />
+ connect(sockClient,(SOCKADDR*)addrSrv,sizeof(SOCKADDR));<br />
+ send(sockClient,”hello”,strlen(“hello”)+1,0);<br />
+ char recvBuf[50];<br />
+ recv(sockClient,recvBuf,50,0);<br />
+ printf(“%sn”,recvBuf);<br />
+ <br />
+ closesocket(sockClient);<br />
+ WSACleanup();<br />
+}</p>
+
+<p>===============================================</p>
+
+<p>完美分界线，以下为示例：</p>
+
+<p>1.TCP服务器端:</p>
+
+<p>#include<br />
+#include</p>
+
+<p>void main()<br />
+{<br />
+WORD wVersionRequested;<br />
+WSADATA wsaData;<br />
+int err;</p>
+
+<p>wVersionRequested = MAKEWORD( 1, 1 );</p>
+
+<p>err = WSAStartup( wVersionRequested, &amp;wsaData );<br />
+if ( err != 0 ) {<br />
+return;<br />
+}<br />
+if ( LOBYTE( wsaData.wVersion ) != 1 ||<br />
+        HIBYTE( wsaData.wVersion ) != 1 ) {<br />
+WSACleanup( );<br />
+return;<br />
+}<br />
+SOCKET sockSrv=socket(AF_INET,SOCK_STREAM,0);</p>
+
+<p>SOCKADDR_IN addrSrv;<br />
+addrSrv.sin_addr.S_un.S_addr=htonl(INADDR_ANY);<br />
+addrSrv.sin_family=AF_INET;<br />
+addrSrv.sin_port=htons(6000);</p>
+
+<p>bind(sockSrv,(SOCKADDR*)&amp;addrSrv,sizeof(SOCKADDR));</p>
+
+<p>listen(sockSrv,5);</p>
+
+<p>SOCKADDR_IN addrClient;<br />
+int len=sizeof(SOCKADDR);</p>
+
+<p>while(1)<br />
+{<br />
+SOCKET sockConn=accept(sockSrv,(SOCKADDR*)&amp;addrClient,&amp;len);<br />
+char sendBuf[100];<br />
+sprintf(sendBuf,”Welcome %s to <a href="http://www.sunxin.org">http://www.sunxin.org</a>”,<br />
+   inet_ntoa(addrClient.sin_addr));<br />
+send(sockConn,sendBuf,strlen(sendBuf)+1,0);<br />
+char recvBuf[100];<br />
+recv(sockConn,recvBuf,100,0);<br />
+printf(“%sn”,recvBuf);<br />
+closesocket(sockConn);<br />
+}<br />
+}</p>
+
+<p>2.TCP客户端：</p>
+
+<p>#include<br />
+#include</p>
+
+<p>void main()<br />
+{<br />
+WORD wVersionRequested;<br />
+WSADATA wsaData;<br />
+int err;</p>
+
+<p>wVersionRequested = MAKEWORD( 1, 1 );</p>
+
+<p>err = WSAStartup( wVersionRequested, &amp;wsaData );<br />
+if ( err != 0 ) {<br />
+return;<br />
+}<br />
+if ( LOBYTE( wsaData.wVersion ) != 1 ||<br />
+        HIBYTE( wsaData.wVersion ) != 1 ) {<br />
+WSACleanup( );<br />
+return;<br />
+}<br />
+SOCKET sockClient=socket(AF_INET,SOCK_STREAM,0);</p>
+
+<p>SOCKADDR_IN addrSrv;<br />
+addrSrv.sin_addr.S_un.S_addr=inet_addr(“127.0.0.1”);<br />
+addrSrv.sin_family=AF_INET;<br />
+addrSrv.sin_port=htons(6000);<br />
+connect(sockClient,(SOCKADDR*)&amp;addrSrv,sizeof(SOCKADDR));</p>
+
+<p>char recvBuf[100];<br />
+recv(sockClient,recvBuf,100,0);<br />
+printf(“%sn”,recvBuf);<br />
+send(sockClient,”This is lisi”,strlen(“This is lisi”)+1,0);</p>
+
+<p>closesocket(sockClient);<br />
+WSACleanup();<br />
+}</p>
+
+<p>3.UDP服务器端</p>
+
+<p>#include<br />
+#include</p>
+
+<p>void main()<br />
+{<br />
+WORD wVersionRequested;<br />
+WSADATA wsaData;<br />
+int err;</p>
+
+<p>wVersionRequested = MAKEWORD( 1, 1 );</p>
+
+<p>err = WSAStartup( wVersionRequested, &amp;wsaData );<br />
+if ( err != 0 ) {<br />
+return;<br />
+}<br />
+if ( LOBYTE( wsaData.wVersion ) != 1 ||<br />
+        HIBYTE( wsaData.wVersion ) != 1 ) {<br />
+WSACleanup( );<br />
+return;<br />
+}</p>
+
+<p>SOCKET sockSrv=socket(AF_INET,SOCK_DGRAM,0);<br />
+SOCKADDR_IN addrSrv;<br />
+addrSrv.sin_addr.S_un.S_addr=htonl(INADDR_ANY);<br />
+addrSrv.sin_family=AF_INET;<br />
+addrSrv.sin_port=htons(6000);</p>
+
+<p>bind(sockSrv,(SOCKADDR*)&amp;addrSrv,sizeof(SOCKADDR));</p>
+
+<p>SOCKADDR_IN addrClient;<br />
+int len=sizeof(SOCKADDR);<br />
+char recvBuf[100];</p>
+
+<p>recvfrom(sockSrv,recvBuf,100,0,(SOCKADDR*)&amp;addrClient,&amp;len);<br />
+printf(“%sn”,recvBuf);<br />
+closesocket(sockSrv);<br />
+WSACleanup();<br />
+}</p>
+
+<p>4.UDP客户端</p>
+
+<p>#include<br />
+#include</p>
+
+<p>void main()<br />
+{<br />
+WORD wVersionRequested;<br />
+WSADATA wsaData;<br />
+int err;</p>
+
+<p>wVersionRequested = MAKEWORD( 1, 1 );</p>
+
+<p>err = WSAStartup( wVersionRequested, &amp;wsaData );<br />
+if ( err != 0 ) {<br />
+return;<br />
+}<br />
+if ( LOBYTE( wsaData.wVersion ) != 1 ||<br />
+        HIBYTE( wsaData.wVersion ) != 1 ) {<br />
+WSACleanup( );<br />
+return;<br />
+}</p>
+
+<p>SOCKET sockClient=socket(AF_INET,SOCK_DGRAM,0);<br />
+SOCKADDR_IN addrSrv;<br />
+addrSrv.sin_addr.S_un.S_addr=inet_addr(“127.0.0.1”);<br />
+addrSrv.sin_family=AF_INET;<br />
+addrSrv.sin_port=htons(6000);</p>
+
+<p>sendto(sockClient,”Hello”,strlen(“Hello”)+1,0,<br />
+(SOCKADDR*)&amp;addrSrv,sizeof(SOCKADDR));<br />
+closesocket(sockClient);<br />
+WSACleanup();<br />
+}</p>
+
+
+  </div><a class="u-url" href="/skills/114.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Git指令详解 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Git指令详解" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Git 是分散式的版本控制系統, 從架設、簡易操作、設定, 此篇主要是整理 基本操作、遠端操作 等." />
+<meta property="og:description" content="Git 是分散式的版本控制系統, 從架設、簡易操作、設定, 此篇主要是整理 基本操作、遠端操作 等." />
+<link rel="canonical" href="http://localhost:4001/labrary/807.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/807.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-09-17T19:22:00-07:00" />
+<script type="application/ld+json">
+{"headline":"Git指令详解","dateModified":"2012-09-17T19:22:00-07:00","datePublished":"2012-09-17T19:22:00-07:00","description":"Git 是分散式的版本控制系統, 從架設、簡易操作、設定, 此篇主要是整理 基本操作、遠端操作 等.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/807.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/807.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Git指令详解</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-09-17T19:22:00-07:00" itemprop="datePublished">Sep 17, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Git 是分散式的版本控制系統, 從架設、簡易操作、設定, 此篇主要是整理 基本操作、遠端操作 等.</p>
+
+<p>註: Git 的範圍太廣了, 把這篇當作是初學入門就好了.</p>
+
+<h4 id="注意事項">注意事項</h4>
+
+<p>由 project/.git/config 可知: (若有更多, 亦可由此得知)</p>
+
+<ul>
+  <li>origin(remote) 是 Repository 的版本</li>
+  <li>master(branch) 是 local 端, 正在修改的版本</li>
+</ul>
+
+<p>平常沒事不要去動到 origin, 如果動到, 可用 git reset –hard 回覆到沒修改的狀態.</p>
+
+<!--more-->
+
+<h4 id="git-新增檔案">Git 新增檔案</h4>
+
+<ul>
+  <li>git add . # 將資料先暫存到 staging area, add 之後再新增的資料, 於此次 commit 不會含在裡面.</li>
+  <li>git add filename</li>
+  <li>git add modify-file # 修改過的檔案, 也要 add. (不然 commit 要加上 -a 的參數)</li>
+  <li>git add -u # 只加修改過的檔案, 新增的檔案不加入.</li>
+  <li>git add -i # 進入互動模式</li>
+</ul>
+
+<h4 id="git-刪除檔案">Git 刪除檔案</h4>
+
+<ul>
+  <li>git rm filename</li>
+</ul>
+
+<h4 id="git-修改檔名搬移目錄">Git 修改檔名、搬移目錄</h4>
+
+<ul>
+  <li>git mv filename new-filename</li>
+</ul>
+
+<h4 id="git-status-看目前的狀態">Git status 看目前的狀態</h4>
+
+<ul>
+  <li>git status # 看目前檔案的狀態</li>
+</ul>
+
+<h4 id="git-commit">Git Commit</h4>
+
+<ul>
+  <li>git commit</li>
+  <li>git commit -m ‘commit message’</li>
+  <li>git commit -a -m ‘commit -message’ # 將所有修改過得檔案都 commit, 但是 新增的檔案 還是得要先 add.</li>
+  <li>git commit -a -v # -v 可以看到檔案哪些內容有被更改, -a 把所有修改的檔案都 commit</li>
+</ul>
+
+<h4 id="git-產生新的-branch">Git 產生新的 branch</h4>
+
+<ul>
+  <li>git branch # 列出目前有多少 branch</li>
+  <li>git branch new-branch # 產生新的 branch (名稱: new-branch), 若沒有特別指定, 會由目前所在的 branch / master 直接複製一份.</li>
+  <li>git branch new-branch master # 由 master 產生新的 branch(new-branch)</li>
+  <li>git branch new-branch v1 # 由 tag(v1) 產生新的 branch(new-branch)</li>
+  <li>git branch -d new-branch # 刪除 new-branch</li>
+  <li>git branch -D new-branch # 強制刪除 new-branch</li>
+  <li>git checkout -b new-branch test # 產生新的 branch, 並同時切換過去 new-branch</li>
+  <li>
+    <h1 id="與-remote-repository-有關">與 remote repository 有關</h1>
+  </li>
+  <li>git branch -r # 列出所有 Repository branch</li>
+  <li>git branch -a # 列出所有 branch</li>
+</ul>
+
+<h4 id="git-checkout-切換-branch">Git checkout 切換 branch</h4>
+
+<ul>
+  <li>git checkout branch-name # 切換到 branch-name</li>
+  <li>git checkout master # 切換到 master</li>
+  <li>git checkout -b new-branch master # 從 master 建立新的 new-branch, 並同時切換過去 new-branch</li>
+  <li>git checkout -b newbranch # 由現在的環境為基礎, 建立新的 branch</li>
+  <li>git checkout -b newbranch origin # 於 origin 的基礎, 建立新的 branch</li>
+  <li>git checkout filename # 還原檔案到 Repository 狀態</li>
+  <li>git checkout HEAD . # 將所有檔案都 checkout 出來(最後一次 commit 的版本), 注意, 若有修改的檔案都會被還原到上一版. (git checkout -f 亦可)</li>
+  <li>git checkout xxxx . # 將所有檔案都 checkout 出來(xxxx commit 的版本, xxxx 是 commit 的編號前四碼), 注意, 若有修改的檔案都會被還原到上一版.</li>
+  <li>git checkout – * # 恢復到上一次 Commit 的狀態(* 改成檔名, 就可以只恢復那個檔案)</li>
+</ul>
+
+<h4 id="git-diff">Git diff</h4>
+
+<ul>
+  <li>git diff master # 與 Master 有哪些資料不同</li>
+  <li>git diff –cached # 比較 staging area 跟本來的 Repository</li>
+  <li>git diff tag1 tag2 # tag1, 與 tag2 的 diff</li>
+  <li>git diff tag1:file1 tag2:file2 # tag1, 與 tag2 的 file1, file2 的 diff</li>
+  <li>git diff # 比較 目前位置 與 staging area</li>
+  <li>git diff –cached # 比較 staging area 與 Repository 差異</li>
+  <li>git diff HEAD # 比較目前位置 與 Repository 差別</li>
+  <li>git diff new-branch # 比較目前位置 與 branch(new-branch) 的差別</li>
+  <li>git diff –stat</li>
+</ul>
+
+<h4 id="git-tag">Git Tag</h4>
+
+<ul>
+  <li>git tag v1 ebff # log 是 commit ebff810c461ad1924fc422fd1d01db23d858773b 的內容, 設定簡短好記得 Tag: v1</li>
+  <li>git tag 中文 ebff # tag 也可以下中文, 任何文字都可以</li>
+  <li>git tag -d 中文 # 把 tag=中文 刪掉</li>
+</ul>
+
+<h4 id="git-log">Git log</h4>
+
+<ul>
+  <li>git log # 將所有 log 秀出</li>
+  <li>git log –all # 秀出所有的 log (含 branch)</li>
+  <li>git log -p # 將所有 log 和修改過得檔案內容列出</li>
+  <li>git log -p filename # 將此檔案的 commit log 和 修改檔案內容差異部份列出</li>
+  <li>git log –name-only # 列出此次 log 有哪些檔案被修改</li>
+  <li>git log –stat –summary # 查每個版本間的更動檔案和行數</li>
+  <li>git log filename # 這個檔案的所有 log</li>
+  <li>git log directory # 這個目錄的所有 log</li>
+  <li>git log -S’foo()’ # log 裡面有 foo() 這字串的.</li>
+  <li>git log –no-merges # 不要秀出 merge 的 log</li>
+  <li>git log –since=”2 weeks ago” # 最後這 2週的 log</li>
+  <li>git log –pretty=oneline # 秀 log 的方式</li>
+  <li>git log –pretty=short # 秀 log 的方式</li>
+  <li>git log –pretty=format:’%h was %an, %ar, message: %s’</li>
+  <li>git log –pretty=format:’%h : %s’ –graph # 會有簡單的文字圖形化, 分支等.</li>
+  <li>git log –pretty=format:’%h : %s’ –topo-order –graph # 依照主分支排序</li>
+  <li>git log –pretty=format:’%h : %s’ –date-order –graph # 依照時間排序</li>
+</ul>
+
+<h4 id="git-show">Git show</h4>
+
+<ul>
+  <li>git show ebff # 查 log 是 commit ebff810c461ad1924fc422fd1d01db23d858773b 的內容</li>
+  <li>git show v1 # 查 tag:v1 的修改內容</li>
+  <li>git show v1:test.txt # 查 tag:v1 的 test.txt 檔案修改內容</li>
+  <li>git show HEAD # 此版本修改的資料</li>
+  <li>git show HEAD^ # 前一版修改的資料</li>
+  <li>git show HEAD^^ # 前前一版修改的資料</li>
+  <li>git show HEAD~4 # 前前前前一版修改的資料</li>
+</ul>
+
+<h4 id="git-reset-還原">Git reset 還原</h4>
+
+<ul>
+  <li>git reset –hard HEAD # 還原到最前面</li>
+  <li>git reset –hard HEAD~3</li>
+  <li>git reset –soft HEAD~3</li>
+  <li>git reset HEAD filename # 從 staging area 狀態回到 unstaging 或 untracked (檔案內容並不會改變)</li>
+</ul>
+
+<h4 id="git-grep">Git grep</h4>
+
+<ul>
+  <li>git grep “te” v1 # 查 v1 是否有 “te” 的字串</li>
+  <li>git grep “te” # 查現在版本是否有 “te” 的字串</li>
+</ul>
+
+<h4 id="git-stash-暫存">Git stash 暫存</h4>
+
+<ul>
+  <li>git stash # 丟進暫存區</li>
+  <li>git stash list # 列出所有暫存區的資料</li>
+  <li>git stash pop # 取出最新的一筆, 並移除.</li>
+  <li>git stash apply # 取出最新的一筆 stash 暫存資料. 但是 stash 資料不移除</li>
+  <li>git stash clear # 把 stash 都清掉</li>
+</ul>
+
+<h4 id="git-merge-合併">Git merge 合併</h4>
+
+<ul>
+  <li>git merge</li>
+  <li>git merge master</li>
+  <li>git merge new-branch</li>
+  <li>下述轉載自: ihower 的 <a href="http://ihower.idv.tw/blog/archives/2620" title="Git 版本控制系統(2) 開 branch 分支和操作遠端 repo.">Git 版本控制系統(2) 開 branch 分支和操作遠端 repo.</a>x</li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>Straight merge 預設的合併模式，會有全部的被合併的 branch commits 記錄加上一個 merge-commit，看線圖會有兩條 Parents 線，並保留所有 commit log。</li>
+    <li>Squashed commit 壓縮成只有一個 merge-commit，不會有被合併的 log。SVN 的 merge 即是如此。</li>
+    <li>cherry-pick 只合併指定的 commit</li>
+    <li>rebase 變更 branch 的分支點：找到要合併的兩個 branch 的共同的祖先，然後先只用要被 merge 的 branch 來 commit 一遍，然後再用目前 branch 再 commit 上去。這方式僅適合還沒分享給別人的 local branch，因為等於砍掉重練 commit log。</li>
+  </ul>
+
+  <p>指令操作</p>
+
+  <ul>
+    <li>git merge &lt;branch_name&gt; # 合併另一個 branch，若沒有 conflict 衝突會直接 commit。若需要解決衝突則會再多一個 commit。</li>
+    <li>git merge –squash &lt;branch_name&gt; # 將另一個 branch 的 commit 合併為一筆，特別適合需要做實驗的 fixes bug 或 new feature，最後只留結果。合併完不會幫你先 commit。</li>
+    <li>git cherry-pick 321d76f # 只合併特定其中一個 commit。如果要合併多個，可以加上 -n 指令就不會先幫你 commit，這樣可以多 pick幾個要合併的 commit，最後再 git commit 即可。</li>
+  </ul>
+</blockquote>
+
+<h4 id="git-blame">Git blame</h4>
+
+<ul>
+  <li>git blame filename # 關於此檔案的所有 commit 紀錄</li>
+</ul>
+
+<h4 id="git-還原已被刪除的檔案">Git 還原已被刪除的檔案</h4>
+
+<ul>
+  <li>git ls-files -d # 查看已刪除的檔案</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>git ls-files -d</td>
+          <td>xargs git checkout – # 將已刪除的檔案還原</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h4 id="git-維護">Git 維護</h4>
+
+<ul>
+  <li>git gc # 整理前和整理後的差異, 可由: git count-objects 看到.</li>
+  <li>git fsck –full</li>
+</ul>
+
+<h4 id="git-revert-資料還原">Git revert 資料還原</h4>
+
+<ul>
+  <li>git revert HEAD # 回到前一次 commit 的狀態</li>
+  <li>git revert HEAD^ # 回到前前一次 commit 的狀態</li>
+  <li>git reset HEAD filename # 從 staging area 狀態回到 unstaging 或 untracked (檔案內容並不會改變)</li>
+  <li>git checkout filename # 從 unstaging 狀態回到最初 Repository 的檔案(檔案內容變回修改前)</li>
+</ul>
+
+<h4 id="git-rollback-還原到上一版">Git Rollback 還原到上一版</h4>
+
+<ul>
+  <li>git reset –soft HEAD^</li>
+  <li>編輯 + git add filename</li>
+  <li>git commit -m ‘rollback’</li>
+</ul>
+
+<p>以下與 遠端 Repository 相關</p>
+
+<h4 id="git-remote-維護遠端檔案">Git remote 維護遠端檔案</h4>
+
+<ul>
+  <li>git remote</li>
+  <li>git remote add new-branch http://git.example.com.tw/project.git # 增加遠端 Repository 的 branch(origin -&gt; project)</li>
+  <li>git remote show # 秀出現在有多少 Repository</li>
+  <li>git remote rm new-branch # 刪掉</li>
+  <li>git remote update # 更新所有 Repository branch</li>
+  <li>git branch -r # 列出所有 Repository branch</li>
+</ul>
+
+<h4 id="抓取--切換-repository-的-branch">抓取 / 切換 Repository 的 branch</h4>
+
+<ul>
+  <li>git fetch origin</li>
+  <li>git checkout –track -b reps-branch origin/reps-branch # 抓取 reps-branch, 並將此 branch 建立於 local 的 reps-branch</li>
+</ul>
+
+<h4 id="刪除-repository-的-branch">刪除 Repository 的 branch</h4>
+
+<ul>
+  <li>git push origin :heads/reps-branch</li>
+</ul>
+
+<h4 id="相關網頁">相關網頁</h4>
+
+<ul>
+  <li><a href="http://wiki.yobi.be/wiki/Git" title="Git - note">Git - note</a></li>
+  <li><a href="http://josephj.com/entry.php?id=308" title="Git Study">Git Study</a></li>
+</ul>
+
+  </div><a class="u-url" href="/labrary/807.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

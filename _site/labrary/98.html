@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[C、C++]Date &amp;Time time_t与struct tm转换 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[C、C++]Date &amp;Time time_t与struct tm转换" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="一．概念 Coordinated Universal Time（UTC）：协调世界时，又称为世界标准时间，也就是大家所熟知的格林威治标准时间（Greenwich Mean Time，GMT）。比如，中国内地的时间与UTC的时差为+8，也就是UTC+8。美国是UTC-5。 Calendar Time：日历时间，是用“从一个标准时间点到此时的时间经过的秒数”来表示的时间。这个标准时间点对不同的编译器来说会有所不同，但对一个编译系统来说，这个标准时间点是不变的，该编译系统中的时间对应的日历时间都通过该标准时间点来衡量，所以可以说日历时间是“相对时间”，但是无论你在哪一个时区，在同一时刻对同一个标准时间点来说，日历时间都是一样的。 epoch：时间点。时间点在标准C/C++中是一个整数，它用此时的时间和标准时间点相差的秒数（即日历时间）来表示。 clock tick：时钟计时单元（而不把它叫做时钟滴答次数），一个时钟计时单元的时间长短是由CPU控制的。一个clock tick不是CPU的一个时钟周期，而是C/C++的一个基本计时单位。 二． 计时 1.    clock: C/C++中的计时函数是clock()，而与其相关的数据类型是clock_t。在MSDN中，查得对clock函数定义如下： clock_t clock( void ); 返回：从“开启这个程序进程”到“程序中调用clock()函数”时之间的CPU时钟计时单元（clock tick）数。" />
+<meta property="og:description" content="一．概念 Coordinated Universal Time（UTC）：协调世界时，又称为世界标准时间，也就是大家所熟知的格林威治标准时间（Greenwich Mean Time，GMT）。比如，中国内地的时间与UTC的时差为+8，也就是UTC+8。美国是UTC-5。 Calendar Time：日历时间，是用“从一个标准时间点到此时的时间经过的秒数”来表示的时间。这个标准时间点对不同的编译器来说会有所不同，但对一个编译系统来说，这个标准时间点是不变的，该编译系统中的时间对应的日历时间都通过该标准时间点来衡量，所以可以说日历时间是“相对时间”，但是无论你在哪一个时区，在同一时刻对同一个标准时间点来说，日历时间都是一样的。 epoch：时间点。时间点在标准C/C++中是一个整数，它用此时的时间和标准时间点相差的秒数（即日历时间）来表示。 clock tick：时钟计时单元（而不把它叫做时钟滴答次数），一个时钟计时单元的时间长短是由CPU控制的。一个clock tick不是CPU的一个时钟周期，而是C/C++的一个基本计时单位。 二． 计时 1.    clock: C/C++中的计时函数是clock()，而与其相关的数据类型是clock_t。在MSDN中，查得对clock函数定义如下： clock_t clock( void ); 返回：从“开启这个程序进程”到“程序中调用clock()函数”时之间的CPU时钟计时单元（clock tick）数。" />
+<link rel="canonical" href="http://localhost:4001/labrary/98.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/98.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-07-24T00:21:46-07:00" />
+<script type="application/ld+json">
+{"headline":"[C、C++]Date &amp;Time time_t与struct tm转换","dateModified":"2010-07-24T00:21:46-07:00","datePublished":"2010-07-24T00:21:46-07:00","description":"一．概念 Coordinated Universal Time（UTC）：协调世界时，又称为世界标准时间，也就是大家所熟知的格林威治标准时间（Greenwich Mean Time，GMT）。比如，中国内地的时间与UTC的时差为+8，也就是UTC+8。美国是UTC-5。 Calendar Time：日历时间，是用“从一个标准时间点到此时的时间经过的秒数”来表示的时间。这个标准时间点对不同的编译器来说会有所不同，但对一个编译系统来说，这个标准时间点是不变的，该编译系统中的时间对应的日历时间都通过该标准时间点来衡量，所以可以说日历时间是“相对时间”，但是无论你在哪一个时区，在同一时刻对同一个标准时间点来说，日历时间都是一样的。 epoch：时间点。时间点在标准C/C++中是一个整数，它用此时的时间和标准时间点相差的秒数（即日历时间）来表示。 clock tick：时钟计时单元（而不把它叫做时钟滴答次数），一个时钟计时单元的时间长短是由CPU控制的。一个clock tick不是CPU的一个时钟周期，而是C/C++的一个基本计时单位。 二． 计时 1.    clock: C/C++中的计时函数是clock()，而与其相关的数据类型是clock_t。在MSDN中，查得对clock函数定义如下： clock_t clock( void ); 返回：从“开启这个程序进程”到“程序中调用clock()函数”时之间的CPU时钟计时单元（clock tick）数。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/98.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/98.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[C、C++]Date &amp;Time time_t与struct tm转换</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2010-07-24T00:21:46-07:00" itemprop="datePublished">Jul 24, 2010
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>一．概念<br />
+Coordinated Universal Time（UTC）：协调世界时，又称为世界标准时间，也就是大家所熟知的格林威治标准时间（Greenwich Mean Time，GMT）。比如，中国内地的时间与UTC的时差为+8，也就是UTC+8。美国是UTC-5。<br />
+Calendar Time：日历时间，是用“从一个标准时间点到此时的时间经过的秒数”来表示的时间。这个标准时间点对不同的编译器来说会有所不同，但对一个编译系统来说，这个标准时间点是不变的，该编译系统中的时间对应的日历时间都通过该标准时间点来衡量，所以可以说日历时间是“相对时间”，但是无论你在哪一个时区，在同一时刻对同一个标准时间点来说，日历时间都是一样的。<br />
+epoch：时间点。时间点在标准C/C++中是一个整数，它用此时的时间和标准时间点相差的秒数（即日历时间）来表示。<br />
+clock tick：时钟计时单元（而不把它叫做时钟滴答次数），一个时钟计时单元的时间长短是由CPU控制的。一个clock tick不是CPU的一个时钟周期，而是C/C++的一个基本计时单位。<br />
+二． 计时<br />
+<strong>1.    clock:</strong> C/C++中的计时函数是clock()，而与其相关的数据类型是clock_t。在MSDN中，查得对clock函数定义如下：<br />
+clock_t clock( void );<br />
+返回：从“开启这个程序进程”到“程序中调用clock()函数”时之间的CPU时钟计时单元（clock tick）数。</p>
+
+<p>clock_t：是用来保存时间的数据类型，在time.h文件中，我们可以找到对它的定义：<br />
+#ifndef _CLOCK_T_DEFINED<br />
+typedef long clock_t;<br />
+#define _CLOCK_T_DEFINED<br />
+#endif<br />
+<strong>2. CLOCKS_PER_SEC</strong>        在time.h文件中，还定义了一个常量CLOCKS_PER_SEC，它用来表示一秒钟会有多少个时钟计时单元，其定义如下：<br />
+#define CLOCKS_PER_SEC ((clock_t)1000)<br />
+可以看到可以看到每过千分之一秒（1毫秒），调用clock（）函数返回的值就加1。下面举个例子，你可以使用公式clock()/CLOCKS_PER_SEC来计算一个进程自身的运行时间：<br />
+void elapsed_time()<br />
+{<br />
+printf(“Elapsed time:%u secs.n”,clock()/CLOCKS_PER_SEC);<br />
+}</p>
+
+<!--more-->
+
+<p><strong>3.   </strong>  <strong>用</strong>** clock <strong>**计时</strong><br />
+当然，你也可以用clock函数来计算你的机器运行一个循环或者处理其它事件到底花了多少时间：</p>
+
+<p>方法1：<br />
+#include “stdio.h”<br />
+#include “stdlib.h”<br />
+#include “time.h”</p>
+
+<p>int main( void )<br />
+{<br />
+   long    i = 10000000L;<br />
+   clock_t start, finish;<br />
+   double  duration;<br />
+   /* 测量一个事件持续的时间*/<br />
+   printf( “Time to do %ld empty loops is “, i );<br />
+   start = clock();<br />
+   while( i– )      ;<br />
+   finish = clock();<br />
+   duration = (double)(finish - start) / CLOCKS_PER_SEC;<br />
+   printf( “%f secondsn”, duration );<br />
+   system(“pause”);<br />
+}</p>
+
+<p>在笔者的机器上，运行结果如下：<br />
+Time to do 10000000 empty loops is 0.03000 seconds</p>
+
+<p>方法2(：摘自付国宏老师的Chart_parser程序)：</p>
+
+<p>       struct timeb fStartTime;</p>
+
+<p>       struct timeb fEndTime;</p>
+
+<p>       ftime( &amp;fStartTime );</p>
+
+<p>       …</p>
+
+<p>       ftime( &amp;fEndTime );</p>
+
+<p>       double dbTotalProcessTime = (float) (((float) (fEndTime.time - fStartTime.time ) +</p>
+
+<p>              ((float) (fEndTime.millitm - fStartTime.millitm) * 0.001 )));<br />
+上面我们看到时钟计时单元的长度为1毫秒，那么计时的精度也为1毫秒，那么我们可不可以通过改变CLOCKS_PER_SEC的定义，通过把它定义的大一些，从而使计时精度更高呢？通过尝试，你会发现这样是不行的。在标准C/C++中，最小的计时单位是一毫秒。<br />
+三．与日期和时间相关的数据结构<br />
+<strong>1.    tm</strong><br />
+在标准C/C++中，我们可通过tm结构来获得日期和时间，ANSI C标准称使用tm结构的这种时间表示为分解时间(broken-down time)。tm结构在time.h中的定义如下：<br />
+#ifndef _TM_DEFINED<br />
+struct tm {<br />
+        int tm_sec;     /* 秒 – 取值区间为[0,59] */<br />
+        int tm_min;     /* 分 - 取值区间为[0,59] */<br />
+        int tm_hour;    /* 时 - 取值区间为[0,23] */<br />
+        int tm_mday;    /* 一个月中的日期 - 取值区间为[1,31] */<br />
+        int tm_mon;     /* 月份（从一月开始，0代表一月） - 取值区间为[0,11] */<br />
+        int tm_year;    /* 年份，其值等于实际年份减去1900 */<br />
+        int tm_wday;    /* 星期 – 取值区间为[0,6]，其中0代表星期天，1代表星期一，以此类推 */<br />
+        int tm_yday;    /* 从每年的1月1日开始的天数 – 取值区间为[0,365]，其中0代表1月1日，1代表1月2日，以此类推 */<br />
+        int tm_isdst;   /* 夏令时标识符，实行夏令时的时候，tm_isdst为正。不实行夏令时的进候，tm_isdst为0；不了解情况时，tm_isdst()为负。*/<br />
+        };<br />
+#define _TM_DEFINED<br />
+#endif<br />
+<strong>2.    time_t</strong><br />
+日历时间（Calendar Time）是通过time_t数据类型来表示的，用time_t表示的时间（日历时间）是从一个时间点（例如：1970年1月1日0时0分0秒）到此时的秒数。在time.h中，我们也可以看到time_t是一个长整型数：<br />
+#ifndef _TIME_T_DEFINED<br />
+typedef long time_t;         /* 时间值 */<br />
+#define _TIME_T_DEFINED     /* 避免重复定义 time_t */<br />
+#endif</p>
+
+<p>大家可能会产生疑问：既然time_t实际上是长整型，到未来的某一天，从一个时间点（一般是1970年1月1日0时0分0秒）到那时的秒数（即日历时间）超出了长整形所能表示的数的范围怎么办？对time_t数据类型的值来说，它所表示的时间不能晚于2038年1月18日19时14分07秒。为了能够表示更久远的时间，一些编译器厂商引入了64位甚至更长的整形数来保存日历时间。比如微软在Visual C++中采用了__time64_t数据类型来保存日历时间，并通过_time64()函数来获得日历时间（而不是通过使用32位字的time()函数），这样就可以通过该数据类型保存3001年1月1日0时0分0秒（不包括该时间点）之前的时间。<br />
+通过查阅MSDN，我们可以知道Microsoft C/C++ 7.0中时间点的值（time_t对象的值）是从1899年12月31日0时0分0秒到该时间点所经过的秒数，而其它各种版本的Microsoft C/C++和所有不同版本的Visual C++都是计算的从1970年1月1日0时0分0秒到该时间点所经过的秒数。<br />
+四．与日期和时间相关的函数及应用<br />
+4.1 获得日历时间<strong>time()</strong></p>
+
+<p>通过time()函数来获得日历时间（Calendar Time），其原型为：<br />
+time_t time(time_t * timer);<br />
+用法如：</p>
+
+<p>time_t lt;<br />
+<strong>lt =time(NULL);</strong><br />
+printf(“The Calendar Time now is %dn”,lt);<br />
+output：<br />
+The Calendar Time now is 1122707619<br />
+4.2 获得日期和时间<br />
+<strong>struct tm * gmtime(const time_t *timer);                                          <br />
+struct tm * localtime(const time_t * timer);</strong>  <br />
+<strong>gmtime()</strong><strong>：</strong>是将日历时间转化为世界标准时间（即格林尼治时间），并返回一个tm结构体来保存这个时间。<br />
+<strong>localtime()</strong><strong>：</strong>函数是将日历时间转化为本地时间。比如现在用gmtime()函数获得的世界标准时间是2005年7月30日7点18分20秒，那么我用localtime()函数在中国地区获得的本地时间会比时间标准时间晚8个小时，即2005年7月30日15点18分20秒。下面是个例子：</p>
+
+<p>#include “time.h”<br />
+#include “stdio.h”<br />
+int main(void)<br />
+{<br />
+<strong>struct tm *local;</strong><br />
+<strong>time_t t;</strong><br />
+<strong>t=time(NULL);</strong><br />
+<strong>local=localtime(&amp;t);</strong><br />
+printf(“Local hour is: %dn”,local-&gt;tm_hour);<br />
+<strong>local=gmtime(&amp;t);</strong><br />
+printf(“UTC hour is: %dn”,local-&gt;tm_hour);<br />
+return 0;<br />
+}</p>
+
+<p>运行结果是：</p>
+
+<p>Local hour is: 15<br />
+UTC hour is: 7<br />
+4.3 固定的时间格式<br />
+我们可以通过asctime()函数和ctime()函数将时间以固定的格式显示出来，两者的返回值都是char*型的字符串。返回的时间格式为：<br />
+星期几 月份 日期 时:分:秒 年n <br />
+例如：Wed Jan 02 02:03:55 1980n <br />
+其中n是一个换行符， 是一个空字符，表示字符串结束。下面是两个函数的原型：<br />
+<strong>char * asctime(const struct tm * timeptr);<br />
+char * ctime(const time_t *timer);</strong>  <br />
+<strong>asctime()</strong><strong>函数 **</strong>:**     是通过tm结构来生成具有固定格式的保存时间信息的字符串，<br />
+<strong>ctime</strong>** （）：**是通过日历时间来生成时间字符串。只是把tm结构对象中的各个域填到时间字符串的相应位置就行了函数需要先参照本地的时间设置，把日历时间转化为本地时间，然后再生成格式化后的字符串。</p>
+
+<p>在下面，如果lt是一个非空的time_t变量的话，那么：<br />
+printf(ctime(lt));<br />
+等价于：<br />
+struct tm *ptr;<br />
+ptr=localtime(lt);<br />
+printf(asctime(ptr));</p>
+
+<p>那么，下面这个程序的两条printf语句输出的结果就是不同的了（除非你将本地时区设为世界标准时间所在的时区）：<br />
+ptr=gmtime(&lt;);<br />
+printf(asctime(ptr));<br />
+printf(ctime(&lt;));<br />
+运行结果：<br />
+Sat Jul 30 08:43:03 2005<br />
+Sat Jul 30 16:43:03 2005<br />
+4.4 自定义时间格式<br />
+我们可以使用 <strong>strftime</strong>** （）**函数将时间格式化为我们想要的格式。它的原型如下：<br />
+size_t strftime(<br />
+   char *strDest,<br />
+   size_t maxsize,<br />
+   const char *format,<br />
+   const struct tm *timeptr<br />
+);</p>
+
+<p>我们可以根据format指向字符串中格式命令把timeptr中保存的时间信息放在strDest指向的字符串中，最多向strDest中存放maxsize个字符。该函数返回向strDest指向的字符串中放置的字符数。</p>
+
+<p>函数strftime()的操作有些类似于sprintf()：识别以百分号(%)开始的格式命令集合，格式化输出结果放在一个字符串中。格式化命令说明串strDest中各种日期和时间信息的确切表示方法。格式串中的其他字符原样放进串中。格式命令列在下面，它们是区分大小写的。</p>
+
+<p>%a 星期几的简写<br />
+%A 星期几的全称<br />
+%b 月分的简写<br />
+%B 月份的全称<br />
+%c 标准的日期的时间串<br />
+%C 年份的后两位数字<br />
+%d 十进制表示的每月的第几天<br />
+%D 月/天/年<br />
+%e 在两字符域中，十进制表示的每月的第几天<br />
+%F 年-月-日<br />
+%g 年份的后两位数字，使用基于周的年<br />
+%G 年分，使用基于周的年<br />
+%h 简写的月份名<br />
+%H 24小时制的小时<br />
+%I 12小时制的小时<br />
+%j 十进制表示的每年的第几天<br />
+%m 十进制表示的月份<br />
+%M 十时制表示的分钟数<br />
+%n 新行符<br />
+%p 本地的AM或PM的等价显示<br />
+%r 12小时的时间<br />
+%R 显示小时和分钟：hh:mm<br />
+%S 十进制的秒数<br />
+%t 水平制表符<br />
+%T 显示时分秒：hh:mm:ss<br />
+%u 每周的第几天，星期一为第一天 （值从0到6，星期一为0）<br />
+%U 第年的第几周，把星期日做为第一天（值从0到53）<br />
+%V 每年的第几周，使用基于周的年<br />
+%w 十进制表示的星期几（值从0到6，星期天为0）<br />
+%W 每年的第几周，把星期一做为第一天（值从0到53）<br />
+%x 标准的日期串<br />
+%X 标准的时间串<br />
+%y 不带世纪的十进制年份（值从0到99）<br />
+%Y 带世纪部分的十制年份<br />
+%z，%Z 时区名称，如果不能得到时区名称则返回空字符。<br />
+%% 百分号</p>
+
+<p>如果想显示现在是几点了，并以12小时制显示，就象下面这段程序：<br />
+#include “time.h”<br />
+#include “stdio.h”<br />
+int main(void)<br />
+{<br />
+struct tm *ptr;<br />
+time_t lt;<br />
+char str[80];<br />
+lt=time(NULL);<br />
+ptr=localtime(&lt;);<br />
+strftime(str,100,”It is now %I %p”,ptr);<br />
+printf(str);<br />
+return 0;<br />
+}</p>
+
+<p>其运行结果为：<br />
+It is now 4PM</p>
+
+<p>而下面的程序则显示当前的完整日期：</p>
+
+<p>#include<br />
+#include</p>
+
+<p>void main( void )<br />
+{<br />
+        struct tm *newtime;<br />
+        char tmpbuf[128];<br />
+        time_t lt1;<br />
+        time( &lt;1 );<br />
+        newtime=localtime(&lt;1);<br />
+      <strong>  strftime( tmpbuf, 128, “Today is %A, day %d of %B in the year %Y.n”, newtime);</strong><br />
+        printf(tmpbuf);<br />
+}</p>
+
+<p>运行结果：</p>
+
+<p>Today is Saturday, day 30 of July in the year 2005.</p>
+
+<p>4.5 计算持续的时间长度<br />
+有时候在实际应用中要计算一个事件持续的时间长度，比如计算打字速度。在第1节计时部分中，我已经用clock函数举了一个例子。Clock()函数可以精确到毫秒级。同时，我们也可以使用difftime()函数，但它只能精确到秒。该函数的定义如下：<br />
+<strong>double difftime(time_t time1, time_t time0);</strong></p>
+
+<p>虽然该函数返回的以秒计算的时间间隔是double类型的，但这并不说明该时间具有同double一样的精确度，这是由它的参数觉得的（time_t是以秒为单位计算的）。比如下面一段程序：</p>
+
+<p>time_t start,end;<br />
+start = time(NULL);<br />
+<strong>system(“pause”);</strong><br />
+end = time(NULL);<br />
+printf(“The pause used %f seconds.n”,difftime(end,start));//&lt;-<br />
+system(“pause”);<br />
+return 0;<br />
+}<br />
+运行结果为：<br />
+请按任意键继续. . .<br />
+The pause used 2.000000 seconds.<br />
+请按任意键继续. . .</p>
+
+<p>可以想像，暂停的时间并不那么巧是整整2秒钟。其实，你将上面程序的带有“//&lt;-”注释的一行用下面的一行代码替换：<br />
+printf(“The pause used %f seconds.n”,end-start);<br />
+其运行结果是一样的。<br />
+4.6 分解时间转化为日历时间<br />
+这里说的分解时间就是以年、月、日、时、分、秒等分量保存的时间结构，在C/C++中是tm结构。我们可以使用 <strong>mktime</strong>** （）**函数将用tm结构表示的时间转化为日历时间。其函数原型如下：</p>
+
+<p>time_t mktime(struct tm * timeptr);<br />
+其返回值就是转化后的日历时间。这样我们就可以先制定一个分解时间，然后对这个时间进行操作了，下面的例子可以计算出1997年7月1日是星期几：<br />
+struct tm t;<br />
+time_t t_of_day;<br />
+t.tm_year=1997-1900;<br />
+t.tm_mon=6;<br />
+t.tm_mday=1;<br />
+t.tm_hour=0;<br />
+t.tm_min=0;<br />
+t.tm_sec=1;<br />
+t.tm_isdst=0;<br />
+t_of_day=mktime(&amp;t);<br />
+printf(ctime(&amp;t_of_day));<br />
+return 0;<br />
+}</p>
+
+<p>运行结果：<br />
+Tue Jul 01 00:00:01 1997<br />
+五．总结<br />
+本文介绍了标准C/C++中的有关日期和时间的概念，并通过各种实例讲述了这些函数和数据结构的使用方法。笔者认为，和时间相关的一些概念是相当重要的，理解这些概念是理解各种时间格式的转换的基础，更是应用这些函数和数据结构的基础。</p>
+
+
+  </div><a class="u-url" href="/labrary/98.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

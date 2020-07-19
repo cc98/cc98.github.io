@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>php中类的反射机制 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="php中类的反射机制" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="类反射机制可能是PHP语言中最强大，同时也是最被忽视的一个语言特性。如果你正计划实现一个特别复杂但拥有良好可扩展性的系统，那么你有必要深入了解一下PHP的类反射(Reflection)机制。" />
+<meta property="og:description" content="类反射机制可能是PHP语言中最强大，同时也是最被忽视的一个语言特性。如果你正计划实现一个特别复杂但拥有良好可扩展性的系统，那么你有必要深入了解一下PHP的类反射(Reflection)机制。" />
+<link rel="canonical" href="http://localhost:4001/share/493.html" />
+<meta property="og:url" content="http://localhost:4001/share/493.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-04-16T16:27:20-07:00" />
+<script type="application/ld+json">
+{"headline":"php中类的反射机制","dateModified":"2012-04-16T16:27:20-07:00","datePublished":"2012-04-16T16:27:20-07:00","description":"类反射机制可能是PHP语言中最强大，同时也是最被忽视的一个语言特性。如果你正计划实现一个特别复杂但拥有良好可扩展性的系统，那么你有必要深入了解一下PHP的类反射(Reflection)机制。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/share/493.html"},"@type":"BlogPosting","url":"http://localhost:4001/share/493.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">php中类的反射机制</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-04-16T16:27:20-07:00" itemprop="datePublished">Apr 16, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>类反射机制可能是PHP语言中最强大，同时也是最被忽视的一个语言特性。如果你正计划实现一个特别复杂但拥有良好可扩展性的系统，那么你有必要深入了解一下PHP的类反射(Reflection)机制。</p>
+
+<p>反射机制可以让你摆脱那些枯燥乏味却又极度复杂的工作，例如：自动载入插件，自动化文档生成，甚至可以扩展PHP语言本身。</p>
+
+<p>一个简单的语言特性是怎么样支持这么广泛的能力的？PHP的类反射API是由一组能够让你访问程序”元数据“和关联注释的类组成。这就使得你能在程序运行时动态决定一些事情，例如，某一个类的方法么样实现。这一能力帮助你创建一个拥有良好插件体系的程序，你可以那些呆板的插件接口告别了，这意味着你能终于能尽可能少的实现那些繁琐的支持接口了。</p>
+
+<p>反射不仅能让你能够访问程序的”元数据“（metadata），他还能用来实例化类，调用方法，传递参数等。反射API甚至能够让你动态的调用类的静态方法，此外自动化文档生成也是由反射实现的。</p>
+
+<p><strong>反射API</strong></p>
+
+<p>反射API是PHP内建的OOP扩展，他由一组类，异常和接口组合而成。它赋予了你分析其他类，方法，接口，参数及扩展的能力。这一扩展被形象的命名为“反射”(Reflection)。</p>
+
+<p>首先让我们跳过乏味如教科书般的陈词滥调，试着使用以下反射机制，亲生感受一下他强大的威力。</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\<span class="cp">&lt;?php</span> <span class="nx">Reflection</span><span class="o">::</span><span class="na">export</span><span class="p">(</span><span class="k">new</span> <span class="nx">ReflectionExtension</span><span class="p">(</span><span class="s1">'reflection'</span><span class="p">));</span> <span class="o">?</span><span class="err">\</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<!--more-->
+
+<p>以上的代码会显示很长的列表，内容是反射api实例的每一个类，方法和参数细节。我们通过Reflection的export方法实现这种输出。</p>
+
+<p>几乎反射API的每一部分都实现了reflector接口，ReflectionExtension也不列外。Export方法递归的显示传递进来的reflector,因此作为接口的一部分，每一个reflector都必须要实现自己的export方法。</p>
+
+<p>在这个例子里，我们从ReflectionExtension类开始，它按次序输出他所有的类和接口，截至是所有的参数和方法。</p>
+
+<p>使用反射，你甚至能为每一个内建的PHP类建立类似输出。要做到这一步，首先要做的就是知道载入了那些类。幸运的是这里有一个现成的方法，get_declared_classes()来实现这一步。</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\<span class="cp">&lt;?php</span> <span class="k">foreach</span><span class="p">(</span><span class="nx">get\_declared\_classes</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$class</span><span class="p">){</span> <span class="nx">Reflection</span><span class="o">::</span><span class="na">export</span><span class="p">(</span><span class="k">new</span> <span class="nx">ReflectionClass</span><span class="p">(</span><span class="nv">$class</span><span class="p">));</span> <span class="p">}</span> <span class="o">?</span><span class="err">\</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>get_declared_classes()返回了所有载入的类，包括内建的php类。但是如果我们只想输出用户自定义的类又该怎么办？你要做的只是在输出前做一个判断。代码如下：</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\<span class="cp">&lt;?php</span> <span class="k">foreach</span><span class="p">(</span><span class="nx">get\_declared\_classes</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$class</span><span class="p">){</span> <span class="nv">$reflectionClass</span><span class="o">=</span><span class="k">new</span> <span class="nx">ReflectionClass</span><span class="p">(</span><span class="nv">$class</span><span class="p">);</span> <span class="k">if</span><span class="p">(</span><span class="nv">$reflectionClass</span><span class="o">-</span><span class="err">\</span><span class="o">&gt;</span><span class="nx">isUserDefined</span><span class="p">()){</span> <span class="nx">Reflection</span><span class="o">::</span><span class="na">export</span><span class="p">(</span><span class="nv">$reflectionClass</span><span class="p">);</span> <span class="p">}</span> <span class="p">}</span> <span class="o">?</span><span class="err">\</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+
+  </div><a class="u-url" href="/share/493.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

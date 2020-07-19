@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[HTMLParser]配合[正则表达式]使用 过滤爬取网页 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[HTMLParser]配合[正则表达式]使用 过滤爬取网页" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="爬虫已经能够把所有页面爬下来了，但是保存的是包括完整html标签的html文件，所以使用HtmlParser来过滤不需要的html标签。然后想到了直接使用了正则表达式匹配来去除98上的[url]这种BB功能标签，别看就一个正则表达式，其实折腾了好久。正则表达式匹配[中括号，使用[，同理匹配?使用\?，别被网上一些言论误导。。不然都false。。还是自己查api比较靠谱。" />
+<meta property="og:description" content="爬虫已经能够把所有页面爬下来了，但是保存的是包括完整html标签的html文件，所以使用HtmlParser来过滤不需要的html标签。然后想到了直接使用了正则表达式匹配来去除98上的[url]这种BB功能标签，别看就一个正则表达式，其实折腾了好久。正则表达式匹配[中括号，使用[，同理匹配?使用\?，别被网上一些言论误导。。不然都false。。还是自己查api比较靠谱。" />
+<link rel="canonical" href="http://localhost:4001/solutions/358.html" />
+<meta property="og:url" content="http://localhost:4001/solutions/358.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2011-08-07T23:01:37-07:00" />
+<script type="application/ld+json">
+{"headline":"[HTMLParser]配合[正则表达式]使用 过滤爬取网页","dateModified":"2011-08-07T23:01:37-07:00","datePublished":"2011-08-07T23:01:37-07:00","description":"爬虫已经能够把所有页面爬下来了，但是保存的是包括完整html标签的html文件，所以使用HtmlParser来过滤不需要的html标签。然后想到了直接使用了正则表达式匹配来去除98上的[url]这种BB功能标签，别看就一个正则表达式，其实折腾了好久。正则表达式匹配[中括号，使用[，同理匹配?使用\\?，别被网上一些言论误导。。不然都false。。还是自己查api比较靠谱。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/solutions/358.html"},"@type":"BlogPosting","url":"http://localhost:4001/solutions/358.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[HTMLParser]配合[正则表达式]使用 过滤爬取网页</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2011-08-07T23:01:37-07:00" itemprop="datePublished">Aug 7, 2011
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>爬虫已经能够把所有页面爬下来了，但是保存的是包括完整html标签的html文件，所以使用HtmlParser来过滤不需要的html标签。然后想到了直接使用了正则表达式匹配来去除98上的[url]这种BB功能标签，别看就一个正则表达式，其实折腾了好久。正则表达式匹配[中括号，使用[，同理匹配?使用\?，别被网上一些言论误导。。不然都false。。还是自己查api比较靠谱。</p>
+
+<p><strong> HTMLParser</strong> 的核心模块是 <strong>org.htmlparser.Parser</strong> 类，这个类实际完成了对于HTML页面的分析工作。这个类有下面几个构造函数：<br />
+    public Parser ();<br />
+    public Parser (Lexer lexer, ParserFeedback fb);<br />
+    public Parser (URLConnection connection, ParserFeedback fb) throws ParserException;<br />
+    public Parser (String resource, ParserFeedback feedback) throws ParserException;<br />
+    public Parser (String resource) throws ParserException;<br />
+    public Parser (Lexer lexer);<br />
+    public Parser (URLConnection connection) throws ParserException;<br />
+和一个静态类 public static Parser createParser (String html, String charset);</p>
+
+<!--more-->
+
+<p>HtmlParser的filter功能也很强大，支持各种组合。。14个filter如下，下面注释掉的代码有使用几种</p>
+
+<p><a href="http://www.baizeju.com/html/HTMLParser/200807/07-121.html#判断类Filter"><strong>判断类</strong>** Filter <strong>**：</strong></a><br />
+TagNameFilter<br />
+HasAttributeFilter<br />
+HasChildFilter<br />
+HasParentFilter<br />
+HasSiblingFilter<br />
+IsEqualFilter<br />
+<a href="http://www.baizeju.com/html/HTMLParser/200807/07-121.html#逻辑运算Filter"><strong>逻辑运算</strong>** Filter <strong>**：</strong></a><br />
+AndFilter<br />
+NotFilter<br />
+OrFilter<br />
+XorFilter<br />
+<a href="http://www.baizeju.com/html/HTMLParser/200807/07-121.html#其他Filter"><strong>其他</strong>** Filter <strong>**：</strong></a><br />
+NodeClassFilter<br />
+StringFilter<br />
+LinkStringFilter<br />
+LinkRegexFilter<br />
+RegexFilter<br />
+CssSelectorNodeFilter</p>
+
+<p> </p>
+
+<p><strong>以下就来贴下完整的处理代码:</strong></p>
+
+<p>[cc lang=”java”]</p>
+
+<p>package com.htmlparser;</p>
+
+<p>import java.io.BufferedReader;<br />
+import java.io.FileNotFoundException;<br />
+import java.io.FileOutputStream;<br />
+import java.io.IOException;<br />
+import java.io.InputStreamReader;<br />
+import java.io.FileInputStream;<br />
+import java.io.File;<br />
+import java.io.OutputStreamWriter;<br />
+import java.net.HttpURLConnection;<br />
+import java.net.URL;<br />
+import java.util.ArrayList;<br />
+import java.util.LinkedList;<br />
+import java.util.List;</p>
+
+<p>import org.htmlparser.Node;<br />
+import org.htmlparser.NodeFilter;<br />
+import org.htmlparser.filters.AndFilter;<br />
+import org.htmlparser.filters.HasAttributeFilter;<br />
+import org.htmlparser.filters.NotFilter;<br />
+import org.htmlparser.filters.StringFilter;<br />
+import org.htmlparser.filters.TagNameFilter;<br />
+import org.htmlparser.util.NodeIterator;<br />
+import org.htmlparser.util.NodeList;<br />
+import org.htmlparser.Parser;</p>
+
+<p>public class TestHtmlParser {<br />
+ private static String ENCODE = “UTF-8”;</p>
+
+<p> // 用于输出显示测试<br />
+ private void message(String szMsg) {<br />
+  try {<br />
+   System.out.println(new String(szMsg.getBytes(ENCODE), System<br />
+     .getProperty(“file.encoding”)));<br />
+  } catch (Exception e) {<br />
+  }<br />
+ }</p>
+
+<p> // 打开html文件，读取文件所有内容<br />
+ public String openFile(String filename) {<br />
+  try {<br />
+   BufferedReader bis = new BufferedReader(new InputStreamReader(<br />
+     new FileInputStream(new File(filename)), ENCODE));<br />
+   String content = “”;<br />
+   String temp;</p>
+
+<p>   while ((temp = bis.readLine()) != null) {<br />
+    content += temp + “n”;<br />
+   }<br />
+   bis.close();<br />
+   return content;<br />
+  } catch (Exception e) {<br />
+   return “”;<br />
+  }<br />
+ }</p>
+
+<p> // 将解析好的字符串，写到.txt文件<br />
+ public boolean writeFile(String filename, String content) {<br />
+  boolean result = false;<br />
+  try {<br />
+   OutputStreamWriter osw = new OutputStreamWriter(<br />
+     new FileOutputStream(new File(“E:\MyCrawl\cc98-txt"<br />
+       + filename + “.txt”)), ENCODE);<br />
+   osw.write(content);<br />
+   osw.close();<br />
+   result = true;</p>
+
+<p>  } catch (FileNotFoundException e) {<br />
+   // TODO Auto-generated catch block<br />
+   e.printStackTrace();<br />
+  } catch (IOException e) {<br />
+   // TODO Auto-generated catch block<br />
+   e.printStackTrace();<br />
+  }<br />
+  return result;<br />
+ }</p>
+
+<p> // 解析一个文件<br />
+ public void parseFile(File file) {<br />
+  System.out.println(“parsing:” + file.getName());<br />
+  String content = openFile(file.getPath());<br />
+  try {<br />
+   Parser parser = Parser.createParser(content, ENCODE);<br />
+   <br />
+   // TextExtractingVisitor visitor = new TextExtractingVisitor();<br />
+   // parser.visitAllNodesWith(visitor);<br />
+   // String textInPage = visitor.getExtractedText();<br />
+   //<br />
+   // message(textInPage);</p>
+
+<p>   // NodeFilter Tagfilter = new TagNameFilter(“span”);<br />
+   // NodeFilter Urlfilter = new StringFilter(“http://”);<br />
+   // NodeFilter noUrlfilter = new NotFilter(Urlfilter);<br />
+   // NodeFilter filter = new AndFilter(Tagfilter, noUrlfilter);</p>
+
+<p>   NodeFilter tagfilter = new TagNameFilter(“span”);<br />
+   NodeFilter filterID = new HasAttributeFilter(“id”);<br />
+   NodeFilter filter = new AndFilter(tagfilter, filterID);</p>
+
+<p>   NodeList nodes = parser.extractAllNodesThatMatch(filter);</p>
+
+<p>   String txt = “”;<br />
+   if (nodes != null) {<br />
+    for (int i = 0; i &lt; nodes.size(); i++) {<br />
+     Node textnode = (Node) nodes.elementAt(i);</p>
+
+<p>     // message(“getText:” + textnode.getText());<br />
+     txt += textnode.toPlainTextString() + “nr”;</p>
+
+<p>    }<br />
+   }<br />
+   <br />
+   txt = txt.replaceAll(“[[/?[a-zA-Z0-9\?](file://[/?[a-zA-Z0-9\?). /&amp;~=:,&amp;&amp;[^]]]+]”, “”);<br />
+   txt = txt.replaceAll(“ ”, “”).replaceAll(“[t]+”, “”);// .replaceAll(“[n]+”, “n”);<br />
+   writeFile(file.getName(), txt);</p>
+
+<p>   // for (NodeIterator i = parser.elements(); i.hasMoreNodes();) {<br />
+   // Node node = i.nextNode();<br />
+   // message(“getText:” + node.getText());<br />
+   // message(“getPlainText:” + node.toPlainTextString());<br />
+   // message(“toHtml:” + node.toHtml());<br />
+   // message(“toHtml(true):” + node.toHtml(true));<br />
+   // message(“toHtml(false):” + node.toHtml(false));<br />
+   // message(“toString:” + node.toString());<br />
+   // message(“=================================================”);<br />
+   // if(node.getText().length()&gt;=3){<br />
+   // if(“html”.equals(node.getText().substring(0, 4))){<br />
+   // message(“getPlainText:” + node.toPlainTextString());<br />
+   // }<br />
+   // }<br />
+   // }<br />
+  } catch (Exception e) {<br />
+   System.out.println(“Exception:” + e);<br />
+  }<br />
+ }</p>
+
+<p> // 主函数，遍历cc98目录<br />
+ public static void main(String[] args) {<br />
+  TestHtmlParser thp = new TestHtmlParser();<br />
+  LinkedList&lt;String&gt; folderList = new LinkedList&lt;String&gt;();<br />
+  folderList.add(“E:\MyCrawl\cc98");<br />
+  while (folderList.size() &gt; 0) {<br />
+   File file = new File(folderList.poll());<br />
+   File[] files = file.listFiles();<br />
+   List&lt;File&gt; fileList = new ArrayList&lt;File&gt;();<br />
+   for (int i = 0; i &lt; files.length; i++) {<br />
+    if (files[i].isDirectory()) {<br />
+     folderList.add(files[i].getPath());<br />
+    } else {<br />
+     fileList.add(files[i]);<br />
+    }<br />
+   }</p>
+
+<p>   for (File f : fileList) {<br />
+    thp.parseFile(f);<br />
+   }<br />
+  }</p>
+
+<p> }</p>
+
+<p>}</p>
+
+<p>[/cc]</p>
+
+
+  </div><a class="u-url" href="/solutions/358.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

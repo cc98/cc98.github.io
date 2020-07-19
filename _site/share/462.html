@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>grep文件报错 “Binary file … matches” ，附参数说明 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="grep文件报错 “Binary file … matches” ，附参数说明" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="问题：grep一个文件时，报错“Binary file … matches”" />
+<meta property="og:description" content="问题：grep一个文件时，报错“Binary file … matches”" />
+<link rel="canonical" href="http://localhost:4001/share/462.html" />
+<meta property="og:url" content="http://localhost:4001/share/462.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-03-28T22:31:55-07:00" />
+<script type="application/ld+json">
+{"headline":"grep文件报错 “Binary file … matches” ，附参数说明","dateModified":"2012-03-28T22:31:55-07:00","datePublished":"2012-03-28T22:31:55-07:00","description":"问题：grep一个文件时，报错“Binary file … matches”","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/share/462.html"},"@type":"BlogPosting","url":"http://localhost:4001/share/462.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">grep文件报错 “Binary file ... matches” ，附参数说明</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-03-28T22:31:55-07:00" itemprop="datePublished">Mar 28, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>问题：grep一个文件时，报错“Binary file … matches”</p>
+
+<p>使用命令 more时，内容可以正常看到</p>
+
+<p>原因：文件为binary文件<br />
+解决：strings vers.log.2010-03-09 | grep -i ‘mezimedia’<br />
+或者 grep -a -i ‘mezimedia’ vers.log.2010-03-09</p>
+
+<p>grep命令是linux下的行过滤工具，其参数繁多，下面就一一介绍个个参数的作用，希望对大家有所帮助。</p>
+
+<p>grep – print lines matching a pattern (将符合样式的该行列出)</p>
+
+<p>◎语法: grep [options]<br />
+PATTERN [FILE…]<br />
+grep用以在file内文中比对相对应的部分，或是当没有指定档案时，<br />
+由标准输入中去比对。 在预设的情况下，grep会将符合样式的那一行列出。</p>
+
+<p>此外，还有两个程序是grep的变化型，egrep及fgrep。<br />
+其中egrep就等同于grep -E ，fgrep等同于grep -F 。</p>
+
+<!--more-->
+
+<p>◎参数</p>
+
+<p>1. -A NUM，–after-context=NUM<br />
+除了列出符合行之外，并且列出后NUM行。</p>
+
+<p>ex:   $  <strong>grep -A 1 panda file</strong><br />
+(从file中搜寻有panda样式的行，并显示该行的后1行)</p>
+
+<p>2. -a或–text<br />
+grep原本是搜寻文字文件，若拿二进制的档案作为搜寻的目标，<br />
+则会显示如下的讯息: Binary file 二进制文件名 matches 然后结束。</p>
+
+<p>若加上-a参数则可将二进制档案视为文本文件搜寻，<br />
+相当于–binary-files=text这个参数。</p>
+
+<p>ex:    (从二进制档案mv中去搜寻panda样式)<br />
+(错误!!!)<br />
+$  <strong>grep panda mv</strong><br />
+Binary file mv matches<br />
+(这表示此档案有match之处，详见–binary-files=TYPE )<br />
+$<br />
+(正确!!!)<br />
+$  <strong>grep -a panda mv</strong></p>
+
+<p>3. -B NUM，–before-context=NUM<br />
+与 -A NUM 相对，但这此参数是显示除符合行之外<br />
+并显示在它之前的NUM行。</p>
+
+<p>ex:    (从file中搜寻有panda样式的行，并显示该行的前1行)<br />
+$  <strong>grep -B 1 panda file</strong></p>
+
+<p>4. -C [NUM], -NUM, –context[=NUM]<br />
+列出符合行之外并列出上下各NUM行，默认值是2。</p>
+
+<p>ex:    (列出file中除包含panda样式的行外并列出其上下2行)<br />
+(若要改变默认值，直接改变NUM即可)<br />
+$ <strong>grep -C[NUM] panda file</strong></p>
+
+<p>5. -b, –byte-offset<br />
+列出样式之前的内文总共有多少byte ..</p>
+
+<p>ex:  $  <strong>grep -b panda file</strong><br />
+显示结果类似于:<br />
+   0:panda<br />
+66:pandahuang<br />
+123:panda03</p>
+
+<p>6. –binary-files=TYPE<br />
+此参数TYPE预设为binary(二进制)，若以普通方式搜寻，只有2种结果:<br />
+1.若有符合的地方：显示Binary file 二进制文件名 matches<br />
+2.若没有符合的地方：什么都没有显示。</p>
+
+<p>若TYPE为without-match，遇到此参数，<br />
+grep会认为此二进制档案没有包含任何搜寻样式，与-I 参数相同。</p>
+
+<p>若TPYE为text, grep会将此二进制文件视为text档案，与-a 参数相同。</p>
+
+<p><strong>Warning</strong> : –binary-files=text 若输出为终端机，可能会产生一些不必要的输出。</p>
+
+<p>7. -c, –count<br />
+不显示符合样式行，只显示符合的总行数。<br />
+若再加上-v,–invert-match，参数显示不符合的总行数。</p>
+
+<p>8. -d ACTION, –directories=ACTION<br />
+若输入的档案是一个资料夹，使用ACTION去处理这个资料夹。<br />
+预设ACTION是read(读取)，也就是说此资料夹会被视为一般的档案；<br />
+若ACTION是skip(略过)，资料夹会被grep略过：<br />
+若ACTION是recurse(递归)，grep会去读取资料夹下所有的档案，<br />
+此相当于-r 参数。</p>
+
+<p>9.  -E, –extended-regexp<br />
+采用规则表示式去解释样式。</p>
+
+<p>10.  -e PATTERN, –regexp=PATTERN<br />
+把样式做为一个partern，通常用在避免partern用-开始。</p>
+
+<p>11.  -f FILE, –file=FILE<br />
+事先将要搜寻的样式写入到一个档案，一行一个样式。<br />
+然后采用档案搜寻。<br />
+空的档案表示没有要搜寻的样式，因此也就不会有任何符合。</p>
+
+<p>ex: (newfile为搜寻样式文件)<br />
+$ <strong>grep -f newfile file</strong></p>
+
+<p>12.  -G, –basic-regexp<br />
+将样式视为基本的规则表示式解释。(此为预设)</p>
+
+<p>13.  -H, –with-filename<br />
+在每个符合样式行前加上符合的文件名称，若有路径会显示路径。</p>
+
+<p>ex: (在file与testfile中搜寻panda样式)<br />
+$ <strong>grep -H panda file ./testfile</strong><br />
+file:panda<br />
+./testfile:panda<br />
+$</p>
+
+<p>14.  -h, –no-filename<br />
+与-H参数相类似，但在输出时不显示路径。</p>
+
+<p>15.  –help<br />
+产生简短的help讯息。</p>
+
+<p>16.  -I<br />
+grep会强制认为此二进制档案没有包含任何搜寻样式，<br />
+与–binary-files=without-match参数相同。</p>
+
+<p>ex:  $  <strong>grep -I panda mv</strong></p>
+
+<p>17.  -i, –ignore-case<br />
+忽略大小写，包含要搜寻的样式及被搜寻的档案。</p>
+
+<p>ex:  $  <strong>grep -i panda mv</strong></p>
+
+<p>18.  -L, –files-without-match<br />
+不显示平常一般的输出结果，反而显示出没有符合的文件名称。</p>
+
+<p>19.  -l, –files-with-matches<br />
+不显示平常一般的输出结果，只显示符合的文件名称。</p>
+
+<p>20.  –mmap<br />
+如果可能，使用mmap系统呼叫去读取输入，而不是预设的read系统呼叫。<br />
+在某些状况，–mmap 能产生较好的效能。 然而，–mmap<br />
+如果运作中档案缩短，或I/O 错误发生时，<br />
+可能造成未定义的行为(包含core dump)，。</p>
+
+<p>21.  -n, –line-number<br />
+在显示行前，标上行号。</p>
+
+<p>ex:  $  <strong>grep -n panda file</strong><br />
+显示结果相似于下:<br />
+行号:符合行的内容</p>
+
+<p>22.  -q, –quiet, –silent<br />
+不显示任何的一般输出。请参阅-s或–no-messages</p>
+
+<p>23.  -r, –recursive<br />
+递归地，读取每个资料夹下的所有档案，此相当于 -d recsuse 参数。</p>
+
+<p>24.  -s, –no-messages<br />
+不显示关于不存在或无法读取的错误讯息。</p>
+
+<p>小注: 不像GNU grep，传统的grep不符合POSIX.2协议，<br />
+因为缺乏-q参数，且他的-s 参数表现像GNU grep的 -q 参数。<br />
+Shell Script倾向将传统的grep移植，避开-q及-s参数，<br />
+且将输出限制到/dev/null。</p>
+
+<p>POSIX: 定义UNIX及UNIX-like系统需要提供的功能。</p>
+
+<p>25.  -V, –version<br />
+显示出grep的版本号到标准错误。<br />
+当您在回报有关grep的bugs时，grep版本号是必须要包含在内的。</p>
+
+<p>26.  -v, –invert-match<br />
+显示除搜寻样式行之外的全部。</p>
+
+<p>27.  -w, –word-regexp<br />
+将搜寻样式视为一个字去搜寻，完全符合该”字”的行才会被列出。</p>
+
+<p>28.  -x, –line-regexp<br />
+将搜寻样式视为一行去搜寻，完全符合该”行”的行才会被列出。</p>
+
+<p>来自：<a href="http://shanchao7932297.blog.163.com/blog/static/136362420113634354832/">http://shanchao7932297.blog.163.com/blog/static/136362420113634354832/</a></p>
+
+
+  </div><a class="u-url" href="/share/462.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

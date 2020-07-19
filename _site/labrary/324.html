@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>struts2中s:iterator 标签的使用详解 及 OGNL用法 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="struts2中s:iterator 标签的使用详解 及 OGNL用法" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="简单的demo： s:iterator 标签有3个属性： value：被迭代的集合 id   ：指定集合里面的元素的id status 迭代元素的索引 1:jsp页面定义元素写法 数组或list" />
+<meta property="og:description" content="简单的demo： s:iterator 标签有3个属性： value：被迭代的集合 id   ：指定集合里面的元素的id status 迭代元素的索引 1:jsp页面定义元素写法 数组或list" />
+<link rel="canonical" href="http://localhost:4001/labrary/324.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/324.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2011-07-30T12:33:44-07:00" />
+<script type="application/ld+json">
+{"headline":"struts2中s:iterator 标签的使用详解 及 OGNL用法","dateModified":"2011-07-30T12:33:44-07:00","datePublished":"2011-07-30T12:33:44-07:00","description":"简单的demo： s:iterator 标签有3个属性： value：被迭代的集合 id   ：指定集合里面的元素的id status 迭代元素的索引 1:jsp页面定义元素写法 数组或list","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/324.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/324.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">struts2中s:iterator 标签的使用详解 及 OGNL用法</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2011-07-30T12:33:44-07:00" itemprop="datePublished">Jul 30, 2011
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>简单的demo：<br />
+s:iterator 标签有3个属性：<br />
+value：被迭代的集合<br />
+id   ：指定集合里面的元素的id<br />
+status 迭代元素的索引<br />
+1:jsp页面定义元素写法 数组或list</p>
+
+<p>&lt;s:iterator value=”{‘1’,’2’,’3’,’4’,’5’}” &gt;<br />
+&lt;s:property value=’number’/&gt;A<br />
+&lt;/s:iterator&gt;<br />
+打印结果为: 1A2A3A4A5A<br />
+2:索引的用法<br />
+如果指定了status，每次的迭代数据都有IteratorStatus的实例，它有以下几个方法<br />
+int getCount()返回当前迭代了几个元素<br />
+int getIndex()返回当前元素索引<br />
+boolean isEven()当然的索引是否偶数<br />
+boolean isFirst()当前是否第一个元素<br />
+boolean isLast()<br />
+boolean isOdd()当前元素索引是否奇数<br />
+&lt;s:iterator value=”{‘a’,’b’,’c’}” status=’st’&gt;<br />
+&lt;s:if test=”#st.Even”&gt;<br />
+现在的索引是奇数为:&lt;s:property value=’#st.index’/&gt;<br />
+&lt;/s:if&gt;<br />
+当前元素值：&lt;s:property value=’char’/&gt;<br />
+&lt;/s:iterator&gt;<br />
+3：遍历map<br />
+value可以直接定义为：<br />
+value=”#{“1”:”a”,”2”:”b”}”<br />
+每个元素以都好隔开。元素之间的key和value 冒号隔开<br />
+value也可以是数据栈里面的java.util.Map对象<br />
+遍历写法如下：<br />
+&lt;s:iterator value=”map” status=”st”&gt;<br />
+key : &lt;s:property value=’key’/&gt;<br />
+value:&lt;s:property vlaue=’value’/&gt;<br />
+&lt;/s:iterator&gt;<br />
+当然key 和value 都可以使java 的 Object<br />
+3：遍历数据栈.简单的List类，<br />
+List&lt;Attr&gt;<br />
+class Attr{String attrName;String getAttrName(){return “123”;}}<br />
+&lt;s:iterator value=”label” &gt;<br />
+&lt;s:property value=”#id.attrName” /&gt;<br />
+&lt;/s:iterator&gt;<br />
+当然value 还可以写成 value=”%{label}” label可以有.操作<br />
+label的属性List 可以写成value=”%{label.list}” 相当于：getLabel().getList();<br />
+4：遍历2个list；<br />
+List&lt;AttrName&gt; attrN {color,size,style}<br />
+List&lt;AttrValue&gt; attrV {red,20,gay}<br />
+这2个list的元素是一一对应的，一个attrN对应一个attrV<br />
+&lt;s:iterator value=”%{attrN }”    status=”status”&gt;<br />
+index    is : &lt;s:property value=’status.index’/&gt;<br />
+attrName is : &lt;s:property value=’id’/&gt; or &lt;s:property value=’%{id}’/&gt;<br />
+attrName is : &lt;s:property value=’%{attrV[#status.index]}’/&gt;<br />
+&lt;/s:iterator&gt;</p>
+
+<p>&lt;s:bean &gt;<br />
+&lt;s:param value=”5” /&gt;<br />
+&lt;s:param value=”10” /&gt;<br />
+&lt;s:iterator&gt;<br />
+counter:&lt;s:property/&gt;<br />
+&lt;/s:iterator&gt;<br />
+&lt;/s:bean&gt;</p>
+
+<!--more-->
+
+<p>这个标签主要的的作用就是迭代出集合。。<br />
+value属性表示需要跌代显示出来的值。<br />
+status属性，又来保存迭代时的一些状态值。</p>
+
+<p>注：<br />
+1.如果需要引用valueStack中的值，需要使用这样的形式。<br />
+&lt;s:iterator value=”#userList” /&gt; //userList在action部分被保存在Request中，所以使用#加属性名来引用值。<br />
+2.如果集合的值是通过action的方法，假设我们的action中有一个getListMenu方法，返回一个List集合。<br />
+我们可以使用如下的形式来引用这个集合，并用s:iterator来输出。<br />
+&lt;s:iterator value=”listMenu” /&gt;<br />
+3.iterator的value使用定义好的方式，如：<br />
+&lt;s:iterator value=”{1,2,3,4}” /&gt;         //这样跌代输出的值就是1.2.3.4这四个值。</p>
+
+<p>二、iterator中输出具体值，如果，在上面我们的list中的对象，有两个属性，都是String类型，一个是name,一个是url。<br />
+我们可以这样来引用。<br />
+1.      &lt;s:property value=”name” /&gt;       //这样我们将可以输出跌代对象的name属性值。<br />
+2.      如果我们希望使用&lt;s:url /&gt;来将跳转过后的url进行处理，该如何来做？<br />
+&lt;s:url value=”%{url}”/&gt;            //%{}ognl的表达式，这样的值能够将url的值进行&lt;s:url/&gt;的处理<br />
+实际上就是转为绝对路径。这样，我们就可以对付一些因跳转换产生的路径问题。<br />
+原因：因为&lt;s:iteratotr /&gt;以后，当前的对象应该就在ValueStack顶部了，这样当然的url实际上就是对象的url          属性了</p>
+
+<p>三、使用ognl输出对应的值。<br />
+&lt;s:textfield value=”%{#request.loginNames}”/&gt;</p>
+
+<p>使用此表达式，会生成一个文本框，并且，如果request.attribute中有loginNames属性，将会做为些文本框的默认值。<br />
+如果只使用#request.loginNames在struts2的标签内部，是不会显示任何值的，注意外面加上的%{}附号，才会被正常的使用。<br />
+如果希望如EL语言一样直接输出文件，如在一个&lt;a&gt;&lt;/a&gt;之间的innerHTML文本为#request.loginNames的值，我们只要使用：&lt;s:property value=”#request.loginNames” /&gt;使可以正常使用！</p>
+
+<p>注：<br />
+1.${}是EL语言的 %{}这样的形式是ognl表过式语言的，在struts2的标签内部，使用%{}这样的形式，在标签外部可以使用${}EL语言的方式。如果在struts2的标签内部使用${}这样的方式，会出现以下的错误提示：<br />
+According to TLD or attribute directive in tag file, attribute value does not accept any expressions<br />
+2.很多时候，我们使用struts2的一些标签，属性是需要接受集合的，如果集合是保存在request,session，或者是值栈(非根对象的栈顶)，可以使用#变量名的方式，如果获取的值是在Action中通过特定的方法来获取，就需要使用如 value=”userList”这样的方式，只是去掉了前面的#。</p>
+
+<p> </p>
+
+<p><a href="http://www.cnblogs.com/macooma/articles/1662607.html">struts2中的OGNL用法</a></p>
+
+<p>User对象属性获取<br />
+如User中有username和password字段<br />
+获取username属性&lt;s:property value=”user.username” /&gt;<br />
+获取password属性&lt;s:property value=”user.password” /&gt;</p>
+
+<p>若User中又包含定义了address对象，address对象中包含有addr属性，则可以这样访问<br />
+获取addr属性&lt;s:property value=”user.address.addr” /&gt;</p>
+
+<p>若User中还包含一个get()的普通方法，可以这样调用<br />
+&lt;s:property value=”user.get()” /&gt;<br />
+以上是调用值栈中对象的普通方法，user为值栈中的对象</p>
+
+<p>调用action中的静态方法get()，普通方法不能直接调用<br />
+&lt;s:property value=”@com.netshuai.action.ManagerAction@get()” /&gt;<br />
+以上为调用非值栈中的静态方法</p>
+
+<p>调用JDK中类的静态方法&lt;s:property value=”@java.lang.Math@floor(32.56)” /&gt;<br />
+上例也可写成&lt;s:property value=”@@floor(32.56)” /&gt;，省略前面的类则默认使用java.lang.Math类，其他类不可省略</p>
+
+<p>调用普通类中的静态属性&lt;s:property value=”@com.netshuai.model.Address@city” /&gt;<br />
+address中的city静态属性要用public声明</p>
+
+<p>调用普通类的构造方法，如构造方法为<br />
+public User(String username)<br />
+{<br />
+this.username=username;<br />
+}<br />
+调用方法为&lt;s:property value=”new com.netshuai.model.User(‘hello’).username” /&gt;，则返回username值为hello</p>
+
+<p>获取List&lt;s:property value=”list” /&gt;<br />
+获取List中的某一个元素&lt;s:property value=”list[0]” /&gt;<br />
+获取List的大小&lt;s:property value=”list.size” /&gt;<br />
+获取Set&lt;s:property value=”set” /&gt;<br />
+无法获取Set中的某一个元素，因为Set没有顺序<br />
+获取Map&lt;s:property value=”map” /&gt;<br />
+获取Map中所有key的值&lt;s:property value=”map.keys” /&gt;<br />
+获取Map中所有value的值&lt;s:property value=”map.values” /&gt;<br />
+获取Map中的某一个元素&lt;s:property value=”map[‘k1’]” /&gt;</p>
+
+<p>获取List所有对象&lt;s:property value=”listObject” /&gt;，需要重写toString()方法才能正常显示对象的值<br />
+利用投影获取List中所有对象的username属性&lt;s:property value=”listObject.{username}” /&gt;<br />
+利用投影获取List中第一个对象的username属性&lt;s:property value=”listObject.{username}[0]” /&gt;<br />
+利用选择获取List中年龄大于30的对象&lt;s:property value=”listObject.{?#this.age&gt;30}” /&gt;<br />
+利用选择获取List中年龄大于30的对象的username&lt;s:property value=”listObject.{?#this.age&gt;30}.{username}” /&gt;<br />
+利 用选择获取List中年龄大于30的第一个对象的username&lt;s:property value=”listObject.{?#this.age&gt;30}.{username}[0]” /&gt;或&lt;s:property value=”listObject.{^#this.age&gt;30}.{username}” /&gt;<br />
+利用选择获取List中年龄大于30的最后一个对象的username&lt;s:property value=”listObject.{$#this.age&gt;30}.{username}” /&gt;</p>
+
+<p>获取parameters中的属性&lt;s:property value=”#parameters.name” /&gt;<br />
+获取request中的属性&lt;s:property value=”#request.name” /&gt;<br />
+获取session中的属性&lt;s:property value=”#session.name” /&gt;<br />
+获取application中的属性&lt;s:property value=”#application.name” /&gt;<br />
+&lt;s:property value=”#attr.name” /&gt;按顺序遍历上面四个对象，然后返回首先找到的值</p>
+
+<p>%{}可以取出存在值堆栈中的Action对象，直接调用它的方法，如%{getText(‘key’)}可以取出国际化信息</p>
+
+<p>${}可以用在国际化资源文件中和struts2配置文件中</p>
+
+<p>使用top获取值栈中第二个对象&lt;s:property value=”[1].top.user”/&gt;<br />
+使用top获取值栈中第二个对象的属性&lt;s:property value=”[1].user”/&gt;</p>
+
+<p>调用值栈中action的静态方法get()&lt;s:property value=”@vs@get()”/&gt;，vs也可写做vs1<br />
+调用值栈中第二个action的静态方法get()&lt;s:property value=”@vs2@get()”/&gt;</p>
+
+<p>将一个对象放入值栈<br />
+ActionContext.getContext().getValueStack().push(user);</p>
+
+<p> </p>
+
+
+  </div><a class="u-url" href="/labrary/324.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

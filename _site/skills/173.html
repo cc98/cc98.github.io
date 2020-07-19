@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>PHP如何创建Session | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="PHP如何创建Session" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="　　开始介绍如何创建 session。非常简单，真的。" />
+<meta property="og:description" content="　　开始介绍如何创建 session。非常简单，真的。" />
+<link rel="canonical" href="http://localhost:4001/skills/173.html" />
+<meta property="og:url" content="http://localhost:4001/skills/173.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-09-30T19:33:22-07:00" />
+<script type="application/ld+json">
+{"headline":"PHP如何创建Session","dateModified":"2010-09-30T19:33:22-07:00","datePublished":"2010-09-30T19:33:22-07:00","description":"　　开始介绍如何创建 session。非常简单，真的。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/skills/173.html"},"@type":"BlogPosting","url":"http://localhost:4001/skills/173.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">PHP如何创建Session</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2010-09-30T19:33:22-07:00" itemprop="datePublished">Sep 30, 2010
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>　　开始介绍如何创建 session。非常简单，真的。</p>
+
+<p>　　启动 session 会话，并创建一个 $admin 变量：</p>
+
+<p>　　// 启动 session</p>
+
+<p>　　session_start();</p>
+
+<p>　　// 声明一个名为 admin 的变量，并赋空值。</p>
+
+<p>　　$_session[“admin”] = null;</p>
+
+<p>　　?&gt;<!--more--></p>
+
+<p>　　如果你使用了 Seesion，或者该 PHP 文件要调用 Session 变量，那么就必须在调用 Session 之前启动它，使用 session_start() 函数。其它都不需要你设置了，PHP 自动完成 session 文件的创建。</p>
+
+<p>　　执行完这个程序后，我们可以到系统临时文件夹找到这个 session 文件，一般文件名形如：sess_4c83638b3b0dbf65583181c2f89168ec，后面是 32 位编码后的随机字符串。用编辑器打开它，看一下它的内容：</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>　　admin</td>
+      <td>N;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>一般内容结构：</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>　　变量名</td>
+      <td>类型:长度:值;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>　　并用分号隔开每个变量。有些是可以省略的，比如长度和类型。</p>
+
+<p>　　我们来看一下验证程序，假设数据库存储的是用户名和 md5 加密后的密码：</p>
+
+<p>　　// 表单提交后…</p>
+
+<p>　　$posts = $_POST;</p>
+
+<p>　　// 清除一些空白符号</p>
+
+<p>　　foreach ($posts as $key =&gt; $value)</p>
+
+<p>　　{</p>
+
+<p>　　$posts[$key] = trim($value);</p>
+
+<p>　　}</p>
+
+<p>　　$password = md5($posts[“password”]);</p>
+
+<p>　　$username = $posts[“username”];</p>
+
+<p>　　$query = “SELECT <code class="highlighter-rouge">username</code> FROM <code class="highlighter-rouge">user</code> WHERE <code class="highlighter-rouge">password</code> = ‘$password’”;</p>
+
+<p>　　// 取得查询结果</p>
+
+<p>　　$userInfo = $DB-&gt;getRow($query);</p>
+
+<p>　　if (!empty($userInfo))</p>
+
+<p>　　{</p>
+
+<p>　　if ($userInfo[“username”] == $username)</p>
+
+<p>　　{</p>
+
+<p>　　// 当验证通过后，启动 session</p>
+
+<p>　　session_start();</p>
+
+<p>　　// 注册登陆成功的 admin 变量，并赋值 true</p>
+
+<p>　　$_session[“admin”] = true;</p>
+
+<p>　　}</p>
+
+<p>　　else</p>
+
+<p>　　{</p>
+
+<p>　　die(“用户名密码错误”);</p>
+
+<p>　　}</p>
+
+<p>　　}</p>
+
+<p>　　else</p>
+
+<p>　　{</p>
+
+<p>　　die(“用户名密码错误”);</p>
+
+<p>　　}</p>
+
+<p>　　我们在需要用户验证的页面启动 session，判断是否登陆：</p>
+
+<p>　　// 防止全局变量造成安全隐患</p>
+
+<p>　　$admin = false;</p>
+
+<p>　　// 启动会话，这步必不可少</p>
+
+<p>　　session_start();</p>
+
+<p>　　// 判断是否登陆</p>
+
+<p>　　if (isset($_SESSION[“admin”]) &amp;&amp; $_session[“admin”] === true)</p>
+
+<p>　　{</p>
+
+<p>　　echo “您已经成功登陆”;</p>
+
+<p>　　}</p>
+
+<p>　　else</p>
+
+<p>　　{</p>
+
+<p>　　// 验证失败，将 $_session[“admin”] 置为 false</p>
+
+<p>　　$_session[“admin”] = false;</p>
+
+<p>　　die(“您无权访问”);</p>
+
+<p>　　}</p>
+
+<p>　　?&gt;</p>
+
+<p>　　是不是很简单呢?将 $_session 看成是存储在服务器端的数组即可，我们注册的每一个变量都是数组的键，跟使用数组没有什么分别。</p>
+
+<p>　　如果要登出系统怎么办?销毁 session 即可。</p>
+
+<p>　　&lt;?php</p>
+
+<p>　　session_start();</p>
+
+<p>　　// 这种方法是将原来注册的某个变量销毁</p>
+
+<p>　　unset($_session[“admin”]);</p>
+
+<p>　　// 这种方法是销毁整个 session 文件</p>
+
+<p>　　session_destroy();</p>
+
+<p>　　?&gt;</p>
+
+<p>　　Session 能否像 Cookie 那样设置生存周期呢?有了 Session 是否就完全抛弃 Cookie 呢?我想说，结合 Cookie 来使用 session 才是最方便的。</p>
+
+<p>　　Session 是如何来判断客户端用户的呢?它是通过 Session ID 来判断的，什么是 Session ID，就是那个 Session 文件的文件名，Session ID 是随机生成的，因此能保证唯一性和随机性，确保 Session 的安全。一般如果没有设置 Session 的生存周期，则 Session ID 存储在内存中，关闭浏览器后该 ID 自动注销，重新请求该页面后，重新注册一个 session ID。</p>
+
+<p>　　如果客户端没有禁用 Cookie，则 Cookie 在启动 Session 会话的时候扮演的是存储 Session ID 和 session 生存期的角色。</p>
+
+<p>　　我们来手动设置 session 的生存期：</p>
+
+<p>　　session_start();</p>
+
+<p>　　// 保存一天</p>
+
+<p>　　$lifeTime = 24 * 3600;</p>
+
+<p>　　setcookie(session_name(), session_id(), time() + $lifeTime, “/”);</p>
+
+<p>　　?&gt;</p>
+
+<p>　　其实 Session 还提供了一个函数 session_set_cookie_params(); 来设置 Session 的生存期的，该函数必须在 session_start() 函数调用之前调用：</p>
+
+<p>　　// 保存一天</p>
+
+<p>　　&lt;?php</p>
+
+<p>　　$lifeTime = 24 * 3600;</p>
+
+<p>　　session_set_cookie_params($lifeTime);</p>
+
+<p>　　session_start();</p>
+
+<p>　　$_session[“admin”] = true;</p>
+
+<p>　　?&gt;</p>
+
+<p>　　如果客户端使用 IE 6.0 ， session_set_cookie_params(); 函数设置 Cookie 会有些问题，所以我们还是手动调用 setcookie 函数来创建 cookie。</p>
+
+<p>　　假设客户端禁用 Cookie 怎么办?没办法，所有生存周期都是浏览器进程了，只要关闭浏览器，再次请求页面又得重新注册 Session。那么怎么传递 Session ID 呢?通过 URL 或者通过隐藏表单来传递，PHP 会自动将 session ID 发送到 URL 上，URL 形如：http://www.openphp .cn /index.php?PHPSESSID=bba5b2a240a77e5b44cfa01d49cf9669，其中 URL 中的参数 PHPSESSID 就是 Session ID了，我们可以使用 $_GET 来获取该值，从而实现 session ID 页面间传递。</p>
+
+<p>　　// 保存一天</p>
+
+<p>　　&lt;?php</p>
+
+<p>　　$lifeTime = 24 * 3600;</p>
+
+<p>　　// 取得当前 session 名，默认为 PHPSESSID</p>
+
+<p>　　$sessionName = session_name();</p>
+
+<p>　　// 取得 session ID</p>
+
+<p>　　$sessionID = $_GET[$sessionName];</p>
+
+<p>　　// 使用 session_id() 设置获得的 session ID</p>
+
+<p>　　session_id($sessionID);</p>
+
+<p>　　session_set_cookie_params($lifeTime);</p>
+
+<p>　　session_start();</p>
+
+<p>　　$_session[“admin”] = true;</p>
+
+<p>　　?&gt;</p>
+
+<p>　　对于虚拟主机来说，如果所有用户的 Session 都保存在系统临时文件夹里，将给维护造成困难，而且降低了安全性，我们可以手动设置 Session 文件的保存路径，session_save_path()就提供了这样一个功能。我们可以将 session 存放目录指向一个不能通过 Web 方式访问的文件夹，当然，该文件夹必须具备可读写属性。</p>
+
+<p>　　&lt;?php</p>
+
+<p>　　// 设置一个存放目录</p>
+
+<p>　　$savePath = “./session_save_dir/”;</p>
+
+<p>　　// 保存一天</p>
+
+<p>　　$lifeTime = 24 * 3600;</p>
+
+<p>　　session_save_path($savePath);</p>
+
+<p>　　session_set_cookie_params($lifeTime);</p>
+
+<p>　　session_start();</p>
+
+<p>　　$_session[“admin”] = true;</p>
+
+<p>　　?&gt;</p>
+
+<p>　　同 session_set_cookie_params(); 函数一样，session_save_path() 函数也必须在 session_start() 函数调用之前调用。</p>
+
+<p>　　我们还可以将数组，对象存储在 session 中。操作数组和操作一般变量没有什么区别，而保存对象的话，PHP 会自动对对象进行序列化(也叫串行化)，然后保存于 session 中。下面例子说明了这一点：</p>
+
+<p>　　&lt;?php</p>
+
+<p>　　class person</p>
+
+<p>　　{</p>
+
+<p>　　var $age;</p>
+
+<p>　　function output() {</p>
+
+<p>　　echo $this-&gt;age;</p>
+
+<p>　　}</p>
+
+<p>　　function setAge($age) {</p>
+
+<p>　　$this-&gt;age = $age;</p>
+
+<p>　　}</p>
+
+<p>　　}</p>
+
+<p>　　?&gt;</p>
+
+<p>　　setage.PHP</p>
+
+<p>　　&lt;?php</p>
+
+<p>　　session_start();</p>
+
+<p>　　require_once “person.PHP”;</p>
+
+<p>　　$person = new person();</p>
+
+<p>　　$person-&gt;setAge(21);</p>
+
+<p>　　$_session[‘person’] = $person;</p>
+
+<p>　　echo “check here to output age”;</p>
+
+<p>　　?&gt;</p>
+
+<p>　　output.PHP</p>
+
+<p>　　&lt;?php</p>
+
+<p>　　// 设置回调函数，确保重新构建对象。</p>
+
+<p>　　ini_set(‘unserialize_callback_func’, ‘mycallback’);</p>
+
+<p>　　function mycallback($classname) {</p>
+
+<p>　　$classname . “.PHP”;</p>
+
+<p>　　}</p>
+
+<p>　　session_start();</p>
+
+<p>　　$person = $_session[“person”];</p>
+
+<p>　　// 输出 21</p>
+
+<p>　　$person-&gt;output();</p>
+
+<p>　　?&gt;</p>
+
+<p>　　当我们执行 setage.php 文件的时候，调用了 setage() 方法，设置了年龄为 21，并将该状态序列化后保存在 session 中(PHP 将自动完成这一转换)，当转到 output.php 后，要输出这个值，就必须反序列化刚才保存的对象，又因为在解序列化的时候需要实例化一个未定义类，所以我们定义了以后回调函数，自动包含 person.PHP 这个类文件，因此对象被重构，并取得当前 age 的值为 21，然后调用 output() 方法输出该值。</p>
+
+
+  </div><a class="u-url" href="/skills/173.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

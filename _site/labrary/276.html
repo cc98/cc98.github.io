@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>JDBC 实例 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="JDBC 实例" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Connection" />
+<meta property="og:description" content="Connection" />
+<link rel="canonical" href="http://localhost:4001/labrary/276.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/276.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2011-03-28T00:23:05-07:00" />
+<script type="application/ld+json">
+{"headline":"JDBC 实例","dateModified":"2011-03-28T00:23:05-07:00","datePublished":"2011-03-28T00:23:05-07:00","description":"Connection","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/276.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/276.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">JDBC 实例</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2011-03-28T00:23:05-07:00" itemprop="datePublished">Mar 28, 2011
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Connection</p>
+
+<p>Statement</p>
+
+<p>ResultSet</p>
+
+<p>DataSource</p>
+
+<!--more-->
+
+<p>001 /**<br />
+002 * ConnOracle 使用Oracle提供类库<br />
+003 */<br />
+004 package com.testjdbc.jdbc;<br />
+005 <br />
+006 import java.sql.Connection;<br />
+007 import java.sql.DriverManager;<br />
+008 import java.sql.ResultSet;<br />
+009 import java.sql.ResultSetMetaData;<br />
+010 import java.sql.SQLException;<br />
+011 import java.sql.Statement;<br />
+012 <br />
+013 /**<br />
+014 * create date: 2011-3-26 上午11:40:55<br />
+015 *<br />
+016 * @author Tao<br />
+017 *<br />
+018 */<br />
+019 public class ConnOracle {<br />
+020    <br />
+021     private Connection conn;<br />
+022     private Statement stmt;<br />
+023    <br />
+024     private String driver = “oracle.jdbc.OracleDriver”;<br />
+025     private String url = “jdbc:oracle:thin:@127.0.0.1:1521:orcl”;<br />
+026 <br />
+027     /**<br />
+028      * <br />
+029      */<br />
+030     public ConnOracle() {<br />
+031         // TODO Auto-generated constructor stub<br />
+032         try {<br />
+033             Class.forName(driver);<br />
+034             conn = DriverManager.getConnection(url,”ty”,”ty”);<br />
+035             conn.setAutoCommit(false);<br />
+036             stmt = conn.createStatement();<br />
+037         } catch (ClassNotFoundException e) {<br />
+038             // TODO Auto-generated catch block<br />
+039             e.printStackTrace();<br />
+040         } catch (SQLException e) {<br />
+041             // TODO Auto-generated catch block<br />
+042             e.printStackTrace();<br />
+043         }<br />
+044     }<br />
+045    <br />
+046     public void getAll(){<br />
+047         try {<br />
+048             ResultSet rs = stmt.executeQuery(“select * from scott.emp”);<br />
+049             while(rs.next()){<br />
+050                 System.out.println(rs.getString(“ename”)+”   “+rs.getDouble(“sal”));<br />
+051             }<br />
+052             ResultSetMetaData rsmd = rs.getMetaData();<br />
+053             System.out.println(rsmd.getColumnClassName(2));<br />
+054             System.out.println(rsmd.getColumnName(2));<br />
+055             System.out.println(rsmd.getColumnCount());<br />
+056            <br />
+057             rs.close();<br />
+058         } catch (SQLException e) {<br />
+059             // TODO Auto-generated catch block<br />
+060             e.printStackTrace();<br />
+061         }<br />
+062     }<br />
+063    <br />
+064     public void insertData(int empno,String ename,double sal,int deptno){<br />
+065         String sql = “insert into emp(empno,ename,sal,deptno,hiredate) “ +<br />
+066                 “values (“+empno+”,’“+ename+”’,”+sal+”,”+deptno+”,sysdate)”;<br />
+067         System.out.println(sql);<br />
+068         try {<br />
+069             int i = stmt.executeUpdate(sql);<br />
+070             if(i != 0){<br />
+071                 conn.commit();<br />
+072                 System.out.println(“数据添加成功”);<br />
+073             }else{<br />
+074                 conn.rollback();<br />
+075             }<br />
+076         } catch (SQLException e) {<br />
+077             // TODO Auto-generated catch block<br />
+078             try {<br />
+079                 conn.rollback();<br />
+080             } catch (SQLException e1) {<br />
+081                 // TODO Auto-generated catch block<br />
+082                 e1.printStackTrace();<br />
+083             }<br />
+084             e.printStackTrace();<br />
+085         }<br />
+086     }<br />
+087    <br />
+088     /**<br />
+089      * 资源释放<br />
+090      */<br />
+091     public void close(){<br />
+092         if(conn != null){<br />
+093             try {<br />
+094                 conn.close();<br />
+095             } catch (SQLException e) {<br />
+096                 // TODO Auto-generated catch block<br />
+097                 e.printStackTrace();<br />
+098             }<br />
+099         }   <br />
+100     }<br />
+101 <br />
+102     /**<br />
+103      * @param args<br />
+104      */<br />
+105     public static void main(String[] args) {<br />
+106         // TODO Auto-generated method stub<br />
+107         ConnOracle co = new ConnOracle();<br />
+108         co.getAll();<br />
+109         //co.insertData(102, “tony”, 2000, 30);<br />
+110         co.close();<br />
+111     }<br />
+112 <br />
+113 }</p>
+
+  </div><a class="u-url" href="/labrary/276.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

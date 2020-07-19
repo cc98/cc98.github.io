@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Debian/Ubuntu Linux（VPS）搭建L2TP/IPSec VPN服务器 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Debian/Ubuntu Linux（VPS）搭建L2TP/IPSec VPN服务器" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="尝试过直接用PPTP搭建VPN，但效果不理想，然后转而搭建一个L2TP/IPSec VPN服务器，期间遇到过很多问题，尝试过CentOS，最后还是在Ubuntu下终于顺利解决了。留给大家参考。" />
+<meta property="og:description" content="尝试过直接用PPTP搭建VPN，但效果不理想，然后转而搭建一个L2TP/IPSec VPN服务器，期间遇到过很多问题，尝试过CentOS，最后还是在Ubuntu下终于顺利解决了。留给大家参考。" />
+<link rel="canonical" href="http://localhost:4001/skills/1093.html" />
+<meta property="og:url" content="http://localhost:4001/skills/1093.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-01-25T22:57:08-08:00" />
+<script type="application/ld+json">
+{"headline":"Debian/Ubuntu Linux（VPS）搭建L2TP/IPSec VPN服务器","dateModified":"2014-01-25T22:57:08-08:00","datePublished":"2014-01-25T22:57:08-08:00","description":"尝试过直接用PPTP搭建VPN，但效果不理想，然后转而搭建一个L2TP/IPSec VPN服务器，期间遇到过很多问题，尝试过CentOS，最后还是在Ubuntu下终于顺利解决了。留给大家参考。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/skills/1093.html"},"@type":"BlogPosting","url":"http://localhost:4001/skills/1093.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Debian/Ubuntu Linux（VPS）搭建L2TP/IPSec VPN服务器</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2014-01-25T22:57:08-08:00" itemprop="datePublished">Jan 25, 2014
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>尝试过直接用PPTP搭建VPN，但效果不理想，然后转而搭建一个L2TP/IPSec VPN服务器，期间遇到过很多问题，尝试过CentOS，最后还是在Ubuntu下终于顺利解决了。留给大家参考。</p>
+
+<p><strong>说明：</strong></p>
+
+<p>YOUR-HOST-IP：指你主机的公网IP地址，如果你没有公网IP地址，请直接关闭此页面！</p>
+
+<p>YOUR-PSK-SECRET：指你的IPSec预设共享密钥</p>
+
+<p> </p>
+
+<p><strong>操作：</strong>  </p>
+
+<p>a）安装依赖软件</p>
+
+<p>$sudo apt-get install ppp openswan xl2tpd iptables lsof</p>
+
+<p> </p>
+
+<p>注意：如果安装过程中遇到如下错误，请确认系统中是否已安装xl2tp类似服务。我被此问题困扰了很久，最终通过仔细翻阅错误日志（/var/log/syslog）才发现原来此错误是由于xl2tpd启动需要绑定的1701端口被占用导致。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Setting up xl2tpd <span class="o">(</span>1.2.7+dfsg-1<span class="o">)</span> ... Starting xl2tpd: invoke-rc.d: initscript xl2tpd, action <span class="s2">"start"</span> failed. dpkg: error processing xl2tpd <span class="o">(</span><span class="nt">--configure</span><span class="o">)</span>: subprocess installed post-installation script returned error <span class="nb">exit </span>status 1 Errors were encountered <span class="k">while </span>processing: xl2tpd E: Sub-process /usr/bin/dpkg returned an error code <span class="o">(</span>1<span class="o">)</span>
+</code></pre></div></div>
+
+<p> <!--more--></p>
+
+<p>b）配置PPP</p>
+
+<p>$sudo vim /etc/ppp/options.xl2tpd</p>
+
+<pre><code class="language-actionscript3">require-mschap-v2 ms-dns 208.67.222.222 ms-dns 208.67.220.220 asyncmap 0 auth crtscts lock hide-password modem debug name l2tpd proxyarp lcp-echo-interval 30 lcp-echo-failure 4 mtu 1400 noccp connect-delay 5000
+</code></pre>
+
+<p>注意：</p>
+
+<p>1) 此处我选择使用openDNS服务，如果你有其他选择请修改ms-dns配置项。</p>
+
+<p>2) 最后三行的配置项是针对OS X/iOS而设置，如果不添加此三行，windows/andriod均可正常连接VPN服务，但OS X/iOS则无法连接。</p>
+
+<p> </p>
+
+<p>c）配置IPSec</p>
+
+<p>$sudo vim /etc/ipsec.conf</p>
+
+<pre><code class="language-actionscript3"># conforms to second version of ipsec.conf specification version2.0 # basic configuration config setup # NAT-TRAVERSAL support, see README.NAT-Traversal nat\_traversal=yes # exclude networks used on server side by adding %v4:!a.b.c.0/24 virtual\_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12 # OE is now off by default. Uncomment and change to on, to enable. oe=off # which IPsec stack to use. auto will try netkey, then klips then mast protostack=auto conn L2TP-PSK-NAT rightsubnet=vhost:%priv also=L2TP-PSK-noNAT conn L2TP-PSK-noNAT authby=secret pfs=no auto=add keyingtries=3 rekey=no ikelifetime=12h keylife=1h type=transport left=YOUR-HOST-IP leftprotoport=17/1701 right=%any rightprotoport=17/%any dpddelay=40 dpdtimeout=130 dpdaction=clear
+</code></pre>
+
+<p> </p>
+
+<p>注意：最后三行dpd*配置项是为OS X/iOS而配置，如果你的OS X/iOS设备仍然无法连接VPN服务器，请适当修改dpddelay和dpdtimeout项的值。修改后仍然无法连接者，去看/var/log/syslog日志吧！</p>
+
+<p> </p>
+
+<p>d）配置XL2TPD</p>
+
+<p>$sudo vim /etc/xl2tpd/xl2tpd.conf</p>
+
+<p> </p>
+
+<pre><code class="language-actionscript3">[global] ipsec saref = yes [lns default] ip range = 10.1.2.2-10.1.2.254 local ip = 10.1.2.1 refuse chap = yes refuse pap = yes require authentication = yes length bit = yes pppoptfile = /etc/ppp/options.xl2tpd ppp debug = yes
+</code></pre>
+
+<p> </p>
+
+<p>注意：</p>
+
+<p>1) ip range配置项是客户端分配IP段定义，此处一般无需修改。如果你的系统中与此值存在冲突，我想你已经明白如何做了！</p>
+
+<p>2) ppp debug配置项指定是否开启PPP调试日志，默认PPP日志会输出到/var/log/syslog文件。</p>
+
+<p> </p>
+
+<p>e）配置IPSec预设共享密钥</p>
+
+<p>$sudo vim /etc/ipsec.secrets</p>
+
+<p><em># PSK</em></p>
+
+<p><em>YOUR-HOST-IP %any : PSK “YOUR-PSK-SECRET”</em></p>
+
+<p> </p>
+
+<p>f）配置iptables规则，（我这里eth1为机器的外网网卡）</p>
+
+<p>$sudo iptables -t nat -A POSTROUTING -s 10.161.173.0/24 -o eth1 -j MASQUERADE</p>
+
+<p> </p>
+
+<p>g）保存并配置重启后的iptables。</p>
+
+<p>$ iptables-save &gt; /etc/iptables-rules</p>
+
+<p>修改/etc/network/interfaces，在eth1下up语句前添加：</p>
+
+<p>pre-up iptables-restore &lt; /etc/iptables-rules</p>
+
+<p> </p>
+
+<p>h）添加L2TP/IPSec VPN账号</p>
+
+<p>$sudo vim /etc/ppp/chap-secrets</p>
+
+<p> </p>
+
+<p><em>#user    server    password    ip</em></p>
+
+<p><em>test    *    test-passwd    *</em></p>
+
+<p><em>test2    xl2tpd    test2-passwd    *</em></p>
+
+<p> </p>
+
+<p>i）配置/etc/sysctl.conf，以允许转发。首先，找到net.ipv4.ip_forward项，修改为：</p>
+
+<p>net.ipv4.ip_forward=1</p>
+
+<p>然后，运行如下命令：</p>
+
+<p>#sysctl -p</p>
+
+<p> </p>
+
+<p>j）重启IPSec</p>
+
+<p>$sudo /etc/init.d/ipsec restart</p>
+
+<p> </p>
+
+<p>k）重启XL2TPD</p>
+
+<p>$sudo /etc/init.d/xl2tpd restart</p>
+
+<p> </p>
+
+<p>注意：如果服务都能正常启动，但客户端无法连接VPN服务器，你可以停止xl2tpd（$sudo /etc/init.d/xl2tpd stop）后在命令行使用$sudo xl2tpd -D命令以调试模式启动，然后就看日志吧！</p>
+
+<p> </p>
+
+<p>阿里云服务器搭建vpn需要注意两点：</p>
+
+<p>① PPTP配置里面的 localip   remoteip 的IP段要和内网IP属于同一网段</p>
+
+<p>②执行 这个的时候 iptables -t nat -A POSTROUTING -s 10.129.9.0/24 -o eth1 -j MASQUERADE<br />
+ 要把“eth1” 修改成你对应的外网网卡，阿里云的服务器是双网卡的可能跟别的有些不同。</p>
+
+<p> </p>
+
+<p><strong>附服务器接入常见问题总结：</strong></p>
+
+<p><strong>1、VPN客户端拨入时出现721错误：</strong></p>
+
+<p>这种情况大数多原因为客户系统，如果为WINXP并且安装了SP2，则可能会出现这种情况，解决方法为：修改注册表HKEY_LOCAL_MACHINE<a href="http://www.ha97.com/tag/system" title="SYSTEM">SYSTEM</a>CurrentControlSetControlClass{4D36E972-E325-11CE-BFC1-08002bE10318}，其中其中 是 WAN 微型端口 (PPTP) 驱动程序的网络适配器，在此项中新建一个DWORD 值ValidateAddress，然后设置为0即可。<br />
+服务器端PPP协议配置不正确也会导致此类错误。</p>
+
+<p><strong>2、VPN客户端拨入时出现800错误：</strong></p>
+
+<p>这种情况大数多原因为客户系统连接服务器时使用域名，因临时DNS无法解析而出现这种错误，可更换DNS试一下，如果还是出错此类错误，则可能是无法连接到VPN服务器，可能是VPN服务器关闭或出现故障，也可能是客户电脑上的防火墙阻止了VPN连接请求，可关闭防火墙试一下。<br />
+有些使用中转服务器连接到VPN服务器的客户端，也可能出现此类错误，原因为中转服务器中转功能出现故障。</p>
+
+<p><strong>3、VPN客户端拨入时出现619错误：</strong></p>
+
+<p>这种情况大数多原因为客户机连接Internet的网关（如家庭宽带路由或公司上网网关路由或防火墙）NAT-T功能关闭或对VPN支持性不好，主要是对GRE及PPTP协议的NAT-T不支持。可打开网关路由的NAT-T功能，如果还是出现错误，则需要更换网关设备，现在市面上大多数设备已经支持。</p>
+
+<p><strong>4、VPN客户端拨入时出现691错误：</strong></p>
+
+<p>这种情况大数多原因为客户机连接VPN服务器异常中断，因多数服务器限制一个帐户同时只有一个人使用，所以一旦异常断开，则需等待3分钟左右。有些VPN服务器没有设置异常断线检查功能也可能导致用户一旦异常断开后很长时间不能连接。所以解决办法为在服务器上设置异常断线检查程序或功能。</p>
+
+<p><strong>5、VPN客户端拨入时出现733错误：</strong></p>
+
+<p>这种情况大数多原因为客户机拨入VPN服务器后无法获取IP地址，可修复DHCP服务器或设置静态IP地址或地址池。</p>
+
+<p><strong>6、VPN客户端拨入时出现734 ppp链接控制协议终止：</strong></p>
+
+<p>这种情况多数为VPN服务器配置有问题，如果是PPP配置有问题，不支持MPPE加密或支持度不好。请重新编译PPP及MPPE相关程序。对于用于游戏代理的用户，可不使用加密（需在服务器端不要求加密）。</p>
+
+<p><strong>7、VPN客户端拨入时出现718错误：</strong></p>
+
+<p>拨入时用户名和密码出错误，有时也因为服务器端认证服务出现故障。</p>
+
+
+  </div><a class="u-url" href="/skills/1093.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

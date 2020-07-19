@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>git pull / git push 记住密码方法（ssh记住密码） | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="git pull / git push 记住密码方法（ssh记住密码）" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="备注： 适用于Linux/Mac OS等。" />
+<meta property="og:description" content="备注： 适用于Linux/Mac OS等。" />
+<link rel="canonical" href="http://localhost:4001/share/816.html" />
+<meta property="og:url" content="http://localhost:4001/share/816.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-09-29T14:05:55-07:00" />
+<script type="application/ld+json">
+{"headline":"git pull / git push 记住密码方法（ssh记住密码）","dateModified":"2012-09-29T14:05:55-07:00","datePublished":"2012-09-29T14:05:55-07:00","description":"备注： 适用于Linux/Mac OS等。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/share/816.html"},"@type":"BlogPosting","url":"http://localhost:4001/share/816.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">git pull / git push 记住密码方法（ssh记住密码）</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-09-29T14:05:55-07:00" itemprop="datePublished">Sep 29, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>备注： 适用于Linux/Mac OS等。</p>
+
+<p>有没有觉得，每次git pull 或git push的时候，都需要重新输入密码，很麻烦。搜了下找到一种方法记住ssh连接的密码，同时把Git repository的密码保存下来，下面就来一步一步做吧。。</p>
+
+<h4 id="1-首先是保存密码输入问题需要创建密钥在你的命令行输入">1. 首先是保存密码输入问题，需要创建密钥，在你的命令行输入：</h4>
+
+<p>local:~ yourname$   <strong>ssh-keygen -t rsa</strong></p>
+
+<p>然后依次回车，输入密码，这个密码和SSH的帐号密码无关。</p>
+
+<!--more-->
+
+<p>Generating public/private rsa key pair.<br />
+Enter file in which to save the key (/u/kim/.ssh/id_rsa): 【回车】<br />
+Enter passphrase (empty for no passphrase): 【第一次密码】<br />
+Enter same passphrase again: 【第二次密码】<br />
+Your identification has been saved in /u/kim/.ssh/id_rsa.<br />
+Your public key has been saved in /u/kim/.ssh/id_rsa.pub.</p>
+
+<h4 id="2-接下来把密钥文件内容上传到的ssh帐号下">2. 接下来把密钥文件内容上传到的SSH帐号下:</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td>local:~ yourname$  **cat ~/.ssh/id_rsa.pub </td>
+      <td>ssh username@yourhost ‘cat &gt;&gt; .ssh/authorized_keys’**</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="3-最后一步测试">3. 最后一步测试</h4>
+
+<p>local:~ yourname$  <strong>ssh username@yourhost.com</strong></p>
+
+<p>如果此时不需要你输入密码，那么恭喜你设置成功了。现在你再执行git pull 或git push就不需要输入密码了。</p>
+
+<p>参考：<a href="http://samuel.kadolph.com/2011/03/store-your-git-https-passwords-in-your-os-x-keychain/">Store your git https passwords in your OS X Keychain</a></p>
+
+<p> </p>
+
+<p>ps： 如果更换主机ip地址等，会出现ssh的一个提示，去除这个提示，请使用：</p>
+
+<h4 id="ssh-keygen--f-sshknown_hosts--r-newip">ssh-keygen -f  ~/.ssh/known_hosts -R NewIP</h4>
+
+<p> </p>
+
+<p> </p>
+
+<h2 id="对于另外一种每次需要输入用户和密码git账户比如github用以下方法">对于另外一种每次需要输入用户和密码git账户，比如github。用以下方法</h2>
+
+<p>若想让 Git 使用 osxkeychain，可以在 Git 的全局设置中进行设置：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\&lt;code\&gt;$ git config --global credential.helper osxkeychain # Set git to use the osxkeychain credential helper \&lt;/code\&gt;
+</code></pre></div></div>
+
+<p>经过这样的设置之后，下次再克隆 HTTPS 地址时会询问你的用户名和密码，并授权给 OSX keychain。完成这些之后你的用户名和密码就会存储到 keychain 中，再也不会在 Git 中询问了。</p>
+
+
+  </div><a class="u-url" href="/share/816.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

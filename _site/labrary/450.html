@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>wordpress显示文章浏览次数和热门文章排行 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="wordpress显示文章浏览次数和热门文章排行" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="因为wordpress没有内置的显示浏览次数的小工具，那么我们只有自己加一个功能或者下载一个插件，常见的显示浏览次数的插件有WP-PostViews等几种插件，很多人应该用过这块插件，我现在这款主题也用的这个，感觉还行吧。看个人喜欢，如果不喜欢用插件也可以使用加入代码的方法。" />
+<meta property="og:description" content="因为wordpress没有内置的显示浏览次数的小工具，那么我们只有自己加一个功能或者下载一个插件，常见的显示浏览次数的插件有WP-PostViews等几种插件，很多人应该用过这块插件，我现在这款主题也用的这个，感觉还行吧。看个人喜欢，如果不喜欢用插件也可以使用加入代码的方法。" />
+<link rel="canonical" href="http://localhost:4001/labrary/450.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/450.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-03-24T20:57:15-07:00" />
+<script type="application/ld+json">
+{"headline":"wordpress显示文章浏览次数和热门文章排行","dateModified":"2012-03-24T20:57:15-07:00","datePublished":"2012-03-24T20:57:15-07:00","description":"因为wordpress没有内置的显示浏览次数的小工具，那么我们只有自己加一个功能或者下载一个插件，常见的显示浏览次数的插件有WP-PostViews等几种插件，很多人应该用过这块插件，我现在这款主题也用的这个，感觉还行吧。看个人喜欢，如果不喜欢用插件也可以使用加入代码的方法。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/450.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/450.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">wordpress显示文章浏览次数和热门文章排行</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-03-24T20:57:15-07:00" itemprop="datePublished">Mar 24, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>因为wordpress没有内置的显示浏览次数的小工具，那么我们只有自己加一个功能或者下载一个插件，常见的显示浏览次数的插件有WP-PostViews等几种插件，很多人应该用过这块插件，我现在这款主题也用的这个，感觉还行吧。看个人喜欢，如果不喜欢用插件也可以使用加入代码的方法。</p>
+
+<p>可以将下面代码加入到functiuons.php中去。</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="nf">getPostViews</span><span class="p">(</span><span class="nv">$postID</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$count</span><span class="nx">\_key</span> <span class="o">=</span> <span class="s1">'post\_views\_count'</span><span class="p">;</span> <span class="nv">$count</span> <span class="o">=</span> <span class="nx">get\_post\_meta</span> <span class="p">(</span> <span class="nv">$postID</span><span class="p">,</span> <span class="nv">$count</span><span class="nx">\_key</span><span class="p">,</span> <span class="kc">true</span> <span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$count</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span> <span class="nx">delete\_post\_meta</span> <span class="p">(</span> <span class="nv">$postID</span><span class="p">,</span> <span class="nv">$count</span><span class="nx">\_key</span> <span class="p">);</span> <span class="nx">add\_post\_meta</span> <span class="p">(</span> <span class="nv">$postID</span><span class="p">,</span> <span class="nv">$count</span><span class="nx">\_key</span><span class="p">,</span> <span class="s1">'0'</span> <span class="p">);</span> <span class="k">return</span> <span class="s2">"0 View"</span><span class="p">;</span> <span class="p">}</span> <span class="k">return</span> <span class="nv">$count</span> <span class="o">.</span> <span class="s1">' Views'</span><span class="p">;</span> <span class="p">}</span> <span class="k">function</span> <span class="nf">setPostViews</span><span class="p">(</span><span class="nv">$postID</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$count</span><span class="nx">\_key</span> <span class="o">=</span> <span class="s1">'post\_views\_count'</span><span class="p">;</span> <span class="nv">$count</span> <span class="o">=</span> <span class="nx">get\_post\_meta</span> <span class="p">(</span> <span class="nv">$postID</span><span class="p">,</span> <span class="nv">$count</span><span class="nx">\_key</span><span class="p">,</span> <span class="kc">true</span> <span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$count</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">delete\_post\_meta</span> <span class="p">(</span> <span class="nv">$postID</span><span class="p">,</span> <span class="nv">$count</span><span class="nx">\_key</span> <span class="p">);</span> <span class="nx">add\_post\_meta</span> <span class="p">(</span> <span class="nv">$postID</span><span class="p">,</span> <span class="nv">$count</span><span class="nx">\_key</span><span class="p">,</span> <span class="s1">'0'</span> <span class="p">);</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="nv">$count</span> <span class="o">++</span><span class="p">;</span> <span class="nx">update\_post\_meta</span> <span class="p">(</span> <span class="nv">$postID</span><span class="p">,</span> <span class="nv">$count</span><span class="nx">\_key</span><span class="p">,</span> <span class="nv">$count</span> <span class="p">);</span> <span class="p">}</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<!--more-->
+
+<p>第二步，将如下代码插入single.php文件的主循环内</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> <span class="nx">setPostViews</span><span class="p">(</span><span class="nx">get_the_ID</span><span class="p">());</span> <span class="cp">?&gt;</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> </code><code class="highlighter-rouge">echo</code> <code class="highlighter-rouge">getPostViews(get_the_ID()); ?&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>第三步，需要在哪个页面或者栏目显示文章的浏览次数，就在相应的模板文件（比如首页：index.php，分类目录页：archive.php，侧边栏：sidebar.php）里面添加上面第二行的代码即可。<br />
+2、WP-PostViews Plus有自带的小工具功能可以使用，挺方便的，不过一些代码控就喜欢精简就自己把代码嵌入到sidebar.php中就可以了。<br />
+在主题文件sidebar.php文件中的相应位位置添加代码<br />
+显示阅读次数最多的文章或页面：</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> </code><code class="highlighter-rouge">if</code> <code class="highlighter-rouge">(function_exists(‘get_most_viewed’)): ?&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> <span class="nx">get_most_viewed</span><span class="p">();</span> <span class="cp">?&gt;</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> </code><code class="highlighter-rouge">endif</code><code class="highlighter-rouge">; ?&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>只显示阅读次数最多的文章：</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> </code><code class="highlighter-rouge">if</code> <code class="highlighter-rouge">(function_exists(‘get_most_viewed’)): ?&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> <span class="nx">get_most_viewed</span><span class="p">(</span><span class="err">‘</span><span class="nx">post</span><span class="err">’</span><span class="p">);</span> <span class="cp">?&gt;</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> </code><code class="highlighter-rouge">endif</code><code class="highlighter-rouge">; ?&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>只想显示10篇阅读次数最多的文章：</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> </code><code class="highlighter-rouge">if</code> <code class="highlighter-rouge">(function_exists(‘get_most_viewed’)): ?&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> <span class="nx">get_most_viewed</span><span class="p">(</span><span class="err">‘</span><span class="nx">post</span><span class="err">’</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="cp">?&gt;</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> </code><code class="highlighter-rouge">endif</code><code class="highlighter-rouge">; ?&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>在get_most_viewed 函数中的参数10决定要显示的篇数<br />
+显示显示某类别下的阅读次数最多的文章：</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> </code><code class="highlighter-rouge">if</code> <code class="highlighter-rouge">(function_exists(‘get_most_viewed_category’)): ?&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> <span class="nx">get_most_viewed_category</span><span class="p">(</span><span class="nx">the_catagory_ID</span><span class="p">(</span><span class="kc">false</span><span class="p">));</span> <span class="cp">?&gt;</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge"><span class="cp">&lt;?php</span> </code><code class="highlighter-rouge">endif</code><code class="highlighter-rouge">; ?&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>在get_most_viewed_category函数类别ID决定显示的分类</p>
+
+<p> </p>
+
+<p>附&lt;?php get_most_viewed(‘post’,8,0,true,true);?&gt;函数详解：</p>
+
+<p>主题中有这么一句函数，是用来引用“最受欢迎文章”的，后面一共有5个参数可供设置，说明如下：<br />
+post：可选post，page，both；<br />
+8：控制应用文章的数量；<br />
+0：截取文章标题长度，0表示不设置，不设置的话长标题就会自动换行，很难看；<br />
+true：显示文章，若改为 false 则不显示文章；<br />
+true：不显示搜索引擎机器人的查询次数，若改为 true 则全部显示</p>
+
+<p> </p>
+
+<p>==============================================</p>
+
+<p>推荐装插件：WP-PostViews：下载地址：<a href="http://wordpress.org/extend/plugins/wp-postviews/">http://wordpress.org/extend/plugins/wp-postviews/</a></p>
+
+<p>则通过调用the_views()函数：</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### Function: Display The Post Views function the\_views($display = true, $prefix = '', $postfix = '', $always = false) { $post\_views = intval(post\_custom('views')); $views\_options = get\_option('views\_options'); if ($always || should\_views\_be\_displayed($views\_options)) { $output = $prefix.str\_replace('%VIEW\_COUNT%', number\_format\_i18n($post\_views), $views\_options['template']).$postfix; if($display) { echo apply\_filters('the\_views', $output); } else { return apply\_filters('the\_views', $output); } } elseif (!$display) { return ''; } }</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/labrary/450.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

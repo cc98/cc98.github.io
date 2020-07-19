@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>OpenGL Function Calls | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="OpenGL Function Calls" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Primitives void glBegin (GLenum mode) void glEdgeFlag (GLboolean flag) void glEdgeFlagv (const GLboolean *flag) void glEnd (void) extern void glPolygonOffset (GLfloat factor, GLfloat units) void glRect (TYPE x1, TYPE y1, TYPE x2, TYPE y2) void glRectv (const TYPE *v1, const TYPE *v2) void glVertex2 (TYPE x, TYPE y) void glVertex3 (TYPE x, TYPE y, TYPE z) void glVertex4 (TYPE x, TYPE y, TYPE z, TYPE w)   Vertex Arrays extern void glArrayElement (GLint i) extern void glColorPointer (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer) extern void glDisableClientState (GLenum array) extern void glDrawArrays (GLenum mode, GLint first, GLsizei count) extern void glDrawElements (GLenum mode, GLsizei count, GLenum type, const GLvoid *indices) extern void glEdgeFlagPointer (GLsizei stride, const GLvoid *pointer) extern void glEnableClientState (GLenum array) extern void glIndexPointer (GLenum type, GLsizei stride, const GLvoid *pointer) extern void glInterleavedArrays (GLenum format, GLsizei stride, const GLvoid *pointer) extern void glNormalPointer (GLenum type, GLsizei stride, const GLvoid *pointer) extern void glTexCoordPointer (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer) extern void glVertexPointer (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer) Coordinate Transformation void glDepthRange (GLclampd near, GLclampd far) void glFrustum (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far) void glLoadIdentity (void) void glLoadMatrix (const TYPE *m) void glMatrixMode (GLenum mode) void glMultMatrix (const TYPE *m) void glOrtho (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far) void glPopMatrix (void) void glPushMatrix (void) void glRotate (TYPE angle, TYPE x, TYPE y, TYPE z) void glScale (TYPE x, TYPE y, TYPE z) void glTranslate (TYPE x, TYPE y, TYPE z) void glViewport (GLint x, GLint y, GLsizei width, GLsizei height)   Coloring and Lighting void glColor3 (TYPE red, TYPE green, TYPE blue) void glColor4 (TYPE red, TYPE green, TYPE blue, TYPE alpha) void glColorMaterial (GLenum face, GLenum mode) void glFrontFace (GLenum dir) void glGetLight (GLenum light, GLenum pname, TYPE *params) void glGetMaterial (GLenum face, GLenum pname, TYPE *params) void glIndex (TYPE index) void glLight (GLenum light, GLenum pname, TYPE param) void glLightModel (GLenum pname, TYPE param) void glMaterial (GLenum face, GLenum pname, TYPE param) void glNormal3 (TYPE nx, TYPE ny, TYPE nz) void glShadeModel (GLenum mode)   Clipping void glClipPlane (GLenum plane, const GLdouble *equation) void glGetClipPlane (GLenum plane, GLdouble *equation)   Rasterization void glBitmap (GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, const GLubyte *bitmap) void glCullFace (GLenum mode) void glGetPolygonStipple (GLubyte *mask) void glLineStipple (GLint factor, GLushort pattern) void glLineWidth (GLfloat width) void glPointSize (GLfloat size) void glPolygonMode (GLenum face, GLenum mode) void glPolygonStipple (const GLubyte *mask) void glRasterPos2 (TYPE x, TYPE y) void glRasterPos3 (TYPE x, TYPE y, TYPE z) void glRasterPos4 (TYPE x, TYPE y, TYPE z, TYPE w)   Pixel Operations void glCopyPixels (GLint x, GLint y, GLsizei width, GLsizei keight, GLenum type) void glDrawPixels (GLsizei width, GLsizei keight, GLenum format, GLenum type, const GLvoid *pixels) void glGetPixelMap (GLenum map, TYPE *values) void glPixelMap (GLenum map, GLint mapsize, const TYPE *values) void glPixelStore (GLenum pname, TYPE param) void glPixelTransfer (GLenum pname, TYPE param) void glPixelZoom (GLfloat xfactor, GLfloat yfactor) void glReadBuffer (GLenum mode) void glReadPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels)   Textures GLboolean glAreTexturesResident (GLsizei n, const GLuint *textures, GLboolean *residences) void glBindTexture (GLenum target, GLuint texture) void glCopyTexSubimage1D (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width) void glCopyTexSubimage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height) void glCopyTeximage1D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint GLsizei v, GLint border) void glCopyTeximage2D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint, GLsizei width, GLsizei height, GLint border) void glDeleteTextures (GLsizei n, const GLuint *textures) void glGenTextures (GLsizei n, GLuint *textures) void glGetTexEnv (GLenum target, GLenuni pname, TYPE *params) void glGetTexGen (GLenum coord, GLenum pname, TYPE *params) void glGetTexLevelParameter (GLenum targrt, GLint level, GLenum pname, TYPE *params) void glGetTexParameter (GLenum target, GLenum pname, TYPE *params) void glGetTeximage (GLenum target, GLint level, GLenum format, GLenum type, GLvoid *pixels) void glIsTexture (GLuint texture) void glPrioritizeTextures (GLsizei n, const GLuint *textures, const GLclampf *priorities) void glTexCoord1 (TYPE s) void glTexCoord2 (TYPE s, TYPE t) void glTexCoord3 (TYPE s, TYPE t, TYPE r) void glTexCoord4 (TYPE s, TYPE t, TYPE r, TYPE q) void glTexEnv (GLenum target, GLenum pname, TYPE param) void glTexGen (GLenum coord, GLenum pname, TYPE param) void glTexImage1D (GLenum target, GLint level, GLint components, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *pixels) void glTexImage2D (GLenum target, GLint level, GLint components, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *pixels) void glTexParameter (GLenum target, GLenum pname, TYPE param) void glTexSubImage1D (GLenum target, GLint leve&#39;l, GLint xoffset, GLsizei width, GLenum format, GLenum type, const GLvoid *pixels) void glTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *pixels)   Fog void glFog (GLenum pname, TYPE param)   Frame Buffer Operations void glAccum (GLenum op, GLfloat value) void glAlphaFunc (GLenum func, GLclampf ref) void glBlendFunc (GLenum sfactor, GLenum dfactor) void glClear (GLbitfield mask) void glClearAccum (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) void glClearColor ( GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha) void glClearDepth (GLclampd depth) void glClearIndex (GLfloat c) void glClearStencil (GLint s) void glColorMask ( GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha) void glDepthFunc (GLenum func) void glDepthMask (GLboolean flag) void glDrawBuffer (GLenum mode) void glIndexMask (GLuint mask) void glLogicOp (GLenum opcode) void glScissor (GLint x, GLint y, GLsizei width, GLsizei height) void glStencilFunc (GLenum func, GLint ref, GLuint mask) void glStencilMask (GLuint mask) void glStencilOp (GLenum fail, GLenum pass, GLenum zpass)   Evaluators void glEvalCoord1 (TYPE u) void glEvalCoord2 (TYPE u, TYPE v) void glEvalMesh1 (GLenum mode, GLint i1, GLint i2) void glEvalMesh2 (GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2) void glEvalPoint1 (GLint i) void glEvalPoint2 (GLint i, GLint j) void glGetMap (GLenum target, GLenum query, TYPE *v) void glMap1 (GLenum target, TYPE u1, TYPE u2, GLint stride, GLint order, const TYPE *points) void glMap2 (GLenum target, TYPE u1, TYPE u2, GLint ustride, GLint uorder, TYPE v1, TYPE v2, GLint vstride, GLint vorder, const TYPE *points) void glMapGrid1 (GLint n, TYPE u1, TYPE u2) void glMapGrid2 (GLint un, TYPE u1, TYPE u2, GLint vn, TYPE v1, TYPE v2)   Selection and Feedback void glFeedbackBuffer (GLsizei size, GLenum type, GLfloat *buffer) void glInitNames (void) void glLoadName (GLuint name) void glPassThrough (GLfloat token) void glPopName (void) void glPushName (GLuint name) GLint glRenderMode (GLenum mode) void glSelectBuffer (GLsizei size, GLuint *buffer)   Display Lists void glCallList (GLuint list) void glCallLists (GLsizei n, GLenum type, const GLvoid *lists) void glDeleteLists (GLuint list, GLsizei range) void glEndList (void) GLuint glGenLists (GLsizei range) GLboolean glIsList (GLuint list) void glListBase (GLuint base) void glNewList (GLuint list, GLenum mode)   Modes and Execution void glDisable (GLenum cap) void glEnable (GLenum cap) void glFinish (void) void glFlush (void) void glHint (GLenum target, GLenum mode) GLboolean glIsEnabled (GLenum cap)   State Queries void glGetBooleanv (GLenum pname, GLboolean *params) void glGetDoublev (GLenum pname, GLdouble *params) GLenum glGetError (void) void glGetFloatv (GLenum pname, GLfloat *params) void glGetIntegerv (GLenum pname, GLint *params) const GLubyte *glGetString (GLenum name) void glPopAttrib (void) void glPushAttrib (GLbitfield mask)" />
+<meta property="og:description" content="Primitives void glBegin (GLenum mode) void glEdgeFlag (GLboolean flag) void glEdgeFlagv (const GLboolean *flag) void glEnd (void) extern void glPolygonOffset (GLfloat factor, GLfloat units) void glRect (TYPE x1, TYPE y1, TYPE x2, TYPE y2) void glRectv (const TYPE *v1, const TYPE *v2) void glVertex2 (TYPE x, TYPE y) void glVertex3 (TYPE x, TYPE y, TYPE z) void glVertex4 (TYPE x, TYPE y, TYPE z, TYPE w)   Vertex Arrays extern void glArrayElement (GLint i) extern void glColorPointer (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer) extern void glDisableClientState (GLenum array) extern void glDrawArrays (GLenum mode, GLint first, GLsizei count) extern void glDrawElements (GLenum mode, GLsizei count, GLenum type, const GLvoid *indices) extern void glEdgeFlagPointer (GLsizei stride, const GLvoid *pointer) extern void glEnableClientState (GLenum array) extern void glIndexPointer (GLenum type, GLsizei stride, const GLvoid *pointer) extern void glInterleavedArrays (GLenum format, GLsizei stride, const GLvoid *pointer) extern void glNormalPointer (GLenum type, GLsizei stride, const GLvoid *pointer) extern void glTexCoordPointer (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer) extern void glVertexPointer (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer) Coordinate Transformation void glDepthRange (GLclampd near, GLclampd far) void glFrustum (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far) void glLoadIdentity (void) void glLoadMatrix (const TYPE *m) void glMatrixMode (GLenum mode) void glMultMatrix (const TYPE *m) void glOrtho (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far) void glPopMatrix (void) void glPushMatrix (void) void glRotate (TYPE angle, TYPE x, TYPE y, TYPE z) void glScale (TYPE x, TYPE y, TYPE z) void glTranslate (TYPE x, TYPE y, TYPE z) void glViewport (GLint x, GLint y, GLsizei width, GLsizei height)   Coloring and Lighting void glColor3 (TYPE red, TYPE green, TYPE blue) void glColor4 (TYPE red, TYPE green, TYPE blue, TYPE alpha) void glColorMaterial (GLenum face, GLenum mode) void glFrontFace (GLenum dir) void glGetLight (GLenum light, GLenum pname, TYPE *params) void glGetMaterial (GLenum face, GLenum pname, TYPE *params) void glIndex (TYPE index) void glLight (GLenum light, GLenum pname, TYPE param) void glLightModel (GLenum pname, TYPE param) void glMaterial (GLenum face, GLenum pname, TYPE param) void glNormal3 (TYPE nx, TYPE ny, TYPE nz) void glShadeModel (GLenum mode)   Clipping void glClipPlane (GLenum plane, const GLdouble *equation) void glGetClipPlane (GLenum plane, GLdouble *equation)   Rasterization void glBitmap (GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, const GLubyte *bitmap) void glCullFace (GLenum mode) void glGetPolygonStipple (GLubyte *mask) void glLineStipple (GLint factor, GLushort pattern) void glLineWidth (GLfloat width) void glPointSize (GLfloat size) void glPolygonMode (GLenum face, GLenum mode) void glPolygonStipple (const GLubyte *mask) void glRasterPos2 (TYPE x, TYPE y) void glRasterPos3 (TYPE x, TYPE y, TYPE z) void glRasterPos4 (TYPE x, TYPE y, TYPE z, TYPE w)   Pixel Operations void glCopyPixels (GLint x, GLint y, GLsizei width, GLsizei keight, GLenum type) void glDrawPixels (GLsizei width, GLsizei keight, GLenum format, GLenum type, const GLvoid *pixels) void glGetPixelMap (GLenum map, TYPE *values) void glPixelMap (GLenum map, GLint mapsize, const TYPE *values) void glPixelStore (GLenum pname, TYPE param) void glPixelTransfer (GLenum pname, TYPE param) void glPixelZoom (GLfloat xfactor, GLfloat yfactor) void glReadBuffer (GLenum mode) void glReadPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels)   Textures GLboolean glAreTexturesResident (GLsizei n, const GLuint *textures, GLboolean *residences) void glBindTexture (GLenum target, GLuint texture) void glCopyTexSubimage1D (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width) void glCopyTexSubimage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height) void glCopyTeximage1D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint GLsizei v, GLint border) void glCopyTeximage2D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint, GLsizei width, GLsizei height, GLint border) void glDeleteTextures (GLsizei n, const GLuint *textures) void glGenTextures (GLsizei n, GLuint *textures) void glGetTexEnv (GLenum target, GLenuni pname, TYPE *params) void glGetTexGen (GLenum coord, GLenum pname, TYPE *params) void glGetTexLevelParameter (GLenum targrt, GLint level, GLenum pname, TYPE *params) void glGetTexParameter (GLenum target, GLenum pname, TYPE *params) void glGetTeximage (GLenum target, GLint level, GLenum format, GLenum type, GLvoid *pixels) void glIsTexture (GLuint texture) void glPrioritizeTextures (GLsizei n, const GLuint *textures, const GLclampf *priorities) void glTexCoord1 (TYPE s) void glTexCoord2 (TYPE s, TYPE t) void glTexCoord3 (TYPE s, TYPE t, TYPE r) void glTexCoord4 (TYPE s, TYPE t, TYPE r, TYPE q) void glTexEnv (GLenum target, GLenum pname, TYPE param) void glTexGen (GLenum coord, GLenum pname, TYPE param) void glTexImage1D (GLenum target, GLint level, GLint components, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *pixels) void glTexImage2D (GLenum target, GLint level, GLint components, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *pixels) void glTexParameter (GLenum target, GLenum pname, TYPE param) void glTexSubImage1D (GLenum target, GLint leve&#39;l, GLint xoffset, GLsizei width, GLenum format, GLenum type, const GLvoid *pixels) void glTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *pixels)   Fog void glFog (GLenum pname, TYPE param)   Frame Buffer Operations void glAccum (GLenum op, GLfloat value) void glAlphaFunc (GLenum func, GLclampf ref) void glBlendFunc (GLenum sfactor, GLenum dfactor) void glClear (GLbitfield mask) void glClearAccum (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) void glClearColor ( GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha) void glClearDepth (GLclampd depth) void glClearIndex (GLfloat c) void glClearStencil (GLint s) void glColorMask ( GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha) void glDepthFunc (GLenum func) void glDepthMask (GLboolean flag) void glDrawBuffer (GLenum mode) void glIndexMask (GLuint mask) void glLogicOp (GLenum opcode) void glScissor (GLint x, GLint y, GLsizei width, GLsizei height) void glStencilFunc (GLenum func, GLint ref, GLuint mask) void glStencilMask (GLuint mask) void glStencilOp (GLenum fail, GLenum pass, GLenum zpass)   Evaluators void glEvalCoord1 (TYPE u) void glEvalCoord2 (TYPE u, TYPE v) void glEvalMesh1 (GLenum mode, GLint i1, GLint i2) void glEvalMesh2 (GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2) void glEvalPoint1 (GLint i) void glEvalPoint2 (GLint i, GLint j) void glGetMap (GLenum target, GLenum query, TYPE *v) void glMap1 (GLenum target, TYPE u1, TYPE u2, GLint stride, GLint order, const TYPE *points) void glMap2 (GLenum target, TYPE u1, TYPE u2, GLint ustride, GLint uorder, TYPE v1, TYPE v2, GLint vstride, GLint vorder, const TYPE *points) void glMapGrid1 (GLint n, TYPE u1, TYPE u2) void glMapGrid2 (GLint un, TYPE u1, TYPE u2, GLint vn, TYPE v1, TYPE v2)   Selection and Feedback void glFeedbackBuffer (GLsizei size, GLenum type, GLfloat *buffer) void glInitNames (void) void glLoadName (GLuint name) void glPassThrough (GLfloat token) void glPopName (void) void glPushName (GLuint name) GLint glRenderMode (GLenum mode) void glSelectBuffer (GLsizei size, GLuint *buffer)   Display Lists void glCallList (GLuint list) void glCallLists (GLsizei n, GLenum type, const GLvoid *lists) void glDeleteLists (GLuint list, GLsizei range) void glEndList (void) GLuint glGenLists (GLsizei range) GLboolean glIsList (GLuint list) void glListBase (GLuint base) void glNewList (GLuint list, GLenum mode)   Modes and Execution void glDisable (GLenum cap) void glEnable (GLenum cap) void glFinish (void) void glFlush (void) void glHint (GLenum target, GLenum mode) GLboolean glIsEnabled (GLenum cap)   State Queries void glGetBooleanv (GLenum pname, GLboolean *params) void glGetDoublev (GLenum pname, GLdouble *params) GLenum glGetError (void) void glGetFloatv (GLenum pname, GLfloat *params) void glGetIntegerv (GLenum pname, GLint *params) const GLubyte *glGetString (GLenum name) void glPopAttrib (void) void glPushAttrib (GLbitfield mask)" />
+<link rel="canonical" href="http://localhost:4001/labrary/317.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/317.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2011-07-06T10:20:55-07:00" />
+<script type="application/ld+json">
+{"headline":"OpenGL Function Calls","dateModified":"2011-07-06T10:20:55-07:00","datePublished":"2011-07-06T10:20:55-07:00","description":"Primitives void glBegin (GLenum mode) void glEdgeFlag (GLboolean flag) void glEdgeFlagv (const GLboolean *flag) void glEnd (void) extern void glPolygonOffset (GLfloat factor, GLfloat units) void glRect (TYPE x1, TYPE y1, TYPE x2, TYPE y2) void glRectv (const TYPE *v1, const TYPE *v2) void glVertex2 (TYPE x, TYPE y) void glVertex3 (TYPE x, TYPE y, TYPE z) void glVertex4 (TYPE x, TYPE y, TYPE z, TYPE w)   Vertex Arrays extern void glArrayElement (GLint i) extern void glColorPointer (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer) extern void glDisableClientState (GLenum array) extern void glDrawArrays (GLenum mode, GLint first, GLsizei count) extern void glDrawElements (GLenum mode, GLsizei count, GLenum type, const GLvoid *indices) extern void glEdgeFlagPointer (GLsizei stride, const GLvoid *pointer) extern void glEnableClientState (GLenum array) extern void glIndexPointer (GLenum type, GLsizei stride, const GLvoid *pointer) extern void glInterleavedArrays (GLenum format, GLsizei stride, const GLvoid *pointer) extern void glNormalPointer (GLenum type, GLsizei stride, const GLvoid *pointer) extern void glTexCoordPointer (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer) extern void glVertexPointer (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer) Coordinate Transformation void glDepthRange (GLclampd near, GLclampd far) void glFrustum (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far) void glLoadIdentity (void) void glLoadMatrix (const TYPE *m) void glMatrixMode (GLenum mode) void glMultMatrix (const TYPE *m) void glOrtho (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far) void glPopMatrix (void) void glPushMatrix (void) void glRotate (TYPE angle, TYPE x, TYPE y, TYPE z) void glScale (TYPE x, TYPE y, TYPE z) void glTranslate (TYPE x, TYPE y, TYPE z) void glViewport (GLint x, GLint y, GLsizei width, GLsizei height)   Coloring and Lighting void glColor3 (TYPE red, TYPE green, TYPE blue) void glColor4 (TYPE red, TYPE green, TYPE blue, TYPE alpha) void glColorMaterial (GLenum face, GLenum mode) void glFrontFace (GLenum dir) void glGetLight (GLenum light, GLenum pname, TYPE *params) void glGetMaterial (GLenum face, GLenum pname, TYPE *params) void glIndex (TYPE index) void glLight (GLenum light, GLenum pname, TYPE param) void glLightModel (GLenum pname, TYPE param) void glMaterial (GLenum face, GLenum pname, TYPE param) void glNormal3 (TYPE nx, TYPE ny, TYPE nz) void glShadeModel (GLenum mode)   Clipping void glClipPlane (GLenum plane, const GLdouble *equation) void glGetClipPlane (GLenum plane, GLdouble *equation)   Rasterization void glBitmap (GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, const GLubyte *bitmap) void glCullFace (GLenum mode) void glGetPolygonStipple (GLubyte *mask) void glLineStipple (GLint factor, GLushort pattern) void glLineWidth (GLfloat width) void glPointSize (GLfloat size) void glPolygonMode (GLenum face, GLenum mode) void glPolygonStipple (const GLubyte *mask) void glRasterPos2 (TYPE x, TYPE y) void glRasterPos3 (TYPE x, TYPE y, TYPE z) void glRasterPos4 (TYPE x, TYPE y, TYPE z, TYPE w)   Pixel Operations void glCopyPixels (GLint x, GLint y, GLsizei width, GLsizei keight, GLenum type) void glDrawPixels (GLsizei width, GLsizei keight, GLenum format, GLenum type, const GLvoid *pixels) void glGetPixelMap (GLenum map, TYPE *values) void glPixelMap (GLenum map, GLint mapsize, const TYPE *values) void glPixelStore (GLenum pname, TYPE param) void glPixelTransfer (GLenum pname, TYPE param) void glPixelZoom (GLfloat xfactor, GLfloat yfactor) void glReadBuffer (GLenum mode) void glReadPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels)   Textures GLboolean glAreTexturesResident (GLsizei n, const GLuint *textures, GLboolean *residences) void glBindTexture (GLenum target, GLuint texture) void glCopyTexSubimage1D (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width) void glCopyTexSubimage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height) void glCopyTeximage1D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint GLsizei v, GLint border) void glCopyTeximage2D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint, GLsizei width, GLsizei height, GLint border) void glDeleteTextures (GLsizei n, const GLuint *textures) void glGenTextures (GLsizei n, GLuint *textures) void glGetTexEnv (GLenum target, GLenuni pname, TYPE *params) void glGetTexGen (GLenum coord, GLenum pname, TYPE *params) void glGetTexLevelParameter (GLenum targrt, GLint level, GLenum pname, TYPE *params) void glGetTexParameter (GLenum target, GLenum pname, TYPE *params) void glGetTeximage (GLenum target, GLint level, GLenum format, GLenum type, GLvoid *pixels) void glIsTexture (GLuint texture) void glPrioritizeTextures (GLsizei n, const GLuint *textures, const GLclampf *priorities) void glTexCoord1 (TYPE s) void glTexCoord2 (TYPE s, TYPE t) void glTexCoord3 (TYPE s, TYPE t, TYPE r) void glTexCoord4 (TYPE s, TYPE t, TYPE r, TYPE q) void glTexEnv (GLenum target, GLenum pname, TYPE param) void glTexGen (GLenum coord, GLenum pname, TYPE param) void glTexImage1D (GLenum target, GLint level, GLint components, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *pixels) void glTexImage2D (GLenum target, GLint level, GLint components, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *pixels) void glTexParameter (GLenum target, GLenum pname, TYPE param) void glTexSubImage1D (GLenum target, GLint leve&#39;l, GLint xoffset, GLsizei width, GLenum format, GLenum type, const GLvoid *pixels) void glTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *pixels)   Fog void glFog (GLenum pname, TYPE param)   Frame Buffer Operations void glAccum (GLenum op, GLfloat value) void glAlphaFunc (GLenum func, GLclampf ref) void glBlendFunc (GLenum sfactor, GLenum dfactor) void glClear (GLbitfield mask) void glClearAccum (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) void glClearColor ( GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha) void glClearDepth (GLclampd depth) void glClearIndex (GLfloat c) void glClearStencil (GLint s) void glColorMask ( GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha) void glDepthFunc (GLenum func) void glDepthMask (GLboolean flag) void glDrawBuffer (GLenum mode) void glIndexMask (GLuint mask) void glLogicOp (GLenum opcode) void glScissor (GLint x, GLint y, GLsizei width, GLsizei height) void glStencilFunc (GLenum func, GLint ref, GLuint mask) void glStencilMask (GLuint mask) void glStencilOp (GLenum fail, GLenum pass, GLenum zpass)   Evaluators void glEvalCoord1 (TYPE u) void glEvalCoord2 (TYPE u, TYPE v) void glEvalMesh1 (GLenum mode, GLint i1, GLint i2) void glEvalMesh2 (GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2) void glEvalPoint1 (GLint i) void glEvalPoint2 (GLint i, GLint j) void glGetMap (GLenum target, GLenum query, TYPE *v) void glMap1 (GLenum target, TYPE u1, TYPE u2, GLint stride, GLint order, const TYPE *points) void glMap2 (GLenum target, TYPE u1, TYPE u2, GLint ustride, GLint uorder, TYPE v1, TYPE v2, GLint vstride, GLint vorder, const TYPE *points) void glMapGrid1 (GLint n, TYPE u1, TYPE u2) void glMapGrid2 (GLint un, TYPE u1, TYPE u2, GLint vn, TYPE v1, TYPE v2)   Selection and Feedback void glFeedbackBuffer (GLsizei size, GLenum type, GLfloat *buffer) void glInitNames (void) void glLoadName (GLuint name) void glPassThrough (GLfloat token) void glPopName (void) void glPushName (GLuint name) GLint glRenderMode (GLenum mode) void glSelectBuffer (GLsizei size, GLuint *buffer)   Display Lists void glCallList (GLuint list) void glCallLists (GLsizei n, GLenum type, const GLvoid *lists) void glDeleteLists (GLuint list, GLsizei range) void glEndList (void) GLuint glGenLists (GLsizei range) GLboolean glIsList (GLuint list) void glListBase (GLuint base) void glNewList (GLuint list, GLenum mode)   Modes and Execution void glDisable (GLenum cap) void glEnable (GLenum cap) void glFinish (void) void glFlush (void) void glHint (GLenum target, GLenum mode) GLboolean glIsEnabled (GLenum cap)   State Queries void glGetBooleanv (GLenum pname, GLboolean *params) void glGetDoublev (GLenum pname, GLdouble *params) GLenum glGetError (void) void glGetFloatv (GLenum pname, GLfloat *params) void glGetIntegerv (GLenum pname, GLint *params) const GLubyte *glGetString (GLenum name) void glPopAttrib (void) void glPushAttrib (GLbitfield mask)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/317.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/317.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">OpenGL Function Calls</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2011-07-06T10:20:55-07:00" itemprop="datePublished">Jul 6, 2011
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <dd>
+<strong>Primitives</strong>
+<ul>
+<li>void <strong>glBegin</strong> (GLenum mode)</li>
+<li>void <strong>glEdgeFlag</strong> (GLboolean flag)</li>
+<li>void <strong>glEdgeFlagv</strong> (const GLboolean *flag)</li>
+<li>void <strong>glEnd</strong> (void)</li>
+<li>extern void <strong>glPolygonOffset</strong> (GLfloat factor, GLfloat units)</li>
+<li>void <strong>glRect</strong> (TYPE x1, TYPE y1, TYPE x2, TYPE y2)</li>
+<li>void <strong>glRectv</strong> (const TYPE *v1, const TYPE *v2)</li>
+<li>void <strong>glVertex2</strong> (TYPE x, TYPE y)</li>
+<li>void <strong>glVertex3</strong> (TYPE x, TYPE y, TYPE z)</li>
+<li>void <strong>glVertex4</strong> (TYPE x, TYPE y, TYPE z, TYPE w)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Vertex Arrays</strong>
+<ul>
+<li>extern void <strong>glArrayElement</strong> (GLint i)</li>
+<li>extern void <strong>glColorPointer</strong> (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer)</li>
+<li>extern void <strong>glDisableClientState</strong> (GLenum array)</li>
+<li>extern void <strong>glDrawArrays</strong> (GLenum mode, GLint first, GLsizei count)</li>
+<li>extern void <strong>glDrawElements</strong> (GLenum mode, GLsizei count, GLenum type, const GLvoid *indices)</li>
+<li>extern void <strong>glEdgeFlagPointer</strong> (GLsizei stride, const GLvoid *pointer)</li>
+<li>extern void <strong>glEnableClientState</strong> (GLenum array)</li>
+<li>extern void <strong>glIndexPointer</strong> (GLenum type, GLsizei stride, const GLvoid *pointer)</li>
+<li>extern void <strong>glInterleavedArrays</strong> (GLenum format, GLsizei stride, const GLvoid *pointer)</li>
+<li>extern void <strong>glNormalPointer</strong> (GLenum type, GLsizei stride, const GLvoid *pointer)</li>
+<li>extern void <strong>glTexCoordPointer</strong> (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer)</li>
+<li>extern void <strong>glVertexPointer</strong> (GLint size, GLenum type, GLsizei stride, const GLvoid *pointer)</li>
+</ul>
+<p><!--more--></p>
+</dd>
+<dd>
+<strong>Coordinate Transformation</strong>
+<ul>
+<li>void <strong>glDepthRange</strong> (GLclampd near, GLclampd far)</li>
+<li>void <strong>glFrustum</strong> (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far)</li>
+<li>void <strong>glLoadIdentity</strong> (void)</li>
+<li>void <strong>glLoadMatrix</strong> (const TYPE *m)</li>
+<li>void <strong>glMatrixMode</strong> (GLenum mode)</li>
+<li>void <strong>glMultMatrix</strong> (const TYPE *m)</li>
+<li>void <strong>glOrtho</strong> (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far)</li>
+<li>void <strong>glPopMatrix</strong> (void)</li>
+<li>void <strong>glPushMatrix</strong> (void)</li>
+<li>void <strong>glRotate</strong> (TYPE angle, TYPE x, TYPE y, TYPE z)</li>
+<li>void <strong>glScale</strong> (TYPE x, TYPE y, TYPE z)</li>
+<li>void <strong>glTranslate</strong> (TYPE x, TYPE y, TYPE z)</li>
+<li>void <strong>glViewport</strong> (GLint x, GLint y, GLsizei width, GLsizei height)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Coloring and Lighting</strong>
+<ul>
+<li>void <strong>glColor3</strong> (TYPE red, TYPE green, TYPE blue)</li>
+<li>void <strong>glColor4</strong> (TYPE red, TYPE green, TYPE blue, TYPE alpha)</li>
+<li>void <strong>glColorMaterial</strong> (GLenum face, GLenum mode)</li>
+<li>void <strong>glFrontFace</strong> (GLenum dir)</li>
+<li>void <strong>glGetLight</strong> (GLenum light, GLenum pname, TYPE *params)</li>
+<li>void <strong>glGetMaterial</strong> (GLenum face, GLenum pname, TYPE *params)</li>
+<li>void <strong>glIndex</strong> (TYPE index)</li>
+<li>void <strong>glLight</strong> (GLenum light, GLenum pname, TYPE param)</li>
+<li>void <strong>glLightModel</strong> (GLenum pname, TYPE param)</li>
+<li>void <strong>glMaterial</strong> (GLenum face, GLenum pname, TYPE param)</li>
+<li>void <strong>glNormal3</strong> (TYPE nx, TYPE ny, TYPE nz)</li>
+<li>void <strong>glShadeModel</strong> (GLenum mode)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Clipping</strong>
+<ul>
+<li>void <strong>glClipPlane</strong> (GLenum plane, const GLdouble *equation)</li>
+<li>void <strong>glGetClipPlane</strong> (GLenum plane, GLdouble *equation)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Rasterization</strong>
+<ul>
+<li>void <strong>glBitmap</strong> (GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, const GLubyte *bitmap)</li>
+<li>void <strong>glCullFace</strong> (GLenum mode)</li>
+<li>void <strong>glGetPolygonStipple</strong> (GLubyte *mask)</li>
+<li>void <strong>glLineStipple</strong> (GLint factor, GLushort pattern)</li>
+<li>void <strong>glLineWidth</strong> (GLfloat width)</li>
+<li>void <strong>glPointSize</strong> (GLfloat size)</li>
+<li>void <strong>glPolygonMode</strong> (GLenum face, GLenum mode)</li>
+<li>void <strong>glPolygonStipple</strong> (const GLubyte *mask)</li>
+<li>void <strong>glRasterPos2</strong> (TYPE x, TYPE y)</li>
+<li>void <strong>glRasterPos3</strong> (TYPE x, TYPE y, TYPE z)</li>
+<li>void <strong>glRasterPos4</strong> (TYPE x, TYPE y, TYPE z, TYPE w)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Pixel Operations</strong>
+<ul>
+<li>void <strong>glCopyPixels</strong> (GLint x, GLint y, GLsizei width, GLsizei keight, GLenum type)</li>
+<li>void <strong>glDrawPixels</strong> (GLsizei width, GLsizei keight, GLenum format, GLenum type, const GLvoid *pixels)</li>
+<li>void <strong>glGetPixelMap</strong> (GLenum map, TYPE *values)</li>
+<li>void <strong>glPixelMap</strong> (GLenum map, GLint mapsize, const TYPE *values)</li>
+<li>void <strong>glPixelStore</strong> (GLenum pname, TYPE param)</li>
+<li>void <strong>glPixelTransfer</strong> (GLenum pname, TYPE param)</li>
+<li>void <strong>glPixelZoom</strong> (GLfloat xfactor, GLfloat yfactor)</li>
+<li>void <strong>glReadBuffer</strong> (GLenum mode)</li>
+<li>void <strong>glReadPixels</strong> (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Textures</strong>
+<ul>
+<li>GLboolean <strong>glAreTexturesResident</strong> (GLsizei n, const GLuint *textures, GLboolean *residences)</li>
+<li>void <strong>glBindTexture</strong> (GLenum target, GLuint texture)</li>
+<li>void <strong>glCopyTexSubimage1D</strong> (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)</li>
+<li>void <strong>glCopyTexSubimage2D</strong> (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height)</li>
+<li>void <strong>glCopyTeximage1D</strong> (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint GLsizei v, GLint border)</li>
+<li>void <strong>glCopyTeximage2D</strong> (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint, GLsizei width, GLsizei height, GLint border)</li>
+<li>void <strong>glDeleteTextures</strong> (GLsizei n, const GLuint *textures)</li>
+<li>void <strong>glGenTextures</strong> (GLsizei n, GLuint *textures)</li>
+<li>void <strong>glGetTexEnv</strong> (GLenum target, GLenuni pname, TYPE *params)</li>
+<li>void <strong>glGetTexGen</strong> (GLenum coord, GLenum pname, TYPE *params)</li>
+<li>void <strong>glGetTexLevelParameter</strong> (GLenum targrt, GLint level, GLenum pname, TYPE *params)</li>
+<li>void <strong>glGetTexParameter</strong> (GLenum target, GLenum pname, TYPE *params)</li>
+<li>void <strong>glGetTeximage</strong> (GLenum target, GLint level, GLenum format, GLenum type, GLvoid *pixels)</li>
+<li>void <strong>glIsTexture</strong> (GLuint texture)</li>
+<li>void <strong>glPrioritizeTextures</strong> (GLsizei n, const GLuint *textures, const GLclampf *priorities)</li>
+<li>void <strong>glTexCoord1</strong> (TYPE s)</li>
+<li>void <strong>glTexCoord2</strong> (TYPE s, TYPE t)</li>
+<li>void <strong>glTexCoord3</strong> (TYPE s, TYPE t, TYPE r)</li>
+<li>void <strong>glTexCoord4</strong> (TYPE s, TYPE t, TYPE r, TYPE q)</li>
+<li>void <strong>glTexEnv</strong> (GLenum target, GLenum pname, TYPE param)</li>
+<li>void <strong>glTexGen</strong> (GLenum coord, GLenum pname, TYPE param)</li>
+<li>void <strong>glTexImage1D</strong> (GLenum target, GLint level, GLint components, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *pixels)</li>
+<li>void <strong>glTexImage2D</strong> (GLenum target, GLint level, GLint components, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *pixels)</li>
+<li>void <strong>glTexParameter</strong> (GLenum target, GLenum pname, TYPE param)</li>
+<li>void <strong>glTexSubImage1D</strong> (GLenum target, GLint leve'l, GLint xoffset, GLsizei width, GLenum format, GLenum type, const GLvoid *pixels)</li>
+<li>void <strong>glTexSubImage2D</strong> (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *pixels)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Fog</strong>
+<ul>
+<li>void <strong>glFog</strong> (GLenum pname, TYPE param)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Frame Buffer Operations</strong>
+<ul>
+<li>void <strong>glAccum</strong> (GLenum op, GLfloat value)</li>
+<li>void <strong>glAlphaFunc</strong> (GLenum func, GLclampf ref)</li>
+<li>void <strong>glBlendFunc</strong> (GLenum sfactor, GLenum dfactor)</li>
+<li>void <strong>glClear</strong> (GLbitfield mask)</li>
+<li>void <strong>glClearAccum</strong> (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)</li>
+<li>void <strong>glClearColor</strong> ( GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha)</li>
+<li>void <strong>glClearDepth</strong> (GLclampd depth)</li>
+<li>void <strong>glClearIndex</strong> (GLfloat c)</li>
+<li>void <strong>glClearStencil</strong> (GLint s)</li>
+<li>void <strong>glColorMask</strong> ( GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha)</li>
+<li>void <strong>glDepthFunc</strong> (GLenum func)</li>
+<li>void <strong>glDepthMask</strong> (GLboolean flag)</li>
+<li>void <strong>glDrawBuffer</strong> (GLenum mode)</li>
+<li>void <strong>glIndexMask</strong> (GLuint mask)</li>
+<li>void <strong>glLogicOp</strong> (GLenum opcode)</li>
+<li>void <strong>glScissor</strong> (GLint x, GLint y, GLsizei width, GLsizei height)</li>
+<li>void <strong>glStencilFunc</strong> (GLenum func, GLint ref, GLuint mask)</li>
+<li>void <strong>glStencilMask</strong> (GLuint mask)</li>
+<li>void <strong>glStencilOp</strong> (GLenum fail, GLenum pass, GLenum zpass)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Evaluators</strong>
+<ul>
+<li>void <strong>glEvalCoord1</strong> (TYPE u)</li>
+<li>void <strong>glEvalCoord2</strong> (TYPE u, TYPE v)</li>
+<li>void <strong>glEvalMesh1</strong> (GLenum mode, GLint i1, GLint i2)</li>
+<li>void <strong>glEvalMesh2</strong> (GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2)</li>
+<li>void <strong>glEvalPoint1</strong> (GLint i)</li>
+<li>void <strong>glEvalPoint2</strong> (GLint i, GLint j)</li>
+<li>void <strong>glGetMap</strong> (GLenum target, GLenum query, TYPE *v)</li>
+<li>void <strong>glMap1</strong> (GLenum target, TYPE u1, TYPE u2, GLint stride, GLint order, const TYPE *points)</li>
+<li>void <strong>glMap2</strong> (GLenum target, TYPE u1, TYPE u2, GLint ustride, GLint uorder, TYPE v1, TYPE v2, GLint vstride, GLint vorder, const TYPE *points)</li>
+<li>void <strong>glMapGrid1</strong> (GLint n, TYPE u1, TYPE u2)</li>
+<li>void <strong>glMapGrid2</strong> (GLint un, TYPE u1, TYPE u2, GLint vn, TYPE v1, TYPE v2)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Selection and Feedback</strong>
+<ul>
+<li>void <strong>glFeedbackBuffer</strong> (GLsizei size, GLenum type, GLfloat *buffer)</li>
+<li>void <strong>glInitNames</strong> (void)</li>
+<li>void <strong>glLoadName</strong> (GLuint name)</li>
+<li>void <strong>glPassThrough</strong> (GLfloat token)</li>
+<li>void <strong>glPopName</strong> (void)</li>
+<li>void <strong>glPushName</strong> (GLuint name)</li>
+<li>GLint <strong>glRenderMode</strong> (GLenum mode)</li>
+<li>void <strong>glSelectBuffer</strong> (GLsizei size, GLuint *buffer)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Display Lists</strong>
+<ul>
+<li>void <strong>glCallList</strong> (GLuint list)</li>
+<li>void <strong>glCallLists</strong> (GLsizei n, GLenum type, const GLvoid *lists)</li>
+<li>void <strong>glDeleteLists</strong> (GLuint list, GLsizei range)</li>
+<li>void <strong>glEndList</strong> (void)</li>
+<li>GLuint <strong>glGenLists</strong> (GLsizei range)</li>
+<li>GLboolean <strong>glIsList</strong> (GLuint list)</li>
+<li>void <strong>glListBase</strong> (GLuint base)</li>
+<li>void <strong>glNewList</strong> (GLuint list, GLenum mode)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>Modes and Execution</strong>
+<ul>
+<li>void <strong>glDisable</strong> (GLenum cap)</li>
+<li>void <strong>glEnable</strong> (GLenum cap)</li>
+<li>void <strong>glFinish</strong> (void)</li>
+<li>void <strong>glFlush</strong> (void)</li>
+<li>void <strong>glHint</strong> (GLenum target, GLenum mode)</li>
+<li>GLboolean <strong>glIsEnabled</strong> (GLenum cap)</li>
+</ul>
+<p> </p>
+</dd>
+<dd>
+<strong>State Queries</strong>
+<ul>
+<li>void <strong>glGetBooleanv</strong> (GLenum pname, GLboolean *params)</li>
+<li>void <strong>glGetDoublev</strong> (GLenum pname, GLdouble *params)</li>
+<li>GLenum <strong>glGetError</strong> (void)</li>
+<li>void <strong>glGetFloatv</strong> (GLenum pname, GLfloat *params)</li>
+<li>void <strong>glGetIntegerv</strong> (GLenum pname, GLint *params)</li>
+<li>const GLubyte <strong>*glGetString</strong> (GLenum name)</li>
+<li>void <strong>glPopAttrib</strong> (void)</li>
+<li>void <strong>glPushAttrib</strong> (GLbitfield mask)</li>
+</ul>
+</dd>
+
+<p> </p>
+
+<p>Recommend:  OpenGL Basics</p>
+
+<p><a href="https://users.cs.jmu.edu/bernstdh/web/common/lectures/slides_opengl-basics.php">https://users.cs.jmu.edu/bernstdh/web/common/lectures/slides_opengl-basics.php</a></p>
+
+
+  </div><a class="u-url" href="/labrary/317.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

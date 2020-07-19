@@ -1,0 +1,1856 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4001/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4001/" rel="alternate" type="text/html" /><updated>2020-07-18T14:57:11-07:00</updated><id>http://localhost:4001/feed.xml</id><title type="html">Navins Notebook</title><subtitle>Notebook to record tips/info.</subtitle><entry><title type="html">解决Your profile could not be opened correctly问题</title><link href="http://localhost:4001/solutions/1151.html" rel="alternate" type="text/html" title="解决Your profile could not be opened correctly问题" /><published>2014-09-25T12:40:55-07:00</published><updated>2014-09-25T12:40:55-07:00</updated><id>http://localhost:4001/solutions/%E8%A7%A3%E5%86%B3your-profile-could-not-be-opened-correctly%E9%97%AE%E9%A2%98</id><content type="html" xml:base="http://localhost:4001/solutions/1151.html">&lt;p&gt;Google Chrome Problem detail:&lt;/p&gt;
+
+&lt;p&gt;Your profile could not be opened correctly.&lt;/p&gt;
+
+&lt;p&gt;Some features may be unavailable. Please check that the profile exists and you have permission to read and write its contents.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Solution:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;If the browser is open, close it down.&lt;/li&gt;
+  &lt;li&gt;Open a terminal and run: &lt;code class=&quot;highlighter-rouge&quot;&gt;mv ~/.config/google-chrome ~/.config/google-chrome-old&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Launch google-chrome, you will be asked to choose your search engine, your choice.&lt;/li&gt;
+  &lt;li&gt;Close coogle-chrome (yes, click the close button)&lt;/li&gt;
+  &lt;li&gt;After closing the browser you will have a new user profile at &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.config/google-chrome&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Then let’s copy your profile into the new place by running the next in the terminal. &lt;code class=&quot;highlighter-rouge&quot;&gt;cp -r ~/.config/google-chrome-old/Default ~/.config/google-chrome/&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt; &lt;/p&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="Solutions" /><summary type="html">Google Chrome Problem detail:</summary></entry><entry><title type="html">CSS兼容IE Firefox兼容问题与解决方法</title><link href="http://localhost:4001/uncategorized/1148.html" rel="alternate" type="text/html" title="CSS兼容IE Firefox兼容问题与解决方法" /><published>2014-09-14T13:19:33-07:00</published><updated>2014-09-14T13:19:33-07:00</updated><id>http://localhost:4001/uncategorized/css%E5%85%BC%E5%AE%B9ie-firefox%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95</id><content type="html" xml:base="http://localhost:4001/uncategorized/1148.html">&lt;p&gt;CSS兼容解决方法被称呼为css hack.&lt;br /&gt;
+一.双边距问题&lt;br /&gt;
+浮动元素的外边距会加倍，但与第一个浮动元素相邻的其他浮动元素外边距不会加倍。&lt;br /&gt;
+解决方法：在此浮动元素增加样式  display:inline;&lt;/p&gt;
+
+&lt;p&gt;二.图片产生的间隙&lt;br /&gt;
+父元素直接包含&amp;lt;img&amp;gt;，这个图片下方会和父元素边缘产生间隙。&lt;br /&gt;
+解绝方法：1.在源代码中让&amp;lt;/div&amp;gt;和&amp;lt;img&amp;gt;在同一行，因为那个间隙是由换行符产生的。&lt;br /&gt;
+               2.给&amp;lt;img&amp;gt;添加样式  display:block;&lt;/p&gt;
+
+&lt;p&gt;三.最小高度问题&lt;br /&gt;
+块元素最小高度为10px，当高度定义小于10px时，仍为10px;&lt;br /&gt;
+解决方法：为此块元素添加样式  overflow:hidden;   或   让此款块元素的字体大小等于此会元素的高度。&lt;/p&gt;
+
+&lt;p&gt;四.列表的li为浮动，则列表后面的元素不能换行的问题&lt;br /&gt;
+列表的li为浮动，则列表后面的元素不能换行。&lt;br /&gt;
+解决方法：为这个ul定义合适的高或给包含这个ul 的父div定义合适的高。&lt;/p&gt;
+
+&lt;p&gt;五.子元素的上下外边界问题（父元素没有定义高度时）&lt;br /&gt;
+在父元素没有定义高度时，子元素的上下外边界和父元素上下外边界叠加，并且显示在父元素外面。&lt;br /&gt;
+解决方法：给父元素定义内边距或边框。&lt;/p&gt;
+
+&lt;p&gt;firefox问题：&lt;/p&gt;
+
+&lt;p&gt;一.列表的li为浮动，则列表后面的元素不能换行的问题&lt;br /&gt;
+列表的li为浮动，则列表后面的元素不能换行。&lt;br /&gt;
+解决方法：为这个ul定义合适的宽高或给包含这个ul 的父div定义合适的宽高。&lt;/p&gt;
+
+&lt;p&gt;二.子元素的上下外边界问题（父元素没有定义高度时）&lt;br /&gt;
+在父元素没有定义高度时，子元素的上下外边界和父元素上下外边界叠加，并且显示在父元素外面。&lt;br /&gt;
+解决方法：给父元素定义内边距或边框。&lt;/p&gt;
+
+&lt;p&gt;二者之间的兼容问题：&lt;/p&gt;
+
+&lt;p&gt;一.水平&lt;a href=&quot;http://www.divcss5.com/shili/s8.html&quot;&gt;居中&lt;/a&gt; &lt;br /&gt;
+IE6：使用text-align不但能使文本居中，还能使嵌套的块元素居中。&lt;br /&gt;
+FF2：使用text-align只能使文本居中。&lt;br /&gt;
+解决方法：在需要居中的块元素添加margin:0 auto;&lt;/p&gt;
+
+&lt;p&gt;二.&lt;a href=&quot;http://www.divcss5.com/&quot;&gt;div&lt;/a&gt;高度自适应问题&lt;br /&gt;
+IE6：如果内容的高度超过父元素的高度，父元素的高度会增加。&lt;br /&gt;
+FF2 : 如果内容的高度超过父元素的高度，内容不会隐藏，父元素的高度也不会增加。&lt;br /&gt;
+解决方法：（假定&lt;a href=&quot;http://www.divcss5.com/jiqiao/j100.html&quot;&gt;最小高度&lt;/a&gt;为50px）在父元素添加  &lt;a href=&quot;http://www.divcss5.com/jiqiao/j100.html&quot;&gt;min-height&lt;/a&gt;:50px;&lt;br /&gt;
+                                                                     &lt;a href=&quot;http://www.divcss5.com/rumen/r123.html&quot;&gt;height&lt;/a&gt;:auto !important;&lt;br /&gt;
+                                                                     height:50px;&lt;/p&gt;
+
+&lt;p&gt;三.父元素包含&lt;a href=&quot;http://www.divcss5.com/rumen/r93.html&quot;&gt;浮动&lt;/a&gt;子元素时的高度问题&lt;br /&gt;
+IE6：高度会被子浮动元素撑开。&lt;br /&gt;
+FF2：高度不会被子浮动元素撑开。&lt;br /&gt;
+解决方法：在子浮动元素后面再加一个div，此div的定义：clear:both;&lt;br /&gt;
+                                                                             line-height:1px;&lt;br /&gt;
+                                                                             visibility:hidden;&lt;/p&gt;
+
+&lt;p&gt;四.嵌套元素边距高度的叠加问题（定义父元素宽度时）&lt;br /&gt;
+IE6：子元素的上边距和父元素的上内边距叠加。&lt;br /&gt;
+FF2：子元素的上边距和父元素的上内边距相加。 &lt;br /&gt;
+解决方法：单独使用&lt;a href=&quot;http://www.divcss5.com/shili/s7.html&quot;&gt;padding&lt;/a&gt;或&lt;a href=&quot;http://www.divcss5.com/rumen/r128.html&quot;&gt;margin&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;五.子元素的上边距问题  （定义父元素高度时）&lt;br /&gt;
+IE6：子元素上边距显示正常。&lt;br /&gt;
+FF2：子元素上边距显示在父元素上方。&lt;br /&gt;
+解决方法：在父元素增加overflow:hidden;   或给父元素增加边框或内边距。&lt;/p&gt;
+
+&lt;p&gt;了解什么是&lt;a href=&quot;http://www.divcss5.com/rumen/r239.html&quot;&gt;CSS父子级元素&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;六.子元素负边界问题&lt;br /&gt;
+IE6：超出父元素的部分会被父元素覆盖。 &lt;br /&gt;
+FF2：超出父元素的部分会覆盖父元素，但前提是父元素有边框或内边距，不然负边距会显示在父元素上，使得父元素拥有负边距。&lt;br /&gt;
+解决办法：使用相对定位。&lt;/p&gt;
+
+&lt;p&gt;七.列表的默认显示问题&lt;br /&gt;
+IE6：列表有左边界、下边界、右内边距，同时项目符号在列表外面。&lt;br /&gt;
+FF2：列表有上下边界、左右内边距、项目符号在列表里面。&lt;br /&gt;
+解决方法：为ul添加样式：margin:0;&lt;br /&gt;
+                                   padding:0;&lt;/p&gt;
+
+&lt;p&gt;八.&amp;lt;body&amp;gt;的默认padding和margin不同的问题。&lt;br /&gt;
+解决方法：  给body添加样式：margin:0;&lt;br /&gt;
+                                          padding:0;    &lt;br /&gt;
+九.对元素使用绝对定位问题（元素定义外边距时）&lt;br /&gt;
+IE6：外边距不会视为元素的一部分，因此在对此元素使用绝对定位时外边距无效。&lt;br /&gt;
+FF2：外边距会视为元素的一部分，因此在对此元素使用绝对定位时外边距有效。（例如margin_top会和top相加） &lt;/p&gt;
+
+&lt;p&gt;对于web2.0的过度，请尽量用xhtml格式写代码，而且&lt;a href=&quot;http://www.divcss5.com/html/h22.html&quot;&gt;DOCTYPE &lt;/a&gt;影响 CSS 处理，作为&lt;a href=&quot;http://www.divcss5.com/w3c/&quot;&gt;W3C&lt;/a&gt;的标准，一定要加 DOCTYPE声明。 &lt;br /&gt;
+&lt;a href=&quot;http://www.divcss5.com/jiqiao/&quot;&gt;CSS技巧&lt;/a&gt;  &lt;br /&gt;
+1.div的&lt;a href=&quot;http://www.divcss5.com/shili/s108.html&quot;&gt;垂直居中&lt;/a&gt;问题 &lt;br /&gt;
+vertical-align:middle;将行距增加到和整个DIV一样高 line-height:200px;然后插入文字，就垂直居中了。缺点是要控制内容不要换行 &lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;margin加倍的问题 &lt;br /&gt;
+设置为float的div在ie下设置的margin会加倍。这是一个ie6都存在的bug。解决方案是在这个div里面加上display:inline; &lt;br /&gt;
+例如： &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;#div id=”imfloat”&amp;gt; &lt;br /&gt;
+相应的css为 &lt;br /&gt;
+#imfloat{ &lt;br /&gt;
+float:left; &lt;br /&gt;
+margin:5px;/*IE下理解为10px*/ &lt;br /&gt;
+display:inline;/*IE下再理解为5px*/} &lt;/p&gt;
+
+&lt;p&gt;3.浮动ie产生的双倍距离 &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+#box{ &lt;a href=&quot;http://www.divcss5.com/rumen/r93.html&quot;&gt;float&lt;/a&gt;:left;&lt;a href=&quot;http://www.divcss5.com/rumen/r119.html&quot;&gt;width&lt;/a&gt;:100px;margin:0 0 0 100px;//这种情况之下IE会产生200px的距离 display:inline;//使浮动忽略} &lt;/p&gt;
+
+&lt;p&gt;这里细说一下block与inline两个元素：block元素的特点是,总是在新行上开始,高度,宽度,行高,边距都可以控制(块元素);Inline元素的特点是,和其他元素在同一行上,不可控制(内嵌元素); &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+#box{ display:block;//可以为内嵌元素模拟为块元素 display:inline;//实现同一行排列的效果 diplay:table; &lt;/p&gt;
+
+&lt;p&gt;4 IE与宽度和高度的问题 &lt;br /&gt;
+IE不认得min-这个定义，但实际上它把正常的width和height当作有min的情况来使。这样问题就大了，如果只用宽度和高度，正常的浏览器里这两个值就不会变，如果只用min-width和min-height的话，IE下面根本等于没有设置宽度和高度。 &lt;br /&gt;
+比如要设置背景图片，这个宽度是比较重要的。要解决这个问题，可以这样： &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+#box{ width: 80px;height: 35px;}html&amp;gt;body #box{ width: auto;height: auto;min-width: 80px;min-height: 35px;} &lt;/p&gt;
+
+&lt;p&gt;5.页面的最小宽度 &lt;br /&gt;
+min-width是个非常方便的CSS命令，它可以指定元素最小也不能小于某个宽度，这样就能保证排版一直正确。但IE不认得这个，而它实际上把 width当做最小宽度来使。为了让这一命令在IE上也能用，可以把一个&amp;lt;div&amp;gt; 放到 &amp;lt;body&amp;gt; 标签下，然后为div指定一个类,然后CSS这样设计： &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+#container{ min-width: 600px;width:expression(document.body.clientWidth &amp;lt; 600? “600px”: “auto” );} &lt;/p&gt;
+
+&lt;p&gt;第一个min-width是正常的；但第2行的width使用了Javascript，这只有IE才认得，这也会让你的&lt;a href=&quot;http://www.divcss5.com/html/&quot;&gt;HTML&lt;/a&gt;文档不太正规。它实际上通过Javascript的判断来实现最小宽度。 &lt;br /&gt;
+6.&lt;a href=&quot;http://www.divcss5.com/rumen/r93.html&quot;&gt;DIV CSS浮动&lt;/a&gt;IE文本产生3象素的bug &lt;br /&gt;
+左边对象浮动，右边采用外补丁的左边距来定位，右边对象内的文本会离左边有3px的间距. &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+#box{ float:left;width:800px;} &lt;br /&gt;
+#left{ float:left;width:50%;} &lt;br /&gt;
+#right{ width:50%;} &lt;br /&gt;
+*html #left{ margin-right:-3px;//这句是关键} &lt;br /&gt;
+&amp;lt;div id=”box”&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”left”&amp;gt;&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”right”&amp;gt;&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;/div&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;7.IE捉迷藏的问题 &lt;br /&gt;
+当&lt;a href=&quot;http://www.divcss5.com/&quot;&gt;div&lt;/a&gt;应用复杂的时候每个栏中又有一些链接，DIV等这个时候容易发生捉迷藏的问题。 &lt;br /&gt;
+有些内容显示不出来，当鼠标选择这个区域是发现内容确实在页面。 解决办法：对#layout使用line-height属性 或者给#layout使用固定高和宽。页面结构尽量简单。 &lt;br /&gt;
+8.float的div闭合;清除浮动;自适应高度 &lt;br /&gt;
+①例如：&amp;lt;#div id=”floatA” &amp;gt;&amp;lt;#div id=”floatB” &amp;gt;&amp;lt;#div id=”NOTfloatC” &amp;gt;这里的NOTfloatC并不希望继续平移，而是希望往下排。(其中floatA、floatB的属性已经设置为float:left;) &lt;br /&gt;
+这段代码在IE中毫无问题，问题出在FF。原因是NOTfloatC并非float标签，必须将float标签闭合。在 &amp;lt;#div class=”floatB”&amp;gt; &amp;lt;#div class=”NOTfloatC”&amp;gt;之间加上 &amp;lt;#div class=”clear”&amp;gt;这个div一定要注意位置，而且必须与两个具有float属性的div同级，之间不能存在嵌套关系，否则会产生异常。并且将clear这种样式定义为为如下即可： .clear{ clear:both;} &lt;br /&gt;
+②作为外部 wrapper 的 div 不要定死高度,为了让高度能自动适应，要在wrapper里面加上overflow:hidden;当包含float的box的时候，高度自动适应在IE下无效，这时候应该触发IE的layout私有属性(万恶的IE啊！)用zoom:1;可以做到，这样就达到了兼容。 &lt;br /&gt;
+例如某一个wrapper如下定义： &lt;br /&gt;
+.colwrapper{ overflow:hidden;zoom:1;margin:5px auto;} &lt;br /&gt;
+③对于排版,我们用得最多的css描述可能就是float:left.有的时候我们需要在n栏的float div后面做一个统一的背景,譬如: &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;div id=”page”&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”left”&amp;gt;&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”center”&amp;gt;&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”right”&amp;gt;&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;/div&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;比如我们要将page的背景设置成蓝色,以达到所有三栏的背景颜色是蓝色的目的,但是我们会发现随着left center right的向下拉长,而page居然保存高度不变,问题来了,原因在于page不是float属性,而我们的page由于要居中,不能设置成 float,所以我们应该这样解决 &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;div id=”page”&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”bg” style=”float:left;width:100%”&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”left”&amp;gt;&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”center”&amp;gt;&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”right”&amp;gt;&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;/div&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;再嵌入一个float left而宽度是100%的DIV解决之 &lt;br /&gt;
+④万能float 闭合(非常重要!) &lt;br /&gt;
+关于 clear float 的原理可参见 [How To Clear Floats Without Structural Markup],将以下代码加入Global CSS 中,给需要闭合的div加上 class=”clearfix” 即可,屡试不爽. &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+/* Clear Fix */ &lt;br /&gt;
+.clearfix:after { content:”.”;display:block;height:0;clear:both;visibility:hidden;} &lt;br /&gt;
+.clearfix { display:inline-block;} &lt;br /&gt;
+/* Hide from IE Mac */ &lt;br /&gt;
+.clearfix {display:block;} &lt;br /&gt;
+/* End hide from IE Mac */ &lt;br /&gt;
+/* end of clearfix */ &lt;/p&gt;
+
+&lt;p&gt;或者这样设置：.hackbox{ display:table;//将对象作为块元素级的表格显示} &lt;br /&gt;
+９．高度不适应 &lt;br /&gt;
+高度不适应是当内层对象的高度发生变化时外层高度不能自动进行调节，特别是当内层对象使用margin 或paddign 时。 &lt;br /&gt;
+例： &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+#box {background-color:#eee;} &lt;br /&gt;
+#box p {margin-top: 20px;margin-bottom: 20px;text-align:center;} &lt;br /&gt;
+&amp;lt;div id=”box”&amp;gt; &lt;br /&gt;
+&amp;lt;p&amp;gt;p对象中的内容&amp;lt;/p&amp;gt; &lt;br /&gt;
+&amp;lt;/div&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;解决技巧：在P对象上下各加2个空的div对象CSS代码：.1{height:0px;overflow:hidden;}或者为DIV加上border属性。 &lt;br /&gt;
+10 .IE6下为什么图片下有空隙产生 &lt;br /&gt;
+解决这个BUG的技巧也有很多,可以是改变html的排版,或者设置img 为display:block 或者设置vertical-align 属性为vertical-align:top 　 &lt;br /&gt;
+bottom 　middle 　text-bottom 都可以解决. &lt;br /&gt;
+11.如何对齐文本与文本输入框 &lt;br /&gt;
+加上 vertical-align:middle; &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;style type=”text/css”&amp;gt; &lt;br /&gt;
+&amp;lt;!– &lt;br /&gt;
+input { &lt;br /&gt;
+width:200px; &lt;br /&gt;
+height:30px; &lt;br /&gt;
+border:1px solid red; &lt;br /&gt;
+vertical-align:middle; &lt;br /&gt;
+} &lt;br /&gt;
+–&amp;gt; &lt;br /&gt;
+&amp;lt;/style&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;12.web标准中定义id与class有什么区别吗 &lt;br /&gt;
+一.web标准中是不容许重复ID的,比如 div id=”aa” 不容许重复2次,而class 定义的是类,理论上可以无限重复, 这样需要多次引用的定义便可以使用他. &lt;br /&gt;
+二.属性的优先级问题 &lt;br /&gt;
+ID 的优先级要高于class,看上面的例子 &lt;br /&gt;
+三.方便JS等客户端脚本,如果在页面中要对某个对象进行脚本操作,那么可以给他定义一个ID,否则只能利用遍历页面元素加上指定特定属性来找到它,这是相对浪费时间资源,远远不如一个ID来得简单. &lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;LI中内容超过长度后以省略号显示的技巧 &lt;br /&gt;
+此技巧适用与IE与OP浏览器 &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;style type=”text/css”&amp;gt; &lt;br /&gt;
+&amp;lt;!– &lt;br /&gt;
+li { &lt;br /&gt;
+width:200px; &lt;br /&gt;
+white-space:nowrap; &lt;br /&gt;
+text-overflow:ellipsis; &lt;br /&gt;
+-o-text-overflow:ellipsis; &lt;br /&gt;
+overflow: hidden; &lt;br /&gt;
+} &lt;br /&gt;
+–&amp;gt; &lt;br /&gt;
+&amp;lt;/style&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;14.为什么web标准中IE无法设置滚动条颜色了 &lt;br /&gt;
+解决办法是将body换成html &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN” “http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd”&amp;gt; &lt;br /&gt;
+&amp;lt;meta http-equiv=”Content-Type” content=”text/html;charset=gb2312″ /&amp;gt; &lt;br /&gt;
+&amp;lt;style type=”text/css”&amp;gt; &lt;br /&gt;
+&amp;lt;!– &lt;br /&gt;
+html { &lt;br /&gt;
+scrollbar-face-color:#f6f6f6; &lt;br /&gt;
+scrollbar-highlight-color:#fff; &lt;br /&gt;
+scrollbar-shadow-color:#eeeeee; &lt;br /&gt;
+scrollbar-3dlight-color:#eeeeee; &lt;br /&gt;
+scrollbar-arrow-color:#000; &lt;br /&gt;
+scrollbar-track-color:#fff; &lt;br /&gt;
+scrollbar-darkshadow-color:#fff; &lt;br /&gt;
+} &lt;br /&gt;
+–&amp;gt; &lt;br /&gt;
+&amp;lt;/style&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;15.为什么无法定义1px左右高度的容器 &lt;br /&gt;
+IE6下这个问题是因为默认的行高造成的,解决的技巧也有很多,例如 &lt;img src=&quot;/assets/images/shocked.gif&quot; alt=&quot;&quot; /&gt;verflow:hidden 　 zoom:0.08 　 line-height:1px &lt;br /&gt;
+16.怎么样才能让层显示在FLASH之上呢 &lt;br /&gt;
+解决的办法是给FLASH设置透明 &lt;br /&gt;
+&amp;lt;param name=”wmode” value=”http://fly-sky.javaeye.com/blog/transparent” /&amp;gt; &lt;br /&gt;
+17.怎样使一个层垂直居中于浏览器中 &lt;br /&gt;
+这里我们使用百分比绝对定位,与外补丁负值的技巧,负值的大小为其自身宽度高度除以二 &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;style type=”text/css”&amp;gt; &lt;br /&gt;
+&amp;lt;!– &lt;br /&gt;
+div { &lt;br /&gt;
+position:absolute; &lt;br /&gt;
+top:50%; &lt;br /&gt;
+lef:50%; &lt;br /&gt;
+margin:-100px 0 0 -100px; &lt;br /&gt;
+width:200px; &lt;br /&gt;
+height:200px; &lt;br /&gt;
+border:1px solid red; &lt;br /&gt;
+} &lt;br /&gt;
+–&amp;gt; &lt;br /&gt;
+&amp;lt;/style&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;[page] &lt;br /&gt;
+FF与IE &lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Div居中问题 &lt;br /&gt;
+div设置 margin-left, margin-right 为 auto 时已经居中，IE 不行，IE需要设定body居中，首先在父级元素定义text-algin: center;这个的意思就是在父级元素内的内容居中。 &lt;br /&gt;
+2.链接(a标签)的边框与背景 &lt;br /&gt;
+a链接加边框和背景色，需设置 display: block, 同时设置 float: left 保证不换行。参照 menubar, 给 a 和 menubar 设置高度是为了避免底边显示错位, 若不设 height, 可以在 menubar 中插入一个空格。 &lt;br /&gt;
+3.超链接访问过后hover样式就不出现的问题 &lt;br /&gt;
+被点击访问过的超链接样式不在具有hover和active了,很多人应该都遇到过这个问题,解决技巧是改变CSS属性的排列顺序: L-V-H-A &lt;br /&gt;
+Code: &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;style type=”text/css”&amp;gt; &lt;br /&gt;
+&amp;lt;!– &lt;br /&gt;
+a:link {} &lt;br /&gt;
+a:visited {} &lt;br /&gt;
+a:hover {} &lt;br /&gt;
+a:active {} &lt;br /&gt;
+–&amp;gt; &lt;br /&gt;
+&amp;lt;/style&amp;gt; &lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;游标手指cursor &lt;br /&gt;
+cursor: pointer 可以同时在 IE FF 中显示游标手指状， hand 仅 IE 可以 &lt;br /&gt;
+5.UL的padding与margin &lt;br /&gt;
+ul标签在FF中默认是有padding值的,而在IE中只有margin默认有值,所以先定义 ul{margin:0;padding:0;}就能解决大部分问题 &lt;/li&gt;
+  &lt;li&gt;FORM标签 &lt;br /&gt;
+这个标签在IE中,将会自动margin一些边距,而在FF中margin则是0,因此,如果想显示一致,所以最好在css中指定margin和 padding,针对上面两个问题,我的css中一般首先都使用这样的样式ul,form{margin:0;padding:0;}给定义死了,所以后面就不会为这个头疼了. &lt;/li&gt;
+  &lt;li&gt;BOX模型解释不一致问题 &lt;br /&gt;
+在FF和IE中的BOX模型解释不一致导致相差2px解决技巧：div{margin:30px!important;margin:28px;} 注意这两个margin的顺序一定不能写反， important这个属性IE不能识别，但别的浏览器可以识别。所以在IE下其实解释成这样： &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+div{maring:30px;margin:28px}重复定义的话按照最后一个来执行，所以不可以只写margin:xx px!important;#box{ width:600px;//for ie6.0- w\idth:500px;//for ff+ie6.0} &lt;br /&gt;
+#box{ width:600px!important //for ff width:600px;//for ff+ie6.0 width /**/:500px;//for ie6.0-} &lt;/p&gt;
+
+&lt;p&gt;8.属性选择器(这个不能算是兼容,是隐藏css的一个bug) &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+p[id]{}div[id]{} &lt;/p&gt;
+
+&lt;p&gt;这个对于IE6.0和IE6.0以下的版本都隐藏,FF和OPera作用.属性选择器和子选择器还是有区别的,子选择器的范围从形式来说缩小了,属性选择器的范围比较大,如p[id]中,所有p标签中有id的都是同样式的. &lt;/p&gt;
+
+&lt;p&gt;9.最狠的手段 – !important &lt;br /&gt;
+如果实在没有办法解决一些细节问题,可以用这个技巧.FF对于”!important”会自动优先解析,然而IE则会忽略.如下 &lt;br /&gt;
+.tabd1{ &lt;br /&gt;
+background:url(/res/images/up/tab1.gif) no-repeat 0px 0px !important;/*Style for FF*/ &lt;br /&gt;
+background:url(/res/images/up/tab1.gif) no-repeat 1px 0px;/* Style for IE */} &lt;br /&gt;
+值得注意的是，一定要将xxxx !important 这句放置在另一句之上，上面已经提过 &lt;br /&gt;
+10.IE,FF的默认值问题 &lt;br /&gt;
+或许你一直在抱怨为什么要专门为IE和FF写不同的CSS，为什么IE这样让人头疼，然后一边写css，一边咒骂那个可恶的M$ IE.其实对于css的标准支持方面，IE并没有我们想象的那么可恶，关键在于IE和FF的默认值不一样而已，掌握了这个技巧，你会发现写出兼容FF和 IE的css并不是那么困难，或许对于简单的css，你完全可以不用”!important”这个东西了。 &lt;br /&gt;
+我们都知道，浏览器在显示网页的时候，都会根据网页的css样式表来决定如何显示，但是我们在样式表中未必会将所有的元素都进行了具体的描述，当然也没有必要那么做，所以对于那些没有描述的属性，浏览器将采用内置默认的方式来进行显示，譬如文字，如果你没有在css中指定颜色，那么浏览器将采用黑色或者系统颜色来显示，div或者其他元素的背景，如果在css中没有被指定，浏览器则将其设置为白色或者透明，等等其他未定义的样式均如此。所以有很多东西出现 FF和IE显示不一样的根本原因在于它们的默认显示不一样，而这个默认样式该如何显示我知道在w3中有没有对应的标准来进行规定，因此对于这点也就别去怪罪IE了。 &lt;br /&gt;
+11.为什么FF下文本无法撑开容器的高度 &lt;br /&gt;
+标准浏览器中固定高度值的容器是不会象IE6里那样被撑开的,那我又想固定高度,又想能被撑开需要怎样设置呢？办法就是去掉height设置min- height:200px;这里为了照顾不认识min-height的IE6 可以这样定义: &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+{ &lt;br /&gt;
+height:auto!important; &lt;br /&gt;
+height:200px; &lt;br /&gt;
+min-height:200px; &lt;br /&gt;
+} &lt;/p&gt;
+
+&lt;p&gt;12.FireFox下如何使连续长字段自动换行 &lt;br /&gt;
+众所周知IE中直接使用 word-wrap:break-word 就可以了, FF中我们使用JS插入 &lt;br /&gt;
+的技巧来解决 &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;style type=”text/css”&amp;gt; &lt;br /&gt;
+&amp;lt;!– &lt;br /&gt;
+div { &lt;br /&gt;
+width:300px; &lt;br /&gt;
+word-wrap:break-word; &lt;br /&gt;
+border:1px solid red; &lt;br /&gt;
+} &lt;br /&gt;
+–&amp;gt; &lt;br /&gt;
+&amp;lt;/style&amp;gt; &lt;br /&gt;
+&amp;lt;div id=”ff”&amp;gt;aaaaaaaaaaaaaaaaaaaaaaaaaaaa&amp;lt;/div&amp;gt; &lt;br /&gt;
+&amp;lt;scrīpt type=”text/javascrīpt”&amp;gt; &lt;br /&gt;
+/* &amp;lt;![CDATA[ */ &lt;br /&gt;
+function toBreakWord(el, intLen){ &lt;br /&gt;
+var ōbj=document.getElementById(el); &lt;br /&gt;
+var strContent=obj.innerHTML; &lt;br /&gt;
+var strTemp=””; &lt;br /&gt;
+while(strContent.length&amp;gt;intLen){ &lt;br /&gt;
+strTemp+=strContent.substr(0,intLen)+” &lt;br /&gt;
+“; &lt;br /&gt;
+strContent=strContent.substr(intLen,strContent.length); &lt;br /&gt;
+} &lt;br /&gt;
+strTemp+=” &lt;br /&gt;
+“+strContent; &lt;br /&gt;
+obj.innerHTML=strTemp; &lt;br /&gt;
+} &lt;br /&gt;
+if(document.getElementById &amp;amp;&amp;amp; !document.all) toBreakWord(“ff”, 37); &lt;br /&gt;
+/* ]]&amp;gt; */ &lt;br /&gt;
+&amp;lt;/scrīpt&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;13.为什么IE6下容器的宽度和FF解释不同呢 &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;?xml version=”1.0″ encoding=”gb2312″?&amp;gt; &lt;br /&gt;
+&amp;lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN” “http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd”&amp;gt; &lt;br /&gt;
+&amp;lt;meta http-equiv=”Content-Type” content=”text/html;charset=gb2312″ /&amp;gt; &lt;br /&gt;
+&amp;lt;style type=”text/css”&amp;gt; &lt;br /&gt;
+&amp;lt;!– &lt;br /&gt;
+div { &lt;br /&gt;
+cursor:pointer; &lt;br /&gt;
+width:200px; &lt;br /&gt;
+height:200px; &lt;br /&gt;
+border:10px solid red &lt;br /&gt;
+} &lt;br /&gt;
+–&amp;gt; &lt;br /&gt;
+&amp;lt;/style&amp;gt; &lt;br /&gt;
+&amp;lt;div ōnclick=”alert(this.offsetWidth)”&amp;gt;让FireFox与IE兼容&amp;lt;/div&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;问题的差别在于容器的整体宽度有没有将边框（border）的宽度算在其内,这里IE6解释为200PX ,而FF则解释为220PX,那究竟是怎么导致的问题呢？大家把容器顶部的xml去掉就会发现原来问题出在这,顶部的申明触发了IE的qurks mode,关于qurks mode、standards mode的相关知识,请参考相关资料。 &lt;br /&gt;
+IE6,IE7,FF &lt;br /&gt;
+IE7.0出来了，对CSS的支持又有新问题。浏览器多了，网Bpx;/*For IE7 &amp;amp; IE6*/ &lt;br /&gt;
+_height:20px;/*For IE6*/ &lt;br /&gt;
+注意顺序。 &lt;br /&gt;
+这样也属于CSS HACK，不过没有上面这样简洁。 &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+#example { color: #333;} /* Moz */ &lt;br /&gt;
+* html #example { color: #666;} /* IE6 */ &lt;br /&gt;
+*+html #example { color: #999;} /* IE7 */ &lt;/p&gt;
+
+&lt;p&gt;第二种，是使用IE专用的条件注释 &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+&amp;lt;!–其他浏览器 –&amp;gt; &lt;br /&gt;
+&amp;lt;link rel=”stylesheet” type=”text/css” href=”http://fly-sky.javaeye.com/blog/css.css” /&amp;gt; &lt;br /&gt;
+&amp;lt;!–[if IE 7]&amp;gt; &lt;br /&gt;
+&amp;lt;!– 适合于IE7 –&amp;gt; &lt;br /&gt;
+&amp;lt;link rel=”stylesheet” type=”text/css” href=”http://fly-sky.javaeye.com/blog/ie7.css” /&amp;gt; &lt;br /&gt;
+&amp;lt;![endif]–&amp;gt; &lt;br /&gt;
+&amp;lt;!–[if lte IE 6]&amp;gt; &lt;br /&gt;
+&amp;lt;!– 适合于IE6及一下 –&amp;gt; &lt;br /&gt;
+&amp;lt;link rel=”stylesheet” type=”text/css” href=”http://fly-sky.javaeye.com/blog/ie.css” /&amp;gt; &lt;br /&gt;
+&amp;lt;![endif]–&amp;gt; &lt;/p&gt;
+
+&lt;p&gt;第三种，css filter的办法，以下为经典从国外网站翻译过来的。. &lt;br /&gt;
+新建一个css样式如下： &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+#item { &lt;br /&gt;
+width: 200px; &lt;br /&gt;
+height: 200px; &lt;br /&gt;
+background: red; &lt;br /&gt;
+} &lt;/p&gt;
+
+&lt;p&gt;新建一个div,并使用前面定义的css的样式： &lt;br /&gt;
+&amp;lt;div id=”item”&amp;gt;some text here&amp;lt;/div&amp;gt; &lt;br /&gt;
+在body表现这里加入lang属性,中文为zh： &lt;br /&gt;
+&amp;lt;body lang=”en”&amp;gt; &lt;br /&gt;
+现在对div元素再定义一个样式： &lt;br /&gt;
+*:lang(en) #item{ &lt;br /&gt;
+background:green !important; &lt;br /&gt;
+} &lt;br /&gt;
+这样做是为了用!important覆盖原来的css样式,由于:lang选择器ie7.0并不支持,所以对这句话不会有任何作用,于是也达到了 ie6.0下同样的效果,但是很不幸地的是,safari同样不支持此属性,所以需要加入以下css样式： &lt;/p&gt;
+
+&lt;p&gt;复制代码代码如下:&lt;br /&gt;
+#item:empty { &lt;br /&gt;
+background: green !important &lt;br /&gt;
+} &lt;/p&gt;
+
+&lt;p&gt;:empty选择器为css3的规范,尽管safari并不支持此规范,但是还是会选择此元素,不管是否此元素存在,现在绿色会现在在除ie各版本以外的浏览器上。 &lt;br /&gt;
+对IE6和FF的兼容可以考虑以前的!important 个人比较喜欢用第一种，简洁，兼容性比较好&lt;/p&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="未分类" /><summary type="html">CSS兼容解决方法被称呼为css hack. 一.双边距问题 浮动元素的外边距会加倍，但与第一个浮动元素相邻的其他浮动元素外边距不会加倍。 解决方法：在此浮动元素增加样式  display:inline; 二.图片产生的间隙 父元素直接包含&amp;lt;img&amp;gt;，这个图片下方会和父元素边缘产生间隙。 解绝方法：1.在源代码中让&amp;lt;/div&amp;gt;和&amp;lt;img&amp;gt;在同一行，因为那个间隙是由换行符产生的。                2.给&amp;lt;img&amp;gt;添加样式  display:block; 三.最小高度问题 块元素最小高度为10px，当高度定义小于10px时，仍为10px; 解决方法：为此块元素添加样式  overflow:hidden;   或   让此款块元素的字体大小等于此会元素的高度。 四.列表的li为浮动，则列表后面的元素不能换行的问题 列表的li为浮动，则列表后面的元素不能换行。 解决方法：为这个ul定义合适的高或给包含这个ul 的父div定义合适的高。 五.子元素的上下外边界问题（父元素没有定义高度时） 在父元素没有定义高度时，子元素的上下外边界和父元素上下外边界叠加，并且显示在父元素外面。 解决方法：给父元素定义内边距或边框。 firefox问题： 一.列表的li为浮动，则列表后面的元素不能换行的问题 列表的li为浮动，则列表后面的元素不能换行。 解决方法：为这个ul定义合适的宽高或给包含这个ul 的父div定义合适的宽高。 二.子元素的上下外边界问题（父元素没有定义高度时） 在父元素没有定义高度时，子元素的上下外边界和父元素上下外边界叠加，并且显示在父元素外面。 解决方法：给父元素定义内边距或边框。 二者之间的兼容问题： 一.水平居中  IE6：使用text-align不但能使文本居中，还能使嵌套的块元素居中。 FF2：使用text-align只能使文本居中。 解决方法：在需要居中的块元素添加margin:0 auto; 二.div高度自适应问题 IE6：如果内容的高度超过父元素的高度，父元素的高度会增加。 FF2 : 如果内容的高度超过父元素的高度，内容不会隐藏，父元素的高度也不会增加。 解决方法：（假定最小高度为50px）在父元素添加  min-height:50px;                                                                      height:auto !important;                                                                      height:50px; 三.父元素包含浮动子元素时的高度问题 IE6：高度会被子浮动元素撑开。 FF2：高度不会被子浮动元素撑开。 解决方法：在子浮动元素后面再加一个div，此div的定义：clear:both;                                                                              line-height:1px;                                                                              visibility:hidden; 四.嵌套元素边距高度的叠加问题（定义父元素宽度时） IE6：子元素的上边距和父元素的上内边距叠加。 FF2：子元素的上边距和父元素的上内边距相加。  解决方法：单独使用padding或margin。 五.子元素的上边距问题  （定义父元素高度时） IE6：子元素上边距显示正常。 FF2：子元素上边距显示在父元素上方。 解决方法：在父元素增加overflow:hidden;   或给父元素增加边框或内边距。 了解什么是CSS父子级元素  六.子元素负边界问题 IE6：超出父元素的部分会被父元素覆盖。  FF2：超出父元素的部分会覆盖父元素，但前提是父元素有边框或内边距，不然负边距会显示在父元素上，使得父元素拥有负边距。 解决办法：使用相对定位。 七.列表的默认显示问题 IE6：列表有左边界、下边界、右内边距，同时项目符号在列表外面。 FF2：列表有上下边界、左右内边距、项目符号在列表里面。 解决方法：为ul添加样式：margin:0;                                    padding:0; 八.&amp;lt;body&amp;gt;的默认padding和margin不同的问题。 解决方法：  给body添加样式：margin:0;                                           padding:0;     九.对元素使用绝对定位问题（元素定义外边距时） IE6：外边距不会视为元素的一部分，因此在对此元素使用绝对定位时外边距无效。 FF2：外边距会视为元素的一部分，因此在对此元素使用绝对定位时外边距有效。（例如margin_top会和top相加）  对于web2.0的过度，请尽量用xhtml格式写代码，而且DOCTYPE 影响 CSS 处理，作为W3C的标准，一定要加 DOCTYPE声明。  CSS技巧   1.div的垂直居中问题  vertical-align:middle;将行距增加到和整个DIV一样高 line-height:200px;然后插入文字，就垂直居中了。缺点是要控制内容不要换行  margin加倍的问题  设置为float的div在ie下设置的margin会加倍。这是一个ie6都存在的bug。解决方案是在这个div里面加上display:inline;  例如：  复制代码代码如下: &amp;lt;#div id=”imfloat”&amp;gt;  相应的css为  #imfloat{  float:left;  margin:5px;/*IE下理解为10px*/  display:inline;/*IE下再理解为5px*/}  3.浮动ie产生的双倍距离  复制代码代码如下: #box{ float:left;width:100px;margin:0 0 0 100px;//这种情况之下IE会产生200px的距离 display:inline;//使浮动忽略}  这里细说一下block与inline两个元素：block元素的特点是,总是在新行上开始,高度,宽度,行高,边距都可以控制(块元素);Inline元素的特点是,和其他元素在同一行上,不可控制(内嵌元素);  复制代码代码如下: #box{ display:block;//可以为内嵌元素模拟为块元素 display:inline;//实现同一行排列的效果 diplay:table;  4 IE与宽度和高度的问题  IE不认得min-这个定义，但实际上它把正常的width和height当作有min的情况来使。这样问题就大了，如果只用宽度和高度，正常的浏览器里这两个值就不会变，如果只用min-width和min-height的话，IE下面根本等于没有设置宽度和高度。  比如要设置背景图片，这个宽度是比较重要的。要解决这个问题，可以这样：  复制代码代码如下: #box{ width: 80px;height: 35px;}html&amp;gt;body #box{ width: auto;height: auto;min-width: 80px;min-height: 35px;}  5.页面的最小宽度  min-width是个非常方便的CSS命令，它可以指定元素最小也不能小于某个宽度，这样就能保证排版一直正确。但IE不认得这个，而它实际上把 width当做最小宽度来使。为了让这一命令在IE上也能用，可以把一个&amp;lt;div&amp;gt; 放到 &amp;lt;body&amp;gt; 标签下，然后为div指定一个类,然后CSS这样设计：  复制代码代码如下: #container{ min-width: 600px;width:expression(document.body.clientWidth &amp;lt; 600? “600px”: “auto” );}  第一个min-width是正常的；但第2行的width使用了Javascript，这只有IE才认得，这也会让你的HTML文档不太正规。它实际上通过Javascript的判断来实现最小宽度。  6.DIV CSS浮动IE文本产生3象素的bug  左边对象浮动，右边采用外补丁的左边距来定位，右边对象内的文本会离左边有3px的间距.  复制代码代码如下: #box{ float:left;width:800px;}  #left{ float:left;width:50%;}  #right{ width:50%;}  *html #left{ margin-right:-3px;//这句是关键}  &amp;lt;div id=”box”&amp;gt;  &amp;lt;div id=”left”&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;div id=”right”&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/div&amp;gt;  7.IE捉迷藏的问题  当div应用复杂的时候每个栏中又有一些链接，DIV等这个时候容易发生捉迷藏的问题。  有些内容显示不出来，当鼠标选择这个区域是发现内容确实在页面。 解决办法：对#layout使用line-height属性 或者给#layout使用固定高和宽。页面结构尽量简单。  8.float的div闭合;清除浮动;自适应高度  ①例如：&amp;lt;#div id=”floatA” &amp;gt;&amp;lt;#div id=”floatB” &amp;gt;&amp;lt;#div id=”NOTfloatC” &amp;gt;这里的NOTfloatC并不希望继续平移，而是希望往下排。(其中floatA、floatB的属性已经设置为float:left;)  这段代码在IE中毫无问题，问题出在FF。原因是NOTfloatC并非float标签，必须将float标签闭合。在 &amp;lt;#div class=”floatB”&amp;gt; &amp;lt;#div class=”NOTfloatC”&amp;gt;之间加上 &amp;lt;#div class=”clear”&amp;gt;这个div一定要注意位置，而且必须与两个具有float属性的div同级，之间不能存在嵌套关系，否则会产生异常。并且将clear这种样式定义为为如下即可： .clear{ clear:both;}  ②作为外部 wrapper 的 div 不要定死高度,为了让高度能自动适应，要在wrapper里面加上overflow:hidden;当包含float的box的时候，高度自动适应在IE下无效，这时候应该触发IE的layout私有属性(万恶的IE啊！)用zoom:1;可以做到，这样就达到了兼容。  例如某一个wrapper如下定义：  .colwrapper{ overflow:hidden;zoom:1;margin:5px auto;}  ③对于排版,我们用得最多的css描述可能就是float:left.有的时候我们需要在n栏的float div后面做一个统一的背景,譬如:  复制代码代码如下: &amp;lt;div id=”page”&amp;gt;  &amp;lt;div id=”left”&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;div id=”center”&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;div id=”right”&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/div&amp;gt;  比如我们要将page的背景设置成蓝色,以达到所有三栏的背景颜色是蓝色的目的,但是我们会发现随着left center right的向下拉长,而page居然保存高度不变,问题来了,原因在于page不是float属性,而我们的page由于要居中,不能设置成 float,所以我们应该这样解决  复制代码代码如下: &amp;lt;div id=”page”&amp;gt;  &amp;lt;div id=”bg” style=”float:left;width:100%”&amp;gt;  &amp;lt;div id=”left”&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;div id=”center”&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;div id=”right”&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;/div&amp;gt;  &amp;lt;/div&amp;gt;  再嵌入一个float left而宽度是100%的DIV解决之  ④万能float 闭合(非常重要!)  关于 clear float 的原理可参见 [How To Clear Floats Without Structural Markup],将以下代码加入Global CSS 中,给需要闭合的div加上 class=”clearfix” 即可,屡试不爽.  复制代码代码如下: /* Clear Fix */  .clearfix:after { content:”.”;display:block;height:0;clear:both;visibility:hidden;}  .clearfix { display:inline-block;}  /* Hide from IE Mac */  .clearfix {display:block;}  /* End hide from IE Mac */  /* end of clearfix */  或者这样设置：.hackbox{ display:table;//将对象作为块元素级的表格显示}  ９．高度不适应  高度不适应是当内层对象的高度发生变化时外层高度不能自动进行调节，特别是当内层对象使用margin 或paddign 时。  例：  复制代码代码如下: #box {background-color:#eee;}  #box p {margin-top: 20px;margin-bottom: 20px;text-align:center;}  &amp;lt;div id=”box”&amp;gt;  &amp;lt;p&amp;gt;p对象中的内容&amp;lt;/p&amp;gt;  &amp;lt;/div&amp;gt;  解决技巧：在P对象上下各加2个空的div对象CSS代码：.1{height:0px;overflow:hidden;}或者为DIV加上border属性。  10 .IE6下为什么图片下有空隙产生  解决这个BUG的技巧也有很多,可以是改变html的排版,或者设置img 为display:block 或者设置vertical-align 属性为vertical-align:top 　  bottom 　middle 　text-bottom 都可以解决.  11.如何对齐文本与文本输入框  加上 vertical-align:middle;  复制代码代码如下: &amp;lt;style type=”text/css”&amp;gt;  &amp;lt;!–  input {  width:200px;  height:30px;  border:1px solid red;  vertical-align:middle;  }  –&amp;gt;  &amp;lt;/style&amp;gt;  12.web标准中定义id与class有什么区别吗  一.web标准中是不容许重复ID的,比如 div id=”aa” 不容许重复2次,而class 定义的是类,理论上可以无限重复, 这样需要多次引用的定义便可以使用他.  二.属性的优先级问题  ID 的优先级要高于class,看上面的例子  三.方便JS等客户端脚本,如果在页面中要对某个对象进行脚本操作,那么可以给他定义一个ID,否则只能利用遍历页面元素加上指定特定属性来找到它,这是相对浪费时间资源,远远不如一个ID来得简单.  LI中内容超过长度后以省略号显示的技巧  此技巧适用与IE与OP浏览器  复制代码代码如下: &amp;lt;style type=”text/css”&amp;gt;  &amp;lt;!–  li {  width:200px;  white-space:nowrap;  text-overflow:ellipsis;  -o-text-overflow:ellipsis;  overflow: hidden;  }  –&amp;gt;  &amp;lt;/style&amp;gt;  14.为什么web标准中IE无法设置滚动条颜色了  解决办法是将body换成html  复制代码代码如下: &amp;lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN” “http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd”&amp;gt;  &amp;lt;meta http-equiv=”Content-Type” content=”text/html;charset=gb2312″ /&amp;gt;  &amp;lt;style type=”text/css”&amp;gt;  &amp;lt;!–  html {  scrollbar-face-color:#f6f6f6;  scrollbar-highlight-color:#fff;  scrollbar-shadow-color:#eeeeee;  scrollbar-3dlight-color:#eeeeee;  scrollbar-arrow-color:#000;  scrollbar-track-color:#fff;  scrollbar-darkshadow-color:#fff;  }  –&amp;gt;  &amp;lt;/style&amp;gt;  15.为什么无法定义1px左右高度的容器  IE6下这个问题是因为默认的行高造成的,解决的技巧也有很多,例如 verflow:hidden 　 zoom:0.08 　 line-height:1px  16.怎么样才能让层显示在FLASH之上呢  解决的办法是给FLASH设置透明  &amp;lt;param name=”wmode” value=”http://fly-sky.javaeye.com/blog/transparent” /&amp;gt;  17.怎样使一个层垂直居中于浏览器中  这里我们使用百分比绝对定位,与外补丁负值的技巧,负值的大小为其自身宽度高度除以二  复制代码代码如下: &amp;lt;style type=”text/css”&amp;gt;  &amp;lt;!–  div {  position:absolute;  top:50%;  lef:50%;  margin:-100px 0 0 -100px;  width:200px;  height:200px;  border:1px solid red;  }  –&amp;gt;  &amp;lt;/style&amp;gt;  [page]  FF与IE  Div居中问题  div设置 margin-left, margin-right 为 auto 时已经居中，IE 不行，IE需要设定body居中，首先在父级元素定义text-algin: center;这个的意思就是在父级元素内的内容居中。  2.链接(a标签)的边框与背景  a链接加边框和背景色，需设置 display: block, 同时设置 float: left 保证不换行。参照 menubar, 给 a 和 menubar 设置高度是为了避免底边显示错位, 若不设 height, 可以在 menubar 中插入一个空格。  3.超链接访问过后hover样式就不出现的问题  被点击访问过的超链接样式不在具有hover和active了,很多人应该都遇到过这个问题,解决技巧是改变CSS属性的排列顺序: L-V-H-A  Code:  复制代码代码如下: &amp;lt;style type=”text/css”&amp;gt;  &amp;lt;!–  a:link {}  a:visited {}  a:hover {}  a:active {}  –&amp;gt;  &amp;lt;/style&amp;gt;  游标手指cursor  cursor: pointer 可以同时在 IE FF 中显示游标手指状， hand 仅 IE 可以  5.UL的padding与margin  ul标签在FF中默认是有padding值的,而在IE中只有margin默认有值,所以先定义 ul{margin:0;padding:0;}就能解决大部分问题  FORM标签  这个标签在IE中,将会自动margin一些边距,而在FF中margin则是0,因此,如果想显示一致,所以最好在css中指定margin和 padding,针对上面两个问题,我的css中一般首先都使用这样的样式ul,form{margin:0;padding:0;}给定义死了,所以后面就不会为这个头疼了.  BOX模型解释不一致问题  在FF和IE中的BOX模型解释不一致导致相差2px解决技巧：div{margin:30px!important;margin:28px;} 注意这两个margin的顺序一定不能写反， important这个属性IE不能识别，但别的浏览器可以识别。所以在IE下其实解释成这样：  复制代码代码如下: div{maring:30px;margin:28px}重复定义的话按照最后一个来执行，所以不可以只写margin:xx px!important;#box{ width:600px;//for ie6.0- w\idth:500px;//for ff+ie6.0}  #box{ width:600px!important //for ff width:600px;//for ff+ie6.0 width /**/:500px;//for ie6.0-}  8.属性选择器(这个不能算是兼容,是隐藏css的一个bug)  复制代码代码如下: p[id]{}div[id]{}  这个对于IE6.0和IE6.0以下的版本都隐藏,FF和OPera作用.属性选择器和子选择器还是有区别的,子选择器的范围从形式来说缩小了,属性选择器的范围比较大,如p[id]中,所有p标签中有id的都是同样式的.  9.最狠的手段 – !important  如果实在没有办法解决一些细节问题,可以用这个技巧.FF对于”!important”会自动优先解析,然而IE则会忽略.如下  .tabd1{  background:url(/res/images/up/tab1.gif) no-repeat 0px 0px !important;/*Style for FF*/  background:url(/res/images/up/tab1.gif) no-repeat 1px 0px;/* Style for IE */}  值得注意的是，一定要将xxxx !important 这句放置在另一句之上，上面已经提过  10.IE,FF的默认值问题  或许你一直在抱怨为什么要专门为IE和FF写不同的CSS，为什么IE这样让人头疼，然后一边写css，一边咒骂那个可恶的M$ IE.其实对于css的标准支持方面，IE并没有我们想象的那么可恶，关键在于IE和FF的默认值不一样而已，掌握了这个技巧，你会发现写出兼容FF和 IE的css并不是那么困难，或许对于简单的css，你完全可以不用”!important”这个东西了。  我们都知道，浏览器在显示网页的时候，都会根据网页的css样式表来决定如何显示，但是我们在样式表中未必会将所有的元素都进行了具体的描述，当然也没有必要那么做，所以对于那些没有描述的属性，浏览器将采用内置默认的方式来进行显示，譬如文字，如果你没有在css中指定颜色，那么浏览器将采用黑色或者系统颜色来显示，div或者其他元素的背景，如果在css中没有被指定，浏览器则将其设置为白色或者透明，等等其他未定义的样式均如此。所以有很多东西出现 FF和IE显示不一样的根本原因在于它们的默认显示不一样，而这个默认样式该如何显示我知道在w3中有没有对应的标准来进行规定，因此对于这点也就别去怪罪IE了。  11.为什么FF下文本无法撑开容器的高度  标准浏览器中固定高度值的容器是不会象IE6里那样被撑开的,那我又想固定高度,又想能被撑开需要怎样设置呢？办法就是去掉height设置min- height:200px;这里为了照顾不认识min-height的IE6 可以这样定义:  复制代码代码如下: {  height:auto!important;  height:200px;  min-height:200px;  }  12.FireFox下如何使连续长字段自动换行  众所周知IE中直接使用 word-wrap:break-word 就可以了, FF中我们使用JS插入  的技巧来解决  复制代码代码如下: &amp;lt;style type=”text/css”&amp;gt;  &amp;lt;!–  div {  width:300px;  word-wrap:break-word;  border:1px solid red;  }  –&amp;gt;  &amp;lt;/style&amp;gt;  &amp;lt;div id=”ff”&amp;gt;aaaaaaaaaaaaaaaaaaaaaaaaaaaa&amp;lt;/div&amp;gt;  &amp;lt;scrīpt type=”text/javascrīpt”&amp;gt;  /* &amp;lt;![CDATA[ */  function toBreakWord(el, intLen){  var ōbj=document.getElementById(el);  var strContent=obj.innerHTML;  var strTemp=””;  while(strContent.length&amp;gt;intLen){  strTemp+=strContent.substr(0,intLen)+”  “;  strContent=strContent.substr(intLen,strContent.length);  }  strTemp+=”  “+strContent;  obj.innerHTML=strTemp;  }  if(document.getElementById &amp;amp;&amp;amp; !document.all) toBreakWord(“ff”, 37);  /* ]]&amp;gt; */  &amp;lt;/scrīpt&amp;gt;  13.为什么IE6下容器的宽度和FF解释不同呢  复制代码代码如下: &amp;lt;?xml version=”1.0″ encoding=”gb2312″?&amp;gt;  &amp;lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN” “http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd”&amp;gt;  &amp;lt;meta http-equiv=”Content-Type” content=”text/html;charset=gb2312″ /&amp;gt;  &amp;lt;style type=”text/css”&amp;gt;  &amp;lt;!–  div {  cursor:pointer;  width:200px;  height:200px;  border:10px solid red  }  –&amp;gt;  &amp;lt;/style&amp;gt;  &amp;lt;div ōnclick=”alert(this.offsetWidth)”&amp;gt;让FireFox与IE兼容&amp;lt;/div&amp;gt;  问题的差别在于容器的整体宽度有没有将边框（border）的宽度算在其内,这里IE6解释为200PX ,而FF则解释为220PX,那究竟是怎么导致的问题呢？大家把容器顶部的xml去掉就会发现原来问题出在这,顶部的申明触发了IE的qurks mode,关于qurks mode、standards mode的相关知识,请参考相关资料。  IE6,IE7,FF  IE7.0出来了，对CSS的支持又有新问题。浏览器多了，网Bpx;/*For IE7 &amp;amp; IE6*/  _height:20px;/*For IE6*/  注意顺序。  这样也属于CSS HACK，不过没有上面这样简洁。  复制代码代码如下: #example { color: #333;} /* Moz */  * html #example { color: #666;} /* IE6 */  *+html #example { color: #999;} /* IE7 */  第二种，是使用IE专用的条件注释  复制代码代码如下: &amp;lt;!–其他浏览器 –&amp;gt;  &amp;lt;link rel=”stylesheet” type=”text/css” href=”http://fly-sky.javaeye.com/blog/css.css” /&amp;gt;  &amp;lt;!–[if IE 7]&amp;gt;  &amp;lt;!– 适合于IE7 –&amp;gt;  &amp;lt;link rel=”stylesheet” type=”text/css” href=”http://fly-sky.javaeye.com/blog/ie7.css” /&amp;gt;  &amp;lt;![endif]–&amp;gt;  &amp;lt;!–[if lte IE 6]&amp;gt;  &amp;lt;!– 适合于IE6及一下 –&amp;gt;  &amp;lt;link rel=”stylesheet” type=”text/css” href=”http://fly-sky.javaeye.com/blog/ie.css” /&amp;gt;  &amp;lt;![endif]–&amp;gt;  第三种，css filter的办法，以下为经典从国外网站翻译过来的。.  新建一个css样式如下：  复制代码代码如下: #item {  width: 200px;  height: 200px;  background: red;  }  新建一个div,并使用前面定义的css的样式：  &amp;lt;div id=”item”&amp;gt;some text here&amp;lt;/div&amp;gt;  在body表现这里加入lang属性,中文为zh：  &amp;lt;body lang=”en”&amp;gt;  现在对div元素再定义一个样式：  *:lang(en) #item{  background:green !important;  }  这样做是为了用!important覆盖原来的css样式,由于:lang选择器ie7.0并不支持,所以对这句话不会有任何作用,于是也达到了 ie6.0下同样的效果,但是很不幸地的是,safari同样不支持此属性,所以需要加入以下css样式：  复制代码代码如下: #item:empty {  background: green !important  }  :empty选择器为css3的规范,尽管safari并不支持此规范,但是还是会选择此元素,不管是否此元素存在,现在绿色会现在在除ie各版本以外的浏览器上。  对IE6和FF的兼容可以考虑以前的!important 个人比较喜欢用第一种，简洁，兼容性比较好</summary></entry><entry><title type="html">MySQL修改密码、忘记root密码修改方法</title><link href="http://localhost:4001/skills/1139.html" rel="alternate" type="text/html" title="MySQL修改密码、忘记root密码修改方法" /><published>2014-08-23T20:06:25-07:00</published><updated>2014-08-23T20:06:25-07:00</updated><id>http://localhost:4001/skills/mysql%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81,%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%E4%BF%AE%E6%94%B9</id><content type="html" xml:base="http://localhost:4001/skills/1139.html">&lt;p&gt;本文整理了四种在MySQL中修改root密码的方法，希望对大家有所帮助。全部方法经过测试通过。&lt;/p&gt;
+
+&lt;h3 id=&quot;方法1-用set-password命令&quot;&gt;方法1： 用SET PASSWORD命令&lt;/h3&gt;
+
+&lt;p&gt;首先登录MySQL。&lt;br /&gt;
+格式：mysql&amp;gt; set password for 用户名@localhost = password(‘新密码’);&lt;br /&gt;
+例子：mysql&amp;gt; set password for root@localhost = password(‘404story.com’);&lt;br /&gt;
+上面例子将用户root的密码更改为404story.com&lt;/p&gt;
+
+&lt;h3 id=&quot;方法2用mysqladmin&quot;&gt;方法2：用mysqladmin&lt;/h3&gt;
+
+&lt;p&gt;格式：mysqladmin -u用户名 -p旧密码 password 新密码&lt;br /&gt;
+例子：mysqladmin -uroot -p123456 password 404story.com&lt;br /&gt;
+上面例子将用户root原来的密码123456改为新密码404story.com&lt;/p&gt;
+
+&lt;h3 id=&quot;方法3用update直接编辑user表&quot;&gt;方法3：用UPDATE直接编辑user表&lt;/h3&gt;
+
+&lt;p&gt;首先登录MySQL。&lt;br /&gt;
+mysql&amp;gt; use mysql;&lt;br /&gt;
+mysql&amp;gt; update user set password=password(‘404story.com’) where user=’root’ and host=’localhost’;&lt;br /&gt;
+mysql&amp;gt; flush privileges;&lt;/p&gt;
+
+&lt;h3 id=&quot;方法4在忘记root密码的时候可以这样&quot;&gt;方法4：在忘记root密码的时候，可以这样。&lt;/h3&gt;
+
+&lt;p&gt;以windows为例：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;关闭正在运行的MySQL服务。&lt;/li&gt;
+  &lt;li&gt;打开DOS窗口，转到mysql\bin目录。&lt;/li&gt;
+  &lt;li&gt;输入mysqld –skip-grant-tables 回车。–skip-grant-tables 的意思是启动MySQL服务的时候跳过权限表认证。&lt;/li&gt;
+  &lt;li&gt;再开一个DOS窗口（因为刚才那个DOS窗口已经不能动了），转到mysql\bin目录。&lt;/li&gt;
+  &lt;li&gt;输入mysql回车，如果成功，将出现MySQL提示符 &amp;gt;。&lt;/li&gt;
+  &lt;li&gt;连接权限数据库： use mysql; 。&lt;/li&gt;
+  &lt;li&gt;改密码：update user set password=password(“404story.com”) where user=”root”;（别忘了最后加分号） 。&lt;/li&gt;
+  &lt;li&gt;刷新权限（必须步骤）：flush privileges;　。&lt;/li&gt;
+  &lt;li&gt;退出  quit。&lt;/li&gt;
+  &lt;li&gt;注销系统，再进入，使用用户名root和刚才设置的新密码404story.com登录。&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="Skills" /><summary type="html">本文整理了四种在MySQL中修改root密码的方法，希望对大家有所帮助。全部方法经过测试通过。</summary></entry><entry><title type="html">Debian/Ubuntu Linux（VPS）搭建L2TP/IPSec VPN服务器</title><link href="http://localhost:4001/skills/1093.html" rel="alternate" type="text/html" title="Debian/Ubuntu Linux（VPS）搭建L2TP/IPSec VPN服务器" /><published>2014-01-25T22:57:08-08:00</published><updated>2014-01-25T22:57:08-08:00</updated><id>http://localhost:4001/skills/debianubuntu-linux(vps)%E6%90%AD%E5%BB%BAl2tpipsec-vpn%E6%9C%8D%E5%8A%A1%E5%99%A8</id><content type="html" xml:base="http://localhost:4001/skills/1093.html">&lt;p&gt;尝试过直接用PPTP搭建VPN，但效果不理想，然后转而搭建一个L2TP/IPSec VPN服务器，期间遇到过很多问题，尝试过CentOS，最后还是在Ubuntu下终于顺利解决了。留给大家参考。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;说明：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;YOUR-HOST-IP：指你主机的公网IP地址，如果你没有公网IP地址，请直接关闭此页面！&lt;/p&gt;
+
+&lt;p&gt;YOUR-PSK-SECRET：指你的IPSec预设共享密钥&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;操作：&lt;/strong&gt;  &lt;/p&gt;
+
+&lt;p&gt;a）安装依赖软件&lt;/p&gt;
+
+&lt;p&gt;$sudo apt-get install ppp openswan xl2tpd iptables lsof&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;注意：如果安装过程中遇到如下错误，请确认系统中是否已安装xl2tp类似服务。我被此问题困扰了很久，最终通过仔细翻阅错误日志（/var/log/syslog）才发现原来此错误是由于xl2tpd启动需要绑定的1701端口被占用导致。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Setting up xl2tpd &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1.2.7+dfsg-1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ... Starting xl2tpd: invoke-rc.d: initscript xl2tpd, action &lt;span class=&quot;s2&quot;&gt;&quot;start&quot;&lt;/span&gt; failed. dpkg: error processing xl2tpd &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: subprocess installed post-installation script returned error &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;status 1 Errors were encountered &lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;processing: xl2tpd E: Sub-process /usr/bin/dpkg returned an error code &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt; &lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;b）配置PPP&lt;/p&gt;
+
+&lt;p&gt;$sudo vim /etc/ppp/options.xl2tpd&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-actionscript3&quot;&gt;require-mschap-v2 ms-dns 208.67.222.222 ms-dns 208.67.220.220 asyncmap 0 auth crtscts lock hide-password modem debug name l2tpd proxyarp lcp-echo-interval 30 lcp-echo-failure 4 mtu 1400 noccp connect-delay 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;p&gt;1) 此处我选择使用openDNS服务，如果你有其他选择请修改ms-dns配置项。&lt;/p&gt;
+
+&lt;p&gt;2) 最后三行的配置项是针对OS X/iOS而设置，如果不添加此三行，windows/andriod均可正常连接VPN服务，但OS X/iOS则无法连接。&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;c）配置IPSec&lt;/p&gt;
+
+&lt;p&gt;$sudo vim /etc/ipsec.conf&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-actionscript3&quot;&gt;# conforms to second version of ipsec.conf specification version2.0 # basic configuration config setup # NAT-TRAVERSAL support, see README.NAT-Traversal nat\_traversal=yes # exclude networks used on server side by adding %v4:!a.b.c.0/24 virtual\_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12 # OE is now off by default. Uncomment and change to on, to enable. oe=off # which IPsec stack to use. auto will try netkey, then klips then mast protostack=auto conn L2TP-PSK-NAT rightsubnet=vhost:%priv also=L2TP-PSK-noNAT conn L2TP-PSK-noNAT authby=secret pfs=no auto=add keyingtries=3 rekey=no ikelifetime=12h keylife=1h type=transport left=YOUR-HOST-IP leftprotoport=17/1701 right=%any rightprotoport=17/%any dpddelay=40 dpdtimeout=130 dpdaction=clear
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;注意：最后三行dpd*配置项是为OS X/iOS而配置，如果你的OS X/iOS设备仍然无法连接VPN服务器，请适当修改dpddelay和dpdtimeout项的值。修改后仍然无法连接者，去看/var/log/syslog日志吧！&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;d）配置XL2TPD&lt;/p&gt;
+
+&lt;p&gt;$sudo vim /etc/xl2tpd/xl2tpd.conf&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-actionscript3&quot;&gt;[global] ipsec saref = yes [lns default] ip range = 10.1.2.2-10.1.2.254 local ip = 10.1.2.1 refuse chap = yes refuse pap = yes require authentication = yes length bit = yes pppoptfile = /etc/ppp/options.xl2tpd ppp debug = yes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;p&gt;1) ip range配置项是客户端分配IP段定义，此处一般无需修改。如果你的系统中与此值存在冲突，我想你已经明白如何做了！&lt;/p&gt;
+
+&lt;p&gt;2) ppp debug配置项指定是否开启PPP调试日志，默认PPP日志会输出到/var/log/syslog文件。&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;e）配置IPSec预设共享密钥&lt;/p&gt;
+
+&lt;p&gt;$sudo vim /etc/ipsec.secrets&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;# PSK&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;YOUR-HOST-IP %any : PSK “YOUR-PSK-SECRET”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;f）配置iptables规则，（我这里eth1为机器的外网网卡）&lt;/p&gt;
+
+&lt;p&gt;$sudo iptables -t nat -A POSTROUTING -s 10.161.173.0/24 -o eth1 -j MASQUERADE&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;g）保存并配置重启后的iptables。&lt;/p&gt;
+
+&lt;p&gt;$ iptables-save &amp;gt; /etc/iptables-rules&lt;/p&gt;
+
+&lt;p&gt;修改/etc/network/interfaces，在eth1下up语句前添加：&lt;/p&gt;
+
+&lt;p&gt;pre-up iptables-restore &amp;lt; /etc/iptables-rules&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;h）添加L2TP/IPSec VPN账号&lt;/p&gt;
+
+&lt;p&gt;$sudo vim /etc/ppp/chap-secrets&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;#user    server    password    ip&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;test    *    test-passwd    *&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;test2    xl2tpd    test2-passwd    *&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;i）配置/etc/sysctl.conf，以允许转发。首先，找到net.ipv4.ip_forward项，修改为：&lt;/p&gt;
+
+&lt;p&gt;net.ipv4.ip_forward=1&lt;/p&gt;
+
+&lt;p&gt;然后，运行如下命令：&lt;/p&gt;
+
+&lt;p&gt;#sysctl -p&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;j）重启IPSec&lt;/p&gt;
+
+&lt;p&gt;$sudo /etc/init.d/ipsec restart&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;k）重启XL2TPD&lt;/p&gt;
+
+&lt;p&gt;$sudo /etc/init.d/xl2tpd restart&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;注意：如果服务都能正常启动，但客户端无法连接VPN服务器，你可以停止xl2tpd（$sudo /etc/init.d/xl2tpd stop）后在命令行使用$sudo xl2tpd -D命令以调试模式启动，然后就看日志吧！&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;阿里云服务器搭建vpn需要注意两点：&lt;/p&gt;
+
+&lt;p&gt;① PPTP配置里面的 localip   remoteip 的IP段要和内网IP属于同一网段&lt;/p&gt;
+
+&lt;p&gt;②执行 这个的时候 iptables -t nat -A POSTROUTING -s 10.129.9.0/24 -o eth1 -j MASQUERADE&lt;br /&gt;
+ 要把“eth1” 修改成你对应的外网网卡，阿里云的服务器是双网卡的可能跟别的有些不同。&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;附服务器接入常见问题总结：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1、VPN客户端拨入时出现721错误：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这种情况大数多原因为客户系统，如果为WINXP并且安装了SP2，则可能会出现这种情况，解决方法为：修改注册表HKEY_LOCAL_MACHINE&lt;a href=&quot;http://www.ha97.com/tag/system&quot; title=&quot;SYSTEM&quot;&gt;SYSTEM&lt;/a&gt;CurrentControlSetControlClass{4D36E972-E325-11CE-BFC1-08002bE10318}，其中其中 是 WAN 微型端口 (PPTP) 驱动程序的网络适配器，在此项中新建一个DWORD 值ValidateAddress，然后设置为0即可。&lt;br /&gt;
+服务器端PPP协议配置不正确也会导致此类错误。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2、VPN客户端拨入时出现800错误：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这种情况大数多原因为客户系统连接服务器时使用域名，因临时DNS无法解析而出现这种错误，可更换DNS试一下，如果还是出错此类错误，则可能是无法连接到VPN服务器，可能是VPN服务器关闭或出现故障，也可能是客户电脑上的防火墙阻止了VPN连接请求，可关闭防火墙试一下。&lt;br /&gt;
+有些使用中转服务器连接到VPN服务器的客户端，也可能出现此类错误，原因为中转服务器中转功能出现故障。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3、VPN客户端拨入时出现619错误：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这种情况大数多原因为客户机连接Internet的网关（如家庭宽带路由或公司上网网关路由或防火墙）NAT-T功能关闭或对VPN支持性不好，主要是对GRE及PPTP协议的NAT-T不支持。可打开网关路由的NAT-T功能，如果还是出现错误，则需要更换网关设备，现在市面上大多数设备已经支持。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4、VPN客户端拨入时出现691错误：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这种情况大数多原因为客户机连接VPN服务器异常中断，因多数服务器限制一个帐户同时只有一个人使用，所以一旦异常断开，则需等待3分钟左右。有些VPN服务器没有设置异常断线检查功能也可能导致用户一旦异常断开后很长时间不能连接。所以解决办法为在服务器上设置异常断线检查程序或功能。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5、VPN客户端拨入时出现733错误：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这种情况大数多原因为客户机拨入VPN服务器后无法获取IP地址，可修复DHCP服务器或设置静态IP地址或地址池。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;6、VPN客户端拨入时出现734 ppp链接控制协议终止：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这种情况多数为VPN服务器配置有问题，如果是PPP配置有问题，不支持MPPE加密或支持度不好。请重新编译PPP及MPPE相关程序。对于用于游戏代理的用户，可不使用加密（需在服务器端不要求加密）。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;7、VPN客户端拨入时出现718错误：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;拨入时用户名和密码出错误，有时也因为服务器端认证服务出现故障。&lt;/p&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="Skills" /><summary type="html">尝试过直接用PPTP搭建VPN，但效果不理想，然后转而搭建一个L2TP/IPSec VPN服务器，期间遇到过很多问题，尝试过CentOS，最后还是在Ubuntu下终于顺利解决了。留给大家参考。</summary></entry><entry><title type="html">JVM参数设置、优化配置</title><link href="http://localhost:4001/labrary/1070.html" rel="alternate" type="text/html" title="JVM参数设置、优化配置" /><published>2013-08-11T00:47:19-07:00</published><updated>2013-08-11T00:47:19-07:00</updated><id>http://localhost:4001/labrary/jvm%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E3%80%81%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4001/labrary/1070.html">&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;堆大小设置&lt;/strong&gt;&lt;br /&gt;
+JVM 中最大堆大小有三方面限制：相关操作系统的数据模型（32-bt还是64-bit）限制；系统的可用虚拟内存限制；系统的可用物理内存限制。32位系统下，一般限制在1.5G~2G；64为操作系统对内存无限制。我在Windows Server 2003 系统，3.5G物理内存，JDK5.0下测试，最大可设置为1478m。&lt;br /&gt;
+&lt;strong&gt;典型设置：&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;java  &lt;strong&gt;-Xmx3550m -Xms3550m -Xmn2g&lt;/strong&gt;   &lt;strong&gt;-Xss128k&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;-&lt;/strong&gt;** Xmx3550m&lt;strong&gt;：设置JVM最大可用内存为3550M。&lt;br /&gt;
+**-Xms3550m&lt;/strong&gt; ：设置JVM促使内存为3550m。此值可以设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存。&lt;br /&gt;
+&lt;strong&gt;-Xmn2g&lt;/strong&gt; ：设置年轻代大小为2G。 &lt;strong&gt;整个JVM内存大小=年轻代大小 + 年老代大小 + 持久代大小&lt;/strong&gt; 。持久代一般固定大小为64m，所以增大年轻代后，将会减小年老代大小。此值对系统性能影响较大，Sun官方推荐配置为整个堆的3/8。&lt;br /&gt;
+&lt;strong&gt;-Xss128k&lt;/strong&gt; ：设置每个线程的堆栈大小。JDK5.0以后每个线程堆栈大小为1M，以前每个线程堆栈大小为256K。更具应用的线程所需内存大小进行调整。在相同物理内存下，减小这个值能生成更多的线程。但是操作系统对一个进程内的线程数还是有限制的，不能无限生成，经验值在3000~5000左右。&lt;/li&gt;
+      &lt;li&gt;java -Xmx3550m -Xms3550m -Xss128k  &lt;strong&gt;-XX:NewRatio=4 -XX:SurvivorRatio=4 -XX:MaxPermSize=16m -XX:MaxTenuringThreshold=0&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;-XX:NewRatio=4&lt;/strong&gt; :设置年轻代（包括Eden和两个Survivor区）与年老代的比值（除去持久代）。设置为4，则年轻代与年老代所占比值为1：4，年轻代占整个堆栈的1/5&lt;br /&gt;
+&lt;strong&gt;-XX:SurvivorRatio=4&lt;/strong&gt; ：设置年轻代中Eden区与Survivor区的大小比值。设置为4，则两个Survivor区与一个Eden区的比值为2:4，一个Survivor区占整个年轻代的1/6&lt;br /&gt;
+&lt;strong&gt;-XX:MaxPermSize=16m&lt;/strong&gt; :设置持久代大小为16m。&lt;br /&gt;
+&lt;strong&gt;-XX:MaxTenuringThreshold=0&lt;/strong&gt; ：设置垃圾最大年龄。 &lt;strong&gt;如果设置为0的话，则年轻代对象不经过Survivor区，直接进入年老代&lt;/strong&gt; 。对于年老代比较多的应用，可以提高效率。 &lt;strong&gt;如果将此值设置为一个较大值，则年轻代对象会在Survivor区进行多次复制，这样可以增加对象再年轻代的存活时间&lt;/strong&gt; ，增加在年轻代即被回收的概论。&lt;!--more--&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;回收器选择&lt;/strong&gt;&lt;br /&gt;
+JVM给了三种选择： &lt;strong&gt;串行收集器、并行收集器、并发收集器&lt;/strong&gt; ，但是串行收集器只适用于小数据量的情况，所以这里的选择主要针对并行收集器和并发收集器。默认情况下，JDK5.0以前都是使用串行收集器，如果想使用其他收集器需要在启动时加入相应参数。JDK5.0以后，JVM会根据当前&lt;a href=&quot;http://java.sun.com/j2se/1.5.0/docs/guide/vm/server-class.html&quot;&gt;系统配置&lt;/a&gt;进行判断。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;吞吐量优先&lt;/strong&gt; 的并行收集器&lt;br /&gt;
+如上文所述，并行收集器主要以到达一定的吞吐量为目标，适用于科学技术和后台处理等。&lt;br /&gt;
+&lt;strong&gt;典型配置&lt;/strong&gt; ：
+    - java -Xmx3800m -Xms3800m -Xmn2g -Xss128k  &lt;strong&gt;-XX:+UseParallelGC -XX:ParallelGCThreads=20&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;-XX:+UseParallelGC&lt;/strong&gt; ：选择垃圾收集器为并行收集器。 &lt;strong&gt;此配置仅对年轻代有效。即上述配置下，年轻代使用并发收集，而年老代仍旧使用串行收集。&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;-XX:ParallelGCThreads=20&lt;/strong&gt; ：配置并行收集器的线程数，即：同时多少个线程一起进行垃圾回收。此值最好配置与处理器数目相等。
+    - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC -XX:ParallelGCThreads=20  &lt;strong&gt;-XX:+UseParallelOldGC&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;-XX:+UseParallelOldGC&lt;/strong&gt; ：配置年老代垃圾收集方式为并行收集。JDK6.0支持对年老代并行收集。
+    - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC   &lt;strong&gt;-XX:MaxGCPauseMillis=100&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;-XX:MaxGCPauseMillis=100&lt;/strong&gt;** :&lt;strong&gt;设置每次年轻代垃圾回收的最长时间，如果无法满足此时间，JVM会自动调整年轻代大小，以满足此值。
+    - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC  -XX:MaxGCPauseMillis=100 &lt;/strong&gt;-XX:+UseAdaptiveSizePolicy&lt;br /&gt;
+-XX:+UseAdaptiveSizePolicy** ：设置此选项后，并行收集器会自动选择年轻代区大小和相应的Survivor区比例，以达到目标系统规定的最低相应时间或者收集频率等，此值建议使用并行收集器时，一直打开。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;响应时间优先&lt;/strong&gt; 的并发收集器&lt;br /&gt;
+如上文所述，并发收集器主要是保证系统的响应时间，减少垃圾收集时的停顿时间。适用于应用服务器、电信领域等。&lt;br /&gt;
+&lt;strong&gt;典型配置&lt;/strong&gt; ：
+    - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:ParallelGCThreads=20  &lt;strong&gt;-XX:+UseConcMarkSweepGC -XX:+UseParNewGC&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;-XX:+UseConcMarkSweepGC&lt;/strong&gt; ：设置年老代为并发收集。测试中配置这个以后，-XX:NewRatio=4的配置失效了，原因不明。所以，此时年轻代大小最好用-Xmn设置。&lt;br /&gt;
+&lt;strong&gt;-XX:+UseParNewGC&lt;/strong&gt; :设置年轻代为并行收集。可与CMS收集同时使用。JDK5.0以上，JVM会根据系统配置自行设置，所以无需再设置此值。
+    - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseConcMarkSweepGC  &lt;strong&gt;-XX:CMSFullGCsBeforeCompaction=5 -XX:+UseCMSCompactAtFullCollection&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;-XX:CMSFullGCsBeforeCompaction&lt;/strong&gt; ：由于并发收集器不对内存空间进行压缩、整理，所以运行一段时间以后会产生“碎片”，使得运行效率降低。此值设置运行多少次GC以后对内存空间进行压缩、整理。&lt;br /&gt;
+&lt;strong&gt;-XX:+UseCMSCompactAtFullCollection&lt;/strong&gt; ：打开对年老代的压缩。可能会影响性能，但是可以消除碎片&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;辅助信息&lt;/strong&gt;&lt;br /&gt;
+JVM提供了大量命令行参数，打印信息，供调试使用。主要有以下一些：
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;-XX:+PrintGC&lt;/strong&gt;&lt;br /&gt;
+输出形式&lt;strong&gt;：[GC 118250K-&amp;gt;113543K(130112K), 0.0094143 secs]&lt;/strong&gt;&lt;strong&gt;                [Full GC 121376K-&amp;gt;10414K(130112K), 0.0650971 secs]&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;-XX:+PrintGCDetails&lt;/strong&gt;&lt;br /&gt;
+输出形式&lt;strong&gt;：[GC [DefNew: 8614K-&amp;gt;781K(9088K), 0.0123035 secs] 118250K-&amp;gt;113543K(130112K), 0.0124633 secs]&lt;/strong&gt;&lt;strong&gt;                [GC [DefNew: 8614K-&amp;gt;8614K(9088K), 0.0000665 secs][Tenured: 112761K-&amp;gt;10414K(121024K), 0.0433488 secs] 121376K-&amp;gt;10414K(130112K), 0.0436268 secs]&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;-XX:+PrintGCTimeStamps&lt;/strong&gt;  -XX:+PrintGC：PrintGCTimeStamps可与上面两个混合使用&lt;br /&gt;
+输出形式：&lt;strong&gt;11.851: [GC 98328K-&amp;gt;93620K(130112K), 0.0082960 secs]&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;-XX:+PrintGCApplicationConcurrentTime:&lt;/strong&gt; 打印每次垃圾回收前，程序未中断的执行时间。可与上面混合使用&lt;br /&gt;
+输出形式： &lt;strong&gt;Application time: 0.5291524 seconds&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;-XX:+PrintGCApplicationStoppedTime&lt;/strong&gt; ：打印垃圾回收期间程序暂停的时间。可与上面混合使用&lt;br /&gt;
+输出形式： &lt;strong&gt;Total time for which application threads were stopped: 0.0468229 seconds&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;-XX:PrintHeapAtGC&lt;/strong&gt; :打印GC前后的详细堆栈信息&lt;br /&gt;
+输出形式：&lt;br /&gt;
+34.702: [GC {Heap before gc invocations=7:&lt;br /&gt;
+def new generation   total 55296K, used 52568K [0x1ebd0000, 0x227d0000, 0x227d0000)&lt;br /&gt;
+&lt;strong&gt;eden space 49152K,  99% used&lt;/strong&gt;  [0x1ebd0000, 0x21bce430, 0x21bd0000)&lt;br /&gt;
+&lt;strong&gt;from space 6144K,  55% used&lt;/strong&gt;  [0x221d0000, 0x22527e10, 0x227d0000)&lt;br /&gt;
+to   space 6144K,   0% used [0x21bd0000, 0x21bd0000, 0x221d0000)&lt;br /&gt;
+tenured generation   total 69632K, used 2696K [0x227d0000, 0x26bd0000, 0x26bd0000)&lt;br /&gt;
+&lt;strong&gt;the space 69632K,   3% used&lt;/strong&gt;  [0x227d0000, 0x22a720f8, 0x22a72200, 0x26bd0000)&lt;br /&gt;
+compacting perm gen  total 8192K, used 2898K [0x26bd0000, 0x273d0000, 0x2abd0000)&lt;br /&gt;
+the space 8192K,  35% used [0x26bd0000, 0x26ea4ba8, 0x26ea4c00, 0x273d0000)&lt;br /&gt;
+ro space 8192K,  66% used [0x2abd0000, 0x2b12bcc0, 0x2b12be00, 0x2b3d0000)&lt;br /&gt;
+rw space 12288K,  46% used [0x2b3d0000, 0x2b972060, 0x2b972200, 0x2bfd0000)&lt;br /&gt;
+34.735: [DefNew: 52568K-&amp;gt;3433K(55296K), 0.0072126 secs] 55264K-&amp;gt;6615K(124928K) &lt;strong&gt;Heap after gc invocations=8:&lt;/strong&gt;&lt;br /&gt;
+ def new generation   total 55296K, used 3433K [0x1ebd0000, 0x227d0000, 0x227d0000)&lt;br /&gt;
+&lt;strong&gt;eden space 49152K,   0% used&lt;/strong&gt;  [0x1ebd0000, 0x1ebd0000, 0x21bd0000)&lt;br /&gt;
+from space 6144K,  55% used [0x21bd0000, 0x21f2a5e8, 0x221d0000)&lt;br /&gt;
+to   space 6144K,   0% used [0x221d0000, 0x221d0000, 0x227d0000)&lt;br /&gt;
+tenured generation   total 69632K, used 3182K [0x227d0000, 0x26bd0000, 0x26bd0000)&lt;br /&gt;
+&lt;strong&gt;the space 69632K,   4% used &lt;/strong&gt; [0x227d0000, 0x22aeb958, 0x22aeba00, 0x26bd0000)&lt;br /&gt;
+compacting perm gen  total 8192K, used 2898K [0x26bd0000, 0x273d0000, 0x2abd0000)&lt;br /&gt;
+the space 8192K,  35% used [0x26bd0000, 0x26ea4ba8, 0x26ea4c00, 0x273d0000)&lt;br /&gt;
+ro space 8192K,  66% used [0x2abd0000, 0x2b12bcc0, 0x2b12be00, 0x2b3d0000)&lt;br /&gt;
+rw space 12288K,  46% used [0x2b3d0000, 0x2b972060, 0x2b972200, 0x2bfd0000)&lt;br /&gt;
+}&lt;br /&gt;
+, 0.0757599 secs]&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;-Xloggc:filename&lt;/strong&gt; :与上面几个配合使用，把相关日志信息记录到文件以便分析。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;常见配置汇总&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;堆设置
+    - &lt;strong&gt;-Xms&lt;/strong&gt; :初始堆大小
+    - &lt;strong&gt;-Xmx&lt;/strong&gt; :最大堆大小
+    - &lt;strong&gt;-XX:NewSize=n&lt;/strong&gt; :设置年轻代大小
+    - &lt;strong&gt;-XX:NewRatio=n:&lt;/strong&gt; 设置年轻代和年老代的比值。如:为3，表示年轻代与年老代比值为1：3，年轻代占整个年轻代年老代和的1/4
+    - &lt;strong&gt;-XX:SurvivorRatio=n&lt;/strong&gt; :年轻代中Eden区与两个Survivor区的比值。注意Survivor区有两个。如：3，表示Eden：Survivor=3：2，一个Survivor区占整个年轻代的1/5
+    - &lt;strong&gt;-XX:MaxPermSize=n&lt;/strong&gt; :设置持久代大小&lt;/li&gt;
+  &lt;li&gt;收集器设置
+    - &lt;strong&gt;-XX:+UseSerialGC&lt;/strong&gt; :设置串行收集器
+    - &lt;strong&gt;-XX:+UseParallelGC&lt;/strong&gt; :设置并行收集器
+    - &lt;strong&gt;-XX:+UseParalledlOldGC&lt;/strong&gt; :设置并行年老代收集器
+    - &lt;strong&gt;-XX:+UseConcMarkSweepGC&lt;/strong&gt; :设置并发收集器&lt;/li&gt;
+  &lt;li&gt;垃圾回收统计信息
+    - &lt;strong&gt;-XX:+PrintGC&lt;/strong&gt;
+    - &lt;strong&gt;-XX:+PrintGCDetails&lt;/strong&gt;
+    - &lt;strong&gt;-XX:+PrintGCTimeStamps&lt;/strong&gt;
+    - &lt;strong&gt;-Xloggc:filename&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;并行收集器设置
+    - &lt;strong&gt;-XX:ParallelGCThreads=n&lt;/strong&gt; :设置并行收集器收集时使用的CPU数。并行收集线程数。
+    - &lt;strong&gt;-XX:MaxGCPauseMillis=n&lt;/strong&gt; :设置并行收集最大暂停时间
+    - &lt;strong&gt;-XX:GCTimeRatio=n&lt;/strong&gt; :设置垃圾回收时间占程序运行时间的百分比。公式为1/(1+n)&lt;/li&gt;
+  &lt;li&gt;并发收集器设置
+    - &lt;strong&gt;-XX:+CMSIncrementalMode&lt;/strong&gt; :设置为增量模式。适用于单CPU情况。
+    - &lt;strong&gt;-XX:ParallelGCThreads=n&lt;/strong&gt; :设置并发收集器年轻代收集方式为并行收集时，使用的CPU数。并行收集线程数。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;四、调优总结&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;年轻代大小选择&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;响应时间优先的应用&lt;/strong&gt; ： &lt;strong&gt;尽可能设大，直到接近系统的最低响应时间限制&lt;/strong&gt; （根据实际情况选择）。在此种情况下，年轻代收集发生的频率也是最小的。同时，减少到达年老代的对象。&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;吞吐量优先的应用&lt;/strong&gt; ：尽可能的设置大，可能到达Gbit的程度。因为对响应时间没有要求，垃圾收集可以并行进行，一般适合8CPU以上的应用。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;年老代大小选择&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;响应时间优先的应用&lt;/strong&gt; ：年老代使用并发收集器，所以其大小需要小心设置，一般要考虑 &lt;strong&gt;并发会话率&lt;/strong&gt; 和 &lt;strong&gt;会话持续时间&lt;/strong&gt; 等一些参数。如果堆设置小了，可以会造成内存碎片、高回收频率以及应用暂停而使用传统的标记清除方式；如果堆大了，则需要较长的收集时间。最优化的方案，一般需要参考以下数据获得：&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+      &lt;li&gt;并发垃圾收集信息&lt;/li&gt;
+      &lt;li&gt;持久代并发收集次数&lt;/li&gt;
+      &lt;li&gt;传统GC信息&lt;/li&gt;
+      &lt;li&gt;花在年轻代和年老代回收上的时间比例&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;减少年轻代和年老代花费的时间，一般会提高应用的效率&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;吞吐量优先的应用&lt;/strong&gt; ：一般吞吐量优先的应用都有一个很大的年轻代和一个较小的年老代。原因是，这样可以尽可能回收掉大部分短期对象，减少中期的对象，而年老代尽存放长期存活对象。
+    &lt;ol&gt;
+      &lt;li&gt;&lt;strong&gt;较小堆引起的碎片问题&lt;/strong&gt;&lt;br /&gt;
+因为年老代的并发收集器使用标记、清除算法，所以不会对堆进行压缩。当收集器回收时，他会把相邻的空间进行合并，这样可以分配给较大的对象。但是，当堆空间较小时，运行一段时间以后，就会出现“碎片”，如果并发收集器找不到足够的空间，那么并发收集器将会停止，然后使用传统的标记、清除方式进行回收。如果出现“碎片”，可能需要进行如下配置：&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;-XX:+UseCMSCompactAtFullCollection&lt;/strong&gt; ：使用并发收集器时，开启对年老代的压缩。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;-XX:CMSFullGCsBeforeCompaction=0&lt;/strong&gt; ：上面配置开启的情况下，这里设置多少次Full GC后，对年老代进行压缩&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="Labrary" /><summary type="html">堆大小设置 JVM 中最大堆大小有三方面限制：相关操作系统的数据模型（32-bt还是64-bit）限制；系统的可用虚拟内存限制；系统的可用物理内存限制。32位系统下，一般限制在1.5G~2G；64为操作系统对内存无限制。我在Windows Server 2003 系统，3.5G物理内存，JDK5.0下测试，最大可设置为1478m。 典型设置： java  -Xmx3550m -Xms3550m -Xmn2g   -Xss128k -** Xmx3550m：设置JVM最大可用内存为3550M。 **-Xms3550m ：设置JVM促使内存为3550m。此值可以设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存。 -Xmn2g ：设置年轻代大小为2G。 整个JVM内存大小=年轻代大小 + 年老代大小 + 持久代大小 。持久代一般固定大小为64m，所以增大年轻代后，将会减小年老代大小。此值对系统性能影响较大，Sun官方推荐配置为整个堆的3/8。 -Xss128k ：设置每个线程的堆栈大小。JDK5.0以后每个线程堆栈大小为1M，以前每个线程堆栈大小为256K。更具应用的线程所需内存大小进行调整。在相同物理内存下，减小这个值能生成更多的线程。但是操作系统对一个进程内的线程数还是有限制的，不能无限生成，经验值在3000~5000左右。 java -Xmx3550m -Xms3550m -Xss128k  -XX:NewRatio=4 -XX:SurvivorRatio=4 -XX:MaxPermSize=16m -XX:MaxTenuringThreshold=0 -XX:NewRatio=4 :设置年轻代（包括Eden和两个Survivor区）与年老代的比值（除去持久代）。设置为4，则年轻代与年老代所占比值为1：4，年轻代占整个堆栈的1/5 -XX:SurvivorRatio=4 ：设置年轻代中Eden区与Survivor区的大小比值。设置为4，则两个Survivor区与一个Eden区的比值为2:4，一个Survivor区占整个年轻代的1/6 -XX:MaxPermSize=16m :设置持久代大小为16m。 -XX:MaxTenuringThreshold=0 ：设置垃圾最大年龄。 如果设置为0的话，则年轻代对象不经过Survivor区，直接进入年老代 。对于年老代比较多的应用，可以提高效率。 如果将此值设置为一个较大值，则年轻代对象会在Survivor区进行多次复制，这样可以增加对象再年轻代的存活时间 ，增加在年轻代即被回收的概论。 回收器选择 JVM给了三种选择： 串行收集器、并行收集器、并发收集器 ，但是串行收集器只适用于小数据量的情况，所以这里的选择主要针对并行收集器和并发收集器。默认情况下，JDK5.0以前都是使用串行收集器，如果想使用其他收集器需要在启动时加入相应参数。JDK5.0以后，JVM会根据当前系统配置进行判断。 吞吐量优先 的并行收集器 如上文所述，并行收集器主要以到达一定的吞吐量为目标，适用于科学技术和后台处理等。 典型配置 ： - java -Xmx3800m -Xms3800m -Xmn2g -Xss128k  -XX:+UseParallelGC -XX:ParallelGCThreads=20 -XX:+UseParallelGC ：选择垃圾收集器为并行收集器。 此配置仅对年轻代有效。即上述配置下，年轻代使用并发收集，而年老代仍旧使用串行收集。 -XX:ParallelGCThreads=20 ：配置并行收集器的线程数，即：同时多少个线程一起进行垃圾回收。此值最好配置与处理器数目相等。 - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC -XX:ParallelGCThreads=20  -XX:+UseParallelOldGC -XX:+UseParallelOldGC ：配置年老代垃圾收集方式为并行收集。JDK6.0支持对年老代并行收集。 - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC   -XX:MaxGCPauseMillis=100 -XX:MaxGCPauseMillis=100** :设置每次年轻代垃圾回收的最长时间，如果无法满足此时间，JVM会自动调整年轻代大小，以满足此值。 - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC  -XX:MaxGCPauseMillis=100 -XX:+UseAdaptiveSizePolicy -XX:+UseAdaptiveSizePolicy** ：设置此选项后，并行收集器会自动选择年轻代区大小和相应的Survivor区比例，以达到目标系统规定的最低相应时间或者收集频率等，此值建议使用并行收集器时，一直打开。 响应时间优先 的并发收集器 如上文所述，并发收集器主要是保证系统的响应时间，减少垃圾收集时的停顿时间。适用于应用服务器、电信领域等。 典型配置 ： - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:ParallelGCThreads=20  -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC ：设置年老代为并发收集。测试中配置这个以后，-XX:NewRatio=4的配置失效了，原因不明。所以，此时年轻代大小最好用-Xmn设置。 -XX:+UseParNewGC :设置年轻代为并行收集。可与CMS收集同时使用。JDK5.0以上，JVM会根据系统配置自行设置，所以无需再设置此值。 - java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseConcMarkSweepGC  -XX:CMSFullGCsBeforeCompaction=5 -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction ：由于并发收集器不对内存空间进行压缩、整理，所以运行一段时间以后会产生“碎片”，使得运行效率降低。此值设置运行多少次GC以后对内存空间进行压缩、整理。 -XX:+UseCMSCompactAtFullCollection ：打开对年老代的压缩。可能会影响性能，但是可以消除碎片 辅助信息 JVM提供了大量命令行参数，打印信息，供调试使用。主要有以下一些： -XX:+PrintGC 输出形式：[GC 118250K-&amp;gt;113543K(130112K), 0.0094143 secs]                [Full GC 121376K-&amp;gt;10414K(130112K), 0.0650971 secs] -XX:+PrintGCDetails 输出形式：[GC [DefNew: 8614K-&amp;gt;781K(9088K), 0.0123035 secs] 118250K-&amp;gt;113543K(130112K), 0.0124633 secs]                [GC [DefNew: 8614K-&amp;gt;8614K(9088K), 0.0000665 secs][Tenured: 112761K-&amp;gt;10414K(121024K), 0.0433488 secs] 121376K-&amp;gt;10414K(130112K), 0.0436268 secs] -XX:+PrintGCTimeStamps  -XX:+PrintGC：PrintGCTimeStamps可与上面两个混合使用 输出形式：11.851: [GC 98328K-&amp;gt;93620K(130112K), 0.0082960 secs] -XX:+PrintGCApplicationConcurrentTime: 打印每次垃圾回收前，程序未中断的执行时间。可与上面混合使用 输出形式： Application time: 0.5291524 seconds -XX:+PrintGCApplicationStoppedTime ：打印垃圾回收期间程序暂停的时间。可与上面混合使用 输出形式： Total time for which application threads were stopped: 0.0468229 seconds -XX:PrintHeapAtGC :打印GC前后的详细堆栈信息 输出形式： 34.702: [GC {Heap before gc invocations=7: def new generation   total 55296K, used 52568K [0x1ebd0000, 0x227d0000, 0x227d0000) eden space 49152K,  99% used  [0x1ebd0000, 0x21bce430, 0x21bd0000) from space 6144K,  55% used  [0x221d0000, 0x22527e10, 0x227d0000) to   space 6144K,   0% used [0x21bd0000, 0x21bd0000, 0x221d0000) tenured generation   total 69632K, used 2696K [0x227d0000, 0x26bd0000, 0x26bd0000) the space 69632K,   3% used  [0x227d0000, 0x22a720f8, 0x22a72200, 0x26bd0000) compacting perm gen  total 8192K, used 2898K [0x26bd0000, 0x273d0000, 0x2abd0000) the space 8192K,  35% used [0x26bd0000, 0x26ea4ba8, 0x26ea4c00, 0x273d0000) ro space 8192K,  66% used [0x2abd0000, 0x2b12bcc0, 0x2b12be00, 0x2b3d0000) rw space 12288K,  46% used [0x2b3d0000, 0x2b972060, 0x2b972200, 0x2bfd0000) 34.735: [DefNew: 52568K-&amp;gt;3433K(55296K), 0.0072126 secs] 55264K-&amp;gt;6615K(124928K) Heap after gc invocations=8:  def new generation   total 55296K, used 3433K [0x1ebd0000, 0x227d0000, 0x227d0000) eden space 49152K,   0% used  [0x1ebd0000, 0x1ebd0000, 0x21bd0000) from space 6144K,  55% used [0x21bd0000, 0x21f2a5e8, 0x221d0000) to   space 6144K,   0% used [0x221d0000, 0x221d0000, 0x227d0000) tenured generation   total 69632K, used 3182K [0x227d0000, 0x26bd0000, 0x26bd0000) the space 69632K,   4% used  [0x227d0000, 0x22aeb958, 0x22aeba00, 0x26bd0000) compacting perm gen  total 8192K, used 2898K [0x26bd0000, 0x273d0000, 0x2abd0000) the space 8192K,  35% used [0x26bd0000, 0x26ea4ba8, 0x26ea4c00, 0x273d0000) ro space 8192K,  66% used [0x2abd0000, 0x2b12bcc0, 0x2b12be00, 0x2b3d0000) rw space 12288K,  46% used [0x2b3d0000, 0x2b972060, 0x2b972200, 0x2bfd0000) } , 0.0757599 secs] -Xloggc:filename :与上面几个配合使用，把相关日志信息记录到文件以便分析。 常见配置汇总 堆设置 - -Xms :初始堆大小 - -Xmx :最大堆大小 - -XX:NewSize=n :设置年轻代大小 - -XX:NewRatio=n: 设置年轻代和年老代的比值。如:为3，表示年轻代与年老代比值为1：3，年轻代占整个年轻代年老代和的1/4 - -XX:SurvivorRatio=n :年轻代中Eden区与两个Survivor区的比值。注意Survivor区有两个。如：3，表示Eden：Survivor=3：2，一个Survivor区占整个年轻代的1/5 - -XX:MaxPermSize=n :设置持久代大小 收集器设置 - -XX:+UseSerialGC :设置串行收集器 - -XX:+UseParallelGC :设置并行收集器 - -XX:+UseParalledlOldGC :设置并行年老代收集器 - -XX:+UseConcMarkSweepGC :设置并发收集器 垃圾回收统计信息 - -XX:+PrintGC - -XX:+PrintGCDetails - -XX:+PrintGCTimeStamps - -Xloggc:filename 并行收集器设置 - -XX:ParallelGCThreads=n :设置并行收集器收集时使用的CPU数。并行收集线程数。 - -XX:MaxGCPauseMillis=n :设置并行收集最大暂停时间 - -XX:GCTimeRatio=n :设置垃圾回收时间占程序运行时间的百分比。公式为1/(1+n) 并发收集器设置 - -XX:+CMSIncrementalMode :设置为增量模式。适用于单CPU情况。 - -XX:ParallelGCThreads=n :设置并发收集器年轻代收集方式为并行收集时，使用的CPU数。并行收集线程数。</summary></entry><entry><title type="html">Java -verbose:gc 命令详解 JVM参数以及其含义</title><link href="http://localhost:4001/labrary/1055.html" rel="alternate" type="text/html" title="Java -verbose:gc 命令详解 JVM参数以及其含义" /><published>2013-07-21T15:56:17-07:00</published><updated>2013-07-21T15:56:17-07:00</updated><id>http://localhost:4001/labrary/java-verbosegc-%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3</id><content type="html" xml:base="http://localhost:4001/labrary/1055.html">&lt;p&gt;Java -verbose:gc 中参数-verbose:gc 表示输出虚拟机中GC的详细情况.&lt;/p&gt;
+
+&lt;p&gt;使用后输出如下:&lt;/p&gt;
+
+&lt;p&gt;[Full GC 168K-&amp;gt;97K(1984K)， 0.0253873 secs]&lt;/p&gt;
+
+&lt;p&gt;解读如下:&lt;/p&gt;
+
+&lt;p&gt;　　箭头前后的数据168K和97K分别表示垃圾收集GC前后所有存活对象使用的内存容量，说明有168K-97K=71K的对象容量被回收，括号内的数据1984K为堆内存的总容量，收集所需要的时间是0.0253873秒（这个时间在每次执行的时候会有所不同）&lt;/p&gt;
+
+&lt;p&gt;Note:GC会暂用CPU时间片,有可能造成应用程序在某个时刻极短的停顿.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;Java  &lt;strong&gt;-Xms2g -Xmx2g -Xmn512M -Xss128K -XX:PermSize=128M -XX:MaxPermSize=128M -XX:NewRatio=4 -XX:SurivorRatio=4 -XX:MaxTenuringThreshold=1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;-Xms2g：JVM启动初始化堆大小为2g，Xms的默认是物理内存的1/64但小于1G。&lt;/p&gt;
+
+&lt;p&gt;-Xmx2g：JVM最大的堆大小为2g，Xmx默认是物理内存的1/4但小于1G；将-Xms和-Xmx的值配置为一样，可以避免每次垃圾回收完成后对JVM堆大小进行重新的调整。&lt;/p&gt;
+
+&lt;p&gt;-Xmn512M：堆中的新生代大小为512M&lt;/p&gt;
+
+&lt;p&gt;-Xss128K：每个线程的堆栈大小为128K&lt;/p&gt;
+
+&lt;p&gt;-XX:PermSize=128M：JVM持久代的初始化大小为128M&lt;/p&gt;
+
+&lt;p&gt;-XX:MaxPermSize=128M：JVM持久代的最大大小为128M&lt;/p&gt;
+
+&lt;p&gt;-XX:NewRatio=4：JVM堆的新生代和老年代的大小比例为1：4&lt;/p&gt;
+
+&lt;p&gt;-XX:SurvivorRatio=4：新生代Surivor区（新生代有2个Surivor区）和Eden区的比例为2：4&lt;/p&gt;
+
+&lt;p&gt;-XX:MaxTenuringThreshold=1：新生代的对象经过几次垃圾回收后（如果还存活），进入老年代。如果该参数设置为0，这表示新生代的对象在垃圾回收后，不进入survivor区，直接进入老年代&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Java &lt;strong&gt; -XX:+UseParallelGC -XX:ParallelGCThread=4 -XX:+UseParallelOldGC -XX:MaxGCPauseMillis=100 -XX:+UseAdaptiveSizePolicy&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;-XX:+UseParallelGC：使用并行的垃圾收集器，但仅针对新生代有效，老年代仍然使用串行收集器&lt;/p&gt;
+
+&lt;p&gt;-XX:ParallelGCThread=4：设置并行垃圾回收器的线程为4个，该设置最好与处理器的数目相同&lt;/p&gt;
+
+&lt;p&gt;-XX:+UseParalleOldGC：配置老年代使用并行垃圾收集器，JDK1.6支持老年代使用并行收集器&lt;/p&gt;
+
+&lt;p&gt;-XX:MaxGCPauseMillis=100：设置每次新生代每次收集器垃圾回收的最长时间，如果无法满足该时间，JVM会自动调整新生代区的大小，以满足该值&lt;/p&gt;
+
+&lt;p&gt;-XX:+UseAdaptiveSizePolicy：设置此值后，JVM会自动调整新生代大小以及相应的surivor区的比例，以达到设置的最低响应时间或者收集频率等&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Java &lt;strong&gt; -XX:UseConcMarkSweepGC -XX:+UseParNewGC -XX:CMSFullGCsBeforeCompaction=5 -XX:+UseCMSCompactAtFullCollection&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;-XX:UseConcMarkSweepGC：设置JVM堆的老年代使用CMS并发收集器，设置该参数后，-XX:NewRatio参数失效，但-Xmn参数依然有效&lt;/p&gt;
+
+&lt;p&gt;-XX:UseParNewGC：设置新生代使用并发收集器，在JDK1.5以上，JVM会根据系统自动设置&lt;/p&gt;
+
+&lt;p&gt;-XX:CMSFullGCsBeforeCompaction=5：设置5才CMSGC后对堆空间进行压缩、整理&lt;/p&gt;
+
+&lt;p&gt;-XX:+UseCMSCompactAtFullCollection：打开对老年代的压缩，可能会影响性能，但可以消除堆碎片&lt;/p&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="Labrary" /><summary type="html">Java -verbose:gc 中参数-verbose:gc 表示输出虚拟机中GC的详细情况.</summary></entry><entry><title type="html">网页css浏览器不兼容问题原因及解决方法</title><link href="http://localhost:4001/share/1051.html" rel="alternate" type="text/html" title="网页css浏览器不兼容问题原因及解决方法" /><published>2013-07-21T12:11:24-07:00</published><updated>2013-07-21T12:11:24-07:00</updated><id>http://localhost:4001/share/%E7%BD%91%E9%A1%B5css%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8D%E5%85%BC%E5%AE%B9%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95</id><content type="html" xml:base="http://localhost:4001/share/1051.html">&lt;p&gt;各种浏览器IE，ff，chrome，opera等等之间的css互相不兼容，相信网页制作人员都会深恶痛绝。计浏览器不兼容原因及解决方法，整理一些和大家一起学习。&lt;/p&gt;
+
+&lt;p&gt;1.文字大小不兼容。&lt;br /&gt;
+同样14px的宋体字，ie下实际占高16px，下留白3px，firefox下实际占高17px，上留白1px，下留白3px。&lt;br /&gt;
+文字大小不兼容解决方案：给所有文字设定通用line-height值&lt;/p&gt;
+
+&lt;p&gt;2.div高度不兼容：&lt;br /&gt;
+firefox下div容器定义height后，div不会因为内容超出height而撑大，而i6e下是会被内容撑大，高度限定失效。所以不要轻易给容器定义height。&lt;/p&gt;
+
+&lt;p&gt;div高度不兼容解决方案：&lt;br /&gt;
+如果设置高度，需要同时把内容物高度限定，也就是溢出隐藏处理：overflow:hidden；或者当需要随着内容自适应高度，但又想div有一个最小的高度时候，像这样做&lt;br /&gt;
+min-height: 1400px;/* for ie7 firefox opera*/&lt;br /&gt;
+max-height:none;/* for ie7 firefox opera*/&lt;br /&gt;
+_height: 1400px;/* only for ie6*/&lt;/p&gt;
+
+&lt;p&gt;3.div宽度不兼容：&lt;br /&gt;
+如果div容器设定float浮动但没设定宽度，那么也会出现ie6和firefox的不兼容。firefox下内容会撑开容器渗入它前面的div，ie6下该div内容折行而不是我们想象的与同级div在同一行。&lt;/p&gt;
+
+&lt;p&gt;div宽度不兼容解决方案：浮动div容器一般需定义width。&lt;/p&gt;
+
+&lt;p&gt;4.div浮动不兼容：发现当前面div有左浮动和右浮动，下面div就会受他们影响也有浮动。ie也许不用加清除，但firefox下不清除浮动是不行的。&lt;br /&gt;
+div浮动不兼容解决方案：给下面的div设定清除 clear:both;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;最被痛恨的double-margin不兼容。ie6下给浮动容器定义margin-left 或者margin-right 实际效果是数值的2倍。&lt;br /&gt;
+解决方案，给浮动容器定义display:inline。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!--more--&gt;
+&lt;ol&gt;
+  &lt;li&gt;mirror margin不兼容。当外层元素内有float元素时，外层元素如定义margin-top:14px，将自动生成margin-bottom:14px.padding也会出现类似问题，都是ie6下的特产，该类bug 出现的情况较为复杂，远不只这一种出现条件，还没系统整理。引申：ff 和ie 下对容器的margin-bottom，padding-bottom的解释有时不一致，似乎与之相关。&lt;br /&gt;
+解决方案：外层元素设定border 或设定float。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;7.吞吃现象。还是ie6，上下两个div，上面div设置背景，却发现下面没有设置背景的div 也有了背景，这就是吞吃现象。对应上面的背景吞吃现象，还有滚动下边框缺失的现象。没明白这啥意思。&lt;br /&gt;
+解决方案：使用zoom:1.这个zoom好象是专门为解决ie6 bug而生的。&lt;/p&gt;
+
+&lt;p&gt;8.注释也能产生bug。多出来的一只猪，这是前人总结这个bug使用的比喻。ie6下这个bug，大家会在页面看到猪字出现两遍，重复内容量因注释的多少而变。解决方案：用”&amp;lt;！-[if ！IE]&amp;gt; picRotate start &amp;lt;！[endif]-&amp;gt;“方法写注释。&lt;/p&gt;
+
+&lt;p&gt;9.&amp;lt;li/&amp;gt;里加 float &amp;lt;div/&amp;gt; 。这是一个典型的，棘手的兼容问题，希望引起大家重视。，给li不同的属性会有不同的解释效果，ff下的解释稍可理解，ie6下的解释会让你摸不着头脑。在《ul使用心得》一文里有相关成果，却没给出问题解决过程。&lt;/p&gt;
+
+&lt;p&gt;10.使用了”float:left；display:inline”的ul的奇怪表现。可以看出这句css是针对ie6下的double margin bug 而加上的display:inline，这也是我的css体系里的重要一环，在《ul使用心得》一文中有相关阐述。而这句css用在ul上会让你痛苦不堪。&lt;/p&gt;
+
+&lt;p&gt;11.img下的留白，大家看这段代码有啥问题：&lt;br /&gt;
+&amp;lt;div&amp;gt;&lt;br /&gt;
+&amp;lt;img src=”” mce_src=”” /&amp;gt;&lt;br /&gt;
+&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;把div的border打开，你发现图片底部不是紧贴着容器底部的，是img后面的空白字符造成，要消除必须这样写&lt;br /&gt;
+&amp;lt;div&amp;gt;&lt;br /&gt;
+&amp;lt;img src=”” mce_src=”” /&amp;gt;&amp;lt;/div&amp;gt;&lt;br /&gt;
+后面两个标签要紧挨着.ie7下这个bug 依然存在。解决方案：给img设定 display:block。&lt;/p&gt;
+
+&lt;p&gt;12.失去line-height。&amp;lt;div style=”line-height:20px”&amp;gt;&amp;lt;img /&amp;gt;文字&amp;lt;/div&amp;gt;，很遗憾，在ie6下单行文字 line-height 效果消失了，原因是&amp;lt;img /&amp;gt;这个inline-block元素和inline元素写在一起了。解决方案：让img 和文字都 float起来。&lt;/p&gt;
+
+&lt;p&gt;引申：大家知道img 的align 有 text-top，middle，absmiddle啊什么的，你可以尝试去调整img 和文字让他们在ie和ff下能一致，你会发现怎么调都不会让你满意。索性让img 和文字都 float起来，用margin 调整。&lt;/p&gt;
+
+&lt;p&gt;13.链接的hover状态.a:hover img{width:300px} 我们想让鼠标hover时，链接里包含图片宽度变化，可惜在ie6下无效，ie7、ff下有效。&lt;/p&gt;
+
+&lt;p&gt;14.非链接的hover状态.div:hover{} 这样的样式ie6是不认的，在ie7、ff下才有效果。&lt;/p&gt;
+
+&lt;p&gt;15.block化的a链接，其内套absolute层，absolute层内放置img，ie下，鼠标点击img不会有链接效果，firefox、opera下正常。&lt;/p&gt;
+
+&lt;p&gt;上面的诸多问题如果你掌握了其中奥妙，90%的不兼容问题不需要另起css hack的。&lt;/p&gt;
+
+&lt;p&gt;16.无法彻底清除的float。如果让ul下的li具有了float属性，如何clear浮动的li呢？&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt; 或者 &amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;div&amp;gt;class=”c”&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt; 或者 &amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;div&amp;gt;class=”c”&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/ul&amp;gt; 或者 &amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;&amp;lt;div&amp;gt;class=”c”&amp;gt;&amp;lt;/div&amp;gt; 或者上述的组合？这个问题，我无法给出解答。&lt;/p&gt;
+
+&lt;p&gt;下面有个例子与此相关&lt;br /&gt;
+&amp;lt;!DOCTYPE html PUBLIC -//W3C//DTD XHTML 1.0 Transitional//EN&lt;a href=&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&lt;/a&gt;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;style type=text/css&amp;gt;&lt;br /&gt;
+.c{clear:both;overflow:hidden;+overflow:visible}&lt;br /&gt;
+.bd{border:1px solid red}&lt;/p&gt;
+
+&lt;p&gt;ul.ex{list-style:none;}&lt;br /&gt;
+ul.ex li{float:left;border:1px solid green;}&lt;br /&gt;
+&amp;lt;/style&amp;gt;&lt;br /&gt;
+&amp;lt;ul&amp;gt;&lt;br /&gt;
+&amp;lt;li&amp;gt;sfsdfsfdf&amp;lt;/li&amp;gt;&lt;br /&gt;
+&amp;lt;li&amp;gt;sfsdfsfdf&amp;lt;/li&amp;gt;&lt;br /&gt;
+&amp;lt;/ul&amp;gt;&lt;br /&gt;
+&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&lt;br /&gt;
+&amp;lt;div style=margin-top:19px&amp;gt;sfsdfsfdf&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;请在ie下 测试，仅仅将 margin-top:19px 改为margin-top:20px 你发现什么了？要素：doctype必须有，ie6、ie7下margin-top:19px还好好的，margin-top:20px 就出问题了，无法解释…大家还可以将 clear 层换不同的位置测试。&lt;/p&gt;
+
+&lt;p&gt;解决方案：给ul 属性zoom:1 （给li 加zoom:1 没用）&lt;/p&gt;
+
+&lt;p&gt;引申：clear层应该单独使用。也许你为了节省代码把clear属性直接放到下面的一个内容层，这样有问题，不仅仅是ff和opera下失去margin效果，ie下某些margin值也会失效&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;div style=”background:red;float:left;”&amp;gt;dd&amp;lt;/div&amp;gt;&lt;br /&gt;
+&amp;lt;div style=”clear:both;margin-top:18px;background:green”&amp;gt;ff&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;ie下overflow:hidden对其下的绝对层position:absolute或者相对层position:relative无效。&lt;br /&gt;
+解决方案：给overflow:hidden加position:relative或者position:absolute。另，ie6支持overflow-x或者overflow-y的特性，ie7、ff不支持。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ie6下严重的bug，float元素如没定义宽度，内部如有div定义了height或zoom:1，这个div就会占满一整行，即使你给了宽度.float元素如果作为布局用或复杂的容器，都要给个宽度的。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ie6下的bug，绝对定位的div下包含相对定位的div，如果给内层相对定位的div高度height具体值，内层相对层将具有100%的width值，外层绝对层将被撑大。解决方案给内层相对层float属性。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ie6下的bug，&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;内有&amp;lt;base target=”_blank”/&amp;gt;的情况下，position:relative层下的float层内文字无法选中。这个bug迫使我修公用样式库。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;终于来了个firefox缺点 width:100%这个东西在ie里用很方便，会向上逐层搜索width值，忽视浮动层的影响，ff下搜索至浮动层结束，如此只能给中间的所有浮动层加width:100%才行，累啊.opera这点倒学乖了跟了ie。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Padding vs. Margin&lt;br /&gt;
+对于浏览器来说，Margin是兼容性最差的一个属性。因此只要条件允许，尽可能的使用Padding属性。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="Share" /><summary type="html">各种浏览器IE，ff，chrome，opera等等之间的css互相不兼容，相信网页制作人员都会深恶痛绝。计浏览器不兼容原因及解决方法，整理一些和大家一起学习。</summary></entry><entry><title type="html">xvfb命令详解，xvfb-run参数详解</title><link href="http://localhost:4001/labrary/1043.html" rel="alternate" type="text/html" title="xvfb命令详解，xvfb-run参数详解" /><published>2013-07-06T22:42:56-07:00</published><updated>2013-07-06T22:42:56-07:00</updated><id>http://localhost:4001/labrary/xvfb%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3,xvfb-run%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3</id><content type="html" xml:base="http://localhost:4001/labrary/1043.html">&lt;h4 id=&quot;最近在做一个生成网站缩略图的功能从网上查到相关资料现与大家分享xvfb这个软件安装上之后一条命令就能执行此操作很容易的就生成了自己想要的缩略图&quot;&gt;最近在做一个生成网站缩略图的功能，从网上查到相关资料，现与大家分享，xvfb这个软件，安装上之后一条命令就能执行此操作。很容易的就生成了自己想要的缩略图。&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xvfb-run &lt;span class=&quot;nt&quot;&gt;--server-args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-screen 0, 1024x768x24&quot;&lt;/span&gt; cutycapt &lt;span class=&quot;nt&quot;&gt;--url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;http://www.sina.com.cn &lt;span class=&quot;nt&quot;&gt;--out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;localfile1.png &lt;span class=&quot;nt&quot;&gt;--body-string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;utf-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;下面是对这个软件参数的解释&quot;&gt;下面是对这个软件参数的解释&lt;/h4&gt;
+
+&lt;h4 id=&quot;name&quot;&gt;NAME&lt;/h4&gt;
+&lt;p&gt;xvfb-run -运行在一个虚拟的X服务器环境中的指定的X客户端或命令。&lt;/p&gt;
+
+&lt;h4 id=&quot;synopsis&quot;&gt;SYNOPSIS&lt;/h4&gt;
+&lt;p&gt;xvfb的运行 [选项] 命令&lt;/p&gt;
+
+&lt;h4 id=&quot;description&quot;&gt;DESCRIPTION&lt;/h4&gt;
+&lt;p&gt;xvfb-run是一个包装的Xvfb（1X）命令，在一个虚拟的X服务器环境，简化了任务的运行命令（通常是一个X客户端，或一个脚本，其中包含一个可以运行的客户端列表）。xvfb-run设置X授权机构的文件（或使用现有&lt;br /&gt;
+的用户指定的），写一个cookie（见XAUTH（1X）），然后启动的Xvfb X服务器作为后台进程的进程IDXvfb来存储供以后使用。指定的命令然后运行使用的X，显示相应的Xvfb服务器刚开始的X授权文件前面创建的。当命令退出&lt;br /&gt;
+时，其状态保存，被杀害的Xvfb服务器（使用以前存储的进程ID），在X授权机构的cookie删除，并授权文件删除（如果用户没有指定一个使用）。&lt;br /&gt;
+xvfb的运行，然后退出命令的退出状态，除了在错误条件（见EXIT STATUS以下）。xvfb-run需要XAUTH命令的功能。&lt;/p&gt;
+
+&lt;h4&gt;&lt;!--more--&gt;&lt;/h4&gt;
+
+&lt;h4 id=&quot;options&quot;&gt;OPTIONS&lt;/h4&gt;
+&lt;p&gt;-a, –auto-servernum&lt;br /&gt;
+尝试得到一个免费的服务器数量，开始于99，或参数 –server-num.&lt;/p&gt;
+
+&lt;h4 id=&quot;-e-file-error-filefile&quot;&gt;-e file, –error-file=file&lt;/h4&gt;
+&lt;p&gt;将输出存储在文件XAUTH和Xvfb中。默认的是/dev/null。&lt;/p&gt;
+
+&lt;h4 id=&quot;-f-file-auth-filefile&quot;&gt;-f file, –auth-file=file&lt;/h4&gt;
+&lt;p&gt;存储X验证数据文件。默认情况下，一个临时目录XVFB运行。 PID（PID是XVFB运行本身的进程ID）中创建的环境变量TMPDIR指定的目录（/tmp目录如果该变量为null，或者未设置），和临时文件（1）命令被&lt;br /&gt;
+用来创建该临时目录中的一个文件名为XAUTHORITY。&lt;/p&gt;
+
+&lt;h4 id=&quot;-h-help&quot;&gt;-h, –help&lt;/h4&gt;
+&lt;p&gt;显示用法信息并退出。&lt;/p&gt;
+
+&lt;h4 id=&quot;-n-servernumber-server-numservernumber&quot;&gt;-n servernumber, –server-num=servernumber&lt;/h4&gt;
+&lt;p&gt;使用servernumber的服务器数量（但看到的-自动SERVERNUM选项以上）。默认值是99。&lt;/p&gt;
+
+&lt;h4 id=&quot;-l-listen-tcp&quot;&gt;-l, –listen-tcp&lt;/h4&gt;
+&lt;p&gt;启用TCP 监听TCP端口监听在X服务器上。出于安全原因（为了避免拒绝服务攻击或攻击），默认情况下禁用TCP端口倾听。&lt;/p&gt;
+
+&lt;h4 id=&quot;-p-protocolname-xauth-protocolprotocolname&quot;&gt;-p protocolname, –xauth-protocol=protocolname&lt;/h4&gt;
+&lt;p&gt;使用protocolname X授权机构的协议使用。默认是’XAUTH’，解释为自己的默认协议，它是MIT-MAGIC-COOKIE-1。&lt;/p&gt;
+
+&lt;h4 id=&quot;-s-arguments-server-argsarguments&quot;&gt;-s arguments, –server-args=arguments&lt;/h4&gt;
+&lt;p&gt;传递参数到xvfb服务器。小心引用任何空格内可能发生的争议，预防他们为自己的论点xvfb运行分离器。同时，注意规范’-nolisten tcp’的争论可能会覆盖xvfb运行自己的- L的功能，——listen-tcp选项，&lt;br /&gt;
+以及规范的服务器数量（例如，“1”）可能会被忽略，因为这样的X服务器解析其参数列表。&lt;/p&gt;
+
+&lt;h4 id=&quot;-w-delay-waitdelay&quot;&gt;-w delay, –wait=delay&lt;/h4&gt;
+&lt;p&gt;等待延迟秒后发射xvfb之前从指定的命令。默认值为3。&lt;br /&gt;
+ENVIRONMENT&lt;br /&gt;
+COLUMNS&lt;br /&gt;
+表明在特定的终端设备的宽度。这个值是用于格式化诊断消息。如果不是终端查询使用stty（1）确定其宽度。如果失败，值为“80”。&lt;/p&gt;
+
+&lt;h4 id=&quot;tmpdir&quot;&gt;TMPDIR&lt;/h4&gt;
+&lt;p&gt;指定的目录中运行的地方xvfb临时对X权威文件存储目录；如果只使用了-f or –auth-file选项是没有被指定。&lt;/p&gt;
+
+&lt;h4 id=&quot;output-files&quot;&gt;OUTPUT FILES&lt;/h4&gt;
+&lt;p&gt;除非-f or –auth-file 选项是指定的，临时的在其中创建目录和文件（和删除）来存储X权威的饼干的xvfb服务器和客户端使用的（S）在其下运行。看到tempfile（1）。如果F或——授权文件，然后指定x权威文件只写，不能创建或删除（尽管XAuth创建一个权威文件本身如果要求使用使用不已经存在）。与用户指定的名称错误文件用 -e 或创建——error-file选项。&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Xvfb命令参数详情：&lt;/p&gt;
+
+&lt;p&gt;use: X [:&amp;lt;display&amp;gt;] [option]&lt;br /&gt;
+-a # default pointer acceleration (factor)&lt;br /&gt;
+-ac disable access control restrictions&lt;br /&gt;
+-audit int set audit trail level&lt;br /&gt;
+-auth file select authorization file&lt;br /&gt;
+-br create root window with black background&lt;br /&gt;
++bs enable any backing store support&lt;br /&gt;
+-bs disable any backing store support&lt;br /&gt;
+-c turns off key-click&lt;br /&gt;
+c # key-click volume (0-100)&lt;br /&gt;
+-cc int default color visual class&lt;br /&gt;
+-nocursor disable the cursor&lt;br /&gt;
+-core generate core dump on fatal error&lt;br /&gt;
+-dpi int screen resolution in dots per inch&lt;br /&gt;
+-dpms disables VESA DPMS monitor control&lt;br /&gt;
+-deferglyphs [none|all|16] defer loading of [no|all|16-bit] glyphs&lt;br /&gt;
+-f # bell base (0-100)&lt;br /&gt;
+-fc string cursor font&lt;br /&gt;
+-fn string default font name&lt;br /&gt;
+-fp string default font path&lt;br /&gt;
+-help prints message with these options&lt;br /&gt;
+-I ignore all remaining arguments&lt;br /&gt;
+-ld int limit data space to N Kb&lt;br /&gt;
+-lf int limit number of open files to N&lt;br /&gt;
+-ls int limit stack space to N Kb&lt;br /&gt;
+-nolock disable the locking mechanism&lt;br /&gt;
+-nolisten string don’t listen on protocol&lt;br /&gt;
+-noreset don’t reset after last client exists&lt;br /&gt;
+-background [none] create root window with no background&lt;br /&gt;
+-nr (Ubuntu-specific) Synonym for -background none&lt;br /&gt;
+-reset reset after last client exists&lt;br /&gt;
+-p # screen-saver pattern duration (minutes)&lt;br /&gt;
+-pn accept failure to listen on all ports&lt;br /&gt;
+-nopn reject failure to listen on all ports&lt;br /&gt;
+-r turns off auto-repeat&lt;br /&gt;
+r turns on auto-repeat&lt;br /&gt;
+-render [default|mono|gray|color] set render color alloc policy&lt;br /&gt;
+-retro start with classic stipple and cursor&lt;br /&gt;
+-s # screen-saver timeout (minutes)&lt;br /&gt;
+-t # default pointer threshold (pixels/t)&lt;br /&gt;
+-terminate terminate at server reset&lt;br /&gt;
+-to # connection time out&lt;br /&gt;
+-tst disable testing extensions&lt;br /&gt;
+ttyxx server started from init on /dev/ttyxx&lt;br /&gt;
+v video blanking for screen-saver&lt;br /&gt;
+-v screen-saver without video blanking&lt;br /&gt;
+-wm WhenMapped default backing-store&lt;br /&gt;
+-wr create root window with white background&lt;br /&gt;
+-maxbigreqsize set maximal bigrequest size&lt;br /&gt;
++xinerama Enable XINERAMA extension&lt;br /&gt;
+-xinerama Disable XINERAMA extension&lt;br /&gt;
+-dumbSched Disable smart scheduling, enable old behavior&lt;br /&gt;
+-schedInterval int Set scheduler interval in msec&lt;br /&gt;
+-sigstop Enable SIGSTOP based startup&lt;br /&gt;
++extension name Enable extension&lt;br /&gt;
+-extension name Disable extension&lt;br /&gt;
+-query host-name contact named host for XDMCP&lt;br /&gt;
+-broadcast broadcast for XDMCP&lt;br /&gt;
+-multicast [addr [hops]] IPv6 multicast for XDMCP&lt;br /&gt;
+-indirect host-name contact named host for indirect XDMCP&lt;br /&gt;
+-port port-num UDP port number to send messages to&lt;br /&gt;
+-from local-address specify the local address to connect from&lt;br /&gt;
+-once Terminate server after one session&lt;br /&gt;
+-class display-class specify display class to send in manage&lt;br /&gt;
+-cookie xdm-auth-bits specify the magic cookie for XDMCP&lt;br /&gt;
+-displayID display-id manufacturer display ID for request&lt;br /&gt;
+[+-]accessx [timeout [ timeout_mask [ feedback [ options_mask] ] ] ]&lt;br /&gt;
+enable/disable accessx key sequences&lt;br /&gt;
+-ardelay set XKB autorepeat delay&lt;br /&gt;
+-arinterval set XKB autorepeat interval&lt;br /&gt;
+-screen scrn WxHxD set screen’s width, height, depth&lt;br /&gt;
+-pixdepths list-of-int support given pixmap depths&lt;br /&gt;
++/-render turn on/off RENDER extension support(default on)&lt;br /&gt;
+-linebias n adjust thin line pixelization&lt;br /&gt;
+-blackpixel n pixel value for black&lt;br /&gt;
+-whitepixel n pixel value for white&lt;br /&gt;
+-fbdir directory put framebuffers in mmap’ed files in directory&lt;br /&gt;
+-shmem put framebuffers in shared memory&lt;/p&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="Labrary" /><summary type="html">最近在做一个生成网站缩略图的功能，从网上查到相关资料，现与大家分享，xvfb这个软件，安装上之后一条命令就能执行此操作。很容易的就生成了自己想要的缩略图。</summary></entry><entry><title type="html">最新全球网站热门开发语言+服务器系统+数据库DB统计</title><link href="http://localhost:4001/labrary/1030.html" rel="alternate" type="text/html" title="最新全球网站热门开发语言+服务器系统+数据库DB统计" /><published>2013-07-01T17:29:41-07:00</published><updated>2013-07-01T17:29:41-07:00</updated><id>http://localhost:4001/labrary/%E6%9C%80%E6%96%B0%E5%85%A8%E7%90%83%E7%BD%91%E7%AB%99%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80%E7%BB%9F%E8%AE%A1</id><content type="html" xml:base="http://localhost:4001/labrary/1030.html">&lt;p&gt;网站建站除了要考虑网站的域名外，第二步就是要考虑网站动态开发语言。同舟工作室根据Alexa最新排名，统计了前50个网站的前端开发语言、服务器及数据库环境，发布出来供网站建设的决策者们参考。把全球排行前50网站动态开发语言最后的统计结果发出来：&lt;/p&gt;
+
+&lt;p&gt;下面是具体的统计数据：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;PHP&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;CGI&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;ASP.NET&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;C#.NET&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;JSP&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;AIR&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;ColdFusion&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;Ruby&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;未知&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;全球排名前50网站前端开发语言统计：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;序号&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;网站&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;程序&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;OS&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;DB&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;FACEBOOK&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;GOOGLE&lt;/td&gt;
+      &lt;td&gt;Python&lt;/td&gt;
+      &lt;td&gt;集群(自主研发)&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;YouTube&lt;/td&gt;
+      &lt;td&gt;Python&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;Yahoo!&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;FreeBSD+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;百度&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;维基百科&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;亚马逊&lt;/td&gt;
+      &lt;td&gt;CGI&lt;/td&gt;
+      &lt;td&gt;Linux&lt;/td&gt;
+      &lt;td&gt;Oracle&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;Windows Live&lt;/td&gt;
+      &lt;td&gt;ASP.NET&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;MsSql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;腾讯QQ&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;淘宝&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux&lt;/td&gt;
+      &lt;td&gt;Oracle&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;11&lt;/td&gt;
+      &lt;td&gt;Blogspot&lt;/td&gt;
+      &lt;td&gt;Python&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;12&lt;/td&gt;
+      &lt;td&gt;Twitter&lt;/td&gt;
+      &lt;td&gt;Ruby&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;NoSql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;13&lt;/td&gt;
+      &lt;td&gt;LinkedIn&lt;/td&gt;
+      &lt;td&gt;JSP&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;14&lt;/td&gt;
+      &lt;td&gt;Bing&lt;/td&gt;
+      &lt;td&gt;ASP.NET&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;MsSql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;15&lt;/td&gt;
+      &lt;td&gt;新浪&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;16&lt;/td&gt;
+      &lt;td&gt;Яндекс&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;17&lt;/td&gt;
+      &lt;td&gt;MSN&lt;/td&gt;
+      &lt;td&gt;ASP.NET&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;MsSql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;18&lt;/td&gt;
+      &lt;td&gt;ВКонтакте&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;19&lt;/td&gt;
+      &lt;td&gt;eBay&lt;/td&gt;
+      &lt;td&gt;ASP.NET&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;Oracle&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;WordPress&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;21&lt;/td&gt;
+      &lt;td&gt;网易&lt;/td&gt;
+      &lt;td&gt;JSP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;Oracle&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;22&lt;/td&gt;
+      &lt;td&gt;新浪微博&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;FreeBSD+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;23&lt;/td&gt;
+      &lt;td&gt;微软&lt;/td&gt;
+      &lt;td&gt;ASP.NET&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;MsSql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;24&lt;/td&gt;
+      &lt;td&gt;Tumblr&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;25&lt;/td&gt;
+      &lt;td&gt;Ask&lt;/td&gt;
+      &lt;td&gt;ASP.NET&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;MsSql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;Hao123&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;27&lt;/td&gt;
+      &lt;td&gt;xvideos&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;Nginx&lt;/td&gt;
+      &lt;td&gt;Redis&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;28&lt;/td&gt;
+      &lt;td&gt;Conduit&lt;/td&gt;
+      &lt;td&gt;C#.NET&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;MsSql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;29&lt;/td&gt;
+      &lt;td&gt;Pinterest&lt;/td&gt;
+      &lt;td&gt;Python&lt;/td&gt;
+      &lt;td&gt;FreeBSD+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;30&lt;/td&gt;
+      &lt;td&gt;FC2&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;31&lt;/td&gt;
+      &lt;td&gt;delta-search&lt;/td&gt;
+      &lt;td&gt;Python&lt;/td&gt;
+      &lt;td&gt;集群(自主研发)&lt;/td&gt;
+      &lt;td&gt;集群&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;32&lt;/td&gt;
+      &lt;td&gt;Craigslist&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;33&lt;/td&gt;
+      &lt;td&gt;天猫&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;34&lt;/td&gt;
+      &lt;td&gt;Babylon&lt;/td&gt;
+      &lt;td&gt;ColdFusion&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;MsSql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;35&lt;/td&gt;
+      &lt;td&gt;搜狐网&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;36&lt;/td&gt;
+      &lt;td&gt;PayPal&lt;/td&gt;
+      &lt;td&gt;JSP&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;37&lt;/td&gt;
+      &lt;td&gt;Adobe&lt;/td&gt;
+      &lt;td&gt;AIR&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;38&lt;/td&gt;
+      &lt;td&gt;The Internet Movie Database&lt;/td&gt;
+      &lt;td&gt;ASP.NET&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;MsSql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;39&lt;/td&gt;
+      &lt;td&gt;苹果&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;40&lt;/td&gt;
+      &lt;td&gt;BBC Online&lt;/td&gt;
+      &lt;td&gt;ASP.NET&lt;/td&gt;
+      &lt;td&gt;Windows+IIS&lt;/td&gt;
+      &lt;td&gt;Oracle&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;41&lt;/td&gt;
+      &lt;td&gt;soso搜搜&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Nginx&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;42&lt;/td&gt;
+      &lt;td&gt;Pornhub&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;43&lt;/td&gt;
+      &lt;td&gt;凤凰网&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;44&lt;/td&gt;
+      &lt;td&gt;AVG&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;45&lt;/td&gt;
+      &lt;td&gt;AOL&lt;/td&gt;
+      &lt;td&gt;JSP&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;46&lt;/td&gt;
+      &lt;td&gt;Blogger&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;47&lt;/td&gt;
+      &lt;td&gt;Go&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+      &lt;td&gt;未知&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;48&lt;/td&gt;
+      &lt;td&gt;阿里巴巴&lt;/td&gt;
+      &lt;td&gt;JSP&lt;/td&gt;
+      &lt;td&gt;Unix+Apache&lt;/td&gt;
+      &lt;td&gt;Oracle&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;49&lt;/td&gt;
+      &lt;td&gt;优酷&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;50&lt;/td&gt;
+      &lt;td&gt;360安全中心&lt;/td&gt;
+      &lt;td&gt;PHP&lt;/td&gt;
+      &lt;td&gt;Linux+Apache&lt;/td&gt;
+      &lt;td&gt;MySql&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="Labrary" /><summary type="html">网站建站除了要考虑网站的域名外，第二步就是要考虑网站动态开发语言。同舟工作室根据Alexa最新排名，统计了前50个网站的前端开发语言、服务器及数据库环境，发布出来供网站建设的决策者们参考。把全球排行前50网站动态开发语言最后的统计结果发出来：</summary></entry><entry><title type="html">安装memcached教程，telnet和php测试方法</title><link href="http://localhost:4001/labrary/1015.html" rel="alternate" type="text/html" title="安装memcached教程，telnet和php测试方法" /><published>2013-06-18T15:51:23-07:00</published><updated>2013-06-18T15:51:23-07:00</updated><id>http://localhost:4001/labrary/%E5%AE%89%E8%A3%85memcached%E5%AE%8C%E6%88%90%E6%B5%8B%E8%AF%95,telnet%E5%92%8Cphp%E6%96%B9%E6%B3%95</id><content type="html" xml:base="http://localhost:4001/labrary/1015.html">&lt;p&gt;用telnet测试memcached&lt;/p&gt;
+&lt;div&gt;
+&lt;div&gt;telnet 127.0.0.1 11211&lt;/div&gt;
+&lt;div&gt;Trying 127.0.0.1…&lt;/div&gt;
+&lt;div&gt;Connected to zou.yunhao (127.0.0.1).&lt;/div&gt;
+&lt;div&gt;Escape character is ‘^]’.&lt;/div&gt;
+&lt;div&gt;set key 0 10 6   //10表示过期时间10秒，6表示将要存入数据字节为6（这里result为6）&lt;/div&gt;
+&lt;div&gt;result&lt;/div&gt;
+&lt;div&gt;STORED&lt;/div&gt;
+&lt;div&gt;get key&lt;/div&gt;
+&lt;div&gt;VALUE key 0 6&lt;/div&gt;
+&lt;div&gt;result&lt;/div&gt;
+&lt;div&gt;END&lt;/div&gt;
+&lt;div&gt;&lt;!--more--&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;4）memcached性能查看命令stats&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;telnet 127.0.0.1 11211&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;stats&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT pid 18006&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT uptime 702   //memcached运行的秒数&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT time 1292904537 //memcached服务器所在主机当前系统的时间，单位是秒。&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT version 1.4.5&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT pointer_size 64  //服务器所在主机操作系统的指针大小，一般为32或64&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT rusage_user 0.003999&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT rusage_system 0.013997&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT curr_connections 10   //表示当前的连接数&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT total_connections 11   //表示从memcached服务启动到当前时间，系统打开过的连接的总数。&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT connection_structures 11&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT cmd_get 0   //查询缓存的次数，平均每秒缓存次数cmd_get/uptime&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT cmd_set 0   //设置key=&amp;gt;value的次数&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT cmd_flush 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT get_hits 0  //缓存命中的次数，缓存命中率=get_hits/cmd_get*100%&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT get_misses 0  //cmd_get-get_hits&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT delete_misses 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT delete_hits 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT incr_misses 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT incr_hits 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT decr_misses 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT decr_hits 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT cas_misses 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT cas_hits 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT cas_badval 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT auth_cmds 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT auth_errors 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT bytes_read 7  //memcached服务器从网络读取的总的字节数&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT bytes_written 0  //memcached服务器发送到网络的总的字节数。&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT limit_maxbytes 67108864  //memcached服务缓存允许使用的最大字节数&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT accepting_conns 1&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT listen_disabled_num 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT threads 4&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT conn_yields 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT bytes 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT curr_items 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT total_items 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT evictions 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;STAT reclaimed 0&lt;/div&gt;
+&lt;div id=&quot;_mcePaste&quot;&gt;END&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;-------------------------------
+[root@jushanweb1 ~]# telnet 192.168.12.201 13002  
+Trying 192.168.12.201...  
+Connected to 192.168.12.201 (192.168.12.201).  
+Escape character is '^]'.  
+stats  
+STAT pid 8382  
+STAT uptime 190574  
+STAT time 1301579774  
+STAT version 1.2.0  
+STAT pointer\_size 32  
+STAT rusage\_user 0.003999  
+STAT rusage\_system 0.033994  
+STAT curr\_items 1  
+STAT total\_items 1  
+STAT bytes 50  
+STAT curr\_connections 2  
+STAT total\_connections 4  
+STAT connection\_structures 3  
+STAT cmd\_get 0  
+STAT cmd\_set 1  
+STAT get\_hits 0  
+STAT get\_misses 0  
+STAT bytes\_read 216  
+STAT bytes\_written 92  
+STAT limit\_maxbytes 524288000  
+END
+
+监控
+1）nagios监控
+
+a. check\_memcached
+
+先要安装check\_memcached插件
+
+wget http://search.cpan.org/CPAN/authors/id/Z/ZI/ZIGOROU/Nagios-Plugins-Memcached-0.02.tar.gz
+
+tar xzvf Nagios-Plugins-Memcached-0.02.tar.gz
+
+cd Nagios-Plugins-Memcached-0.02
+
+perl Makefile.PL &amp;nbsp; (可能需要其他perl的modules，依照提示通过cpan安装即可）
+
+make &amp;amp;&amp;amp; make install
+
+check\_memcached [-H host:port] [-w warnings] [-c critical] [--size-warnng size-warnng] [--size-critical size-critical] [--hit-warning hit-warning] [--hit-critical
+
+hit-critical] [-t timeout]
+
+b. /check\_tcp -H host -p 11211 -t 5 -E -s ‘statsrnquitrn’ -e ‘uptime’ -M crit
+
+2）cacti监控
+
+一台服务器起多个memcached，多端口cacti部署监控。
+
+a. 需要一个 Python memcached Client API
+
+wget ftp://ftp.tummy.com/pub/python-memcached/python-memcached-1.45.tar.gz
+
+tar xzvf python-memcached-1.45.tar.gz
+
+cd python-memcached-1.45
+
+python setup.py install
+
+b. 加模板memcached multiport
+
+wget http://tag1consulting.com/blog/cacti-memcache-multi-port-templates
+
+cp memcached.py &amp;nbsp; \&amp;lt;cacti install目录\&amp;gt;/scripts/memcachedmultiport.py
+
+c. 增加监控时devices-\&amp;gt;des &amp;amp;&amp;amp; ip-\&amp;gt;host template选择memcachedmultiport-\&amp;gt;Downed Device Detection选择none-\&amp;gt;SNMP Version选择not in use-\&amp;gt;create graphs-\&amp;gt;Port to query for&amp;nbsp;memcached statistics填写memcached端口。
+
+3）也可以自定义nagios、cacti监控，通过memcached命令stats取相关数据。
+
+### php方法:
+
+### 运行下面的php文件，如果有输出This is a test!，就表示环境搭建成功。开始领略Memcache的魅力把！
+
+```php
+\&amp;lt; ?php $mem = new Memcache; $mem-\&amp;gt;connect(“66.90.103.147″, 12000); $mem-\&amp;gt;set(‘key’,'This is a test!’, 0, 60); $val = $mem-\&amp;gt;get(‘key’); echo $val; ?\&amp;gt;
+```
+
+# CentOS上安装memcache的方法
+
+所有操作都在SSH下，以根帐号登录。
+
+我的版本为Centos Release 5.3 (Final)  
+使用这个命令可以知道你的Linux版本  
+cat /etc/redhat-release  
+首先要安装libevent库。  
+cd /usr/local/src  
+curl -O http://monkey.org/~provos/libevent-1.4.10-stable.tar.gz  
+tar xzvf libevent-1.4.10-stable.tar.gz  
+cd libevent-1.4.10-stable  
+./configure –prefix=/usr/local  
+make  
+make install
+
+接下来就是安装memcached
+
+cd /usr/local/src  
+curl -O http://www.danga.com/memcached/dist/memcached-1.2.8.tar.gz  
+tar xzvf memcached-1.2.8.tar.gz  
+cd memcached-1.2.8  
+LDFLAGS=’-Wl,–rpath /usr/local/lib’ ./configure –prefix=/usr/local  
+make  
+make install
+
+安装完毕后，用下面这个命令以用户root来运行memcache  
+memcached -u root -d -m 64 -l 192.168.0.101 -p 11211  
+root 为所执行的用户  
+64 为缓存大小64M  
+192.168.0.101 为所在的服务器IP地址  
+11211 是所在端口
+
+要关闭memcache  
+pkill memcached
+
+接下来是安装php-pecl-memcache  
+一个命令就可以。  
+yum install php-pecl-memcache
+
+还是需要php扩展，就用下面这个命令  
+pecl install memcache
+
+接下来重启apache，用phpinfo()查看，应该可以看到memcache的部分，如果没有的话，检查这里的设置：  
+/etc/php.ini加上了 extension=memcache.so  
+当然也要确认memcache.so是否存在，是否在/usr/lib/php/modules/下，如果不是，那么找到它，并用完整路径表示。
+
+查看memcache的运行情况，可以用memcache.php来查看。  
+当让也要有web 程序支持才有用，比如我用的phpbb 3就可以使用memcache，具体方法参考[这里](http://www.yinfor.com/blog/archives/2009/06/enable_memcache_on_phpbb_3.html)  
+[  
+](http://seo.g2soft.net/assets-c/2009/06/memcache-256.html)
+
+原作者:&amp;nbsp;[David Yin](http://www.yinfor.com/blog/)
+
+## Update
+
+不过我今天实战中并没有使用上面的方法：
+
+介绍一下yum的方法：
+
+yum install libevent
+
+这个是第一步，
+
+第二步是安装memcache，但是标准的CentOS5软件仓库里面是没有memcache相应的包的,所以，我们的第一步就是导入第三方软件仓库，这里推荐的是 Dag Wieers 库（现在叫 RPMForge 了），安装方法如下：
+
+wget&amp;nbsp;http://dag.wieers.com/rpm/packages/rpmforge-release/rpmforge-release-0.3.6-1.el5.rf.i386.rpm
+
+rpm -ivh rpmforge-release-0.3.6-1.el5.rf.i386.rpm
+
+查找相关软件包
+
+yum search memcache
+
+有了，现在可以安装了
+
+yum -y install –enablerepo=rpmforge memcached php-pecl-memcache
+
+验证一下安装结果
+
+memcached -h
+
+php -m|grep memcache
+
+启动memcached
+
+/sbin/servive memcached start
+
+============
+
+Update Dec 16th
+
+Linux下Memcache服务器端的安装  
+服务器端主要是安装memcache服务器端，目前的最新版本是 memcached-1.3.0 。  
+下载：http://www.danga.com/memcached/dist/memcached-1.2.2.tar.gz  
+另外，Memcache用到了libevent这个库用于Socket的处理，所以还需要安装libevent，libevent的最新版本是libevent-1.3。（如果你的系统已经安装了libevent，可以不用安装）  
+官网：http://www.monkey.org/~provos/libevent/  
+下载：http://www.monkey.org/~provos/libevent-1.3.tar.gz
+
+用wget指令直接下载这两个东西.下载回源文件后。  
+1.先安装libevent。这个东西在配置时需要指定一个安装路径，即./configure –prefix=/usr；然后make；然后make install；  
+2.再安装memcached，只是需要在配置时需要指定libevent的安装路径即./configure –with-libevent=/usr；然后make；然后make install；  
+这样就完成了Linux下Memcache服务器端的安装。详细的方法如下：
+
+1.分别把memcached和libevent下载回来，放到 /tmp 目录下：  
+# cd /tmp  
+# wget http://www.danga.com/memcached/dist/memcached-1.2.0.tar.gz  
+# wget http://www.monkey.org/~provos/libevent-1.2.tar.gz
+
+2.先安装libevent：  
+# tar zxvf libevent-1.2.tar.gz  
+# cd libevent-1.2  
+# ./configure –prefix=/usr  
+# make  
+# make install
+
+3.测试libevent是否安装成功：  
+# ls -al /usr/lib | grep libevent  
+lrwxrwxrwx 1 root root 21 11?? 12 17:38 libevent-1.2.so.1 -\&amp;gt; libevent-1.2.so.1.0.3  
+-rwxr-xr-x 1 root root 263546 11?? 12 17:38 libevent-1.2.so.1.0.3  
+-rw-r–r– 1 root root 454156 11?? 12 17:38 libevent.a  
+-rwxr-xr-x 1 root root 811 11?? 12 17:38 libevent.la  
+lrwxrwxrwx 1 root root 21 11?? 12 17:38 libevent.so -\&amp;gt; libevent-1.2.so.1.0.3  
+还不错，都安装上了。
+
+4.安装memcached，同时需要安装中指定libevent的安装位置：  
+# cd /tmp  
+# tar zxvf memcached-1.2.0.tar.gz  
+# cd memcached-1.2.0  
+# ./configure –with-libevent=/usr  
+# make  
+# make install  
+如果中间出现报错，请仔细检查错误信息，按照错误信息来配置或者增加相应的库或者路径。  
+安装完成后会把memcached放到 /usr/local/bin/memcached ，
+
+5.测试是否成功安装memcached：  
+# ls -al /usr/local/bin/mem\*  
+-rwxr-xr-x 1 root root 137986 11?? 12 17:39 /usr/local/bin/memcached  
+-rwxr-xr-x 1 root root 140179 11?? 12 17:39 /usr/local/bin/memcached-debug
+
+安装Memcache的PHP扩展  
+1.在http://pecl.php.net/package/memcache 选择相应想要下载的memcache版本。  
+2.安装PHP的memcache扩展
+
+tar vxzf memcache-2.2.1.tgz  
+cd memcache-2.2.1  
+/usr/bin/phpize  
+./configure -enable-memcache -with-php-config=/usr/bin/php-config -with-zlib-dir  
+make  
+make install
+
+3.上述安装完后会有类似这样的提示：
+
+Installing shared extensions: /usr/local/php/lib/php/extensions/no-debug-non-zts-2007xxxx/
+
+4.把php.ini中的extension\_dir = “./”修改为
+
+extension\_dir = “/usr/local/php/lib/php/extensions/no-debug-non-zts-2007xxxx/”
+
+5.添加一行来载入memcache扩展：extension=memcache.so
+
+memcached的基本设置：  
+1.启动Memcache的服务器端：  
+# /usr/local/bin/memcached -d -m 10 -u root -l 66.90.103.147 -p 12000 -c 256 -P /tmp/memcached.pid
+
+-d选项是启动一个守护进程，  
+-m是分配给Memcache使用的内存数量，单位是MB，我这里是10MB，  
+-u是运行Memcache的用户，我这里是root，  
+-l是监听的服务器IP地址，如果有多个地址的话，我这里指定了服务器的IP地址192.168.0.200，  
+-p是设置Memcache监听的端口，我这里设置了12000，最好是1024以上的端口，  
+-c选项是最大运行的并发连接数，默认是1024，我这里设置了256，按照你服务器的负载量来设定，  
+-P是设置保存Memcache的pid文件，我这里是保存在 /tmp/memcached.pid，
+
+2.如果要结束Memcache进程，执行：
+
+# kill `cat /tmp/memcached.pid`
+
+也可以启动多个守护进程，不过端口不能重复。
+
+3.重启apache，service httpd restart
+
+&lt;/div&gt;</content><author><name>{&quot;login&quot;=&gt;&quot;navins&quot;, &quot;email&quot;=&gt;&quot;navins@qq.com&quot;, &quot;display_name&quot;=&gt;&quot;navins&quot;, &quot;first_name&quot;=&gt;&quot;&quot;, &quot;last_name&quot;=&gt;&quot;&quot;}</name><email>navins@qq.com</email></author><category term="Labrary" /><summary type="html">用telnet测试memcached telnet 127.0.0.1 11211 Trying 127.0.0.1… Connected to zou.yunhao (127.0.0.1). Escape character is ‘^]’. set key 0 10 6   //10表示过期时间10秒，6表示将要存入数据字节为6（这里result为6） result STORED get key VALUE key 0 6 result END 4）memcached性能查看命令stats telnet 127.0.0.1 11211 stats STAT pid 18006 STAT uptime 702   //memcached运行的秒数 STAT time 1292904537 //memcached服务器所在主机当前系统的时间，单位是秒。 STAT version 1.4.5 STAT pointer_size 64  //服务器所在主机操作系统的指针大小，一般为32或64 STAT rusage_user 0.003999 STAT rusage_system 0.013997 STAT curr_connections 10   //表示当前的连接数 STAT total_connections 11   //表示从memcached服务启动到当前时间，系统打开过的连接的总数。 STAT connection_structures 11 STAT cmd_get 0   //查询缓存的次数，平均每秒缓存次数cmd_get/uptime STAT cmd_set 0   //设置key=&amp;gt;value的次数 STAT cmd_flush 0 STAT get_hits 0  //缓存命中的次数，缓存命中率=get_hits/cmd_get*100% STAT get_misses 0  //cmd_get-get_hits STAT delete_misses 0 STAT delete_hits 0 STAT incr_misses 0 STAT incr_hits 0 STAT decr_misses 0 STAT decr_hits 0 STAT cas_misses 0 STAT cas_hits 0 STAT cas_badval 0 STAT auth_cmds 0 STAT auth_errors 0 STAT bytes_read 7  //memcached服务器从网络读取的总的字节数 STAT bytes_written 0  //memcached服务器发送到网络的总的字节数。 STAT limit_maxbytes 67108864  //memcached服务缓存允许使用的最大字节数 STAT accepting_conns 1 STAT listen_disabled_num 0 STAT threads 4 STAT conn_yields 0 STAT bytes 0 STAT curr_items 0 STAT total_items 0 STAT evictions 0 STAT reclaimed 0 END ------------------------------- [root@jushanweb1 ~]# telnet 192.168.12.201 13002 Trying 192.168.12.201... Connected to 192.168.12.201 (192.168.12.201). Escape character is '^]'. stats STAT pid 8382 STAT uptime 190574 STAT time 1301579774 STAT version 1.2.0 STAT pointer\_size 32 STAT rusage\_user 0.003999 STAT rusage\_system 0.033994 STAT curr\_items 1 STAT total\_items 1 STAT bytes 50 STAT curr\_connections 2 STAT total\_connections 4 STAT connection\_structures 3 STAT cmd\_get 0 STAT cmd\_set 1 STAT get\_hits 0 STAT get\_misses 0 STAT bytes\_read 216 STAT bytes\_written 92 STAT limit\_maxbytes 524288000 END</summary></entry></feed>

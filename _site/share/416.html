@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>反作弊策略思想 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="反作弊策略思想" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="从网上看到，觉得归纳的亮点说着挺有道理。" />
+<meta property="og:description" content="从网上看到，觉得归纳的亮点说着挺有道理。" />
+<link rel="canonical" href="http://localhost:4001/share/416.html" />
+<meta property="og:url" content="http://localhost:4001/share/416.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-02-11T20:39:47-08:00" />
+<script type="application/ld+json">
+{"headline":"反作弊策略思想","dateModified":"2012-02-11T20:39:47-08:00","datePublished":"2012-02-11T20:39:47-08:00","description":"从网上看到，觉得归纳的亮点说着挺有道理。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/share/416.html"},"@type":"BlogPosting","url":"http://localhost:4001/share/416.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">反作弊策略思想</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-02-11T20:39:47-08:00" itemprop="datePublished">Feb 11, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>从网上看到，觉得归纳的亮点说着挺有道理。</p>
+
+<p>这要从搜索引擎反作弊策略说起。一个搜索引擎成功的反作弊策略一定是这样的：</p>
+
+<p>1，允许算法被探测出来，而且即使算法被公布，搜索结果的公正性都不会受太大影响。要这么做的原因就是不希望和作弊的人陷入到一种猫捉老鼠的死循环当中。如果老是以堵漏洞的做法来修正算法，那永远都没有尽头。出于这样的考虑，搜索引擎会把那些无法被作弊的的因素在排序算法里放到比较重要的程度。</p>
+
+<p>2，尽可能用一切技术手段自动检测，当技术手段不能解决问题，就用人工来解决。然后把人工发现的问题又反馈给自动检测机制，使自动检测越来越完善。</p>
+
+<p>现在的google基本上就是这样来做的。在现有的排序规则中，那些无法作弊的和能精确反应内容的因素，都是很重要的排序因素。</p>
+
+<p>当然Google也不排斥频繁的调整算法，这也有出于给用户一个最好的搜索体验考虑的。</p>
+
+<p>至于技术检测和人工审查，google也一直在做。</p>
+
+<!--more-->
+
+<p>google很早就有匿名蜘蛛来检测一个网站是不是在作弊的。如果去分析网站的服务器LOG日志，就会发现它们。</p>
+
+<p>你会发现，有的爬虫，通过IP查询是来自google，但是它没有自己的声明（user-agent），这就是google的匿名爬虫。它会判断你有没有对google爬虫特别对待，做一些隐藏页面，还会解析Javascript文件和CSS文件等等。有人用CCS文件来隐藏内容，这种事情现在是不用去做的，google都能查出来。</p>
+
+<p>Google也有人工审核机制，从webmaster tool 里提交的问题，都是有人工跟进审核的。以下就是号称google内部流传出来审核规则，可以点此下载。</p>
+
+<p>既然google反作弊那么优秀，那文章一开始提到的那个作弊方法怎么解决呢？</p>
+
+<p>那个方法google确实检测不出来，但是用这个方法的人，到最后还是会被google发现作弊。</p>
+
+<p>google的反作弊是“善意原则”优先，是假设你这个网站是没有作弊的，但是用其他所有作弊的特征来检查。 用了我提到的这个方法，在用颜色隐藏内容这一块是没事了，但是会在堆砌关键词，反向链接，以及其他很多方面路出马脚来。google就是相信，一个在页面上隐藏内容的人，也一定会去做垃圾链接群发等等其他作弊的事情。就像现实生活中一个吸毒的人，当然也是爱打架的，或者爱偷东西的，总有一件事情让你进局子里。</p>
+
+<p>而你假设其他什么都不做，就是用那个方法隐藏一点内容，其实你也不能得到什么。因为你仅仅是隐藏内容的话也不会有排名的。</p>
+
+<p>google就是这样捍卫了自己排名的公正性。</p>
+
+<p>对这些了解得越多，就越发现作弊实在是费力不讨好了。（作弊源于不了解，通过正常途径提升SEO流量的方法有的是，为什么放弃那么多好的方法而选择差的方法呢？在现在的SEO界，你会发现一个现象，越是SEO刚入门的人越喜欢搞一些作弊的事情，而SEO从业越久的人，就越不会参与这些。）</p>
+
+<p>想做一个优秀SEOer的人，对所有这些因素都要有一定程度的了解的。这样做即可以避开无意中犯下的错，又可以避免不必要的恐慌。</p>
+
+<p>比如沙盒效应，很多人总觉得很神秘，其实从搜索引擎的角度出发没什么好神秘的。你要是站在搜索引擎的角度考虑问题，就觉得这是一个很有必要的措施了。你也会知道如何发展自己的外部链接。避免google的反作弊手段落到你网站上。</p>
+
+<p>还有，关于重复内容，google一定是“善意原则”优先的，它甚至会帮你处理掉因为网站大量采用模板带来的重复问题。</p>
+
+<p>要做到了解这些，就是不断的实践，学习和实验。</p>
+
+<p>最近的美剧《Lie to me》非常好看，有一个印象我很深刻，就是他们会定期做一些实验，来了解人类各种复杂微妙的表情后面隐藏着怎样的心理活动，会定期形成报告。这是一种非常好的研究程序。</p>
+
+<p>面对google，我们就像那些心理学家面对人类的心理一样，很多东西是你不了解的。你去测试，就能得到独家的资料和信息。这也是我博客很多东西的来源。</p>
+
+
+  </div><a class="u-url" href="/share/416.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

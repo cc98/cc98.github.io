@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Discuz7.0程序二次开发必备：目录详解 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Discuz7.0程序二次开发必备：目录详解" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="基于7.0的标准程序,部分与插件无关的文件不作说明 文件颜色说明** :** 红色** : **程序核心文件，修改这类文件时千万要注意安全! 橙色** : **做插件几乎不会用到的文件，大概了解功能就可以了** , **其实我也不推荐修改这些文件 绿色** : **函数类文件** , **许多功能强大的自定义函数可以调用这类文件来使用 蓝色** : **最标准的插件制作常用文件** 紫色 **:** 该文件被 **Zend** 加密，请不要修改这类文件** 每个目录里面都有一个空的** index.htm, **这是为了防止列目录用的，不必理会. 根目录 ./ （这里都是最基本的程序） admincp.php——后台系统设置主程序文件，一般只处理菜单的显示的访问权限，不处理管理控制。 ajax.php——论坛模板的ajax判断及数据返回都在这里进行 attachment.php——附件文件，仅仅处理附件下载的功能。 announcement.php——论坛公告的显示，一般很少改 config.inc.php——配置论坛数据库、密码等信息，这个大家最熟悉了 discuz_version.php——论坛版本信息，用来更新用的，没有官方说明绝对不要修改 eccredit.php——论坛商品功能以及信用度查看的处理文件 faq.php——论坛自带的帮助 favicon.ico——显示在IE标题栏的的图标 forumdisplay.php——很简单，论坛主题列表的显示 index.php——控制首页元素显示 invite.php——论坛邀请注册程序文件 leftmenu.php——首页侧栏文件 logging.php——登陆系统，判断用户名、密码。 magic.php——论坛道具程序文件，处理道具购买、赠送等操作 medal.php——论坛勋章中心程序文件，处理勋章发送等功能 member.php——控制会员列表显示，积分策略等等信息显示 memcp.php——会员个人中心显示 misc.php——控制评分功能、论坛界面显示功能等等 modcp.php——这个是论坛前台的版主操作的迷你后台程序 my.php——查看一切和自己在这个论坛的行为，例如“我的帖子”，“用户组权限”等等 plugin.php——论坛插件，这个主要控制论坛插件的菜单的显示，一般极少修改 pm.php——论坛短信息程序，控制短信息发表与浏览 post.php——与viewthread.php相似，但是更多是管理帖子发表、编辑等等信息，也会有权限的控制提示 redirect.php——控制显示论坛的最后发表的主题访问，也控制主题的转向功能 register.php——注册文件，同时也会控制注册的信息的合法性 relatekw.php——论坛相关标签生成 relatethread.php——论坛相关主题 robots.txt——设置里面的地址可以阻止搜索机器人访问对应的页面 rss.php——RSS快速订阅，不用多说了吧？ search.php——处理论坛搜索功能中的信息筛选 seccode.php——论坛注册，生成验证码的程序 sitemap.php——论坛SiteMAP功能程序 space.php——个人资料查看的程序 stats.php——处理“统计”中的统计信息，也允许查看论坛对应的统计数据 tag.php——论坛标签整理页 task.php——论坛任务程序，任务主程序触发，判断均在此进行 topic.php——一般无法直接访问，控制页面显示，显示主题条数 topicadmin.php——控制的是管理人员的前台管理操作，如精华、置顶、高亮等等 trade.php——处理论坛的交易主题 video.php——处理论坛的视频主题，包括显示和调用。 viewthread.php——处理浏览帖子时候的帖子信息显示，例如信息、标题等等，同时也处理访问帖子的权限，如阅读权限是否足够等等。 ./admin （管理后台的程序文件，全部在这里，仅能通过** admincp.php **来访问，下面的解释说明这个文件对应着后台对应的设置项目） admingroups.inc.php——管理组 adv.inc.php——论坛广告 announce.inc.php——论坛公告 attach.inc.php——论坛附件 checktools.inc.php——文件检查，邮件设置，FTP权限检查，附件水印设置 counter.inc.php——更新论坛统计 cpanel.share.php——检查后台访问进程的文件，也有一些管理文件删除的函数 creditwizard.inc.php——积分设置向导 db.inc.php——数据库备份，导入，导出，优化，检验 discuzdb.md5——数据库检验文件 discuzfiles.md5——程序文件检验文件 ec.inc.php——支付宝及其它电子商务 faq.inc.php——论坛帮助 forums.inc.php——版区下面的所有设置 global.func.php——后台函数库，像showsettings等后台设置显示函数都在这里可以找到 home.inc.php——后台首页内容 insenz.func.php——INSENZ营销函数库 insenz.inc.php——INSENZ营销 jswizard.inc.php——JS调用向导 login.inc.php——后台登陆提示页面 logs.inc.php——论坛所有的运行记录 magics.inc.php——论坛道具 main.inc.php——论坛后台的风格控制程序 medals.inc.php——勋章中心 members.inc.php——用户分类下面的所有设置 menu.inc.php——系统设置的菜单栏 misc.inc.php——在线列表定制，友情连接，Discuz!代码设置，词语过滤，主题图标，附件类型，计划任务，标签，边栏 moderate.inc.php——主题，回复，用户审核 plugins.inc.php——论坛插件 profilefields.inc.php——用户信息编辑 project.inc.php——论坛方案 prune.inc.php——批量删帖 qihoo.inc.php——QIHOO搜索 quickqueries.inc.php——常用SQL命令文件，可以在这里添加常用的SQL语句来快速执行 ranks.inc.php——信用等级 recyclebin.inc.php——回收站 runwizard.inc.php——运行设置向导 search.inc.php——后台自带的设置搜索功能 settings.inc.php——全局下面的大部分设置项目 smilies.inc.php——表情 styles.inc.php——论坛风格 tasks.inc.php——论坛任务 templates.inc.php——论坛模板设置 threads.inc.php——主题设置 threadtypes.inc.php——主题分类 tools.inc.php——论坛工具 tradelog.inc.php——交易记录查看 usergroups.inc.php——用户设置，发帖数级别 video.inc.php——视频设置 zip.func.php——数据压缩及解压程序 ./Api （主要是和通行证及数据调用有关的内容） advcache.php——论坛广告显示管理 dbbak.php——数据库操作函数 google.php——GOOGLE搜索 insenz.php——论坛营销 javascript.php——JS调用 uc.php——Ucentre通讯 uchome.php——UHome通讯 video.php——视频调用函数 /trade alipay.api.php——支付宝接口 credit.notify.php——积分充值信息 trade.notify.php——交易信息 ./archiver==** （特别说明下，因为 **archiver** 中的目录的文件没有调用 **commom.inc.php** ，所以所有变量、函数都不能直接使用，必须要搜索数据库来进行判断）** index.php archiver首页 /include thread.inc.php archiver主题显示 index.inc.php 这个是过滤论坛权限和界面显示用的 forum.inc.php archiver论坛显示 ./attachments** 是论坛附件的存放目录** ./forumdata** 是论坛记录和缓存文件的存放目录，一般这些文件都是自动生成的，所以不要修改。至于有什么用途也说下吧。** /cache** （很好用的功能，调用的这里的文件变量是非常快的）** admingroup_X.php 管理组权限 cache_archiver.php archiver存档 cache_bbcodes.php BBCODE和SMILES cache_blog.php 所有用户组的权限变量和smilies、bbcode，还有发帖数等级的信息 cache_censor.php 屏蔽信息 cache_crons.php 计划任务 cache_faqs.php FAQ cache_forumdisplay.php 论坛信息与公告 cache_forums.php 同上 cache_icons.php 论坛图标 cache_index.php 在线列表、联盟论坛、公告 cache_ipbanned.php 封IP段记录 cache_magics.php 论坛道具属性 cache_medals.php 勋章信息 cache_post.php smilies、bbcode、icons cache_profilefields.php 用户栏目定制 cache_ranks.php 信用等级 cache_register.php 注册 cache_request.php 论坛任务信息 cache_secqaa.php 验证提问 cache_smilies.php 论坛表情 cache_settings.php setting表设置的参数变量 cache_topicadmin.php 主题管理 cache_usergroups.php 用户组基本信息 cache_viewpro.php 用户资料 cache_viewthread.php 论坛，用户组，smilies、bbcode、icons plugin_XX.php 插件表 style_XX.php 风格缓存 usergroup_XX.php 用户组缓存 requestxxxxxx.php 这个是记录论坛任务的缓存文件 /templates** （基于 **HTML** 所生成的模板 **PHP** ，比较少做插件会用到，忽略）** /threadcaches (主题缓存存放目录) 根部的一些文件就是数据记录文件了。 ./images** 是图片目录，直接跳过，需要说明的是 **./images/admincp/admincp.css **可以用来定义系统设置的界面** ./include** 是论坛核心程序目录，非常有必要去了解。** serverbusy.htm 系统错误信息（服务器忙碌就显示这个页面） xmlparser.class.php 主要是标签处理 viewthread_video.inc.php 视频主题行为处理 viewthread_trade.inc.php 商品主题行为处理 viewthread_reward.inc.php 悬赏主题行为处理 viewthread_poll.inc.php 投票主题行为处理 viewthread_debate.inc.php 辩论主题行为处理 viewthread_activity.inc.php 活动主题行为处理 trade.func.php 交易行为函数库 threadpay.inc.php 出售帖 template.func.php 控制模板缓存生成的文件 task.func.php 论坛任务常用函数库 swfupload.func.php 批量上传管理 sendmail.inc.php 发送EMAIL的程序 security.inc.php 好像是代理一类的，不管 seccode.class.php 验证码处理库 search_qihoo.inc.php qihoo搜索 search_sort.inc.php 搜索排序 search_trade.inc.php 搜索特殊主题 request.func.php 和request里面的文件有关，这是个函数文件 relatethreads.inc.php 应该说是生成相关主题的程序 promotion.inc.php 记录当前用户的IP等信息 printable.inc.php 打印主题用的程序 post.func.php 不错的函数文件，主要是记录信息、更新帖子的函数 pmprompt.inc.php 短信息内容处理 newthread.inc.php 发新话题的信息处理 newreply.inc.php 发回复的信息处理 moderation.inc.php 版主管理 misc.func.php 又是函数文件，控制管理PM，评分PM，评分记录，附件高亮显示，IP转换为地理位置 membermerge.func.php 合并用户时的函数处理文件 magic.func.php 道具处理函数库 insenz.func.php 论坛营销管理函数库 image.class.php 图片显示处理 global.func.php 丰富的函数库，都是前台用的，如除去HTML、发PM、发EMAIL等等，建议大家研究下。 gifmerge.class.php 图片显示处理 ftp.func.php 远程FTP附件处理函数文件 forumselect.inc.php 论坛列表显示 forum.func.php 处理论坛信息用的函数，如论坛菜单下拉等等 editpost.inc.php 编辑帖子的信息处理 editor.func.php 编辑器管理的函数库 ec_credit.func.php 积分交易文件 discuzcode.func.php Discuz!代码转换处理程序 diff.class.php 数据库处理 db_mysql_error.inc.php 数据库错误汇报 db_mysql.class.php 数据库中心操作程序 cron.func.php 控制计划任务执行的程序 counter.inc.php 记录操作系统与浏览器的统计 common.inc.php 最重要的核心程序，读取COOKIES信息，定义全局系统函数变量 chinese.class.php 处理乱码和字符集用的 category.inc.php 控制帖数，今日发帖数的统计 cache.func.php 控制生成缓存文件的程序 attachment.func.php 识别附件拓展名，控制附件前面显示类别图片的程序， 还有附件大小的记录判断 advertisements.inc.php 处理广告显示用的 /crons 这里是计划任务文件，你可以增加自己的计划任务，而且可以调用系统变量 /tables 几个语言文件，很少改，跳过 /magic 道具脚本文件目录，跳过 /request 不用了解，直接忽略 /tasks 论坛任务脚本文件目录 /js 所有** JS **调用文件以及** AJAX **效果显示控制文件均在这里 bbcode.js Discuz!代码JS效果文件 calendar.js 日历显示 common.js 几乎所有的AJAX显示控制都在这里 floatadv.js 广告 google.js GOOGLE搜索 iframe.js 框架显示 insenz_reg.js 营销 md5.js MD5处理 post.js 发帖页面AJAX效果处理 qihoo.js QIHOO搜索 slide.js 图片附件显示效果处理 tree.js 树状表显示 video.js 视频显示 viewthread.js 主题浏览中的AJAX效果 ./ipdata** （ **IP** 库文件目录，下面那个 **wry.dat** 就是 **IP** 库，这个我不会改）** ./plugins （插件存放目录） ./templates** （模板目录，一般做 **HACK** 也要改模板，因此说明下）** /default** （默认模板，从这个开始，其它风格以此类推）** activity_applylist.htm 活动主题申请列表 adv.htm 论坛广告显示 announcement.htm 公告 attachpay.htm 收费附件 attachpay_view.htm 查看已付费购买附件的用户列表 campaign.htm 论坛列表 credits.htm 积分策略 css_append.htm CSS拓展 css_calendar.htm CSS日历 css_common.htm 大部分风格修改都在此 css_editor.htm 编辑器风格 css_float.htm 浮动框风格 css_script.htm 常用JS脚本 css_seditor.htm 编辑器风格 css_topicadmin.htm 主题管理界面风格 css_viewthread.htm主题浏览页面风格 customtopics.htm 首页那个用户专题 debate_umpire.htm 辩论主题显示 discuz.htm 论坛的首页 discuzcode.htm 附件显示信息都在这里 ec_credit.htm 积分交易 ec_explain.htm 同上，这个是说明 ec_list.htm 交易列表 ec_rate.htm 交易评价 emailfriend.htm EMAIL推荐主题 faq.htm FAQ帮助手册，下面都是，只不过显示部分不一样，省略。 faq_navbar.htm FAQ的边栏显示 footer.htm 论坛底部信息 footer_ajax.htm 论坛底部的AJAX显示 footer_nofloat.htm 论坛底部无悬浮框页面 forumdisplay.htm 论坛主题列表 forumdisplay_passwd.htm 密码论坛输入密码提示页 forumdisplay_simple.htm 论坛主题列表 forumdisplay_subforum.htm 二级论坛列表 frame.htm 树状框架 getpasswd.htm 取回密码 groupexpiry.htm 公众用户组 header.htm 头部连接（上面有“注册”“登录”提示的就是） header_ajax.htm 头部连接AJAX显示 index.htm 首页 invite_index.htm 邀请注册 invite_send.htm 邀请注册发送页面 jsmenu.htm 论坛的下拉框 leftmenu.htm 论坛的树状列表栏 login.htm 登录页面 magic_index.htm 论坛道具首页 magic_log.htm 论坛道具行为记录 magic_market.htm 论坛道具交易市场 magic_opreation.htm 论坛道具选项 magic_use.htm 道具使用 medal.htm勋章中心 memberlist.htm 会员列表，上面那个 memcp_credits.htm 控制面板（也叫“个人中心”）——积分交易 memcp_credits_action.htm 控制面板——积分交易操作 memcp_credits_log.htm 控制面板——积分交易记录 memcp_profile.htm 控制面板——编辑个人资料 memcp_usergroups.htm 控制面板——公众用户组 memcp_usergroups_misc.htm 控制面板——公众用户组处理 memcp_validating.htm 控制面板——审核提示 modcp.htm 版主后台首页 modcp_announcements.htm 版主后台——公告 modcp_forumaccess.htm 版主后台——论坛管理权限 modcp_forums.htm 版主后台——论坛管理 modcp_home.htm 版主后台——主页 modcp_login.htm 版主后台登录提示页 modcp_logs.htm 版主后台——记录查看 modcp_members.htm 版主后台——用户编辑 modcp_moderate.htm 版主后台——审核 modcp_moderate_float.htm 版主后台——审核浮动框 modcp_posts.htm 版主后台——帖子管理 modcp_recyclebins.htm 版主后台——回收站 modcp_report.htm 版主后台——报告管理 modcp_threads.htm 版主后台——主题管理 my.htm 会员论坛行为 my_activities.htm 会员论坛行为——我的活动 my_buddylist.htm 会员论坛行为——我的好友 my_debate.htm 会员论坛行为——我的辩论 my_favorites.htm 会员论坛行为——我的收藏 my_grouppermission.htm 会员论坛行为——我的用户组权限 my_polls.htm 会员论坛行为——我的投票 my_posts.htm 会员论坛行为——我的回复 my_rewards.htm 会员论坛行为——我的悬赏 my_subscriptions.htm 会员论坛行为列表 my_threads.htm 会员论坛行为——我的主题 my_trades.htm 会员论坛行为——我的商品 my_tradestats.htm 会员论坛行为——我的商品状态 my_tradethreads.htm 会员论坛行为——我的商品主题 my_video.htm 会员论坛行为——我的视频 nopermission.htm 关闭论坛显示的提示页 pay.htm 买帖子 pay_view.htm 看帖子被谁买了 pm.htm 短信息左边菜单条 pm_archive_html.htm 导出短消息HTML pm_checknew.htm 查看新短信 pm_node.htm 短信快速提示 pm_search.htm 搜索短消息 pm_search_result.htm 搜索短消息结果 pm_send.htm 发送短消息 pm_viewnew.htm 浏览短信息，内容更详细 post.htm 帖子发表 post_activity.htm 活动主题发表 post_attachments.htm 发帖子的附件模块 post_debate.htm 辩论主题发表 post_forumselect.htm 发表主题时的论坛选择列表 post_poll.htm 发表投票主题 post_reward.htm 发表悬赏 post_sortoption.htm 排序列表 post_swfattachlist.htm 批量上传附件 post_trade.htm 发表商品 post_video.htm 发表视频 rate.htm 评分 rate_view.htm 评分记录浏览 register.htm 注册 relatekw.htm 相关主题 relatetag.htm 相关标签 reportpost.htm 主题报告 request_assistant.htm 都是数据返回操作页，下均同 request_birthday.htm request_forumtree.htm request_modlist.htm request_rowcombine.htm request_tag.htm request_thread.htm search.htm 搜索主页 search_qihoo.htm QIHOO搜索 search_sort.htm 排序 search_sortoption.htm 分类排序操作 search_trade.htm 商品搜索 search_threads.htm 搜索后的帖子列表 seccheck.htm 验证检查 seditor.htm 编辑器中的标准Discuz!代码 showmessage.htm 系统返回错误信息那个 stats_main.htm 统计首页 stats_misc.htm 管理统计、时间、积分等等一堆 stats_navbar.htm 统计上面那个菜单条 stats_onlinetime.htm 时间统计 stats_team.htm 管理团队 stats_trade.htm 商品交易统计 tag.htm 论坛标签 tag_threads.htm 和标签相关的主题列表 task.htm 论坛任务 task_parter.htm 完成任务的会员 topic.htm 又是QIHOO的随机广告 topicadmin.htm 主题管理 topicadmin_action.htm 主题管理动作选择 topicadmin_getip.htm 主题内查看IP topicadmin_modlayer.htm 版主推荐 trade.htm 商品主题显示 trade_displayorder.htm 商品列表 trade_info.htm 商品信息 trade_view.htm 商品显示 viewpro_classic.htm 会员详细信息查看 viewthread.htm 浏览帖子 viewthread_activity.htm 活动主题的查看 viewthread_activity_info.htm 活动主题的信息表格 viewthread_debate.htm 辩论主题的查看 viewthread_debate_umpire.htm 辩论双方论点 viewthread_fastpost.htm 浏览主题时快速发帖 viewthread_iframe.htm 浏览主题时候的框架显示 viewthread_mod.htm 帖子管理记录 viewthread_node.htm 主题左侧用户信息 viewthread_pay.htm 帖子支付页面 viewthread_poll.htm 投票主题 viewthread_poll_voters.htm 投票者 viewthread_printable.htm 打印主题 viewthread_relatedthread.htm 相关主题查看 viewthread_reward.htm 悬赏主题查看 viewthread_reward_price.htm 悬赏信息 viewthread_trade.htm 商品主题查看 viewthread_video.htm 视频主题查看 warn_view.htm 会员警告信息查看 whosonline.htm 详细的在线动作 actions.lang.php 动作语言包 admincp.lang.php 后台语言包 admincp.menu.lang.php 后台菜单语言包 admincp.msg.lang.php 后台提示信息语言包 archiver.lang.php archiver语言包 emails.lang.php 一堆EMAIL信息 feed.lang.php 论坛动态语言包 magics.lang.php 道具中心语言包 messages.lang.php 错误信息语言包 misc.lang.php 像最后编辑，由谁管理等等 modactions.lang.php 管理代号 pms.lang.php PM，都是管理理由 request.lang.php 论坛使用说明语言包 runtime.lang.php 人性时间提示语言包 seccode.lang.php 验证信息语言包 swfupload.lang.php 批量上传附件信息语言包 tasks.lang.php 论坛任务语言包 templates.lang.php 前台模板的语言包 wap.lang.php wap用的语言包 ./uc_client ./uc_server (UCenter的通讯及处理文件，也保存有会员头像等信息，不必理会) ./wap (WAP模式控制都在这里) index.php 论坛首页 /include forum.inc.php 论坛列表显示和权限控制 global.func.php 全局函数 goto.inc.php 主题跳转 home.inc.php 主页查看 login.inc.php 论坛登录 my.inc.php 个人在论坛的所有的活动的信息的查看 myphone.inc.php 我的手机信息查看 post.inc.php 发帖功能操作 register.inc.php 注册 search.inc.php 搜索 stats.inc.php 论坛统计 thread.inc.php 主题浏览" />
+<meta property="og:description" content="基于7.0的标准程序,部分与插件无关的文件不作说明 文件颜色说明** :** 红色** : **程序核心文件，修改这类文件时千万要注意安全! 橙色** : **做插件几乎不会用到的文件，大概了解功能就可以了** , **其实我也不推荐修改这些文件 绿色** : **函数类文件** , **许多功能强大的自定义函数可以调用这类文件来使用 蓝色** : **最标准的插件制作常用文件** 紫色 **:** 该文件被 **Zend** 加密，请不要修改这类文件** 每个目录里面都有一个空的** index.htm, **这是为了防止列目录用的，不必理会. 根目录 ./ （这里都是最基本的程序） admincp.php——后台系统设置主程序文件，一般只处理菜单的显示的访问权限，不处理管理控制。 ajax.php——论坛模板的ajax判断及数据返回都在这里进行 attachment.php——附件文件，仅仅处理附件下载的功能。 announcement.php——论坛公告的显示，一般很少改 config.inc.php——配置论坛数据库、密码等信息，这个大家最熟悉了 discuz_version.php——论坛版本信息，用来更新用的，没有官方说明绝对不要修改 eccredit.php——论坛商品功能以及信用度查看的处理文件 faq.php——论坛自带的帮助 favicon.ico——显示在IE标题栏的的图标 forumdisplay.php——很简单，论坛主题列表的显示 index.php——控制首页元素显示 invite.php——论坛邀请注册程序文件 leftmenu.php——首页侧栏文件 logging.php——登陆系统，判断用户名、密码。 magic.php——论坛道具程序文件，处理道具购买、赠送等操作 medal.php——论坛勋章中心程序文件，处理勋章发送等功能 member.php——控制会员列表显示，积分策略等等信息显示 memcp.php——会员个人中心显示 misc.php——控制评分功能、论坛界面显示功能等等 modcp.php——这个是论坛前台的版主操作的迷你后台程序 my.php——查看一切和自己在这个论坛的行为，例如“我的帖子”，“用户组权限”等等 plugin.php——论坛插件，这个主要控制论坛插件的菜单的显示，一般极少修改 pm.php——论坛短信息程序，控制短信息发表与浏览 post.php——与viewthread.php相似，但是更多是管理帖子发表、编辑等等信息，也会有权限的控制提示 redirect.php——控制显示论坛的最后发表的主题访问，也控制主题的转向功能 register.php——注册文件，同时也会控制注册的信息的合法性 relatekw.php——论坛相关标签生成 relatethread.php——论坛相关主题 robots.txt——设置里面的地址可以阻止搜索机器人访问对应的页面 rss.php——RSS快速订阅，不用多说了吧？ search.php——处理论坛搜索功能中的信息筛选 seccode.php——论坛注册，生成验证码的程序 sitemap.php——论坛SiteMAP功能程序 space.php——个人资料查看的程序 stats.php——处理“统计”中的统计信息，也允许查看论坛对应的统计数据 tag.php——论坛标签整理页 task.php——论坛任务程序，任务主程序触发，判断均在此进行 topic.php——一般无法直接访问，控制页面显示，显示主题条数 topicadmin.php——控制的是管理人员的前台管理操作，如精华、置顶、高亮等等 trade.php——处理论坛的交易主题 video.php——处理论坛的视频主题，包括显示和调用。 viewthread.php——处理浏览帖子时候的帖子信息显示，例如信息、标题等等，同时也处理访问帖子的权限，如阅读权限是否足够等等。 ./admin （管理后台的程序文件，全部在这里，仅能通过** admincp.php **来访问，下面的解释说明这个文件对应着后台对应的设置项目） admingroups.inc.php——管理组 adv.inc.php——论坛广告 announce.inc.php——论坛公告 attach.inc.php——论坛附件 checktools.inc.php——文件检查，邮件设置，FTP权限检查，附件水印设置 counter.inc.php——更新论坛统计 cpanel.share.php——检查后台访问进程的文件，也有一些管理文件删除的函数 creditwizard.inc.php——积分设置向导 db.inc.php——数据库备份，导入，导出，优化，检验 discuzdb.md5——数据库检验文件 discuzfiles.md5——程序文件检验文件 ec.inc.php——支付宝及其它电子商务 faq.inc.php——论坛帮助 forums.inc.php——版区下面的所有设置 global.func.php——后台函数库，像showsettings等后台设置显示函数都在这里可以找到 home.inc.php——后台首页内容 insenz.func.php——INSENZ营销函数库 insenz.inc.php——INSENZ营销 jswizard.inc.php——JS调用向导 login.inc.php——后台登陆提示页面 logs.inc.php——论坛所有的运行记录 magics.inc.php——论坛道具 main.inc.php——论坛后台的风格控制程序 medals.inc.php——勋章中心 members.inc.php——用户分类下面的所有设置 menu.inc.php——系统设置的菜单栏 misc.inc.php——在线列表定制，友情连接，Discuz!代码设置，词语过滤，主题图标，附件类型，计划任务，标签，边栏 moderate.inc.php——主题，回复，用户审核 plugins.inc.php——论坛插件 profilefields.inc.php——用户信息编辑 project.inc.php——论坛方案 prune.inc.php——批量删帖 qihoo.inc.php——QIHOO搜索 quickqueries.inc.php——常用SQL命令文件，可以在这里添加常用的SQL语句来快速执行 ranks.inc.php——信用等级 recyclebin.inc.php——回收站 runwizard.inc.php——运行设置向导 search.inc.php——后台自带的设置搜索功能 settings.inc.php——全局下面的大部分设置项目 smilies.inc.php——表情 styles.inc.php——论坛风格 tasks.inc.php——论坛任务 templates.inc.php——论坛模板设置 threads.inc.php——主题设置 threadtypes.inc.php——主题分类 tools.inc.php——论坛工具 tradelog.inc.php——交易记录查看 usergroups.inc.php——用户设置，发帖数级别 video.inc.php——视频设置 zip.func.php——数据压缩及解压程序 ./Api （主要是和通行证及数据调用有关的内容） advcache.php——论坛广告显示管理 dbbak.php——数据库操作函数 google.php——GOOGLE搜索 insenz.php——论坛营销 javascript.php——JS调用 uc.php——Ucentre通讯 uchome.php——UHome通讯 video.php——视频调用函数 /trade alipay.api.php——支付宝接口 credit.notify.php——积分充值信息 trade.notify.php——交易信息 ./archiver==** （特别说明下，因为 **archiver** 中的目录的文件没有调用 **commom.inc.php** ，所以所有变量、函数都不能直接使用，必须要搜索数据库来进行判断）** index.php archiver首页 /include thread.inc.php archiver主题显示 index.inc.php 这个是过滤论坛权限和界面显示用的 forum.inc.php archiver论坛显示 ./attachments** 是论坛附件的存放目录** ./forumdata** 是论坛记录和缓存文件的存放目录，一般这些文件都是自动生成的，所以不要修改。至于有什么用途也说下吧。** /cache** （很好用的功能，调用的这里的文件变量是非常快的）** admingroup_X.php 管理组权限 cache_archiver.php archiver存档 cache_bbcodes.php BBCODE和SMILES cache_blog.php 所有用户组的权限变量和smilies、bbcode，还有发帖数等级的信息 cache_censor.php 屏蔽信息 cache_crons.php 计划任务 cache_faqs.php FAQ cache_forumdisplay.php 论坛信息与公告 cache_forums.php 同上 cache_icons.php 论坛图标 cache_index.php 在线列表、联盟论坛、公告 cache_ipbanned.php 封IP段记录 cache_magics.php 论坛道具属性 cache_medals.php 勋章信息 cache_post.php smilies、bbcode、icons cache_profilefields.php 用户栏目定制 cache_ranks.php 信用等级 cache_register.php 注册 cache_request.php 论坛任务信息 cache_secqaa.php 验证提问 cache_smilies.php 论坛表情 cache_settings.php setting表设置的参数变量 cache_topicadmin.php 主题管理 cache_usergroups.php 用户组基本信息 cache_viewpro.php 用户资料 cache_viewthread.php 论坛，用户组，smilies、bbcode、icons plugin_XX.php 插件表 style_XX.php 风格缓存 usergroup_XX.php 用户组缓存 requestxxxxxx.php 这个是记录论坛任务的缓存文件 /templates** （基于 **HTML** 所生成的模板 **PHP** ，比较少做插件会用到，忽略）** /threadcaches (主题缓存存放目录) 根部的一些文件就是数据记录文件了。 ./images** 是图片目录，直接跳过，需要说明的是 **./images/admincp/admincp.css **可以用来定义系统设置的界面** ./include** 是论坛核心程序目录，非常有必要去了解。** serverbusy.htm 系统错误信息（服务器忙碌就显示这个页面） xmlparser.class.php 主要是标签处理 viewthread_video.inc.php 视频主题行为处理 viewthread_trade.inc.php 商品主题行为处理 viewthread_reward.inc.php 悬赏主题行为处理 viewthread_poll.inc.php 投票主题行为处理 viewthread_debate.inc.php 辩论主题行为处理 viewthread_activity.inc.php 活动主题行为处理 trade.func.php 交易行为函数库 threadpay.inc.php 出售帖 template.func.php 控制模板缓存生成的文件 task.func.php 论坛任务常用函数库 swfupload.func.php 批量上传管理 sendmail.inc.php 发送EMAIL的程序 security.inc.php 好像是代理一类的，不管 seccode.class.php 验证码处理库 search_qihoo.inc.php qihoo搜索 search_sort.inc.php 搜索排序 search_trade.inc.php 搜索特殊主题 request.func.php 和request里面的文件有关，这是个函数文件 relatethreads.inc.php 应该说是生成相关主题的程序 promotion.inc.php 记录当前用户的IP等信息 printable.inc.php 打印主题用的程序 post.func.php 不错的函数文件，主要是记录信息、更新帖子的函数 pmprompt.inc.php 短信息内容处理 newthread.inc.php 发新话题的信息处理 newreply.inc.php 发回复的信息处理 moderation.inc.php 版主管理 misc.func.php 又是函数文件，控制管理PM，评分PM，评分记录，附件高亮显示，IP转换为地理位置 membermerge.func.php 合并用户时的函数处理文件 magic.func.php 道具处理函数库 insenz.func.php 论坛营销管理函数库 image.class.php 图片显示处理 global.func.php 丰富的函数库，都是前台用的，如除去HTML、发PM、发EMAIL等等，建议大家研究下。 gifmerge.class.php 图片显示处理 ftp.func.php 远程FTP附件处理函数文件 forumselect.inc.php 论坛列表显示 forum.func.php 处理论坛信息用的函数，如论坛菜单下拉等等 editpost.inc.php 编辑帖子的信息处理 editor.func.php 编辑器管理的函数库 ec_credit.func.php 积分交易文件 discuzcode.func.php Discuz!代码转换处理程序 diff.class.php 数据库处理 db_mysql_error.inc.php 数据库错误汇报 db_mysql.class.php 数据库中心操作程序 cron.func.php 控制计划任务执行的程序 counter.inc.php 记录操作系统与浏览器的统计 common.inc.php 最重要的核心程序，读取COOKIES信息，定义全局系统函数变量 chinese.class.php 处理乱码和字符集用的 category.inc.php 控制帖数，今日发帖数的统计 cache.func.php 控制生成缓存文件的程序 attachment.func.php 识别附件拓展名，控制附件前面显示类别图片的程序， 还有附件大小的记录判断 advertisements.inc.php 处理广告显示用的 /crons 这里是计划任务文件，你可以增加自己的计划任务，而且可以调用系统变量 /tables 几个语言文件，很少改，跳过 /magic 道具脚本文件目录，跳过 /request 不用了解，直接忽略 /tasks 论坛任务脚本文件目录 /js 所有** JS **调用文件以及** AJAX **效果显示控制文件均在这里 bbcode.js Discuz!代码JS效果文件 calendar.js 日历显示 common.js 几乎所有的AJAX显示控制都在这里 floatadv.js 广告 google.js GOOGLE搜索 iframe.js 框架显示 insenz_reg.js 营销 md5.js MD5处理 post.js 发帖页面AJAX效果处理 qihoo.js QIHOO搜索 slide.js 图片附件显示效果处理 tree.js 树状表显示 video.js 视频显示 viewthread.js 主题浏览中的AJAX效果 ./ipdata** （ **IP** 库文件目录，下面那个 **wry.dat** 就是 **IP** 库，这个我不会改）** ./plugins （插件存放目录） ./templates** （模板目录，一般做 **HACK** 也要改模板，因此说明下）** /default** （默认模板，从这个开始，其它风格以此类推）** activity_applylist.htm 活动主题申请列表 adv.htm 论坛广告显示 announcement.htm 公告 attachpay.htm 收费附件 attachpay_view.htm 查看已付费购买附件的用户列表 campaign.htm 论坛列表 credits.htm 积分策略 css_append.htm CSS拓展 css_calendar.htm CSS日历 css_common.htm 大部分风格修改都在此 css_editor.htm 编辑器风格 css_float.htm 浮动框风格 css_script.htm 常用JS脚本 css_seditor.htm 编辑器风格 css_topicadmin.htm 主题管理界面风格 css_viewthread.htm主题浏览页面风格 customtopics.htm 首页那个用户专题 debate_umpire.htm 辩论主题显示 discuz.htm 论坛的首页 discuzcode.htm 附件显示信息都在这里 ec_credit.htm 积分交易 ec_explain.htm 同上，这个是说明 ec_list.htm 交易列表 ec_rate.htm 交易评价 emailfriend.htm EMAIL推荐主题 faq.htm FAQ帮助手册，下面都是，只不过显示部分不一样，省略。 faq_navbar.htm FAQ的边栏显示 footer.htm 论坛底部信息 footer_ajax.htm 论坛底部的AJAX显示 footer_nofloat.htm 论坛底部无悬浮框页面 forumdisplay.htm 论坛主题列表 forumdisplay_passwd.htm 密码论坛输入密码提示页 forumdisplay_simple.htm 论坛主题列表 forumdisplay_subforum.htm 二级论坛列表 frame.htm 树状框架 getpasswd.htm 取回密码 groupexpiry.htm 公众用户组 header.htm 头部连接（上面有“注册”“登录”提示的就是） header_ajax.htm 头部连接AJAX显示 index.htm 首页 invite_index.htm 邀请注册 invite_send.htm 邀请注册发送页面 jsmenu.htm 论坛的下拉框 leftmenu.htm 论坛的树状列表栏 login.htm 登录页面 magic_index.htm 论坛道具首页 magic_log.htm 论坛道具行为记录 magic_market.htm 论坛道具交易市场 magic_opreation.htm 论坛道具选项 magic_use.htm 道具使用 medal.htm勋章中心 memberlist.htm 会员列表，上面那个 memcp_credits.htm 控制面板（也叫“个人中心”）——积分交易 memcp_credits_action.htm 控制面板——积分交易操作 memcp_credits_log.htm 控制面板——积分交易记录 memcp_profile.htm 控制面板——编辑个人资料 memcp_usergroups.htm 控制面板——公众用户组 memcp_usergroups_misc.htm 控制面板——公众用户组处理 memcp_validating.htm 控制面板——审核提示 modcp.htm 版主后台首页 modcp_announcements.htm 版主后台——公告 modcp_forumaccess.htm 版主后台——论坛管理权限 modcp_forums.htm 版主后台——论坛管理 modcp_home.htm 版主后台——主页 modcp_login.htm 版主后台登录提示页 modcp_logs.htm 版主后台——记录查看 modcp_members.htm 版主后台——用户编辑 modcp_moderate.htm 版主后台——审核 modcp_moderate_float.htm 版主后台——审核浮动框 modcp_posts.htm 版主后台——帖子管理 modcp_recyclebins.htm 版主后台——回收站 modcp_report.htm 版主后台——报告管理 modcp_threads.htm 版主后台——主题管理 my.htm 会员论坛行为 my_activities.htm 会员论坛行为——我的活动 my_buddylist.htm 会员论坛行为——我的好友 my_debate.htm 会员论坛行为——我的辩论 my_favorites.htm 会员论坛行为——我的收藏 my_grouppermission.htm 会员论坛行为——我的用户组权限 my_polls.htm 会员论坛行为——我的投票 my_posts.htm 会员论坛行为——我的回复 my_rewards.htm 会员论坛行为——我的悬赏 my_subscriptions.htm 会员论坛行为列表 my_threads.htm 会员论坛行为——我的主题 my_trades.htm 会员论坛行为——我的商品 my_tradestats.htm 会员论坛行为——我的商品状态 my_tradethreads.htm 会员论坛行为——我的商品主题 my_video.htm 会员论坛行为——我的视频 nopermission.htm 关闭论坛显示的提示页 pay.htm 买帖子 pay_view.htm 看帖子被谁买了 pm.htm 短信息左边菜单条 pm_archive_html.htm 导出短消息HTML pm_checknew.htm 查看新短信 pm_node.htm 短信快速提示 pm_search.htm 搜索短消息 pm_search_result.htm 搜索短消息结果 pm_send.htm 发送短消息 pm_viewnew.htm 浏览短信息，内容更详细 post.htm 帖子发表 post_activity.htm 活动主题发表 post_attachments.htm 发帖子的附件模块 post_debate.htm 辩论主题发表 post_forumselect.htm 发表主题时的论坛选择列表 post_poll.htm 发表投票主题 post_reward.htm 发表悬赏 post_sortoption.htm 排序列表 post_swfattachlist.htm 批量上传附件 post_trade.htm 发表商品 post_video.htm 发表视频 rate.htm 评分 rate_view.htm 评分记录浏览 register.htm 注册 relatekw.htm 相关主题 relatetag.htm 相关标签 reportpost.htm 主题报告 request_assistant.htm 都是数据返回操作页，下均同 request_birthday.htm request_forumtree.htm request_modlist.htm request_rowcombine.htm request_tag.htm request_thread.htm search.htm 搜索主页 search_qihoo.htm QIHOO搜索 search_sort.htm 排序 search_sortoption.htm 分类排序操作 search_trade.htm 商品搜索 search_threads.htm 搜索后的帖子列表 seccheck.htm 验证检查 seditor.htm 编辑器中的标准Discuz!代码 showmessage.htm 系统返回错误信息那个 stats_main.htm 统计首页 stats_misc.htm 管理统计、时间、积分等等一堆 stats_navbar.htm 统计上面那个菜单条 stats_onlinetime.htm 时间统计 stats_team.htm 管理团队 stats_trade.htm 商品交易统计 tag.htm 论坛标签 tag_threads.htm 和标签相关的主题列表 task.htm 论坛任务 task_parter.htm 完成任务的会员 topic.htm 又是QIHOO的随机广告 topicadmin.htm 主题管理 topicadmin_action.htm 主题管理动作选择 topicadmin_getip.htm 主题内查看IP topicadmin_modlayer.htm 版主推荐 trade.htm 商品主题显示 trade_displayorder.htm 商品列表 trade_info.htm 商品信息 trade_view.htm 商品显示 viewpro_classic.htm 会员详细信息查看 viewthread.htm 浏览帖子 viewthread_activity.htm 活动主题的查看 viewthread_activity_info.htm 活动主题的信息表格 viewthread_debate.htm 辩论主题的查看 viewthread_debate_umpire.htm 辩论双方论点 viewthread_fastpost.htm 浏览主题时快速发帖 viewthread_iframe.htm 浏览主题时候的框架显示 viewthread_mod.htm 帖子管理记录 viewthread_node.htm 主题左侧用户信息 viewthread_pay.htm 帖子支付页面 viewthread_poll.htm 投票主题 viewthread_poll_voters.htm 投票者 viewthread_printable.htm 打印主题 viewthread_relatedthread.htm 相关主题查看 viewthread_reward.htm 悬赏主题查看 viewthread_reward_price.htm 悬赏信息 viewthread_trade.htm 商品主题查看 viewthread_video.htm 视频主题查看 warn_view.htm 会员警告信息查看 whosonline.htm 详细的在线动作 actions.lang.php 动作语言包 admincp.lang.php 后台语言包 admincp.menu.lang.php 后台菜单语言包 admincp.msg.lang.php 后台提示信息语言包 archiver.lang.php archiver语言包 emails.lang.php 一堆EMAIL信息 feed.lang.php 论坛动态语言包 magics.lang.php 道具中心语言包 messages.lang.php 错误信息语言包 misc.lang.php 像最后编辑，由谁管理等等 modactions.lang.php 管理代号 pms.lang.php PM，都是管理理由 request.lang.php 论坛使用说明语言包 runtime.lang.php 人性时间提示语言包 seccode.lang.php 验证信息语言包 swfupload.lang.php 批量上传附件信息语言包 tasks.lang.php 论坛任务语言包 templates.lang.php 前台模板的语言包 wap.lang.php wap用的语言包 ./uc_client ./uc_server (UCenter的通讯及处理文件，也保存有会员头像等信息，不必理会) ./wap (WAP模式控制都在这里) index.php 论坛首页 /include forum.inc.php 论坛列表显示和权限控制 global.func.php 全局函数 goto.inc.php 主题跳转 home.inc.php 主页查看 login.inc.php 论坛登录 my.inc.php 个人在论坛的所有的活动的信息的查看 myphone.inc.php 我的手机信息查看 post.inc.php 发帖功能操作 register.inc.php 注册 search.inc.php 搜索 stats.inc.php 论坛统计 thread.inc.php 主题浏览" />
+<link rel="canonical" href="http://localhost:4001/labrary/142.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/142.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-08-22T19:36:16-07:00" />
+<script type="application/ld+json">
+{"headline":"Discuz7.0程序二次开发必备：目录详解","dateModified":"2010-08-22T19:36:16-07:00","datePublished":"2010-08-22T19:36:16-07:00","description":"基于7.0的标准程序,部分与插件无关的文件不作说明 文件颜色说明** :** 红色** : **程序核心文件，修改这类文件时千万要注意安全! 橙色** : **做插件几乎不会用到的文件，大概了解功能就可以了** , **其实我也不推荐修改这些文件 绿色** : **函数类文件** , **许多功能强大的自定义函数可以调用这类文件来使用 蓝色** : **最标准的插件制作常用文件** 紫色 **:** 该文件被 **Zend** 加密，请不要修改这类文件** 每个目录里面都有一个空的** index.htm, **这是为了防止列目录用的，不必理会. 根目录 ./ （这里都是最基本的程序） admincp.php——后台系统设置主程序文件，一般只处理菜单的显示的访问权限，不处理管理控制。 ajax.php——论坛模板的ajax判断及数据返回都在这里进行 attachment.php——附件文件，仅仅处理附件下载的功能。 announcement.php——论坛公告的显示，一般很少改 config.inc.php——配置论坛数据库、密码等信息，这个大家最熟悉了 discuz_version.php——论坛版本信息，用来更新用的，没有官方说明绝对不要修改 eccredit.php——论坛商品功能以及信用度查看的处理文件 faq.php——论坛自带的帮助 favicon.ico——显示在IE标题栏的的图标 forumdisplay.php——很简单，论坛主题列表的显示 index.php——控制首页元素显示 invite.php——论坛邀请注册程序文件 leftmenu.php——首页侧栏文件 logging.php——登陆系统，判断用户名、密码。 magic.php——论坛道具程序文件，处理道具购买、赠送等操作 medal.php——论坛勋章中心程序文件，处理勋章发送等功能 member.php——控制会员列表显示，积分策略等等信息显示 memcp.php——会员个人中心显示 misc.php——控制评分功能、论坛界面显示功能等等 modcp.php——这个是论坛前台的版主操作的迷你后台程序 my.php——查看一切和自己在这个论坛的行为，例如“我的帖子”，“用户组权限”等等 plugin.php——论坛插件，这个主要控制论坛插件的菜单的显示，一般极少修改 pm.php——论坛短信息程序，控制短信息发表与浏览 post.php——与viewthread.php相似，但是更多是管理帖子发表、编辑等等信息，也会有权限的控制提示 redirect.php——控制显示论坛的最后发表的主题访问，也控制主题的转向功能 register.php——注册文件，同时也会控制注册的信息的合法性 relatekw.php——论坛相关标签生成 relatethread.php——论坛相关主题 robots.txt——设置里面的地址可以阻止搜索机器人访问对应的页面 rss.php——RSS快速订阅，不用多说了吧？ search.php——处理论坛搜索功能中的信息筛选 seccode.php——论坛注册，生成验证码的程序 sitemap.php——论坛SiteMAP功能程序 space.php——个人资料查看的程序 stats.php——处理“统计”中的统计信息，也允许查看论坛对应的统计数据 tag.php——论坛标签整理页 task.php——论坛任务程序，任务主程序触发，判断均在此进行 topic.php——一般无法直接访问，控制页面显示，显示主题条数 topicadmin.php——控制的是管理人员的前台管理操作，如精华、置顶、高亮等等 trade.php——处理论坛的交易主题 video.php——处理论坛的视频主题，包括显示和调用。 viewthread.php——处理浏览帖子时候的帖子信息显示，例如信息、标题等等，同时也处理访问帖子的权限，如阅读权限是否足够等等。 ./admin （管理后台的程序文件，全部在这里，仅能通过** admincp.php **来访问，下面的解释说明这个文件对应着后台对应的设置项目） admingroups.inc.php——管理组 adv.inc.php——论坛广告 announce.inc.php——论坛公告 attach.inc.php——论坛附件 checktools.inc.php——文件检查，邮件设置，FTP权限检查，附件水印设置 counter.inc.php——更新论坛统计 cpanel.share.php——检查后台访问进程的文件，也有一些管理文件删除的函数 creditwizard.inc.php——积分设置向导 db.inc.php——数据库备份，导入，导出，优化，检验 discuzdb.md5——数据库检验文件 discuzfiles.md5——程序文件检验文件 ec.inc.php——支付宝及其它电子商务 faq.inc.php——论坛帮助 forums.inc.php——版区下面的所有设置 global.func.php——后台函数库，像showsettings等后台设置显示函数都在这里可以找到 home.inc.php——后台首页内容 insenz.func.php——INSENZ营销函数库 insenz.inc.php——INSENZ营销 jswizard.inc.php——JS调用向导 login.inc.php——后台登陆提示页面 logs.inc.php——论坛所有的运行记录 magics.inc.php——论坛道具 main.inc.php——论坛后台的风格控制程序 medals.inc.php——勋章中心 members.inc.php——用户分类下面的所有设置 menu.inc.php——系统设置的菜单栏 misc.inc.php——在线列表定制，友情连接，Discuz!代码设置，词语过滤，主题图标，附件类型，计划任务，标签，边栏 moderate.inc.php——主题，回复，用户审核 plugins.inc.php——论坛插件 profilefields.inc.php——用户信息编辑 project.inc.php——论坛方案 prune.inc.php——批量删帖 qihoo.inc.php——QIHOO搜索 quickqueries.inc.php——常用SQL命令文件，可以在这里添加常用的SQL语句来快速执行 ranks.inc.php——信用等级 recyclebin.inc.php——回收站 runwizard.inc.php——运行设置向导 search.inc.php——后台自带的设置搜索功能 settings.inc.php——全局下面的大部分设置项目 smilies.inc.php——表情 styles.inc.php——论坛风格 tasks.inc.php——论坛任务 templates.inc.php——论坛模板设置 threads.inc.php——主题设置 threadtypes.inc.php——主题分类 tools.inc.php——论坛工具 tradelog.inc.php——交易记录查看 usergroups.inc.php——用户设置，发帖数级别 video.inc.php——视频设置 zip.func.php——数据压缩及解压程序 ./Api （主要是和通行证及数据调用有关的内容） advcache.php——论坛广告显示管理 dbbak.php——数据库操作函数 google.php——GOOGLE搜索 insenz.php——论坛营销 javascript.php——JS调用 uc.php——Ucentre通讯 uchome.php——UHome通讯 video.php——视频调用函数 /trade alipay.api.php——支付宝接口 credit.notify.php——积分充值信息 trade.notify.php——交易信息 ./archiver==** （特别说明下，因为 **archiver** 中的目录的文件没有调用 **commom.inc.php** ，所以所有变量、函数都不能直接使用，必须要搜索数据库来进行判断）** index.php archiver首页 /include thread.inc.php archiver主题显示 index.inc.php 这个是过滤论坛权限和界面显示用的 forum.inc.php archiver论坛显示 ./attachments** 是论坛附件的存放目录** ./forumdata** 是论坛记录和缓存文件的存放目录，一般这些文件都是自动生成的，所以不要修改。至于有什么用途也说下吧。** /cache** （很好用的功能，调用的这里的文件变量是非常快的）** admingroup_X.php 管理组权限 cache_archiver.php archiver存档 cache_bbcodes.php BBCODE和SMILES cache_blog.php 所有用户组的权限变量和smilies、bbcode，还有发帖数等级的信息 cache_censor.php 屏蔽信息 cache_crons.php 计划任务 cache_faqs.php FAQ cache_forumdisplay.php 论坛信息与公告 cache_forums.php 同上 cache_icons.php 论坛图标 cache_index.php 在线列表、联盟论坛、公告 cache_ipbanned.php 封IP段记录 cache_magics.php 论坛道具属性 cache_medals.php 勋章信息 cache_post.php smilies、bbcode、icons cache_profilefields.php 用户栏目定制 cache_ranks.php 信用等级 cache_register.php 注册 cache_request.php 论坛任务信息 cache_secqaa.php 验证提问 cache_smilies.php 论坛表情 cache_settings.php setting表设置的参数变量 cache_topicadmin.php 主题管理 cache_usergroups.php 用户组基本信息 cache_viewpro.php 用户资料 cache_viewthread.php 论坛，用户组，smilies、bbcode、icons plugin_XX.php 插件表 style_XX.php 风格缓存 usergroup_XX.php 用户组缓存 requestxxxxxx.php 这个是记录论坛任务的缓存文件 /templates** （基于 **HTML** 所生成的模板 **PHP** ，比较少做插件会用到，忽略）** /threadcaches (主题缓存存放目录) 根部的一些文件就是数据记录文件了。 ./images** 是图片目录，直接跳过，需要说明的是 **./images/admincp/admincp.css **可以用来定义系统设置的界面** ./include** 是论坛核心程序目录，非常有必要去了解。** serverbusy.htm 系统错误信息（服务器忙碌就显示这个页面） xmlparser.class.php 主要是标签处理 viewthread_video.inc.php 视频主题行为处理 viewthread_trade.inc.php 商品主题行为处理 viewthread_reward.inc.php 悬赏主题行为处理 viewthread_poll.inc.php 投票主题行为处理 viewthread_debate.inc.php 辩论主题行为处理 viewthread_activity.inc.php 活动主题行为处理 trade.func.php 交易行为函数库 threadpay.inc.php 出售帖 template.func.php 控制模板缓存生成的文件 task.func.php 论坛任务常用函数库 swfupload.func.php 批量上传管理 sendmail.inc.php 发送EMAIL的程序 security.inc.php 好像是代理一类的，不管 seccode.class.php 验证码处理库 search_qihoo.inc.php qihoo搜索 search_sort.inc.php 搜索排序 search_trade.inc.php 搜索特殊主题 request.func.php 和request里面的文件有关，这是个函数文件 relatethreads.inc.php 应该说是生成相关主题的程序 promotion.inc.php 记录当前用户的IP等信息 printable.inc.php 打印主题用的程序 post.func.php 不错的函数文件，主要是记录信息、更新帖子的函数 pmprompt.inc.php 短信息内容处理 newthread.inc.php 发新话题的信息处理 newreply.inc.php 发回复的信息处理 moderation.inc.php 版主管理 misc.func.php 又是函数文件，控制管理PM，评分PM，评分记录，附件高亮显示，IP转换为地理位置 membermerge.func.php 合并用户时的函数处理文件 magic.func.php 道具处理函数库 insenz.func.php 论坛营销管理函数库 image.class.php 图片显示处理 global.func.php 丰富的函数库，都是前台用的，如除去HTML、发PM、发EMAIL等等，建议大家研究下。 gifmerge.class.php 图片显示处理 ftp.func.php 远程FTP附件处理函数文件 forumselect.inc.php 论坛列表显示 forum.func.php 处理论坛信息用的函数，如论坛菜单下拉等等 editpost.inc.php 编辑帖子的信息处理 editor.func.php 编辑器管理的函数库 ec_credit.func.php 积分交易文件 discuzcode.func.php Discuz!代码转换处理程序 diff.class.php 数据库处理 db_mysql_error.inc.php 数据库错误汇报 db_mysql.class.php 数据库中心操作程序 cron.func.php 控制计划任务执行的程序 counter.inc.php 记录操作系统与浏览器的统计 common.inc.php 最重要的核心程序，读取COOKIES信息，定义全局系统函数变量 chinese.class.php 处理乱码和字符集用的 category.inc.php 控制帖数，今日发帖数的统计 cache.func.php 控制生成缓存文件的程序 attachment.func.php 识别附件拓展名，控制附件前面显示类别图片的程序， 还有附件大小的记录判断 advertisements.inc.php 处理广告显示用的 /crons 这里是计划任务文件，你可以增加自己的计划任务，而且可以调用系统变量 /tables 几个语言文件，很少改，跳过 /magic 道具脚本文件目录，跳过 /request 不用了解，直接忽略 /tasks 论坛任务脚本文件目录 /js 所有** JS **调用文件以及** AJAX **效果显示控制文件均在这里 bbcode.js Discuz!代码JS效果文件 calendar.js 日历显示 common.js 几乎所有的AJAX显示控制都在这里 floatadv.js 广告 google.js GOOGLE搜索 iframe.js 框架显示 insenz_reg.js 营销 md5.js MD5处理 post.js 发帖页面AJAX效果处理 qihoo.js QIHOO搜索 slide.js 图片附件显示效果处理 tree.js 树状表显示 video.js 视频显示 viewthread.js 主题浏览中的AJAX效果 ./ipdata** （ **IP** 库文件目录，下面那个 **wry.dat** 就是 **IP** 库，这个我不会改）** ./plugins （插件存放目录） ./templates** （模板目录，一般做 **HACK** 也要改模板，因此说明下）** /default** （默认模板，从这个开始，其它风格以此类推）** activity_applylist.htm 活动主题申请列表 adv.htm 论坛广告显示 announcement.htm 公告 attachpay.htm 收费附件 attachpay_view.htm 查看已付费购买附件的用户列表 campaign.htm 论坛列表 credits.htm 积分策略 css_append.htm CSS拓展 css_calendar.htm CSS日历 css_common.htm 大部分风格修改都在此 css_editor.htm 编辑器风格 css_float.htm 浮动框风格 css_script.htm 常用JS脚本 css_seditor.htm 编辑器风格 css_topicadmin.htm 主题管理界面风格 css_viewthread.htm主题浏览页面风格 customtopics.htm 首页那个用户专题 debate_umpire.htm 辩论主题显示 discuz.htm 论坛的首页 discuzcode.htm 附件显示信息都在这里 ec_credit.htm 积分交易 ec_explain.htm 同上，这个是说明 ec_list.htm 交易列表 ec_rate.htm 交易评价 emailfriend.htm EMAIL推荐主题 faq.htm FAQ帮助手册，下面都是，只不过显示部分不一样，省略。 faq_navbar.htm FAQ的边栏显示 footer.htm 论坛底部信息 footer_ajax.htm 论坛底部的AJAX显示 footer_nofloat.htm 论坛底部无悬浮框页面 forumdisplay.htm 论坛主题列表 forumdisplay_passwd.htm 密码论坛输入密码提示页 forumdisplay_simple.htm 论坛主题列表 forumdisplay_subforum.htm 二级论坛列表 frame.htm 树状框架 getpasswd.htm 取回密码 groupexpiry.htm 公众用户组 header.htm 头部连接（上面有“注册”“登录”提示的就是） header_ajax.htm 头部连接AJAX显示 index.htm 首页 invite_index.htm 邀请注册 invite_send.htm 邀请注册发送页面 jsmenu.htm 论坛的下拉框 leftmenu.htm 论坛的树状列表栏 login.htm 登录页面 magic_index.htm 论坛道具首页 magic_log.htm 论坛道具行为记录 magic_market.htm 论坛道具交易市场 magic_opreation.htm 论坛道具选项 magic_use.htm 道具使用 medal.htm勋章中心 memberlist.htm 会员列表，上面那个 memcp_credits.htm 控制面板（也叫“个人中心”）——积分交易 memcp_credits_action.htm 控制面板——积分交易操作 memcp_credits_log.htm 控制面板——积分交易记录 memcp_profile.htm 控制面板——编辑个人资料 memcp_usergroups.htm 控制面板——公众用户组 memcp_usergroups_misc.htm 控制面板——公众用户组处理 memcp_validating.htm 控制面板——审核提示 modcp.htm 版主后台首页 modcp_announcements.htm 版主后台——公告 modcp_forumaccess.htm 版主后台——论坛管理权限 modcp_forums.htm 版主后台——论坛管理 modcp_home.htm 版主后台——主页 modcp_login.htm 版主后台登录提示页 modcp_logs.htm 版主后台——记录查看 modcp_members.htm 版主后台——用户编辑 modcp_moderate.htm 版主后台——审核 modcp_moderate_float.htm 版主后台——审核浮动框 modcp_posts.htm 版主后台——帖子管理 modcp_recyclebins.htm 版主后台——回收站 modcp_report.htm 版主后台——报告管理 modcp_threads.htm 版主后台——主题管理 my.htm 会员论坛行为 my_activities.htm 会员论坛行为——我的活动 my_buddylist.htm 会员论坛行为——我的好友 my_debate.htm 会员论坛行为——我的辩论 my_favorites.htm 会员论坛行为——我的收藏 my_grouppermission.htm 会员论坛行为——我的用户组权限 my_polls.htm 会员论坛行为——我的投票 my_posts.htm 会员论坛行为——我的回复 my_rewards.htm 会员论坛行为——我的悬赏 my_subscriptions.htm 会员论坛行为列表 my_threads.htm 会员论坛行为——我的主题 my_trades.htm 会员论坛行为——我的商品 my_tradestats.htm 会员论坛行为——我的商品状态 my_tradethreads.htm 会员论坛行为——我的商品主题 my_video.htm 会员论坛行为——我的视频 nopermission.htm 关闭论坛显示的提示页 pay.htm 买帖子 pay_view.htm 看帖子被谁买了 pm.htm 短信息左边菜单条 pm_archive_html.htm 导出短消息HTML pm_checknew.htm 查看新短信 pm_node.htm 短信快速提示 pm_search.htm 搜索短消息 pm_search_result.htm 搜索短消息结果 pm_send.htm 发送短消息 pm_viewnew.htm 浏览短信息，内容更详细 post.htm 帖子发表 post_activity.htm 活动主题发表 post_attachments.htm 发帖子的附件模块 post_debate.htm 辩论主题发表 post_forumselect.htm 发表主题时的论坛选择列表 post_poll.htm 发表投票主题 post_reward.htm 发表悬赏 post_sortoption.htm 排序列表 post_swfattachlist.htm 批量上传附件 post_trade.htm 发表商品 post_video.htm 发表视频 rate.htm 评分 rate_view.htm 评分记录浏览 register.htm 注册 relatekw.htm 相关主题 relatetag.htm 相关标签 reportpost.htm 主题报告 request_assistant.htm 都是数据返回操作页，下均同 request_birthday.htm request_forumtree.htm request_modlist.htm request_rowcombine.htm request_tag.htm request_thread.htm search.htm 搜索主页 search_qihoo.htm QIHOO搜索 search_sort.htm 排序 search_sortoption.htm 分类排序操作 search_trade.htm 商品搜索 search_threads.htm 搜索后的帖子列表 seccheck.htm 验证检查 seditor.htm 编辑器中的标准Discuz!代码 showmessage.htm 系统返回错误信息那个 stats_main.htm 统计首页 stats_misc.htm 管理统计、时间、积分等等一堆 stats_navbar.htm 统计上面那个菜单条 stats_onlinetime.htm 时间统计 stats_team.htm 管理团队 stats_trade.htm 商品交易统计 tag.htm 论坛标签 tag_threads.htm 和标签相关的主题列表 task.htm 论坛任务 task_parter.htm 完成任务的会员 topic.htm 又是QIHOO的随机广告 topicadmin.htm 主题管理 topicadmin_action.htm 主题管理动作选择 topicadmin_getip.htm 主题内查看IP topicadmin_modlayer.htm 版主推荐 trade.htm 商品主题显示 trade_displayorder.htm 商品列表 trade_info.htm 商品信息 trade_view.htm 商品显示 viewpro_classic.htm 会员详细信息查看 viewthread.htm 浏览帖子 viewthread_activity.htm 活动主题的查看 viewthread_activity_info.htm 活动主题的信息表格 viewthread_debate.htm 辩论主题的查看 viewthread_debate_umpire.htm 辩论双方论点 viewthread_fastpost.htm 浏览主题时快速发帖 viewthread_iframe.htm 浏览主题时候的框架显示 viewthread_mod.htm 帖子管理记录 viewthread_node.htm 主题左侧用户信息 viewthread_pay.htm 帖子支付页面 viewthread_poll.htm 投票主题 viewthread_poll_voters.htm 投票者 viewthread_printable.htm 打印主题 viewthread_relatedthread.htm 相关主题查看 viewthread_reward.htm 悬赏主题查看 viewthread_reward_price.htm 悬赏信息 viewthread_trade.htm 商品主题查看 viewthread_video.htm 视频主题查看 warn_view.htm 会员警告信息查看 whosonline.htm 详细的在线动作 actions.lang.php 动作语言包 admincp.lang.php 后台语言包 admincp.menu.lang.php 后台菜单语言包 admincp.msg.lang.php 后台提示信息语言包 archiver.lang.php archiver语言包 emails.lang.php 一堆EMAIL信息 feed.lang.php 论坛动态语言包 magics.lang.php 道具中心语言包 messages.lang.php 错误信息语言包 misc.lang.php 像最后编辑，由谁管理等等 modactions.lang.php 管理代号 pms.lang.php PM，都是管理理由 request.lang.php 论坛使用说明语言包 runtime.lang.php 人性时间提示语言包 seccode.lang.php 验证信息语言包 swfupload.lang.php 批量上传附件信息语言包 tasks.lang.php 论坛任务语言包 templates.lang.php 前台模板的语言包 wap.lang.php wap用的语言包 ./uc_client ./uc_server (UCenter的通讯及处理文件，也保存有会员头像等信息，不必理会) ./wap (WAP模式控制都在这里) index.php 论坛首页 /include forum.inc.php 论坛列表显示和权限控制 global.func.php 全局函数 goto.inc.php 主题跳转 home.inc.php 主页查看 login.inc.php 论坛登录 my.inc.php 个人在论坛的所有的活动的信息的查看 myphone.inc.php 我的手机信息查看 post.inc.php 发帖功能操作 register.inc.php 注册 search.inc.php 搜索 stats.inc.php 论坛统计 thread.inc.php 主题浏览","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/142.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/142.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Discuz7.0程序二次开发必备：目录详解</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2010-08-22T19:36:16-07:00" itemprop="datePublished">Aug 22, 2010
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>基于7.0的标准程序,部分与插件无关的文件不作说明<br />
+<strong>文件颜色说明</strong>** :**<br />
+<strong>红色</strong>** : <strong>**程序核心文件，修改这类文件时千万要注意安全</strong><strong>!</strong><br />
+<strong>橙色</strong>** : <strong>**做插件几乎不会用到的文件，大概了解功能就可以了</strong>** , <strong>**其实我也不推荐修改这些文件</strong><br />
+<strong>绿色</strong>** : <strong>**函数类文件</strong>** , <strong>**许多功能强大的自定义函数可以调用这类文件来使用</strong><br />
+<strong>蓝色</strong>** : <strong>**最标准的插件制作常用文件</strong>** 紫色 <strong>**:</strong>** 该文件被 <strong>**Zend</strong>** 加密，请不要修改这类文件**<br />
+<strong>每个目录里面都有一个空的</strong>** index.htm, <strong>**这是为了防止列目录用的，不必理会</strong><strong>.</strong><br />
+<strong>根目录</strong>  <strong>./</strong>  <strong>（这里都是最基本的程序）</strong><br />
+admincp.php——后台系统设置主程序文件，一般只处理菜单的显示的访问权限，不处理管理控制。<br />
+ajax.php——论坛模板的ajax判断及数据返回都在这里进行<br />
+attachment.php——附件文件，仅仅处理附件下载的功能。<br />
+announcement.php——论坛公告的显示，一般很少改<br />
+config.inc.php——配置论坛数据库、密码等信息，这个大家最熟悉了<br />
+discuz_version.php——论坛版本信息，用来更新用的，没有官方说明绝对不要修改<br />
+eccredit.php——论坛商品功能以及信用度查看的处理文件<br />
+faq.php——论坛自带的帮助<br />
+favicon.ico——显示在IE标题栏的的图标<br />
+forumdisplay.php——很简单，论坛主题列表的显示<br />
+index.php——控制首页元素显示<br />
+invite.php——论坛邀请注册程序文件<br />
+leftmenu.php——首页侧栏文件<br />
+logging.php——登陆系统，判断用户名、密码。<!--more--><br />
+magic.php——论坛道具程序文件，处理道具购买、赠送等操作<br />
+medal.php——论坛勋章中心程序文件，处理勋章发送等功能<br />
+member.php——控制会员列表显示，积分策略等等信息显示<br />
+memcp.php——会员个人中心显示<br />
+misc.php——控制评分功能、论坛界面显示功能等等<br />
+modcp.php——这个是论坛前台的版主操作的迷你后台程序<br />
+my.php——查看一切和自己在这个论坛的行为，例如“我的帖子”，“用户组权限”等等<br />
+plugin.php——论坛插件，这个主要控制论坛插件的菜单的显示，一般极少修改<br />
+pm.php——论坛短信息程序，控制短信息发表与浏览<br />
+post.php——与viewthread.php相似，但是更多是管理帖子发表、编辑等等信息，也会有权限的控制提示<br />
+redirect.php——控制显示论坛的最后发表的主题访问，也控制主题的转向功能<br />
+register.php——注册文件，同时也会控制注册的信息的合法性<br />
+relatekw.php——论坛相关标签生成<br />
+relatethread.php——论坛相关主题<br />
+robots.txt——设置里面的地址可以阻止搜索机器人访问对应的页面<br />
+rss.php——RSS快速订阅，不用多说了吧？<br />
+search.php——处理论坛搜索功能中的信息筛选<br />
+seccode.php——论坛注册，生成验证码的程序<br />
+sitemap.php——论坛SiteMAP功能程序<br />
+space.php——个人资料查看的程序<br />
+stats.php——处理“统计”中的统计信息，也允许查看论坛对应的统计数据<br />
+tag.php——论坛标签整理页<br />
+task.php——论坛任务程序，任务主程序触发，判断均在此进行<br />
+topic.php——一般无法直接访问，控制页面显示，显示主题条数<br />
+topicadmin.php——控制的是管理人员的前台管理操作，如精华、置顶、高亮等等<br />
+trade.php——处理论坛的交易主题<br />
+video.php——处理论坛的视频主题，包括显示和调用。<br />
+viewthread.php——处理浏览帖子时候的帖子信息显示，例如信息、标题等等，同时也处理访问帖子的权限，如阅读权限是否足够等等。 <strong>./admin</strong>  <strong>（管理后台的程序文件，全部在这里，仅能通过</strong>** admincp.php <strong>**来访问，下面的解释说明这个文件对应着后台对应的设置项目）</strong><br />
+admingroups.inc.php——管理组<br />
+adv.inc.php——论坛广告<br />
+announce.inc.php——论坛公告<br />
+attach.inc.php——论坛附件<br />
+checktools.inc.php——文件检查，邮件设置，FTP权限检查，附件水印设置<br />
+counter.inc.php——更新论坛统计<br />
+cpanel.share.php——检查后台访问进程的文件，也有一些管理文件删除的函数<br />
+creditwizard.inc.php——积分设置向导<br />
+db.inc.php——数据库备份，导入，导出，优化，检验<br />
+discuzdb.md5——数据库检验文件<br />
+discuzfiles.md5——程序文件检验文件<br />
+ec.inc.php——支付宝及其它电子商务<br />
+faq.inc.php——论坛帮助<br />
+forums.inc.php——版区下面的所有设置<br />
+global.func.php——后台函数库，像showsettings等后台设置显示函数都在这里可以找到<br />
+home.inc.php——后台首页内容<br />
+insenz.func.php——INSENZ营销函数库<br />
+insenz.inc.php——INSENZ营销<br />
+jswizard.inc.php——JS调用向导<br />
+login.inc.php——后台登陆提示页面<br />
+logs.inc.php——论坛所有的运行记录<br />
+magics.inc.php——论坛道具<br />
+main.inc.php——论坛后台的风格控制程序<br />
+medals.inc.php——勋章中心<br />
+members.inc.php——用户分类下面的所有设置<br />
+menu.inc.php——系统设置的菜单栏<br />
+misc.inc.php——在线列表定制，友情连接，Discuz!代码设置，词语过滤，主题图标，附件类型，计划任务，标签，边栏<br />
+moderate.inc.php——主题，回复，用户审核<br />
+plugins.inc.php——论坛插件<br />
+profilefields.inc.php——用户信息编辑<br />
+project.inc.php——论坛方案<br />
+prune.inc.php——批量删帖<br />
+qihoo.inc.php——QIHOO搜索<br />
+quickqueries.inc.php——常用SQL命令文件，可以在这里添加常用的SQL语句来快速执行<br />
+ranks.inc.php——信用等级<br />
+recyclebin.inc.php——回收站<br />
+runwizard.inc.php——运行设置向导<br />
+search.inc.php——后台自带的设置搜索功能<br />
+settings.inc.php——全局下面的大部分设置项目<br />
+smilies.inc.php——表情<br />
+styles.inc.php——论坛风格<br />
+tasks.inc.php——论坛任务<br />
+templates.inc.php——论坛模板设置<br />
+threads.inc.php——主题设置<br />
+threadtypes.inc.php——主题分类<br />
+tools.inc.php——论坛工具<br />
+tradelog.inc.php——交易记录查看<br />
+usergroups.inc.php——用户设置，发帖数级别<br />
+video.inc.php——视频设置<br />
+zip.func.php——数据压缩及解压程序<br />
+<strong>./Api</strong>  <strong>（主要是和通行证及数据调用有关的内容）</strong><br />
+advcache.php——论坛广告显示管理<br />
+dbbak.php——数据库操作函数<br />
+google.php——GOOGLE搜索<br />
+insenz.php——论坛营销<br />
+javascript.php——JS调用<br />
+uc.php——Ucentre通讯<br />
+uchome.php——UHome通讯<br />
+video.php——视频调用函数</p>
+
+<p><strong>/trade</strong><br />
+alipay.api.php——支付宝接口<br />
+credit.notify.php——积分充值信息<br />
+trade.notify.php——交易信息</p>
+
+<p><strong>./archiver==</strong>** （特别说明下，因为 <strong>**archiver</strong>** 中的目录的文件没有调用 <strong>**commom.inc.php</strong>** ，所以所有变量、函数都不能直接使用，必须要搜索数据库来进行判断）**<br />
+index.php archiver首页</p>
+
+<p><strong>/include</strong><br />
+thread.inc.php archiver主题显示<br />
+index.inc.php 这个是过滤论坛权限和界面显示用的<br />
+forum.inc.php archiver论坛显示<br />
+<strong>./attachments</strong>** 是论坛附件的存放目录**<br />
+<strong>./forumdata</strong>** 是论坛记录和缓存文件的存放目录，一般这些文件都是自动生成的，所以不要修改。至于有什么用途也说下吧。**</p>
+
+<p><strong>/cache</strong>** （很好用的功能，调用的这里的文件变量是非常快的）**<br />
+admingroup_X.php 管理组权限<br />
+cache_archiver.php archiver存档<br />
+cache_bbcodes.php BBCODE和SMILES<br />
+cache_blog.php 所有用户组的权限变量和smilies、bbcode，还有发帖数等级的信息<br />
+cache_censor.php 屏蔽信息<br />
+cache_crons.php 计划任务<br />
+cache_faqs.php FAQ<br />
+cache_forumdisplay.php 论坛信息与公告<br />
+cache_forums.php 同上<br />
+cache_icons.php 论坛图标<br />
+cache_index.php 在线列表、联盟论坛、公告<br />
+cache_ipbanned.php 封IP段记录<br />
+cache_magics.php 论坛道具属性<br />
+cache_medals.php 勋章信息<br />
+cache_post.php smilies、bbcode、icons<br />
+cache_profilefields.php 用户栏目定制<br />
+cache_ranks.php 信用等级<br />
+cache_register.php 注册<br />
+cache_request.php 论坛任务信息<br />
+cache_secqaa.php 验证提问<br />
+cache_smilies.php 论坛表情<br />
+cache_settings.php setting表设置的参数变量<br />
+cache_topicadmin.php 主题管理<br />
+cache_usergroups.php 用户组基本信息<br />
+cache_viewpro.php 用户资料<br />
+cache_viewthread.php 论坛，用户组，smilies、bbcode、icons<br />
+plugin_XX.php 插件表<br />
+style_XX.php 风格缓存<br />
+usergroup_XX.php 用户组缓存<br />
+requestxxxxxx.php 这个是记录论坛任务的缓存文件<br />
+<strong>/templates</strong>** （基于 <strong>**HTML</strong>** 所生成的模板 <strong>**PHP</strong>** ，比较少做插件会用到，忽略）**<br />
+<strong>/threadcaches (</strong><strong>主题缓存存放目录</strong><strong>)</strong><br />
+根部的一些文件就是数据记录文件了。<br />
+<strong>./images</strong>** 是图片目录，直接跳过，需要说明的是 <strong>**./images/admincp/admincp.css **</strong>可以用来定义系统设置的界面**<br />
+<strong>./include</strong>** 是论坛核心程序目录，非常有必要去了解。**<br />
+serverbusy.htm 系统错误信息（服务器忙碌就显示这个页面）<br />
+xmlparser.class.php 主要是标签处理<br />
+viewthread_video.inc.php 视频主题行为处理<br />
+viewthread_trade.inc.php 商品主题行为处理<br />
+viewthread_reward.inc.php 悬赏主题行为处理<br />
+viewthread_poll.inc.php 投票主题行为处理<br />
+viewthread_debate.inc.php 辩论主题行为处理<br />
+viewthread_activity.inc.php 活动主题行为处理<br />
+trade.func.php 交易行为函数库<br />
+threadpay.inc.php 出售帖<br />
+template.func.php 控制模板缓存生成的文件<br />
+task.func.php 论坛任务常用函数库<br />
+swfupload.func.php 批量上传管理<br />
+sendmail.inc.php 发送EMAIL的程序<br />
+security.inc.php 好像是代理一类的，不管<br />
+seccode.class.php 验证码处理库<br />
+search_qihoo.inc.php qihoo搜索<br />
+search_sort.inc.php 搜索排序<br />
+search_trade.inc.php 搜索特殊主题<br />
+request.func.php 和request里面的文件有关，这是个函数文件<br />
+relatethreads.inc.php 应该说是生成相关主题的程序<br />
+promotion.inc.php 记录当前用户的IP等信息<br />
+printable.inc.php 打印主题用的程序<br />
+post.func.php 不错的函数文件，主要是记录信息、更新帖子的函数<br />
+pmprompt.inc.php 短信息内容处理<br />
+newthread.inc.php 发新话题的信息处理<br />
+newreply.inc.php 发回复的信息处理<br />
+moderation.inc.php 版主管理<br />
+misc.func.php 又是函数文件，控制管理PM，评分PM，评分记录，附件高亮显示，IP转换为地理位置<br />
+membermerge.func.php 合并用户时的函数处理文件<br />
+magic.func.php 道具处理函数库<br />
+insenz.func.php 论坛营销管理函数库<br />
+image.class.php 图片显示处理<br />
+global.func.php 丰富的函数库，都是前台用的，如除去HTML、发PM、发EMAIL等等，建议大家研究下。<br />
+gifmerge.class.php 图片显示处理<br />
+ftp.func.php 远程FTP附件处理函数文件<br />
+forumselect.inc.php 论坛列表显示<br />
+forum.func.php 处理论坛信息用的函数，如论坛菜单下拉等等<br />
+editpost.inc.php 编辑帖子的信息处理<br />
+editor.func.php 编辑器管理的函数库<br />
+ec_credit.func.php 积分交易文件<br />
+discuzcode.func.php Discuz!代码转换处理程序<br />
+diff.class.php 数据库处理<br />
+db_mysql_error.inc.php 数据库错误汇报<br />
+db_mysql.class.php 数据库中心操作程序<br />
+cron.func.php 控制计划任务执行的程序<br />
+counter.inc.php 记录操作系统与浏览器的统计<br />
+common.inc.php 最重要的核心程序，读取COOKIES信息，定义全局系统函数变量<br />
+chinese.class.php 处理乱码和字符集用的<br />
+category.inc.php 控制帖数，今日发帖数的统计<br />
+cache.func.php 控制生成缓存文件的程序<br />
+attachment.func.php 识别附件拓展名，控制附件前面显示类别图片的程序，<br />
+还有附件大小的记录判断<br />
+advertisements.inc.php 处理广告显示用的<br />
+<strong>/crons</strong>  <strong>这里是计划任务文件，你可以增加自己的计划任务，而且可以调用系统变量</strong><br />
+<strong>/tables</strong>  <strong>几个语言文件，很少改，跳过</strong><br />
+<strong>/magic</strong>  <strong>道具脚本文件目录，跳过</strong><br />
+<strong>/request</strong>  <strong>不用了解，直接忽略</strong><br />
+<strong>/tasks</strong>  <strong>论坛任务脚本文件目录</strong><br />
+<strong>/js</strong>  <strong>所有</strong>** JS <strong>**调用文件以及</strong>** AJAX <strong>**效果显示控制文件均在这里</strong><br />
+bbcode.js Discuz!代码JS效果文件<br />
+calendar.js 日历显示<br />
+common.js 几乎所有的AJAX显示控制都在这里<br />
+floatadv.js 广告<br />
+google.js GOOGLE搜索<br />
+iframe.js 框架显示<br />
+insenz_reg.js 营销<br />
+md5.js MD5处理<br />
+post.js 发帖页面AJAX效果处理<br />
+qihoo.js QIHOO搜索<br />
+slide.js 图片附件显示效果处理<br />
+tree.js 树状表显示<br />
+video.js 视频显示<br />
+viewthread.js 主题浏览中的AJAX效果<br />
+<strong>./ipdata</strong>** （ <strong>**IP</strong>** 库文件目录，下面那个 <strong>**wry.dat</strong>** 就是 <strong>**IP</strong>** 库，这个我不会改）**<br />
+<strong>./plugins</strong>  <strong>（插件存放目录）</strong><br />
+<strong>./templates</strong>** （模板目录，一般做 <strong>**HACK</strong>** 也要改模板，因此说明下）**<br />
+<strong>/default</strong>** （默认模板，从这个开始，其它风格以此类推）**<br />
+activity_applylist.htm 活动主题申请列表<br />
+adv.htm 论坛广告显示<br />
+announcement.htm 公告<br />
+attachpay.htm 收费附件<br />
+attachpay_view.htm 查看已付费购买附件的用户列表<br />
+campaign.htm 论坛列表<br />
+credits.htm 积分策略<br />
+css_append.htm CSS拓展<br />
+css_calendar.htm CSS日历<br />
+css_common.htm 大部分风格修改都在此<br />
+css_editor.htm 编辑器风格<br />
+css_float.htm 浮动框风格<br />
+css_script.htm 常用JS脚本<br />
+css_seditor.htm 编辑器风格<br />
+css_topicadmin.htm 主题管理界面风格<br />
+css_viewthread.htm主题浏览页面风格<br />
+customtopics.htm 首页那个用户专题<br />
+debate_umpire.htm 辩论主题显示<br />
+discuz.htm 论坛的首页<br />
+discuzcode.htm 附件显示信息都在这里<br />
+ec_credit.htm 积分交易<br />
+ec_explain.htm 同上，这个是说明<br />
+ec_list.htm 交易列表<br />
+ec_rate.htm 交易评价<br />
+emailfriend.htm EMAIL推荐主题<br />
+faq.htm FAQ帮助手册，下面都是，只不过显示部分不一样，省略。<br />
+faq_navbar.htm FAQ的边栏显示<br />
+footer.htm 论坛底部信息<br />
+footer_ajax.htm 论坛底部的AJAX显示<br />
+footer_nofloat.htm 论坛底部无悬浮框页面<br />
+forumdisplay.htm 论坛主题列表<br />
+forumdisplay_passwd.htm 密码论坛输入密码提示页<br />
+forumdisplay_simple.htm 论坛主题列表<br />
+forumdisplay_subforum.htm 二级论坛列表<br />
+frame.htm 树状框架<br />
+getpasswd.htm 取回密码<br />
+groupexpiry.htm 公众用户组<br />
+header.htm 头部连接（上面有“注册”“登录”提示的就是）<br />
+header_ajax.htm 头部连接AJAX显示<br />
+index.htm 首页<br />
+invite_index.htm 邀请注册<br />
+invite_send.htm 邀请注册发送页面<br />
+jsmenu.htm 论坛的下拉框<br />
+leftmenu.htm 论坛的树状列表栏<br />
+login.htm 登录页面<br />
+magic_index.htm 论坛道具首页<br />
+magic_log.htm 论坛道具行为记录<br />
+magic_market.htm 论坛道具交易市场<br />
+magic_opreation.htm 论坛道具选项<br />
+magic_use.htm 道具使用<br />
+medal.htm勋章中心<br />
+memberlist.htm 会员列表，上面那个<br />
+memcp_credits.htm 控制面板（也叫“个人中心”）——积分交易<br />
+memcp_credits_action.htm 控制面板——积分交易操作<br />
+memcp_credits_log.htm 控制面板——积分交易记录<br />
+memcp_profile.htm 控制面板——编辑个人资料<br />
+memcp_usergroups.htm 控制面板——公众用户组<br />
+memcp_usergroups_misc.htm 控制面板——公众用户组处理<br />
+memcp_validating.htm 控制面板——审核提示<br />
+modcp.htm 版主后台首页<br />
+modcp_announcements.htm 版主后台——公告<br />
+modcp_forumaccess.htm 版主后台——论坛管理权限<br />
+modcp_forums.htm 版主后台——论坛管理<br />
+modcp_home.htm 版主后台——主页<br />
+modcp_login.htm 版主后台登录提示页<br />
+modcp_logs.htm 版主后台——记录查看<br />
+modcp_members.htm 版主后台——用户编辑<br />
+modcp_moderate.htm 版主后台——审核<br />
+modcp_moderate_float.htm 版主后台——审核浮动框<br />
+modcp_posts.htm 版主后台——帖子管理<br />
+modcp_recyclebins.htm 版主后台——回收站<br />
+modcp_report.htm 版主后台——报告管理<br />
+modcp_threads.htm 版主后台——主题管理<br />
+my.htm 会员论坛行为<br />
+my_activities.htm 会员论坛行为——我的活动<br />
+my_buddylist.htm 会员论坛行为——我的好友<br />
+my_debate.htm 会员论坛行为——我的辩论<br />
+my_favorites.htm 会员论坛行为——我的收藏<br />
+my_grouppermission.htm 会员论坛行为——我的用户组权限<br />
+my_polls.htm 会员论坛行为——我的投票<br />
+my_posts.htm 会员论坛行为——我的回复<br />
+my_rewards.htm 会员论坛行为——我的悬赏<br />
+my_subscriptions.htm 会员论坛行为列表<br />
+my_threads.htm 会员论坛行为——我的主题<br />
+my_trades.htm 会员论坛行为——我的商品<br />
+my_tradestats.htm 会员论坛行为——我的商品状态<br />
+my_tradethreads.htm 会员论坛行为——我的商品主题<br />
+my_video.htm 会员论坛行为——我的视频<br />
+nopermission.htm 关闭论坛显示的提示页<br />
+pay.htm 买帖子<br />
+pay_view.htm 看帖子被谁买了<br />
+pm.htm 短信息左边菜单条<br />
+pm_archive_html.htm 导出短消息HTML<br />
+pm_checknew.htm 查看新短信<br />
+pm_node.htm 短信快速提示<br />
+pm_search.htm 搜索短消息<br />
+pm_search_result.htm 搜索短消息结果<br />
+pm_send.htm 发送短消息<br />
+pm_viewnew.htm 浏览短信息，内容更详细<br />
+post.htm 帖子发表<br />
+post_activity.htm 活动主题发表<br />
+post_attachments.htm 发帖子的附件模块<br />
+post_debate.htm 辩论主题发表<br />
+post_forumselect.htm 发表主题时的论坛选择列表<br />
+post_poll.htm 发表投票主题<br />
+post_reward.htm 发表悬赏<br />
+post_sortoption.htm 排序列表<br />
+post_swfattachlist.htm 批量上传附件<br />
+post_trade.htm 发表商品<br />
+post_video.htm 发表视频<br />
+rate.htm 评分<br />
+rate_view.htm 评分记录浏览<br />
+register.htm 注册<br />
+relatekw.htm 相关主题<br />
+relatetag.htm 相关标签<br />
+reportpost.htm 主题报告<br />
+request_assistant.htm 都是数据返回操作页，下均同<br />
+request_birthday.htm<br />
+request_forumtree.htm<br />
+request_modlist.htm<br />
+request_rowcombine.htm<br />
+request_tag.htm<br />
+request_thread.htm<br />
+search.htm 搜索主页<br />
+search_qihoo.htm QIHOO搜索<br />
+search_sort.htm 排序<br />
+search_sortoption.htm 分类排序操作<br />
+search_trade.htm 商品搜索<br />
+search_threads.htm 搜索后的帖子列表<br />
+seccheck.htm 验证检查<br />
+seditor.htm 编辑器中的标准Discuz!代码<br />
+showmessage.htm 系统返回错误信息那个<br />
+stats_main.htm 统计首页<br />
+stats_misc.htm 管理统计、时间、积分等等一堆<br />
+stats_navbar.htm 统计上面那个菜单条<br />
+stats_onlinetime.htm 时间统计<br />
+stats_team.htm 管理团队<br />
+stats_trade.htm 商品交易统计<br />
+tag.htm 论坛标签<br />
+tag_threads.htm 和标签相关的主题列表<br />
+task.htm 论坛任务<br />
+task_parter.htm 完成任务的会员<br />
+topic.htm 又是QIHOO的随机广告<br />
+topicadmin.htm 主题管理<br />
+topicadmin_action.htm 主题管理动作选择<br />
+topicadmin_getip.htm 主题内查看IP<br />
+topicadmin_modlayer.htm 版主推荐<br />
+trade.htm 商品主题显示<br />
+trade_displayorder.htm 商品列表<br />
+trade_info.htm 商品信息<br />
+trade_view.htm 商品显示<br />
+viewpro_classic.htm 会员详细信息查看<br />
+viewthread.htm 浏览帖子<br />
+viewthread_activity.htm 活动主题的查看<br />
+viewthread_activity_info.htm 活动主题的信息表格<br />
+viewthread_debate.htm 辩论主题的查看<br />
+viewthread_debate_umpire.htm 辩论双方论点<br />
+viewthread_fastpost.htm 浏览主题时快速发帖<br />
+viewthread_iframe.htm 浏览主题时候的框架显示<br />
+viewthread_mod.htm 帖子管理记录<br />
+viewthread_node.htm 主题左侧用户信息<br />
+viewthread_pay.htm 帖子支付页面<br />
+viewthread_poll.htm 投票主题<br />
+viewthread_poll_voters.htm 投票者<br />
+viewthread_printable.htm 打印主题<br />
+viewthread_relatedthread.htm 相关主题查看<br />
+viewthread_reward.htm 悬赏主题查看<br />
+viewthread_reward_price.htm 悬赏信息<br />
+viewthread_trade.htm 商品主题查看<br />
+viewthread_video.htm 视频主题查看<br />
+warn_view.htm 会员警告信息查看<br />
+whosonline.htm 详细的在线动作<br />
+actions.lang.php 动作语言包<br />
+admincp.lang.php 后台语言包<br />
+admincp.menu.lang.php 后台菜单语言包<br />
+admincp.msg.lang.php 后台提示信息语言包<br />
+archiver.lang.php archiver语言包<br />
+emails.lang.php 一堆EMAIL信息<br />
+feed.lang.php 论坛动态语言包<br />
+magics.lang.php 道具中心语言包<br />
+messages.lang.php 错误信息语言包<br />
+misc.lang.php 像最后编辑，由谁管理等等<br />
+modactions.lang.php 管理代号<br />
+pms.lang.php PM，都是管理理由<br />
+request.lang.php 论坛使用说明语言包<br />
+runtime.lang.php 人性时间提示语言包<br />
+seccode.lang.php 验证信息语言包<br />
+swfupload.lang.php 批量上传附件信息语言包<br />
+tasks.lang.php 论坛任务语言包<br />
+templates.lang.php 前台模板的语言包<br />
+wap.lang.php wap用的语言包<br />
+<strong>./uc_client</strong><br />
+<strong>./uc_server (UCenter</strong><strong>的通讯及处理文件，也保存有会员头像等信息，不必理会</strong><strong>)</strong><br />
+<strong>./wap (WAP</strong><strong>模式控制都在这里</strong><strong>)</strong><br />
+index.php 论坛首页</p>
+
+<p><strong>/include</strong><br />
+forum.inc.php 论坛列表显示和权限控制<br />
+global.func.php 全局函数<br />
+goto.inc.php 主题跳转<br />
+home.inc.php 主页查看<br />
+login.inc.php 论坛登录<br />
+my.inc.php 个人在论坛的所有的活动的信息的查看<br />
+myphone.inc.php 我的手机信息查看<br />
+post.inc.php 发帖功能操作<br />
+register.inc.php 注册<br />
+search.inc.php 搜索<br />
+stats.inc.php 论坛统计<br />
+thread.inc.php 主题浏览</p>
+
+
+  </div><a class="u-url" href="/labrary/142.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

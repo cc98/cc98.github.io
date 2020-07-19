@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>WordPress调用最新文章 评论 标签云 文章分类等代码 | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="WordPress调用最新文章 评论 标签云 文章分类等代码" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="显示最新文章" />
+<meta property="og:description" content="显示最新文章" />
+<link rel="canonical" href="http://localhost:4001/share/182.html" />
+<meta property="og:url" content="http://localhost:4001/share/182.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-09-30T20:31:57-07:00" />
+<script type="application/ld+json">
+{"headline":"WordPress调用最新文章 评论 标签云 文章分类等代码","dateModified":"2010-09-30T20:31:57-07:00","datePublished":"2010-09-30T20:31:57-07:00","description":"显示最新文章","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/share/182.html"},"@type":"BlogPosting","url":"http://localhost:4001/share/182.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">WordPress调用最新文章|评论|标签云|文章分类等代码</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2010-09-30T20:31:57-07:00" itemprop="datePublished">Sep 30, 2010
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><strong>显示最新文章</strong></p>
+
+<p>&lt;?php query_posts(‘showposts=5’); ?&gt;<br />
+&lt;ul&gt;<br />
+&lt;?php while (have_posts()) : the_post(); ?&gt;<br />
+&lt;li&gt;&lt;a href=”&lt;?php the_permalink() ?&gt;”&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/li&gt;<br />
+&lt;?php endwhile;?&gt;<br />
+&lt;/ul&gt;<br />
+<strong>显示最新评论</strong></p>
+
+<p>&lt;?php<br />
+global $wpdb;<br />
+$sql = “SELECT DISTINCT ID, post_title, post_password, comment_ID,<br />
+comment_post_ID, comment_author, comment_date_gmt, comment_approved,<br />
+comment_type,comment_author_url,<br />
+SUBSTRING(comment_content,1,30) AS com_excerpt<br />
+FROM $wpdb-&gt;comments<br />
+LEFT OUTER JOIN $wpdb-&gt;posts ON ($wpdb-&gt;comments.comment_post_ID =<br />
+$wpdb-&gt;posts.ID)<br />
+WHERE comment_approved = ‘1’ AND comment_type = ‘’ AND<br />
+post_password = ‘’<br />
+ORDER BY comment_date_gmt DESC<br />
+LIMIT 10”;<br />
+$comments = $wpdb-&gt;get_results($sql);<br />
+$output = $pre_HTML;<br />
+$output .= “n&lt;ul&gt;”;<br />
+foreach ($comments as $comment) {<br />
+$output .= “n&lt;li&gt;“.strip_tags($comment-&gt;comment_author)<br />
+.”:” . “&lt;a href=”” . get_permalink($comment-&gt;ID) .<br />
+“#comment-“ . $comment-&gt;comment_ID . “” title=”on “ .<br />
+$comment-&gt;post_title . “”&gt;” . strip_tags($comment-&gt;com_excerpt)<br />
+.”&lt;/a&gt;&lt;/li&gt;”;<br />
+}<br />
+$output .= “n&lt;/ul&gt;”;<br />
+$output .= $post_HTML;<br />
+echo $output;?&gt;<!--more--></p>
+
+<p><strong>显示热评文章</strong></p>
+
+<p>&lt;?php $result = $wpdb-&gt;get_results(“SELECT comment_count,ID,post_title FROM $wpdb-&gt;posts ORDER BY comment_count DESC LIMIT 0 , 10”);<br />
+foreach ($result as $topten) {<br />
+$postid = $topten-&gt;ID;<br />
+$title = $topten-&gt;post_title;<br />
+$commentcount = $topten-&gt;comment_count;<br />
+if ($commentcount != 0) { ?&gt;<br />
+&lt;li&gt;&lt;a href=”&lt;?php echo get_permalink($postid); ?&gt;” title=”&lt;?php echo $title ?&gt;”&gt;&lt;?php echo $title ?&gt;&lt;/a&gt;&lt;/li&gt;<br />
+&lt;?php } } ?&gt;</p>
+
+<p><strong>显示文章分类</strong></p>
+
+<p>&lt;h2&gt;Categories&lt;/h2&gt;<br />
+&lt;ul&gt;<br />
+&lt;?php wp_list_cats(‘sort_column=name’); ?&gt;<br />
+&lt;/ul&gt;</p>
+
+<p><strong>显示Wordpress标签云</strong></p>
+
+<p>&lt;?php wp_tag_cloud(‘smallest=8&amp;largest=36&amp;’); ?&gt;</p>
+
+<p><strong>在侧栏显示页面列表</strong></p>
+
+<p>&lt;h2&gt;Pages&lt;/h2&gt;<br />
+&lt;ul&gt;<br />
+&lt;?php wp_list_pages(‘title_li=’); ?&gt;<br />
+&lt;/ul&gt;</p>
+
+<p><strong>显示归档</strong></p>
+
+<p>&lt;h2&gt;Archives&lt;/h2&gt;<br />
+&lt;ul&gt;<br />
+&lt;?php wp_get_archives(‘type=monthly’); ?&gt;<br />
+&lt;/ul&gt;</p>
+
+
+  </div><a class="u-url" href="/share/182.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

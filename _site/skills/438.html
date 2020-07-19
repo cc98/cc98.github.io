@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Python操作Mysql | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Python操作Mysql" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content=" 平时的主要编程语言是Java，开发时也主要用Mysql，经常为了测试，调试的目的需要操作数据库，比如备份，插入测试数据，修改测试数据，有些时候不能简单的用SQL就能完成任务，或都很好的完成任务，用Java写又有点太麻烦了，就想到了Python。Python语法简洁，不用编译，可以经较好的完成任务。今天看了下Python对Mysql的操作，做一下记录。" />
+<meta property="og:description" content=" 平时的主要编程语言是Java，开发时也主要用Mysql，经常为了测试，调试的目的需要操作数据库，比如备份，插入测试数据，修改测试数据，有些时候不能简单的用SQL就能完成任务，或都很好的完成任务，用Java写又有点太麻烦了，就想到了Python。Python语法简洁，不用编译，可以经较好的完成任务。今天看了下Python对Mysql的操作，做一下记录。" />
+<link rel="canonical" href="http://localhost:4001/skills/438.html" />
+<meta property="og:url" content="http://localhost:4001/skills/438.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-03-15T23:31:21-07:00" />
+<script type="application/ld+json">
+{"headline":"Python操作Mysql","dateModified":"2012-03-15T23:31:21-07:00","datePublished":"2012-03-15T23:31:21-07:00","description":" 平时的主要编程语言是Java，开发时也主要用Mysql，经常为了测试，调试的目的需要操作数据库，比如备份，插入测试数据，修改测试数据，有些时候不能简单的用SQL就能完成任务，或都很好的完成任务，用Java写又有点太麻烦了，就想到了Python。Python语法简洁，不用编译，可以经较好的完成任务。今天看了下Python对Mysql的操作，做一下记录。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/skills/438.html"},"@type":"BlogPosting","url":"http://localhost:4001/skills/438.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Python操作Mysql</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2012-03-15T23:31:21-07:00" itemprop="datePublished">Mar 15, 2012
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p> 平时的主要编程语言是Java，开发时也主要用Mysql，经常为了测试，调试的目的需要操作数据库，比如备份，插入测试数据，修改测试数据，有些时候不能简单的用SQL就能完成任务，或都很好的完成任务，用Java写又有点太麻烦了，就想到了Python。Python语法简洁，不用编译，可以经较好的完成任务。今天看了下Python对Mysql的操作，做一下记录。</p>
+
+<p>首先，安装需要的环境，Mysql和Python就不说了，必备的东西。</p>
+
+<p>主要是安装的MySQLdb，可以去sf.net下载，具体地址是http://sourceforge.net/projects/mysql-python/</p>
+
+<p>如果用Ubuntu，直接</p>
+
+<p>sudo apt-get install python-mysqldb</p>
+
+<p>安装完成之后可以在Python解释器中测试一下</p>
+
+<p> <!--more--></p>
+
+<p>输入</p>
+
+<p>Python代码</p>
+
+<p>import MySQLdb #注意大小写！！</p>
+
+<p> 如果不报错，就证明安装成功了，可能继续了</p>
+
+<p>MySQLdb在Python中也就相当于JAVA中的MySQL的JDBC Driver，Python也有类似的数据接口规范Python DB API，MySQLdb就是Mysql的实现。操作也比较简单和其它平台或语言操作数据库一样，就是建立和数据库系统的连接，然后给数据库输入SQL，再从数据库获取结果。</p>
+
+<p>先写一个最简单的，创建一个数据库：</p>
+
+<p>Python代码</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python #coding=utf-8 ################################### # @author migle # @date 2010-01-17 ################################## #MySQLdb 示例 # ################################## import MySQLdb #建立和数据库系统的连接 conn = MySQLdb.connect(host='localhost', user='root',passwd='longforfreedom') #获取操作游标 cursor = conn.cursor() #执行SQL,创建一个数据库. cursor.execute("""create database python """) #关闭连接，释放资源 cursor.close();
+</span></code></pre></div></div>
+
+<p>创建数据库，创建表，插入数据，插入多条数据</p>
+
+<p>Python代码</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python #coding=utf-8 ################################### # @author migle # @date 2010-01-17 ################################## #MySQLdb 示例 # ################################## import MySQLdb #建立和数据库系统的连接 conn = MySQLdb.connect(host='localhost', user='root',passwd='longforfreedom') #获取操作游标 cursor = conn.cursor() #执行SQL,创建一个数据库. cursor.execute("""create database if not exists python""") #选择数据库 conn.select\_db('python'); #执行SQL,创建一个数据表. cursor.execute("""create table test(id int, info varchar(100)) """) value = [1,"inserted ?"]; #插入一条记录 cursor.execute("insert into test values(%s,%s)",value); values=[] #生成插入参数值 for i in range(20): values.append((i,'Hello mysqldb, I am recoder ' + str(i))) #插入多条记录 cursor.executemany("""insert into test values(%s,%s) """,values); #关闭连接，释放资源 cursor.close();
+</span></code></pre></div></div>
+
+<p>查询和插入的流程差不多，只是多了一个得到查询结果的步骤</p>
+
+<p>Python代码</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python #coding=utf-8 ###################################### # # @author migle # @date 2010-01-17 # ###################################### # # MySQLdb 查询 # ####################################### import MySQLdb conn = MySQLdb.connect(host='localhost', user='root', passwd='longforfreedom',db='python') cursor = conn.cursor() count = cursor.execute('select \* from test') print '总共有 %s 条记录',count #获取一条记录,每条记录做为一个元组返回 print "只获取一条记录:" result = cursor.fetchone(); print result #print 'ID: %s info: %s' % (result[0],result[1]) print 'ID: %s info: %s' % result #获取5条记录，注意由于之前执行有了fetchone()，所以游标已经指到第二条记录了，也就是从第二条开始的所有记录 print "只获取5条记录:" results = cursor.fetchmany(5) for r in results: print r print "获取所有结果:" #重置游标位置，0,为偏移量，mode＝absolute | relative,默认为relative, cursor.scroll(0,mode='absolute') #获取所有结果 results = cursor.fetchall() for r in results: print r conn.close()
+</span></code></pre></div></div>
+
+
+  </div><a class="u-url" href="/skills/438.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

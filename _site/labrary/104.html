@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>fstat、stat、lstat Differs | Navins Notebook</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="fstat、stat、lstat Differs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="stat系统调用系列包括了fstat、stat和lstat，它们都是用来返回“相关文件状态信息”的，三者的不同之处在于设定源文件的方式不同。" />
+<meta property="og:description" content="stat系统调用系列包括了fstat、stat和lstat，它们都是用来返回“相关文件状态信息”的，三者的不同之处在于设定源文件的方式不同。" />
+<link rel="canonical" href="http://localhost:4001/labrary/104.html" />
+<meta property="og:url" content="http://localhost:4001/labrary/104.html" />
+<meta property="og:site_name" content="Navins Notebook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2010-07-24T00:48:35-07:00" />
+<script type="application/ld+json">
+{"headline":"fstat、stat、lstat Differs","dateModified":"2010-07-24T00:48:35-07:00","datePublished":"2010-07-24T00:48:35-07:00","description":"stat系统调用系列包括了fstat、stat和lstat，它们都是用来返回“相关文件状态信息”的，三者的不同之处在于设定源文件的方式不同。","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4001/labrary/104.html"},"@type":"BlogPosting","url":"http://localhost:4001/labrary/104.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4001/feed.xml" title="Navins Notebook" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Navins Notebook</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">fstat、stat、lstat Differs</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2010-07-24T00:48:35-07:00" itemprop="datePublished">Jul 24, 2010
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{"login"=>"navins", "email"=>"navins@qq.com", "display_name"=>"navins", "first_name"=>"", "last_name"=>""}</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>stat系统调用系列包括了fstat、stat和lstat，它们都是用来返回“相关文件状态信息”的，三者的不同之处在于设定源文件的方式不同。</p>
+
+<p><strong>1</strong></p>
+
+<p>首先隆重介绍的是一个非常重要的”VIP”人物，他是fstat, stat和lstat三者都要用到的一个结构体类型，名字叫做struct stat。可以说，没有这个struct stat的支持，上述三个系统调用将寸步难行。</p>
+
+<p>这个struct stat结构体在不同的UNIX/Linux系统中的定义是有小的区别的，但你完全不用担心，这并不会影响我们的使用。</p>
+
+<p>在struct stat结构体中我们常用的且各个平台都一定有的域是：</p>
+
+<p><strong>st_mode 文件权限和文件类型信息 （记住这个黑体橘红色）</strong></p>
+
+<p>st_ino   与该文件关联的inode</p>
+
+<p>st_dev   保存文件的设备</p>
+
+<p>st_uid   文件属主的UID号</p>
+
+<p>st_gid   文件属主的GID号</p>
+
+<p>st_atime 文件上一次被访问的时间</p>
+
+<p>st_ctime 文件的权限、属主、组或内容上一次被修改的时间</p>
+
+<p>st_mtime 文件的内容上一次被修改的时间。（和st_ctime的不同之处显而易见）</p>
+
+<p>st_nlink  该文件上硬连接的个数</p>
+
+<p>我分别提取了solaris（UNIX）和fedora（Linux）的struct stat结构体的原始定义：大家可以自己比对一下便可以发现两者确实有所不同，但主要的域是完全相同的。</p>
+
+<!--more-->
+
+<p><strong>solaris的struct stat定义：</strong></p>
+
+<p>struct stat {<br />
+dev_t           st_dev;<br />
+ino_t           st_ino;<br />
+mode_t          st_mode;<br />
+nlink_t         st_nlink;<br />
+uid_t           st_uid;<br />
+gid_t           st_gid;<br />
+dev_t           st_rdev;<br />
+off_t           st_size;<br />
+timestruc_t     st_atim;<br />
+timestruc_t     st_mtim;<br />
+timestruc_t     st_ctim;<br />
+blksize_t       st_blksize;<br />
+blkcnt_t        st_blocks;<br />
+char            st_fstype[_ST_FSTYPSZ];<br />
+};</p>
+
+<p><strong>fedora的struct stat定义：</strong></p>
+
+<p>struct stat<br />
+{<br />
+__dev_t st_dev;                     /* Device.  */<br />
+unsigned short int __pad1;<br />
+__ino_t st_ino;                     /* File serial number.  */<br />
+__mode_t st_mode;                   /* File mode.  */<br />
+__nlink_t st_nlink;                 /* Link count.  */<br />
+__uid_t st_uid;                     /* User ID of the file’s owner. */<br />
+__gid_t st_gid;                     /* Group ID of the file’s group.*/<br />
+__dev_t st_rdev;                    /* Device number, if device.  */<br />
+unsigned short int __pad2;<br />
+__off_t st_size;                    /* Size of file, in bytes.  */<br />
+__blksize_t st_blksize;             /* Optimal block size for I/O.  */<br />
+__blkcnt_t st_blocks;               /* Number 512-byte blocks allocated. */<br />
+struct timespec st_atim;            /* Time of last access.  */<br />
+struct timespec st_mtim;            /* Time of last modification.  */<br />
+struct timespec st_ctim;            /* Time of last status change.  */<br />
+unsigned long int __unused4;<br />
+unsigned long int __unused5;<br />
+};</p>
+
+<p><strong>2</strong></p>
+
+<p>大家一定注意到了，在上面列举域的时候，我在st_mode处使用了 <strong>黑体橘红色</strong> 标识，原因在于这个域不像其他域那么容易使用，其他的域的值显而易见，而st_mode域是需要一些宏予以配合才能使用的。其实，通俗说，这些宏就是一些特定位置为1的二进制数的外号，我们使用它们和st_mode进行”&amp;”操作，从而就可以得到某些特定的信息。</p>
+
+<p><strong>文件类型标志包括：</strong></p>
+
+<p>S_IFBLK：文件是一个特殊的块设备</p>
+
+<p>S_IFDIR：文件是一个目录</p>
+
+<p>S_IFCHR：文件是一个特殊的字符设备</p>
+
+<p>S_IFIFO：文件是一个FIFO设备</p>
+
+<p>S_IFREG：文件是一个普通文件（REG即使regular啦）</p>
+
+<p>S_IFLNK：文件是一个符号链接</p>
+
+<p><strong>其他模式标志包括：</strong></p>
+
+<p>S_ISUID：文件设置了SUID位</p>
+
+<p>S_ISGID：文件设置了SGID位</p>
+
+<p>S_ISVTX：文件设置了sticky位</p>
+
+<p><strong>用于解释st_mode标志的掩码包括：</strong></p>
+
+<p>S_IFMT：文件类型</p>
+
+<p>S_IRWXU：属主的读/写/执行权限，可以分成S_IXUSR, S_IRUSR, S_IWUSR</p>
+
+<p>S_IRWXG：属组的读/写/执行权限，可以分成S_IXGRP, S_IRGRP, S_IWGRP</p>
+
+<p>S_IRWXO：其他用户的读/写/执行权限，可以分为S_IXOTH, S_IROTH, S_IWOTH</p>
+
+<p><strong>还有一些用于帮助确定文件类型的宏定义，这些和上面的宏不一样，这些是带有参数的宏，类似与函数的使用方法：</strong></p>
+
+<p>S_ISBLK：测试是否是特殊的块设备文件</p>
+
+<p>S_ISCHR：测试是否是特殊的字符设备文件</p>
+
+<p>S_ISDIR：测试是否是目录（我估计find . -type d的源代码实现中就用到了这个宏）</p>
+
+<p>S_ISFIFO：测试是否是FIFO设备</p>
+
+<p>S_ISREG：测试是否是普通文件</p>
+
+<p>S_ISLNK：测试是否是符号链接</p>
+
+<p>S_ISSOCK：测试是否是socket</p>
+
+<p><strong>3</strong></p>
+
+<p>我们已经学习完了struct stat和各种st_mode相关宏，现在就可以拿它们和stat系统调用相互配合工作了！</p>
+
+<p>int fstat(int filedes, struct stat *buf);</p>
+
+<p>int stat(const char *path, struct stat *buf);</p>
+
+<p>int lstat(const char *path, struct stat *buf);</p>
+
+<p>聪明人一眼就能看出来fstat的第一个参数是和另外两个不一样的，对！fstat区别于另外两个系统调用的地方在于，fstat系统调用接受的是 一个“文件描述符”，而另外两个则直接接受“文件全路径”。文件描述符是需要我们用open系统调用后才能得到的，而文件全路经直接写就可以了。</p>
+
+<p>stat 和lstat的区别：当文件是一个符号链接时，lstat返回的是该符号链接本身的信息；而stat返回的是该链接指向的文件的信息。（似乎有些晕吧，这 样记，lstat比stat多了一个l，因此它是有本事处理符号链接文件的，因此当遇到符号链接文件时，lstat当然不会放过。而 stat系统调用没有这个本事，它只能对符号链接文件睁一只眼闭一只眼，直接去处理链接所指文件喽）</p>
+
+
+  </div><a class="u-url" href="/labrary/104.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Navins Notebook</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Navins Notebook</li><li><a class="u-email" href="mailto:navins@qq.com">navins@qq.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ishare"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ishare</span></a></li><li><a href="https://www.twitter.com/zhulin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">zhulin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notebook to record tips/info.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
